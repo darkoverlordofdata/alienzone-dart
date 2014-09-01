@@ -14,30 +14,25 @@
 # Alien Zed
 #
 #   Match 3 Style Game
-#
-#
-# == Initialize ==
-#
-#   * Start loading the the splash screen image
-#   * Configure the game engine to the environment
 */
 part of alienzed;
 
 class Initialize extends State {
 
-  // Here we've just got some global level vars that persist regardless of State swaps
   static var score = 0;
-
-  // If the music in your game needs to play through-out a few State swaps, then you could reference it here
   static var music = null;
-
-  // Your game can check BasicGame.orientated in internal loops to know if it should pause or not
   static var orientated = false;
 
   preload() {
     load.image('splashScreen', 'images/splash.png');
   }
 
+  /**
+   * == Initialize ==
+   *
+   *   * Start loading the the splash screen image
+   *   * Configure the game engine to the environment
+   */
   create() {
     input.maxPointers = 1;
     stage.disableVisibilityChange = true;
@@ -76,12 +71,12 @@ class Initialize extends State {
   enterIncorrectOrientation() {
 
     orientated = false;
-    //document.getElementById('orientation').style.display = 'block';
+    querySelector('#orientation').style.display = 'block';
   }
 
   leaveIncorrectOrientation() {
 
     orientated = true;
-    //document.getElementById('orientation').style.display = 'none';
+    querySelector('#orientation').style.display = 'none';
   }
 }

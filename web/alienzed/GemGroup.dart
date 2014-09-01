@@ -14,28 +14,28 @@
 # Alien Zed
 #
 #   Match 3 Style Game
-#
-#
-# GemGroup class
 */
 part of alienzed;
 
 class GemGroup {
 
+  /**
+   * GemGroup
+   */
   var x               = 0;
   var currentPattern  = 0;
   var patterns        = null;
   var gems            = null;
   var level           = null;
   
-  //
-  // == New Gem Group ==
-  //   * Create 2 random gems
-  //   * Move, rotate and drop as a group
-  //
-  // param  [Phaser.GameState]  parent object
-  // returns this
-  //
+  /**
+   * == New Gem Group ==
+   *   * Create 2 random gems
+   *   * Move, rotate and drop as a group
+   *
+   * param  [Phaser.GameState]  parent object
+   * returns this
+   */
   GemGroup(this.level) {
   
     x = 0;
@@ -71,17 +71,17 @@ class GemGroup {
       'second'  : new Gem(level, level.randomGemType(), x + patterns[currentPattern]["second"]["x"], patterns[currentPattern]["second"]["y"])
     };
   }
-  //
-  // Update Positions method
-  //
+  /**
+   * Update Positions method
+   */
   updatePositions() {
     var pattern = patterns[currentPattern];
     gems["first"].move(x + pattern["first"]["x"], pattern["first"]["y"]);
     gems["second"].move(x + pattern["second"]["x"], pattern["second"]["y"]);
   }
-  //
-  // Drop method
-  //
+  /**
+   * Drop method
+   */
   drop() {
 
     // Get the pattern
@@ -102,12 +102,12 @@ class GemGroup {
       });
     });
   }
-  //
-  // Move method
-  //
-  // param  [Number]  deltaX {LEFT: -1, RIGHT: 1}
-  // returns none
-  //
+  /**
+   * Move method
+   *
+   * param  [Number]  deltaX {LEFT: -1, RIGHT: 1}
+   * returns none
+   */
   move(deltaX) {
 
     // new x position
@@ -121,12 +121,12 @@ class GemGroup {
     // Update positions
     updatePositions();
   }
-  //
-  // Rotate method
-  //
-  // param  [Number]  direction {LEFT: -1, RIGHT: 1}
-  // returns none
-  //
+  /**
+   * Rotate method
+   *
+   * param  [Number]  direction {LEFT: -1, RIGHT: 1}
+   * returns none
+   */
   rotate(direction) {
 
     // Update the current pattern

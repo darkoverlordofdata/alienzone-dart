@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| Levels.coffee
+#| match3.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -11,30 +11,15 @@
 #|
 #+--------------------------------------------------------------------+
 #
-# Alien Zed
+# match3 Game Logic
 #
-#   Match 3 Style Game
+# Based on the work:
+#
+#   https://github.com/hugeen/jmatch3
+#   http://hugeen.github.io/jmatch3/
 */
-part of alienzed;
+library match3;
 
-class Levels extends State {
-
-  /**
-   * Levels
-   */
-  var level = 1;
-  Sprite menu;
-  Sprite background;
-  Sprite startButton;
-
-  create() {
-    background = add.sprite(0, 0, 'splashScreen');
-    startButton = add.button(world.centerX - 95, 350, 'startButton', startGame, this);
-  }
-
-
-  startGame(source, input, flag) {
-
-    state.start("Level$level", true, false);
-  }
-}
+part "VoidObject.dart";
+part "Piece.dart";
+part "Grid.dart";

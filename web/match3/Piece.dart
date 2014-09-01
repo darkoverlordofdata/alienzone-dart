@@ -1,19 +1,19 @@
 /*+--------------------------------------------------------------------+
 #| Piece.dart
 #+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2013
+#| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
 #|
-#| This file is a part of match3
+#| This file is a part of alienzed
 #|
-#| liquid.coffee is free software; you can copy, modify, and distribute
+#| alienzed is free software; you can copy, modify, and distribute
 #| it under the terms of the MIT License
 #|
 #+--------------------------------------------------------------------+
 #
-# jMatch3 Game Engine
+# match3 Game Logic
 */
-part of alienzed;
+part of match3;
 
 typedef void getDeepMatching(dynamic piece);
 

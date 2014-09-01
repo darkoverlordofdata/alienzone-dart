@@ -14,23 +14,21 @@
 # Alien Zed
 #
 #   Match 3 Style Game
-#
-#
-# Game Over
 */
-
 part of alienzed;
-
 
 class GameOver extends State {
 
+  /**
+   * Game Over
+   */
   Button startButton;
 
-  //
-  // Phaser.State::create
-  //
-  // @return	Nothing
-  //
+  /**
+   * Phaser.State::create
+   *
+   * @return	Nothing
+   */
   create() {
 
 
@@ -48,11 +46,11 @@ class GameOver extends State {
   }
 
 
-  //
-  // Start Game
-  //
-  // @return	Nothing
-  //
+  /**
+   * Start Game
+   *
+   * @return	Nothing
+   */
   startGame(source, input, flag) {
     state.start("Level1", true, false);
   }

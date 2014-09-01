@@ -22,9 +22,9 @@ part of alienzed;
 
 class Level1 extends State {
 
-  //
-  // Members
-  //
+  /**
+   * Members
+   */
   Sprite background;
   Sprite board;
   Grid grid;
@@ -36,14 +36,14 @@ class Level1 extends State {
   var score           = 0;
   var rnd             = new Random();
 
-  //
-  // == Create the game level
-  //   * set the background and game board
-  //   * draw the text
-  //   * wire up the buttons
-  //
-  // return none
-  //
+  /**
+   * == Create the game level
+   *   * set the background and game board
+   *   * draw the text
+   *   * wire up the buttons
+   *
+   * return none
+   */
   create() {
 
     time.advancedTiming = true;
@@ -51,17 +51,9 @@ class Level1 extends State {
     background = add.sprite(0, 0, 'background');
     board = add.sprite(0, 0, 'board');
     board.alpha = 0.7;
-    var style = new TextStyle(
-      font      : "bold 30px Acme",
-      fill      : "#e0e0e0"
-    );
-    text = add.text(100, 20, "Score: 0", style);
-    grid = new Grid(
-      width     : 6,
-      height    : 7,
-      gravity   : 'down'
-    );
-    print(Alienzed.GEMTYPES);
+
+    text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
+    grid = new Grid(width: 6, height: 7, gravity: 'down');
     discoveredGems = [Alienzed.GEMTYPES[0], Alienzed.GEMTYPES[1], Alienzed.GEMTYPES[2]];
 
     newGemGroup();
@@ -71,11 +63,12 @@ class Level1 extends State {
     add.button(210, 420, 'arrow_lrot',   lrotButton,  this);
     add.button(260, 420, 'arrow_rrot',   rrotButton,  this);
   }
-  //
-  // Directional Handlers
-  //
-  // return none
-  //
+  
+  /**
+   * Directional Handlers
+   *
+   * return none
+   */
   leftButton(source, input, flag) {
     gemGroup.move(-1);
   }
@@ -99,20 +92,20 @@ class Level1 extends State {
   }
 
 
-  //
-  // New Gem Group
-  //
-  // return Gem Group
-  //
+  /**
+   * New Gem Group
+   *
+   * return Gem Group
+   */
   newGemGroup() {
     gemGroup = new GemGroup(this);
   }
 
-  //
-  // Handle Matches
-  //
-  // return none
-  //
+  /**
+   * Handle Matches
+   *
+   * return none
+   */
   handleMatches() {
 
     var piecesToUpgrade;
@@ -147,11 +140,11 @@ class Level1 extends State {
     handleFalling();
   }
 
-  //
-  // Handle Falling
-  //
-  // return none
-  //
+  /**
+   ^ Handle Falling
+   ^
+   ^ return none
+   */
   handleFalling() {
 
     // Apply gravity and get falling Pieces
@@ -174,11 +167,11 @@ class Level1 extends State {
       newGemGroup();
     }
   }
-  //
-  // Handle Upgrade
-  //
-  // return none
-  //
+  /**
+   * Handle Upgrade
+   *
+   * return none
+  */
   handleUpgrade(piecesToUpgrade) {
 
     // For each piece to upgrade
@@ -195,11 +188,11 @@ class Level1 extends State {
     });
   }
 
-  //
-  // Random Gem Type
-  //
-  // return string - random gem type
-  //
+  /**
+   * Random Gem Type
+   *
+   * return string - random gem type
+   */
   randomGemType() {
 
     int i = (rnd.rnd() * discoveredGems.length).floor();
@@ -207,21 +200,21 @@ class Level1 extends State {
     return discoveredGems[i];
   }
 
-  //
-  // Add to Score
-  //
-  // return none
-  //
+  /**
+   * Add to Score
+   *
+   * return none
+   */
   addToScore(points) {
     score += points;
     text.text = "Score: $score";
   }
 
-  //
-  // Game Over
-  //
-  // return none
-  //
+  /**
+   * Game Over
+   *
+   * return none
+   */
   gameOver() {
     state.start("GameOver", false, false);
   }

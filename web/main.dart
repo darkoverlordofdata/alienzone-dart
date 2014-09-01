@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| index.coffee
+#| main.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -20,12 +20,8 @@ import "package:alienzed/phaser.dart";
 
 import "dart:html";
 import 'dart:math';
+import 'match3/match3.dart';
 
-
-part "match3/VoidObject.dart";
-part "match3/Piece.dart";
-part "match3/Grid.dart";
-//
 part "alienzed/Alienzed.dart";
 part "alienzed/Assets.dart";
 part "alienzed/GameOver.dart";

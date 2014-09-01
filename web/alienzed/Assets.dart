@@ -12,17 +12,16 @@
 #+--------------------------------------------------------------------+
 #
 # Load the game assets
-#
-#
-# == Assets ==
-#   * Show the splash screen
-#   * Load the game assets
-# */
+*/
 part of alienzed;
-
 
 class Assets extends State {
 
+  /**
+   * == Assets ==
+   *   * Show the splash screen
+   *   * Load the game assets
+   */
   var splashScreen;
 
   preload() {

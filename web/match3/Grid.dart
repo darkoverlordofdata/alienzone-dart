@@ -1,19 +1,19 @@
 /*+--------------------------------------------------------------------+
 #| Grid.dart
 #+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2013
+#| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
 #|
-#| This file is a part of match3
+#| This file is a part of alienzed
 #|
-#| liquid.coffee is free software; you can copy, modify, and distribute
+#| alienzed is free software; you can copy, modify, and distribute
 #| it under the terms of the MIT License
 #|
 #+--------------------------------------------------------------------+
 #
-# jMatch3 Game Engine
+# match3 Game Logic
 */
-part of alienzed;
+part of match3;
 
 typedef void doGravity(dynamic grid);
 
@@ -33,20 +33,6 @@ class Grid {
 
   static var voidObject = new VoidObject();
 
-  // Get last empty piece from an Array of pieces
-  static getLastEmptyPiece(pieces){
-    var lastEmpty = false;
-    pieces.forEach((piece) {
-      if (piece.object == voidObject) {
-        lastEmpty = piece;
-      }
-    });
-    return lastEmpty;
-
-  }
-
-
-
   Grid({String gravity: 'none', int height: 10, int width: 10}) {
     this.gravity = gravity;
     this.height = height;
@@ -62,6 +48,18 @@ class Grid {
         pieces[x][y] = new Piece(this, x, y);
       }
     }
+  }
+
+  // Get last empty piece from an Array of pieces
+  static getLastEmptyPiece(pieces){
+    var lastEmpty = false;
+    pieces.forEach((piece) {
+      if (piece.object == voidObject) {
+        lastEmpty = piece;
+      }
+    });
+    return lastEmpty;
+
   }
 
   // Return if given coords are in the grid

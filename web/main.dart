@@ -1,3 +1,20 @@
+/*+--------------------------------------------------------------------+
+#| index.coffee
+#+--------------------------------------------------------------------+
+#| Copyright DarkOverlordOfData (c) 2014
+#+--------------------------------------------------------------------+
+#|
+#| This file is a part of alienzed
+#|
+#| alienzed is free software; you can copy, modify, and distribute
+#| it under the terms of the MIT License
+#|
+#+--------------------------------------------------------------------+
+#
+# Alien Zed
+#
+#   Match 3 Style Game
+*/
 library alienzed;
 import "package:alienzed/phaser.dart";
 
@@ -21,7 +38,6 @@ part "alienzed/Levels.dart";
 
 
 main() {
-  print("start");
 
   querySelector('#logo').style.display = 'none';
   querySelector('body').style.backgroundColor = 'black';

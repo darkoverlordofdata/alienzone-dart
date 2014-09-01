@@ -1,0 +1,22 @@
+[
+  {
+    "first": {"x": 0, "y": 0},
+    "second": {"x": 0, "y": 1},
+    "order": ["second", "first"]
+  },
+  {
+    "first": {"x": 1, "y": 1},
+    "second": {"x": 0, "y": 1},
+    "order": ["second", "first"]
+  },
+  {
+    "first": {"x": 0, "y": 1},
+    "second": {"x": 0, "y": 0},
+    "order": ["first", "second"]
+  },
+  {
+    "first": {"x": 0, "y": 1},
+    "second": {"x": 1, "y": 1},
+    "order": ["first", "second"]
+  }
+]

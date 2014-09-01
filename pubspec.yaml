@@ -1,0 +1,19 @@
+name: alienzed
+version: 0.0.1
+description:
+  Match 3 game
+author: brucedavidson <darkoverlordofdata@gmail.com>
+homepage: http://darkoverlordofdata.com
+dependencies:
+  browser: ">=0.10.0+2 <0.11.0"
+  play_pixi: any
+
+
+transformers:
+- $dart2js:
+    checked: false
+    minify: false
+    suppressWarnings: false
+    suppressHints: false
+    terse: false
+    verbose: true

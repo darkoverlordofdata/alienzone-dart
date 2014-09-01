@@ -23,6 +23,8 @@ part "alienzed/Levels.dart";
 main() {
   print("start");
 
+  querySelector('#logo').style.display = 'none';
+  querySelector('body').style.backgroundColor = 'black';
 
   Game game = new Alienzed();
 

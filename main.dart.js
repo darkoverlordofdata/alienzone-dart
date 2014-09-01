@@ -42306,6 +42306,8 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
   "^": "",
   main: [function() {
     P.print("start");
+    J.set$display$x(document.querySelector("#logo").style, "none");
+    J.set$backgroundColor$x(document.querySelector("body").style, "black");
     var game = new Z.Alienzed("", 320, 480, 1, null, null, null, null, "", null, null, null, null, null, null, 0, false, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     game.Game$8(320, 480, 0, "", null, null, null, null);
     game.Alienzed$0();

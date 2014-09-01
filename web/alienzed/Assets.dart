@@ -53,7 +53,6 @@ class Assets extends State {
   }
 
   create() {
-    print("Assets::create");
     state.start('Levels', true, false);
     
   }

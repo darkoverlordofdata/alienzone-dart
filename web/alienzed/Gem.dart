@@ -69,7 +69,7 @@ class Gem {
     // Get the last empty piece to place the gem
     var lastEmpty = Grid.getLastEmptyPiece(column);
     // If an empty piece has been found
-    if (lastEmpty) {
+    if (lastEmpty != null) {
       // Bind this gem to the piece
       lastEmpty.object = this;
       // And make it fall
@@ -91,11 +91,13 @@ class Gem {
   fall(x, y, next) {
    // next = next or ()->
     // Create a tween animation
+    var point = {
+        'x': x * Alienzed.GEMSIZE,
+        'y': Alienzed.MARGINTOP * Alienzed.GEMSIZE + y * Alienzed.GEMSIZE
+    };
+
     level.add.tween(sprite)
-    .to({
-      x: x * Alienzed.GEMSIZE,
-      y: Alienzed.MARGINTOP * Alienzed.GEMSIZE + y * Alienzed.GEMSIZE}
-    , 500, Easing.Bounce.Out, true)
+    .to(point, 500, Easing.Bounce.Out, true, 0, 0, false)
     .onComplete.add(next);
   }
 }

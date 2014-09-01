@@ -25,10 +25,10 @@ class Grid {
   var pieces;
 
   var directions = {
-    'up':     {'x': 0, 'y': -1},
-    'down':   {'x': 0, 'y': 1},
-    'right':  {'x': 1, 'y': 0},
-    'left':   {'x': -1, 'y': 0}
+    'up'    : new Pointe(0, -1),
+    'down'  : new Pointe(0, 1),
+    'right' : new Pointe(1,0),
+    'left'  : new Pointe(-1,0)
   };
 
   static var voidObject = new VoidObject();
@@ -50,11 +50,13 @@ class Grid {
     }
   }
 
-  // Get last empty piece from an Array of pieces
+  /**
+   *  Get last empty piece from an Array of pieces
+   */
   static getLastEmptyPiece(pieces){
-    var lastEmpty = false;
+    var lastEmpty = null;
     pieces.forEach((piece) {
-      if (piece.object == voidObject) {
+      if (piece.object.type == voidObject.type) {
         lastEmpty = piece;
       }
     });
@@ -62,28 +64,35 @@ class Grid {
 
   }
 
-  // Return if given coords are in the grid
-  coordsInWorld(coords)  {
-    coords.x >= 0 && coords.y >= 0 && coords.x < width && coords.y < height;
+  /**
+   * Return if given coordinates are in the grid
+   */
+  coordsInWorld(point)  {
+    return (point.x >= 0 && point.y >= 0 && point.x < width && point.y < height);
   }
 
-  // Return the piece from given coords
-  getPiece(coords) {
-    if (coordsInWorld(coords)) {
-      return pieces[coords.x][coords.y];
+  // Return the piece from given coordinates
+  getPiece(Point point) {
+
+    if (coordsInWorld(point)) {
+      return pieces[point.x][point.y];
     }
     else {
       return null;
     }
   }
 
-  // Return the piece neighbour of another piece from a given direction
+  /**
+   * Return the piece neighbour of another piece from a given direction
+   */
   neighbourOf(piece, direction) {
     var targetCoords = piece.relativeCoordinates(direction, 1);
-    getPiece(targetCoords);
+    return getPiece(targetCoords);
   }
 
-  // Return a Hash of pieces by direction
+  /**
+   * Return a Hash of pieces by direction
+   */
   neighboursOf(piece) {
     var result = {};
     directions.forEach((directionName, direction) {
@@ -92,25 +101,29 @@ class Grid {
     return result;
   }
 
-  // Execute a callback for each current match
+  /**
+   * Execute a callback for each current match
+   */
   forEachMatch(callback) {
     var matches = getMatches();
     matches.forEach((match) => callback(match, match[0].object.type));
   }
 
-  // Return an array of matches or false
+  /**
+   * Return an array of matches or false
+   */
   getMatches() {
     var checked = [];
     var matches = [];
 
-    pieces.forEach((row) {
-      row.forEach((piece) {
+    pieces.forEach((pieces) {
+      pieces.forEach((piece) {
         if (checked.indexOf(piece) == -1) {
           var match = piece.deepMatchingNeighbours();
 
           match.forEach((m) => checked.add(m));
           if (match.length >= 3) {
-            if (piece.object != voidObject) {
+            if (piece.object.type != voidObject.type) {
               matches.add(match);
             }
           }
@@ -118,42 +131,49 @@ class Grid {
       });
     });
 
-    return matches;
+    return (matches.length>0) ? matches : null;
   }
 
-
-  // Return an Array of pieces
+  /**
+   * Return an Array of pieces
+   */
   getRow(row, reverse) {
-    var result = [];
+    var pieces = [];
 
-    result.forEach((piece) => result.add(piece[row]));
-    return (reverse) ? result.reverse() : result;
+    pieces.forEach((piece) => pieces.add(piece[row]));
+    return (reverse) ? pieces.reversed.toList() : pieces;
   }
 
-  // Return an Array of pieces
+  /**
+   * Return an Array of pieces
+   */
   getColumn(column, reverse) {
-    var result = [];
+    var pieces = [];
 
     for (int i=0; i<height; i++) {
-      result.add(pieces[column][i]);
+      pieces.add(this.pieces[column][i]);
     }
-    return (reverse) ? result.reverse() : result;
+    return (reverse) ? pieces.reversed.toList() : pieces;
   }
 
-  // Destroy all matches and update the grid
+  /**
+   * Destroy all matches and update the grid
+   */
   clearMatches() {
     var matches = getMatches();
 
     if (matches.length == 0)
       return false;
 
-    matches.forEach((row) {
-      row.forEach((piece) => piece.clear());
+    matches.forEach((pieces) {
+      pieces.forEach((p) => p.clear());
     });
     return true;
   }
 
-  // Swap 2 pieces object
+  /**
+   * Swap 2 pieces object
+   */
   swapPieces(piece1, piece2) {
     var tmp1 = piece1.object;
     var tmp2 = piece2.object;
@@ -161,12 +181,13 @@ class Grid {
     piece2.object = tmp1;
    }
 
-  // Return an Array of falling pieces
+  /**
+   * Return an Array of falling pieces
+   */
   applyGravity() {
-    print("applyGravity");
     if (gravity != 'none') {
 
-      var direction = directions[gravity];
+      Pointe direction = directions[gravity];
       var horizontal = (direction.x != 0);
       var reverse = (horizontal) ? (direction.x == 1) : (direction.y == 1);
       var fallingPieces = [];
@@ -186,11 +207,13 @@ class Grid {
 
             var neighbour = piece.neighbour(direction);
 
-            if (piece.object != voidObject && neighbour.object == voidObject) {
-              grid.swapPieces(piece, neighbour);
-              if (fallingPieces.indexOf(neighbour) == -1)
-                fallingPieces.add(neighbour);
-              swaps++;
+            if (neighbour != null) {
+              if (piece.object.type != voidObject.type && neighbour.object.type == voidObject.type) {
+                grid.swapPieces(piece, neighbour);
+                if (fallingPieces.indexOf(neighbour) == -1)
+                  fallingPieces.add(neighbour);
+                swaps++;
+              }
             }
           });
 
@@ -202,7 +225,7 @@ class Grid {
       var fallingPiecesWithoutEmpty = [];
 
       fallingPieces.forEach((piece) {
-        if (piece.object != voidObject)
+        if (piece.object.type != voidObject.type)
           fallingPiecesWithoutEmpty.add(piece);
       });
 

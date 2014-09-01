@@ -31,7 +31,7 @@ class Level1 extends State {
   Sprite startButton;
   var cells           = null;
   var discoveredGems  = null;
-  var text            = null;
+  Text text            = null;
   var gemGroup        = null;
   var score           = 0;
   var rnd             = new Random();
@@ -112,7 +112,7 @@ class Level1 extends State {
     // Get all matches
     // If matches have been found
     var matches = grid.getMatches();
-    if (matches.length>0) {
+    if (matches != null) {
       // Initialize the array of pieces to upgrade
       piecesToUpgrade = [];
       // Reference to the current game
@@ -156,7 +156,7 @@ class Level1 extends State {
       hasFall = 0;
       // For each falling pieces
       fallingPieces.forEach((piece) {
-        piece.object.fall(piece.x, piece.y, () {
+        piece.object.fall(piece.x, piece.y, (Sprite s) {
           hasFall += 1;
           if (hasFall == fallingPieces.length)
             handleMatches();
@@ -177,7 +177,7 @@ class Level1 extends State {
     // For each piece to upgrade
     piecesToUpgrade.forEach((pieceToUpgrade) {
       // Get the upgraded type
-      var upgradedType = Alienzed.GEMTYPES[Alienzed.GEMTYPES.indexOf(pieceToUpgrade.type) + 1];
+      var upgradedType = Alienzed.GEMTYPES[Alienzed.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
       // If the type is defined
       if (upgradedType != null) {
         // And if the type is not already discovered
@@ -195,8 +195,7 @@ class Level1 extends State {
    */
   randomGemType() {
 
-    int i = (rnd.rnd() * discoveredGems.length).floor();
-    print("i = $i");
+    var i = rnd.integerInRange(0, discoveredGems.length-1);
     return discoveredGems[i];
   }
 
@@ -208,6 +207,7 @@ class Level1 extends State {
   addToScore(points) {
     score += points;
     text.text = "Score: $score";
+    text.updateText();
   }
 
   /**

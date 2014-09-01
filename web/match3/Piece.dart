@@ -15,16 +15,14 @@
 */
 part of match3;
 
-typedef void getDeepMatching(dynamic piece);
+typedef void getDeepMatching(Piece piece);
 
-class Piece {
+class Piece extends Pointe {
 
   var grid;
-  int x;
-  int y;
   var object;
 
-  Piece(this.grid, this.x, this.y) {
+  Piece(this.grid, x, y) : super(x, y) {
     clear();
   }
 
@@ -33,9 +31,7 @@ class Piece {
   }
 
   relativeCoordinates(direction, distance) {
-    return {
-        x: this.x + distance * direction.x, y: this.y + distance * direction.y
-    };
+    return new Pointe(x + distance * direction.x, y + distance * direction.y);
   }
 
   neighbour(direction) {
@@ -49,11 +45,13 @@ class Piece {
 
   matchingNeighbours() {
     var matches = [];
-    Map<String, dynamic> directions = neighbours();
+    var directions = neighbours();
 
     directions.forEach((direction, neighbour) {
-      if (neighbour.object.type == this.object.type) {
-        matches.add(neighbour);
+      if (neighbour != null) {
+        if (neighbour.object.type == this.object.type) {
+          matches.add(neighbour);
+        }
       }
     });
     return matches;

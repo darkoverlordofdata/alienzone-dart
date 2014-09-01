@@ -21,5 +21,7 @@
 library match3;
 
 part "VoidObject.dart";
+part "Pointe.dart";
+part "Pair.dart";
 part "Piece.dart";
 part "Grid.dart";

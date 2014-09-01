@@ -24,9 +24,9 @@ class GemGroup {
    */
   var x               = 0;
   var currentPattern  = 0;
-  var patterns        = null;
-  var gems            = null;
-  var level           = null;
+  var patterns;
+  var gems;
+  var level;
   
   /**
    * == New Gem Group ==
@@ -40,26 +40,10 @@ class GemGroup {
   
     x = 0;
     patterns = [
-        {
-            "first": {"x": 0, "y": 0},
-            "second": {"x": 0, "y": 1},
-            "order": ["second", "first"]
-        },
-        {
-            "first": {"x": 1, "y": 1},
-            "second": {"x": 0, "y": 1},
-            "order": ["second", "first"]
-        },
-        {
-            "first": {"x": 0, "y": 1},
-            "second": {"x": 0, "y": 0},
-            "order": ["first", "second"]
-        },
-        {
-            "first": {"x": 0, "y": 1},
-            "second": {"x": 1, "y": 1},
-            "order": ["first", "second"]
-        }
+        new Pair(2, 1, new Pointe(0,0), new Pointe(0,1)),
+        new Pair(2, 1, new Pointe(1,1), new Pointe(0,1)),
+        new Pair(1, 2, new Pointe(0,1), new Pointe(0,0)),
+        new Pair(1, 2, new Pointe(0,1), new Pointe(1,1))
     ];
 
 
@@ -67,8 +51,8 @@ class GemGroup {
 
     // Create 2 gems
     gems = {
-      'first'   : new Gem(level, level.randomGemType(), x + patterns[currentPattern]["first"]["x"], patterns[currentPattern]["first"]["y"]),
-      'second'  : new Gem(level, level.randomGemType(), x + patterns[currentPattern]["second"]["x"], patterns[currentPattern]["second"]["y"])
+      'first'   : new Gem(level, level.randomGemType(), x + patterns[currentPattern].first.x, patterns[currentPattern].first.y),
+      'second'  : new Gem(level, level.randomGemType(), x + patterns[currentPattern].second.x, patterns[currentPattern].second.y)
     };
   }
   /**
@@ -76,8 +60,8 @@ class GemGroup {
    */
   updatePositions() {
     var pattern = patterns[currentPattern];
-    gems["first"].move(x + pattern["first"]["x"], pattern["first"]["y"]);
-    gems["second"].move(x + pattern["second"]["x"], pattern["second"]["y"]);
+    gems["first"].move(x + pattern.first.x, pattern.first.y);
+    gems["second"].move(x + pattern.second.x, pattern.second.y);
   }
   /**
    * Drop method
@@ -89,15 +73,16 @@ class GemGroup {
     // Drop counter
     var dropped = 0;
     // gems to drop
-    var gemsCount = pattern["order"].length;
+    var gemsCount = pattern.order.length;
     // Drop gems in order
 
-    pattern["order"].forEach((i) {
-      gems[i].drop((){
+    pattern.order.forEach((i) {
+      gems[i].drop((Sprite s){
         dropped += 1;
         // If all gems have been dropped
-        if (dropped == gemsCount)
+        if (dropped == gemsCount) {
           level.handleMatches();
+        }
 
       });
     });

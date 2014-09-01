@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99cf156c-a616-46f8-a327-b85d5424283a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/alienzed/Assets.dart" afterPath="$PROJECT_DIR$/web/alienzed/Assets.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/alienzed/Initialize.dart" afterPath="$PROJECT_DIR$/web/alienzed/Initialize.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/physics/ninja/aabb.dart" afterPath="$PROJECT_DIR$/lib/physics/ninja/aabb.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/alienzed.iml" afterPath="$PROJECT_DIR$/.idea/alienzed.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/animation/animation.dart" afterPath="$PROJECT_DIR$/lib/animation/animation.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/animation/animation_manager.dart" afterPath="$PROJECT_DIR$/lib/animation/animation_manager.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/physics/arcade/arcade.dart" afterPath="$PROJECT_DIR$/lib/physics/arcade/arcade.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gameobjects/button.dart" afterPath="$PROJECT_DIR$/lib/gameobjects/button.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/loader/cache.dart" afterPath="$PROJECT_DIR$/lib/loader/cache.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/core_signal.dart" afterPath="$PROJECT_DIR$/lib/core/core_signal.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gameobjects/events.dart" afterPath="$PROJECT_DIR$/lib/gameobjects/events.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/game.dart" afterPath="$PROJECT_DIR$/lib/core/game.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/input/input.dart" afterPath="$PROJECT_DIR$/lib/input/input.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/input/key.dart" afterPath="$PROJECT_DIR$/lib/input/key.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/loader/loader.dart" afterPath="$PROJECT_DIR$/lib/loader/loader.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/input/mouse.dart" afterPath="$PROJECT_DIR$/lib/input/mouse.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/physics/ninja/ninja.dart" afterPath="$PROJECT_DIR$/lib/physics/ninja/ninja.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/physics/physics.dart" afterPath="$PROJECT_DIR$/lib/physics/physics.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/input/pointer.dart" afterPath="$PROJECT_DIR$/lib/input/pointer.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/scale_manager.dart" afterPath="$PROJECT_DIR$/lib/core/scale_manager.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/core/signal_binding.dart" afterPath="$PROJECT_DIR$/lib/core/signal_binding.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/sound/sound.dart" afterPath="$PROJECT_DIR$/lib/sound/sound.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/sound/sound_manager.dart" afterPath="$PROJECT_DIR$/lib/sound/sound_manager.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gameobjects/sprite.dart" afterPath="$PROJECT_DIR$/lib/gameobjects/sprite.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tilemap/tile.dart" afterPath="$PROJECT_DIR$/lib/tilemap/tile.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/time/time.dart" afterPath="$PROJECT_DIR$/lib/time/time.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/time/timer.dart" afterPath="$PROJECT_DIR$/lib/time/timer.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tween/tween.dart" afterPath="$PROJECT_DIR$/lib/tween/tween.dart" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.html" afterPath="$PROJECT_DIR$/web/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/main.dart" afterPath="$PROJECT_DIR$/web/main.dart" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="alienzed.iws" />
@@ -53,7 +26,28 @@
     <favorites_list name="alienzed" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="main.dart" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/main.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.58133334" vertical-offset="52" max-vertical-offset="684">
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="468">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -77,7 +71,6 @@
         <option value="$PROJECT_DIR$/web/alienzed/Level1.coffee" />
         <option value="$PROJECT_DIR$/web/hellophaser/hellophaser.dart" />
         <option value="$PROJECT_DIR$/web/hellophaser/hello.dart" />
-        <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/lib/core/scale_manager.dart" />
         <option value="$PROJECT_DIR$/lib/gameobjects/sprite.dart" />
         <option value="$PROJECT_DIR$/lib/loader/loader.dart" />
@@ -90,10 +83,11 @@
         <option value="$PROJECT_DIR$/web/alienzed/GemGroup.dart" />
         <option value="$PROJECT_DIR$/web/alienzed/Level1.dart" />
         <option value="$PROJECT_DIR$/web/alienzed/GameOver.dart" />
-        <option value="$PROJECT_DIR$/web/main.dart" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/web/alienzed/Initialize.dart" />
         <option value="$PROJECT_DIR$/web/alienzed/Assets.dart" />
+        <option value="$PROJECT_DIR$/web/index.html" />
+        <option value="$PROJECT_DIR$/web/main.dart" />
       </list>
     </option>
   </component>
@@ -157,6 +151,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alienzed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alienzed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coffee" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -249,16 +257,21 @@
       <created>1409557097900</created>
       <updated>1409557097900</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="cleanup">
+      <created>1409559103620</created>
+      <updated>1409559103620</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="742" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1824274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -267,7 +280,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -394,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.28795812" vertical-offset="165" max-vertical-offset="738">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coffee/jmatch3/index.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573">
@@ -452,18 +457,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16483517" vertical-offset="0" max-vertical-offset="546">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/time/timer.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9396">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -528,6 +526,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.68586385" vertical-offset="201" max-vertical-offset="1584">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -566,14 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65565217" vertical-offset="235" max-vertical-offset="810">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="648">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -638,6 +629,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2779" max-vertical-offset="4032">
           <caret line="166" column="2" selection-start-line="166" selection-start-column="2" selection-end-line="166" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.333333" vertical-offset="0" max-vertical-offset="468">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coffee/index.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37172773" vertical-offset="165" max-vertical-offset="738">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58133334" vertical-offset="52" max-vertical-offset="684">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
           <folding />
         </state>
       </provider>

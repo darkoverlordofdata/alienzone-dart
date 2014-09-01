@@ -29,7 +29,7 @@ class Assets extends State {
 
     //  Splash...
     splashScreen = add.sprite(0, 0, 'splashScreen');
-    //load.setPreloadSprite(splashScreen);
+    load.setPreloadSprite(splashScreen);
 
     //  Start loading the remaining game assets
     load.image('startButton',  'images/start_button.png');

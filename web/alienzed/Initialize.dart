@@ -35,17 +35,14 @@ class Initialize extends State {
   static var orientated = false;
 
   preload() {
-    print('preload');
     load.image('splashScreen', 'images/splash.png');
   }
 
   create() {
-    print('create');
     input.maxPointers = 1;
     stage.disableVisibilityChange = true;
 
     if (game.device.desktop) {
-      print("game.device.desktop TRUE");
       scale.scaleMode = ScaleManager.SHOW_ALL;
       scale.minWidth = 320;
       scale.minHeight = 480;
@@ -56,7 +53,6 @@ class Initialize extends State {
       scale.setScreenSize(true);
     }
     else {
-      print("game.device.desktop FALSE");
       scale.scaleMode = ScaleManager.SHOW_ALL;
       scale.minWidth = 320;
       scale.minHeight = 480;
@@ -71,7 +67,6 @@ class Initialize extends State {
       scale.setScreenSize(true);
     }
     // Load the remaining assets
-    print('next');
     state.start('Assets', true, false);
   }
 

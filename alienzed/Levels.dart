@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| main.dart
+#| Levels.coffee
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -15,30 +15,26 @@
 #
 #   Match 3 Style Game
 */
-library alienzed;
-import "package:alienzed/phaser.dart";
+part of alienzed;
 
-import "dart:html";
-import 'dart:math';
-import 'match3/match3.dart';
+class Levels extends State {
 
-part "alienzed/Alienzed.dart";
-part "alienzed/Assets.dart";
-part "alienzed/GameOver.dart";
-part "alienzed/Gem.dart";
-part "alienzed/GemGroup.dart";
-part "alienzed/Initialize.dart";
-part "alienzed/Level1.dart";
-part "alienzed/Levels.dart";
+  /**
+   * Levels
+   */
+  var level = 1;
+  Sprite menu;
+  Sprite background;
+  Sprite startButton;
 
-
-
-main() {
-
-  querySelector('#logo').style.display = 'none';
-  querySelector('body').style.backgroundColor = 'black';
-
-  Game game = new Alienzed();
+  create() {
+    background = add.sprite(0, 0, 'splashScreen');
+    startButton = add.button(world.centerX - 95, 350, 'startButton', startGame, this);
+  }
 
 
+  startGame(source, input, flag) {
+
+    state.start("Level$level", true, false);
+  }
 }

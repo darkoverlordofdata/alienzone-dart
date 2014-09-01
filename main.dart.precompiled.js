@@ -36530,19 +36530,19 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         return this.start$0(0);
       else
         return this;
-    }, function(properties, duration, ease, autoStart) {
-      return this.to$7(properties, duration, ease, autoStart, 0, 0, false);
-    }, "to$4", function(properties, duration, ease) {
+    }, function(properties, duration, ease) {
       return this.to$7(properties, duration, ease, false, 0, 0, false);
     }, "to$3", function(properties, duration) {
       return this.to$7(properties, duration, null, false, 0, 0, false);
     }, "to$2", function(properties) {
       return this.to$7(properties, 1000, null, false, 0, 0, false);
-    }, "to$1", function(properties, duration, ease, autoStart, delay, repeat) {
+    }, "to$1", function(properties, duration, ease, autoStart) {
+      return this.to$7(properties, duration, ease, autoStart, 0, 0, false);
+    }, "to$4", function(properties, duration, ease, autoStart, delay, repeat) {
       return this.to$7(properties, duration, ease, autoStart, delay, repeat, false);
     }, "to$6", function(properties, duration, ease, autoStart, delay) {
       return this.to$7(properties, duration, ease, autoStart, delay, 0, false);
-    }, "to$5", "call$7", "call$4", "call$3", "call$2", "call$1", "call$6", "call$5", "get$to", 2, 12, 1632, 1498, 32, 95, 5, 5, 95, 469, [], 55, [], 1439, [], 1064, [], 473, [], 1633, [], 1440, [], "to"],
+    }, "to$5", "call$7", "call$3", "call$2", "call$1", "call$4", "call$6", "call$5", "get$to", 2, 12, 1632, 1498, 32, 95, 5, 5, 95, 469, [], 55, [], 1439, [], 1064, [], 473, [], 1633, [], 1440, [], "to"],
     from$7: [function(properties, duration, ease, autoStart, delay, repeat, yoyo) {
       var _cache, instance, t1, t2, prop, t3, t4;
       _cache = P.LinkedHashMap_LinkedHashMap$_empty(null, null);
@@ -42305,7 +42305,6 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
 ["alienzed", "main.dart", , Z, {
   "^": "",
   main: [function() {
-    P.print("start");
     J.set$display$x(document.querySelector("#logo").style, "none");
     J.set$backgroundColor$x(document.querySelector("body").style, "black");
     var game = new Z.Alienzed("", 320, 480, 1, null, null, null, null, "", null, null, null, null, null, null, 0, false, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
@@ -42364,7 +42363,6 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.load.image$2("gem_yellow", "images/gems/yellow.png");
     }, "call$0", "get$preload", 0, 0, 13, "preload"],
     create$0: [function() {
-      P.print("Assets::create");
       J.start$3$x(this.state, "Levels", true, false);
     }, "call$0", "get$create", 0, 0, 13, "create"]
   },
@@ -42400,15 +42398,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       J.set$y$x(this.sprite, J.$mul$ns(y, 48));
     },
     fall$3: function(x, y, next) {
-      var t1, t2, t3;
-      t1 = this.level.add.tween$1(this.sprite);
-      t2 = J.$mul$ns(x, 48);
-      t3 = J.$mul$ns(y, 48);
-      if (typeof t3 !== "number")
-        return H.iae(t3);
-      t3 = P.LinkedHashMap_LinkedHashMap$_literal([x, t2, y, 96 + t3], null, null);
+      var t1, t2, point;
+      t1 = J.$mul$ns(x, 48);
+      t2 = J.$mul$ns(y, 48);
+      if (typeof t2 !== "number")
+        return H.iae(t2);
+      point = P.LinkedHashMap_LinkedHashMap$_literal(["x", t1, "y", 96 + t2], null, null);
+      t2 = this.level.add.tween$1(this.sprite);
       $.get$Easing_Bounce().toString;
-      J.add$1$ax(t1.to$4(t3, 500, $.get$Bounce_OUT().compute, true).onComplete, next);
+      J.add$1$ax(t2.to$7(point, 500, $.get$Bounce_OUT().compute, true, 0, 0, false).onComplete, next);
     }
   },
   GemGroup: {
@@ -42417,25 +42415,24 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       var t1, t2, pattern;
       t1 = this.patterns;
       t2 = this.currentPattern;
-      t1.length;
       if (t2 >>> 0 !== t2 || t2 >= 4)
         return H.ioore(t1, t2);
       pattern = t1[t2];
-      this.gems.$index(0, "first").move$2(J.$add$ns(this.x, J.$index$asx(pattern.$index(0, "first"), "x")), J.$index$asx(pattern.$index(0, "first"), "y"));
-      this.gems.$index(0, "second").move$2(J.$add$ns(this.x, J.$index$asx(pattern.$index(0, "second"), "x")), J.$index$asx(pattern.$index(0, "second"), "y"));
+      t2 = pattern.first;
+      this.gems.$index(0, "first").move$2(J.$add$ns(this.x, t2.x), t2.y);
+      t2 = pattern.second;
+      this.gems.$index(0, "second").move$2(J.$add$ns(this.x, t2.x), t2.y);
     },
     drop$0: function() {
-      var t1, t2, t3, pattern, gemsCount;
+      var t1, t2, t3, pattern;
       t1 = {};
       t2 = this.patterns;
       t3 = this.currentPattern;
-      t2.length;
       if (t3 >>> 0 !== t3 || t3 >= 4)
         return H.ioore(t2, t3);
       pattern = t2[t3];
       t1.dropped_0 = 0;
-      gemsCount = J.get$length$asx(pattern.$index(0, "order"));
-      H.IterableMixinWorkaround_forEach(pattern.$index(0, "order"), new Z.GemGroup_drop_closure(t1, this, gemsCount));
+      H.IterableMixinWorkaround_forEach(pattern.order, new Z.GemGroup_drop_closure(t1, this, 2));
     },
     move$1: function(deltaX) {
       var newX, t1, maxX;
@@ -42453,7 +42450,6 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         return H.iae(direction);
       t1 += direction;
       this.currentPattern = t1;
-      this.patterns.length;
       if (t1 >= 4)
         this.currentPattern = 0;
       else if (t1 < 0)
@@ -42470,45 +42466,53 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     GemGroup$1: function(level) {
       var t1, t2, t3, t4, t5, t6;
       this.x = 0;
-      this.patterns = [P.LinkedHashMap_LinkedHashMap$_literal(["first", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 0], null, null), "second", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 1], null, null), "order", ["second", "first"]], null, null), P.LinkedHashMap_LinkedHashMap$_literal(["first", P.LinkedHashMap_LinkedHashMap$_literal(["x", 1, "y", 1], null, null), "second", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 1], null, null), "order", ["second", "first"]], null, null), P.LinkedHashMap_LinkedHashMap$_literal(["first", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 1], null, null), "second", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 0], null, null), "order", ["first", "second"]], null, null), P.LinkedHashMap_LinkedHashMap$_literal(["first", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 1], null, null), "second", P.LinkedHashMap_LinkedHashMap$_literal(["x", 1, "y", 1], null, null), "order", ["first", "second"]], null, null)];
+      t1 = ["first", "second"];
+      t2 = new M.Pair(null, new M.Pointe(0, 0), new M.Pointe(0, 1), t1);
+      t2.order = [t1[1], t1[0]];
+      t1 = ["first", "second"];
+      t3 = new M.Pair(null, new M.Pointe(1, 1), new M.Pointe(0, 1), t1);
+      t3.order = [t1[1], t1[0]];
+      t1 = ["first", "second"];
+      t4 = new M.Pair(null, new M.Pointe(0, 1), new M.Pointe(0, 0), t1);
+      t4.order = [t1[0], t1[1]];
+      t1 = ["first", "second"];
+      t5 = new M.Pair(null, new M.Pointe(0, 1), new M.Pointe(1, 1), t1);
+      t5.order = [t1[0], t1[1]];
+      this.patterns = [t2, t3, t4, t5];
       this.currentPattern = 0;
-      t1 = this.level;
-      t2 = t1.randomGemType$0();
+      t5 = this.level;
+      t4 = t5.randomGemType$0();
       t3 = this.x;
-      t4 = this.patterns;
-      t5 = this.currentPattern;
-      t4.length;
-      if (t5 >>> 0 !== t5 || t5 >= 4)
-        return H.ioore(t4, t5);
-      t5 = J.$add$ns(t3, J.$index$asx(t4[t5].$index(0, "first"), "x"));
-      t4 = this.patterns;
+      t2 = this.patterns;
+      t1 = this.currentPattern;
+      if (t1 >>> 0 !== t1 || t1 >= 4)
+        return H.ioore(t2, t1);
+      t1 = J.$add$ns(t3, t2[t1].first.x);
+      t2 = this.patterns;
       t3 = this.currentPattern;
-      t4.length;
       if (t3 >>> 0 !== t3 || t3 >= 4)
-        return H.ioore(t4, t3);
-      t3 = J.$index$asx(t4[t3].$index(0, "first"), "y");
-      t4 = new Z.Gem(null, t5, t3, t1, t2);
-      t4.sprite = t1.add.sprite$3(0, 0, "gem_" + t2);
-      t4.move$2(t5, t3);
+        return H.ioore(t2, t3);
+      t3 = t2[t3].first.y;
+      t2 = new Z.Gem(null, t1, t3, t5, t4);
+      t2.sprite = t5.add.sprite$3(0, 0, "gem_" + t4);
+      t2.move$2(t1, t3);
       t3 = this.level;
-      t5 = t3.randomGemType$0();
-      t2 = this.x;
-      t1 = this.patterns;
+      t1 = t3.randomGemType$0();
+      t4 = this.x;
+      t5 = this.patterns;
       t6 = this.currentPattern;
-      t1.length;
       if (t6 >>> 0 !== t6 || t6 >= 4)
-        return H.ioore(t1, t6);
-      t6 = J.$add$ns(t2, J.$index$asx(t1[t6].$index(0, "second"), "x"));
-      t1 = this.patterns;
-      t2 = this.currentPattern;
-      t1.length;
-      if (t2 >>> 0 !== t2 || t2 >= 4)
-        return H.ioore(t1, t2);
-      t2 = J.$index$asx(t1[t2].$index(0, "second"), "y");
-      t1 = new Z.Gem(null, t6, t2, t3, t5);
-      t1.sprite = t3.add.sprite$3(0, 0, "gem_" + t5);
-      t1.move$2(t6, t2);
-      this.gems = P.LinkedHashMap_LinkedHashMap$_literal(["first", t4, "second", t1], null, null);
+        return H.ioore(t5, t6);
+      t6 = J.$add$ns(t4, t5[t6].second.x);
+      t5 = this.patterns;
+      t4 = this.currentPattern;
+      if (t4 >>> 0 !== t4 || t4 >= 4)
+        return H.ioore(t5, t4);
+      t4 = t5[t4].second.y;
+      t5 = new Z.Gem(null, t6, t4, t3, t1);
+      t5.sprite = t3.add.sprite$3(0, 0, "gem_" + t1);
+      t5.move$2(t6, t4);
+      this.gems = P.LinkedHashMap_LinkedHashMap$_literal(["first", t2, "second", t5], null, null);
     },
     static: {GemGroup$: function(level) {
         var t1 = new Z.GemGroup(0, 0, null, null, level);
@@ -42522,8 +42526,8 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       var t1, t2, lastEmpty, t3;
       t1 = this.this_1;
       t2 = t1.gems.$index(0, i);
-      lastEmpty = Z.Grid_getLastEmptyPiece(t2.level.grid.getColumn$2(t2.x, 1));
-      if (lastEmpty === true) {
+      lastEmpty = M.Grid_getLastEmptyPiece(t2.level.grid.getColumn$2(t2.x, 1));
+      if (lastEmpty != null) {
         lastEmpty.set$object(t2);
         t3 = J.getInterceptor$x(lastEmpty);
         t2.fall$3(t3.get$x(lastEmpty), t3.get$y(lastEmpty), new Z.GemGroup_drop__closure(this.box_0, t1, this.gemsCount_2));
@@ -42533,11 +42537,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   GemGroup_drop__closure: {
-    "^": "Closure:13;box_0,this_3,gemsCount_4",
-    call$0: [function() {
+    "^": "Closure:1415;box_0,this_3,gemsCount_4",
+    call$1: [function(s) {
       if (++this.box_0.dropped_0 === this.gemsCount_4)
         this.this_3.level.handleMatches$0();
-    }, "call$0", null, 0, 0, null, "call"],
+    }, "call$1", null, 2, 0, null, 502, [], "call"],
     $isFunction: true
   },
   Initialize: {
@@ -42580,9 +42584,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$2", "get$gameResized", 4, 0, 935, 10, [], 11, []],
     enterIncorrectOrientation$0: [function() {
       $.Initialize_orientated = false;
+      J.set$display$x(document.querySelector("#orientation").style, "block");
     }, "call$0", "get$enterIncorrectOrientation", 0, 0, 13],
     leaveIncorrectOrientation$0: [function() {
       $.Initialize_orientated = true;
+      J.set$display$x(document.querySelector("#orientation").style, "none");
     }, "call$0", "get$leaveIncorrectOrientation", 0, 0, 13],
     static: {"^": "Initialize_score,Initialize_music,Initialize_orientated"}
   },
@@ -42601,17 +42607,14 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.alienzed$Level1$rnd.call$0();
     },
     create$0: [function() {
-      var t1, style;
       this.time.set$advancedTiming(true);
       this.score = 0;
       this.background = this.add.sprite$3(0, 0, "background");
-      t1 = this.add.sprite$3(0, 0, "board");
+      var t1 = this.add.sprite$3(0, 0, "board");
       this.board = t1;
       J.set$alpha$x(t1, 0.7);
-      style = R.TextStyle$("left", "#e0e0e0", "bold 30px Acme", "black", 0, 16777215);
-      this.text = J.text$4$x(this.add, 100, 20, "Score: 0", style);
-      this.grid = Z.Grid$("down", 7, 6);
-      P.print($.get$Alienzed_GEMTYPES());
+      this.text = J.text$4$x(this.add, 100, 20, "Score: 0", R.TextStyle$("left", "#e0e0e0", "bold 30px Acme", "black", 0, 16777215));
+      this.grid = M.Grid$("down", 7, 6);
       t1 = $.get$Alienzed_GEMTYPES();
       this.discoveredGems = [t1[0], t1[1], t1[2]];
       this.gemGroup = Z.GemGroup$(this);
@@ -42640,7 +42643,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     handleMatches$0: function() {
       var t1 = {};
       t1.piecesToUpgrade_0 = null;
-      if (this.grid.getMatches$0().length > 0) {
+      if (this.grid.getMatches$0() != null) {
         t1.piecesToUpgrade_0 = [];
         this.grid.forEachMatch$1(new Z.Level1_handleMatches_closure(t1, this));
         this.grid.clearMatches$0();
@@ -42666,8 +42669,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     },
     randomGemType$0: function() {
       var i, t1;
-      i = J.floor$0$n(J.$mul$ns(this.alienzed$Level1$rnd.rnd$0(), this.discoveredGems.length));
-      P.print("i = " + H.S(i));
+      i = this.alienzed$Level1$rnd.integerInRange$2(0, this.discoveredGems.length - 1);
       t1 = this.discoveredGems;
       if (i >>> 0 !== i || i >= t1.length)
         return H.ioore(t1, i);
@@ -42687,6 +42689,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t3 = t4 + t3;
       t1.score = t3;
       J.set$text$x(t1.text, "Score: " + H.S(t3));
+      t1.text.updateText$0();
       this.box_0.piecesToUpgrade_0.push(P.LinkedHashMap_LinkedHashMap$_literal(["piece", t2.$index(matchingPieces, 0), "type", type], null, null));
       t2.forEach$1(matchingPieces, new Z.Level1_handleMatches__closure());
     },
@@ -42708,8 +42711,8 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   Level1_handleFalling__closure: {
-    "^": "Closure:13;box_0,this_3,fallingPieces_4",
-    call$0: [function() {
+    "^": "Closure:1415;box_0,this_3,fallingPieces_4",
+    call$1: [function(s) {
       var t1, t2, hasFall;
       t1 = this.box_0;
       t2 = t1.hasFall_0;
@@ -42719,7 +42722,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1.hasFall_0 = hasFall;
       if (hasFall === this.fallingPieces_4.length)
         this.this_3.handleMatches$0();
-    }, "call$0", null, 0, 0, null, "call"],
+    }, "call$1", null, 2, 0, null, 502, [], "call"],
     $isFunction: true
   },
   Level1_handleUpgrade_closure: {
@@ -42727,7 +42730,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     call$1: function(pieceToUpgrade) {
       var t1, t2, upgradedType;
       t1 = $.get$Alienzed_GEMTYPES();
-      t2 = J.$add$ns(H.Lists_indexOf(t1, J.get$type$x(pieceToUpgrade), 0, 8), 1);
+      t2 = J.$add$ns(H.Lists_indexOf(t1, J.$index$asx(pieceToUpgrade, "type"), 0, 8), 1);
       if (t2 >>> 0 !== t2 || t2 >= 8)
         return H.ioore(t1, t2);
       upgradedType = t1[t2];
@@ -42747,319 +42750,6 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     startGame$3: [function(source, input, flag) {
       J.start$3$x(this.state, "Level" + this.level, true, false);
     }, "call$3", "get$startGame", 6, 0, 117, 170, [], 342, [], 1681, []]
-  },
-  Grid: {
-    "^": "Object;width*,height*,gravity@,pieces,directions",
-    getPiece$1: function(coords) {
-      coords.get$x(coords).$ge(0, 0);
-      return;
-    },
-    neighboursOf$1: function(piece) {
-      var result = P.LinkedHashMap_LinkedHashMap$_empty(null, null);
-      this.directions.forEach$1(0, new Z.Grid_neighboursOf_closure(this, piece, result));
-      return result;
-    },
-    forEachMatch$1: function(callback) {
-      H.IterableMixinWorkaround_forEach(this.getMatches$0(), new Z.Grid_forEachMatch_closure(callback));
-    },
-    getMatches$0: function() {
-      var matches, t1;
-      matches = [];
-      t1 = this.pieces;
-      t1.toString;
-      H.IterableMixinWorkaround_forEach(t1, new Z.Grid_getMatches_closure([], matches));
-      return matches;
-    },
-    getRow$2: function(row, reverse) {
-      var result = [];
-      H.IterableMixinWorkaround_forEach(result, new Z.Grid_getRow_closure(row, result));
-      return result;
-    },
-    getColumn$2: function(column, reverse) {
-      var result, i, t1;
-      result = [];
-      i = 0;
-      while (true) {
-        t1 = this.height;
-        if (typeof t1 !== "number")
-          return H.iae(t1);
-        if (!(i < t1))
-          break;
-        t1 = this.pieces;
-        if (column >>> 0 !== column || column >= t1.length)
-          return H.ioore(t1, column);
-        t1 = t1[column];
-        if (i >= t1.length)
-          return H.ioore(t1, i);
-        result.push(t1[i]);
-        ++i;
-      }
-      return result;
-    },
-    clearMatches$0: function() {
-      var matches = this.getMatches$0();
-      if (matches.length === 0)
-        return false;
-      H.IterableMixinWorkaround_forEach(matches, new Z.Grid_clearMatches_closure());
-      return true;
-    },
-    applyGravity$0: function() {
-      var t1, t2, direction, fallingPieces, limit, i, applyGravity, fallingPiecesWithoutEmpty;
-      t1 = {};
-      P.print("applyGravity");
-      t2 = this.gravity;
-      if (t2 !== "none") {
-        direction = this.directions.$index(0, t2);
-        direction.get$x(direction);
-        direction.get$x(direction);
-        fallingPieces = [];
-        limit = this.height;
-        t1.chunk_2 = null;
-        if (typeof limit !== "number")
-          return H.iae(limit);
-        i = 0;
-        for (; i < limit; ++i) {
-          t2 = {};
-          t1.chunk_2 = this.getRow$2(i, false);
-          t2.applyGravity_1 = null;
-          applyGravity = new Z.Grid_applyGravity_closure(t1, t2, direction, fallingPieces);
-          t2.applyGravity_1 = applyGravity;
-          applyGravity.call$1(this);
-        }
-        fallingPiecesWithoutEmpty = [];
-        H.IterableMixinWorkaround_forEach(fallingPieces, new Z.Grid_applyGravity_closure0(fallingPiecesWithoutEmpty));
-        return fallingPiecesWithoutEmpty;
-      }
-      return;
-    },
-    Grid$3$gravity$height$width: function(gravity, height, width) {
-      var i, t1, t2, y, x;
-      this.gravity = gravity;
-      this.height = height;
-      this.width = width;
-      this.pieces = [];
-      for (i = 0; i < width; ++i) {
-        t1 = this.pieces;
-        t2 = Array(height);
-        t2.fixed$length = init;
-        t1.push(t2);
-      }
-      for (y = 0; y < height; ++y)
-        for (x = 0; x < width; ++x) {
-          t1 = this.pieces;
-          if (x >= t1.length)
-            return H.ioore(t1, x);
-          t1 = t1[x];
-          t2 = new Z.Piece(this, x, y, null);
-          t2.object = new Z.VoidObject("empty");
-          if (y >= t1.length)
-            return H.ioore(t1, y);
-          t1[y] = t2;
-        }
-    },
-    static: {"^": "Grid_voidObject", Grid_getLastEmptyPiece: function(pieces) {
-        var t1 = {};
-        t1.lastEmpty_0 = false;
-        H.IterableMixinWorkaround_forEach(pieces, new Z.Grid_getLastEmptyPiece_closure(t1));
-        return t1.lastEmpty_0;
-      }, Grid$: function(gravity, height, width) {
-        var t1 = new Z.Grid(null, null, null, null, P.LinkedHashMap_LinkedHashMap$_literal(["up", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", -1], null, null), "down", P.LinkedHashMap_LinkedHashMap$_literal(["x", 0, "y", 1], null, null), "right", P.LinkedHashMap_LinkedHashMap$_literal(["x", 1, "y", 0], null, null), "left", P.LinkedHashMap_LinkedHashMap$_literal(["x", -1, "y", 0], null, null)], null, null));
-        t1.Grid$3$gravity$height$width(gravity, height, width);
-        return t1;
-      }}
-  },
-  Grid_getLastEmptyPiece_closure: {
-    "^": "Closure:63;box_0",
-    call$1: function(piece) {
-      var t1, t2;
-      t1 = piece.get$object();
-      t2 = $.get$Grid_voidObject();
-      if (t1 == null ? t2 == null : t1 === t2)
-        this.box_0.lastEmpty_0 = piece;
-    },
-    $isFunction: true
-  },
-  Grid_neighboursOf_closure: {
-    "^": "Closure:935;this_0,piece_1,result_2",
-    call$2: function(directionName, direction) {
-      this.this_0.getPiece$1(this.piece_1.relativeCoordinates$2(direction, 1));
-      this.result_2.$indexSet(0, directionName, null);
-    },
-    $isFunction: true
-  },
-  Grid_forEachMatch_closure: {
-    "^": "Closure:63;callback_0",
-    call$1: function(match) {
-      var t1 = J.$index$asx(match, 0).get$object();
-      return this.callback_0.call$2(match, t1.get$type(t1));
-    },
-    $isFunction: true
-  },
-  Grid_getMatches_closure: {
-    "^": "Closure:63;checked_0,matches_1",
-    call$1: function(row) {
-      J.forEach$1$ax(row, new Z.Grid_getMatches__closure(this.checked_0, this.matches_1));
-    },
-    $isFunction: true
-  },
-  Grid_getMatches__closure: {
-    "^": "Closure:63;checked_2,matches_3",
-    call$1: [function(piece) {
-      var t1, match, t2;
-      t1 = this.checked_2;
-      if (J.$eq(H.Lists_indexOf(t1, piece, 0, t1.length), -1)) {
-        match = piece.deepMatchingNeighbours$0();
-        H.IterableMixinWorkaround_forEach(match, new Z.Grid_getMatches___closure(t1));
-        if (match.length >= 3) {
-          t1 = piece.get$object();
-          t2 = $.get$Grid_voidObject();
-          if (t1 == null ? t2 != null : t1 !== t2)
-            this.matches_3.push(match);
-        }
-      }
-    }, "call$1", null, 2, 0, null, 1683, [], "call"],
-    $isFunction: true
-  },
-  Grid_getMatches___closure: {
-    "^": "Closure:63;checked_4",
-    call$1: function(m) {
-      return this.checked_4.push(m);
-    },
-    $isFunction: true
-  },
-  Grid_getRow_closure: {
-    "^": "Closure:63;row_0,result_1",
-    call$1: function(piece) {
-      return this.result_1.push(J.$index$asx(piece, this.row_0));
-    },
-    $isFunction: true
-  },
-  Grid_clearMatches_closure: {
-    "^": "Closure:63;",
-    call$1: function(row) {
-      J.forEach$1$ax(row, new Z.Grid_clearMatches__closure());
-    },
-    $isFunction: true
-  },
-  Grid_clearMatches__closure: {
-    "^": "Closure:63;",
-    call$1: [function(piece) {
-      return J.clear$0$ax(piece);
-    }, "call$1", null, 2, 0, null, 1683, [], "call"],
-    $isFunction: true
-  },
-  Grid_applyGravity_closure: {
-    "^": "Closure:63;box_2,box_1,direction_3,fallingPieces_4",
-    call$1: function(grid) {
-      var t1, t2;
-      t1 = {};
-      t1.swaps_0 = 0;
-      t2 = this.box_2.chunk_2;
-      t2.toString;
-      H.IterableMixinWorkaround_forEach(t2, new Z.Grid_applyGravity__closure(t1, this.direction_3, this.fallingPieces_4, grid));
-      if (t1.swaps_0 > 0)
-        this.box_1.applyGravity_1.call$1(grid);
-    },
-    $isFunction: true
-  },
-  Grid_applyGravity__closure: {
-    "^": "Closure:63;box_0,direction_5,fallingPieces_6,grid_7",
-    call$1: function(piece) {
-      var neighbour, t1, t2;
-      neighbour = piece.neighbour$1(this.direction_5);
-      t1 = piece.get$object();
-      t2 = $.get$Grid_voidObject();
-      if (t1 == null ? t2 != null : t1 !== t2) {
-        neighbour.get$object();
-        $.get$Grid_voidObject();
-      }
-    },
-    $isFunction: true
-  },
-  Grid_applyGravity_closure0: {
-    "^": "Closure:63;fallingPiecesWithoutEmpty_8",
-    call$1: function(piece) {
-      var t1, t2;
-      t1 = piece.get$object();
-      t2 = $.get$Grid_voidObject();
-      if (t1 == null ? t2 != null : t1 !== t2)
-        this.fallingPiecesWithoutEmpty_8.push(piece);
-    },
-    $isFunction: true
-  },
-  Piece: {
-    "^": "Object;grid,x*,y*,object@",
-    clear$0: function(_) {
-      this.object = new Z.VoidObject("empty");
-    },
-    relativeCoordinates$2: function(direction, distance) {
-      var t1, t2, t3, t4;
-      t1 = this.x;
-      t2 = J.getInterceptor$x(direction);
-      t3 = t2.get$x(direction);
-      if (typeof t3 !== "number")
-        return H.iae(t3);
-      t3 = J.$add$ns(t1, distance * t3);
-      t1 = this.x;
-      t4 = this.y;
-      t2 = t2.get$y(direction);
-      if (typeof t2 !== "number")
-        return H.iae(t2);
-      t2 = J.$add$ns(t4, distance * t2);
-      return P.LinkedHashMap_LinkedHashMap$_literal([t1, t3, this.y, t2], null, null);
-    },
-    neighbour$1: function(direction) {
-      this.grid.getPiece$1(this.relativeCoordinates$2(direction, 1));
-      return;
-    },
-    matchingNeighbours$0: function() {
-      var matches = [];
-      this.grid.neighboursOf$1(this).forEach$1(0, new Z.Piece_matchingNeighbours_closure(this, matches));
-      return matches;
-    },
-    deepMatchingNeighbours$0: function() {
-      var t1, deepMatches, deepMatchingNeighbours;
-      t1 = {};
-      deepMatches = [];
-      t1.deepMatchingNeighbours_0 = null;
-      deepMatchingNeighbours = new Z.Piece_deepMatchingNeighbours_closure(t1, deepMatches);
-      t1.deepMatchingNeighbours_0 = deepMatchingNeighbours;
-      deepMatchingNeighbours.call$1(this);
-      return deepMatches;
-    }
-  },
-  Piece_matchingNeighbours_closure: {
-    "^": "Closure:935;this_0,matches_1",
-    call$2: function(direction, neighbour) {
-      var t1, t2;
-      t1 = neighbour.get$object();
-      t1 = t1.get$type(t1);
-      t2 = this.this_0.object;
-      if (t1 === t2.get$type(t2))
-        this.matches_1.push(neighbour);
-    },
-    $isFunction: true
-  },
-  Piece_deepMatchingNeighbours_closure: {
-    "^": "Closure:63;box_0,deepMatches_1",
-    call$1: function(piece) {
-      H.IterableMixinWorkaround_forEach(piece.matchingNeighbours$0(), new Z.Piece_deepMatchingNeighbours__closure(this.box_0, this.deepMatches_1));
-    },
-    $isFunction: true
-  },
-  Piece_deepMatchingNeighbours__closure: {
-    "^": "Closure:63;box_0,deepMatches_2",
-    call$1: function(matchingNeighbour) {
-      var t1 = this.deepMatches_2;
-      if (J.$eq(H.Lists_indexOf(t1, matchingNeighbour, 0, t1.length), -1)) {
-        t1.push(matchingNeighbour);
-        this.box_0.deepMatchingNeighbours_0.call$1(matchingNeighbour);
-      }
-    },
-    $isFunction: true
-  },
-  VoidObject: {
-    "^": "Object;type*"
   }
 },
 1],
@@ -44510,7 +44200,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isJsInstanceMirror: true
   },
   JsInstanceMirror__invokeMethodWithNamedArguments_closure: {
-    "^": "Closure:1684;defaultArguments_0",
+    "^": "Closure:1683;defaultArguments_0",
     call$2: function(symbol, value) {
       var parameter, t1;
       parameter = symbol.get$_name();
@@ -45122,7 +44812,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isTypeMirror: true
   },
   typeMirrorFromRuntimeTypeRepresentation_getTypeArgument: {
-    "^": "Closure:1685;box_0",
+    "^": "Closure:1684;box_0",
     call$1: function(index) {
       var typeVariable, t1, variableIndex;
       typeVariable = init.metadata[index];
@@ -45457,11 +45147,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       f = t1.storedCallback_0;
       t1.storedCallback_0 = null;
       f.call$0();
-    }, "call$1", null, 2, 0, null, 1686, [], "call"],
+    }, "call$1", null, 2, 0, null, 1685, [], "call"],
     $isFunction: true
   },
   _AsyncRun__initializeScheduleImmediate_closure: {
-    "^": "Closure:1687;box_0,div_1,span_2",
+    "^": "Closure:1686;box_0,div_1,span_2",
     call$1: function(callback) {
       var t1, t2;
       ++init.globalState.topEventLoop._activeJsAsyncCount;
@@ -45634,7 +45324,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this._sendError$2(error, stackTrace);
     }, function(error) {
       return this.addError$2(error, null);
-    }, "addError$1", "call$2", "call$1", "get$addError", 2, 2, 1688, 32, 556, [], 557, []],
+    }, "addError$1", "call$2", "call$1", "get$addError", 2, 2, 1687, 32, 556, [], 557, []],
     close$0: function(_) {
       var t1, doneFuture;
       t1 = this._state;
@@ -45777,7 +45467,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1._asyncComplete$1(value);
     }, function($receiver) {
       return this.complete$1($receiver, null);
-    }, "complete$0", "call$1", "call$0", "get$complete", 0, 2, 1689, 32],
+    }, "complete$0", "call$1", "call$0", "get$complete", 0, 2, 1688, 32],
     completeError$2: function(error, stackTrace) {
       var t1;
       if (error == null)
@@ -46225,7 +45915,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_2,listener_11",
     call$1: [function(ignored) {
       P._Future__propagateToListeners(this.box_2.source_4, this.listener_11);
-    }, "call$1", null, 2, 0, null, 1690, [], "call"],
+    }, "call$1", null, 2, 0, null, 1689, [], "call"],
     $isFunction: true
   },
   _Future__propagateToListeners_handleWhenCompleteCallback_closure0: {
@@ -46300,7 +45990,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1.subscription_0 = null;
       t1.subscription_0 = this.listen$4$cancelOnError$onDone$onError(new P.Stream_contains_closure(t1, this, needle, future), true, new P.Stream_contains_closure0(future), future.get$_completeError());
       return future;
-    }, "call$1", "get$contains", 2, 0, 1691],
+    }, "call$1", "get$contains", 2, 0, 1690],
     forEach$1: function(_, action) {
       var t1, future;
       t1 = {};
@@ -46397,7 +46087,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:935;result_6",
     call$2: [function(e, st) {
       this.result_6._completeError$2(e, st);
-    }, "call$2", null, 4, 0, null, 312, [], 1692, [], "call"],
+    }, "call$2", null, 4, 0, null, 312, [], 1691, [], "call"],
     $isFunction: true
   },
   Stream_fold_closure0: {
@@ -46556,7 +46246,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_0",
     call$1: [function(_) {
       ++this.box_0.count_0;
-    }, "call$1", null, 2, 0, null, 1686, [], "call"],
+    }, "call$1", null, 2, 0, null, 1685, [], "call"],
     $isFunction: true
   },
   Stream_length_closure0: {
@@ -46570,7 +46260,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_0,future_1",
     call$1: [function(_) {
       P._cancelAndValue(this.box_0.subscription_0, this.future_1, false);
-    }, "call$1", null, 2, 0, null, 1686, [], "call"],
+    }, "call$1", null, 2, 0, null, 1685, [], "call"],
     $isFunction: true
   },
   Stream_isEmpty_closure0: {
@@ -46703,7 +46393,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (handleError == null)
         handleError = P._nullErrorHandler$closure();
       this._onError = P._registerErrorHandler(handleError, this._zone);
-    }, "call$1", "get$onError", 2, 0, 1693],
+    }, "call$1", "get$onError", 2, 0, 1692],
     pause$1: function(_, resumeSignal) {
       var t1 = this._state;
       if ((t1 & 8) !== 0)
@@ -47048,7 +46738,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         t1.set$next($event);
         this.lastPendingEvent = $event;
       }
-    }, "call$1", "get$add", 2, 0, 1694, 815, []],
+    }, "call$1", "get$add", 2, 0, 1693, 815, []],
     handleNext$1: function(dispatch) {
       var $event, t1;
       $event = this.firstPendingEvent;
@@ -47081,7 +46771,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this._state = (this._state | 2) >>> 0;
     },
     onError$1: [function(_, handleError) {
-    }, "call$1", "get$onError", 2, 0, 1693],
+    }, "call$1", "get$onError", 2, 0, 1692],
     pause$1: function(_, resumeSignal) {
       this._state += 4;
     },
@@ -47121,7 +46811,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   _cancelAndErrorClosure_closure: {
-    "^": "Closure:1695;subscription_0,future_1",
+    "^": "Closure:1694;subscription_0,future_1",
     call$2: function(error, stackTrace) {
       return P._cancelAndError(this.subscription_0, this.future_1, error, stackTrace);
     },
@@ -47202,7 +46892,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, 48, []],
     _handleError$2: [function(error, stackTrace) {
       this._addError$2(error, stackTrace);
-    }, "call$2", "get$_handleError", 4, 0, 1696, 556, [], 557, []],
+    }, "call$2", "get$_handleError", 4, 0, 1695, 556, [], 557, []],
     _handleDone$0: [function() {
       this._close$0();
     }, "call$0", "get$_handleDone", 0, 0, 553],
@@ -47388,14 +47078,14 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0,f_1",
     call$1: [function(arg) {
       return this.this_0.runUnaryGuarded$2(this.f_1, arg);
-    }, "call$1", null, 2, 0, null, 1697, [], "call"],
+    }, "call$1", null, 2, 0, null, 1696, [], "call"],
     $isFunction: true
   },
   _RootZone_bindUnaryCallback_closure0: {
     "^": "Closure:63;this_2,f_3",
     call$1: [function(arg) {
       return this.this_2.runUnary$2(this.f_3, arg);
-    }, "call$1", null, 2, 0, null, 1697, [], "call"],
+    }, "call$1", null, 2, 0, null, 1696, [], "call"],
     $isFunction: true
   }
 }],
@@ -47815,7 +47505,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1698, [], "call"],
+    }, "call$1", null, 2, 0, null, 1697, [], "call"],
     $isFunction: true
   },
   _HashMap_addAll_closure: {
@@ -48114,7 +47804,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1698, [], "call"],
+    }, "call$1", null, 2, 0, null, 1697, [], "call"],
     $isFunction: true
   },
   _LinkedHashMap_addAll_closure: {
@@ -49726,7 +49416,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1698, [], "call"],
+    }, "call$1", null, 2, 0, null, 1697, [], "call"],
     $isFunction: true
   },
   _JsonMap_addAll_closure: {
@@ -49994,7 +49684,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     static: {"^": "_Utf8Decoder__LIMITS"}
   },
   _Utf8Decoder_convert_scanOneByteCharacters: {
-    "^": "Closure:1699;endIndex_0",
+    "^": "Closure:1698;endIndex_0",
     call$2: function(units, from) {
       var to, t1, i, unit;
       to = this.endIndex_0;
@@ -50008,7 +49698,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   _Utf8Decoder_convert_addSingleBytes: {
-    "^": "Closure:1700;this_1,codeUnits_2,startIndex_3,endIndex_4",
+    "^": "Closure:1699;this_1,codeUnits_2,startIndex_3,endIndex_4",
     call$2: function(from, to) {
       var t1, t2, t3;
       t1 = from === 0 && to === J.get$length$asx(this.codeUnits_2);
@@ -50106,7 +49796,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   NoSuchMethodError_toString_closure: {
-    "^": "Closure:1684;box_0",
+    "^": "Closure:1683;box_0",
     call$2: function(key, value) {
       var t1 = this.box_0;
       if (t1.i_1 > 0)
@@ -50167,7 +49857,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     },
     add$1: [function(_, duration) {
       return P.DateTime$fromMillisecondsSinceEpoch(this.millisecondsSinceEpoch + duration.get$inMilliseconds(), this.isUtc);
-    }, "call$1", "get$add", 2, 0, 1701, 55, []],
+    }, "call$1", "get$add", 2, 0, 1700, 55, []],
     difference$1: function(other) {
       return P.Duration$(0, 0, 0, this.millisecondsSinceEpoch - other.get$millisecondsSinceEpoch(), 0, 0);
     },
@@ -50647,7 +50337,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": ";",
     $eq: [function(_, other) {
       return this === other;
-    }, "call$1", "get$==", 2, 0, 979, 1702, [], "=="],
+    }, "call$1", "get$==", 2, 0, 979, 1701, [], "=="],
     get$hashCode: [function(_) {
       return H.Primitives_objectHashCode(this);
     }, null, null, 1, 0, 367, "hashCode"],
@@ -50656,7 +50346,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$toString", 0, 0, 782, "toString"],
     noSuchMethod$1: [function(_, invocation) {
       throw H.wrapException(P.NoSuchMethodError$(this, invocation.get$memberName(), invocation.get$positionalArguments(), invocation.get$namedArguments(), null));
-    }, "call$1", "get$noSuchMethod", 2, 0, 1703, 1676, [], "noSuchMethod"],
+    }, "call$1", "get$noSuchMethod", 2, 0, 1702, 1676, [], "noSuchMethod"],
     get$runtimeType: [function(_) {
       return new H.TypeImpl(H.getRuntimeTypeString(this), null);
     }, null, null, 1, 0, 12, "runtimeType"],
@@ -51608,7 +51298,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   Uri_parseIPv4Address_error: {
-    "^": "Closure:1704;",
+    "^": "Closure:1703;",
     call$1: function(msg) {
       throw H.wrapException(P.FormatException$("Illegal IPv4 address, " + msg, null, null));
     },
@@ -51623,11 +51313,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (t1.$lt($byte, 0) || t1.$gt($byte, 255))
         this.error_0.call$1("each part must be in the range of `0..255`");
       return $byte;
-    }, "call$1", null, 2, 0, null, 1705, [], "call"],
+    }, "call$1", null, 2, 0, null, 1704, [], "call"],
     $isFunction: true
   },
   Uri_parseIPv6Address_error: {
-    "^": "Closure:1706;host_0",
+    "^": "Closure:1705;host_0",
     call$2: function(msg, position) {
       throw H.wrapException(P.FormatException$("Illegal IPv6 address, " + msg, this.host_0, position));
     },
@@ -53771,7 +53461,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     add$1: [function(_, value) {
       this._element.appendChild(value);
       return value;
-    }, "call$1", "get$add", 2, 0, 1707, 100, []],
+    }, "call$1", "get$add", 2, 0, 1706, 100, []],
     get$iterator: function(_) {
       var t1 = this.toList$0(this);
       return H.setRuntimeTypeInfo(new H.ListIterator(t1, t1.length, 0, null), [H.getTypeArgumentByIndex(t1, 0)]);
@@ -54032,7 +53722,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (t1._state !== 0)
         H.throwExpression(P.StateError$("Future already completed"));
       t1._asyncComplete$1(stream);
-    }, "call$1", null, 2, 0, null, 1708, [], "call"],
+    }, "call$1", null, 2, 0, null, 1707, [], "call"],
     $isFunction: true
   },
   Navigator_getUserMedia_closure0: {
@@ -54052,7 +53742,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     },
     add$1: [function(_, value) {
       this._this.appendChild(value);
-    }, "call$1", "get$add", 2, 0, 1709, 100, []],
+    }, "call$1", "get$add", 2, 0, 1708, 100, []],
     addAll$1: function(_, iterable) {
       var t1, t2, len, i;
       t1 = J.getInterceptor(iterable);
@@ -54545,7 +54235,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return;
     },
     onError$1: [function(_, handleError) {
-    }, "call$1", "get$onError", 2, 0, 1693],
+    }, "call$1", "get$onError", 2, 0, 1692],
     pause$1: function(_, resumeSignal) {
       if (this._target == null)
         return;
@@ -54588,7 +54278,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return H.computeSignature(function(T) {
         return {func: "void__Stream", void: true, args: [[P.Stream, T]]};
       }, this.$receiver, "_StreamPool");
-    }, 1708, []],
+    }, 1707, []],
     remove$1: function(_, stream) {
       var subscription = this._subscriptions.remove$1(0, stream);
       if (subscription != null)
@@ -56840,6 +56530,368 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   }
 }],
+["match3", "match3/match3.dart", , M, {
+  "^": "",
+  Grid: {
+    "^": "Object;width*,height*,gravity@,pieces,directions",
+    getPiece$1: function(point) {
+      var t1, t2;
+      if (J.$ge$n(point.x, 0) && J.$ge$n(point.y, 0) && J.$lt$n(point.x, this.width) && J.$lt$n(point.y, this.height)) {
+        t1 = this.pieces;
+        t2 = point.x;
+        if (t2 >>> 0 !== t2 || t2 >= t1.length)
+          return H.ioore(t1, t2);
+        t2 = t1[t2];
+        t1 = point.y;
+        if (t1 >>> 0 !== t1 || t1 >= t2.length)
+          return H.ioore(t2, t1);
+        return t2[t1];
+      } else
+        return;
+    },
+    neighboursOf$1: function(piece) {
+      var result = P.LinkedHashMap_LinkedHashMap$_empty(null, null);
+      this.directions.forEach$1(0, new M.Grid_neighboursOf_closure(this, piece, result));
+      return result;
+    },
+    forEachMatch$1: function(callback) {
+      var matches = this.getMatches$0();
+      matches.toString;
+      H.IterableMixinWorkaround_forEach(matches, new M.Grid_forEachMatch_closure(callback));
+    },
+    getMatches$0: function() {
+      var matches, t1;
+      matches = [];
+      t1 = this.pieces;
+      t1.toString;
+      H.IterableMixinWorkaround_forEach(t1, new M.Grid_getMatches_closure([], matches));
+      return matches.length > 0 ? matches : null;
+    },
+    getRow$2: function(row, reverse) {
+      var pieces, t1, t2;
+      pieces = [];
+      H.IterableMixinWorkaround_forEach(pieces, new M.Grid_getRow_closure(row, pieces));
+      if (reverse) {
+        t1 = new H.IterableMixinWorkaround();
+        t1.$builtinTypeInfo = [H.getTypeArgumentByIndex(pieces, 0)];
+        t2 = new H.ReversedListIterable(pieces);
+        t2.$builtinTypeInfo = [H.getTypeArgumentByIndex(t1, 0)];
+        t1 = t2.toList$0(0);
+      } else
+        t1 = pieces;
+      return t1;
+    },
+    getColumn$2: function(column, reverse) {
+      var pieces, i, t1, t2;
+      pieces = [];
+      i = 0;
+      while (true) {
+        t1 = this.height;
+        if (typeof t1 !== "number")
+          return H.iae(t1);
+        if (!(i < t1))
+          break;
+        t1 = this.pieces;
+        if (column >>> 0 !== column || column >= t1.length)
+          return H.ioore(t1, column);
+        t1 = t1[column];
+        if (i >= t1.length)
+          return H.ioore(t1, i);
+        pieces.push(t1[i]);
+        ++i;
+      }
+      if (reverse === true) {
+        t1 = new H.IterableMixinWorkaround();
+        t1.$builtinTypeInfo = [H.getTypeArgumentByIndex(pieces, 0)];
+        t2 = new H.ReversedListIterable(pieces);
+        t2.$builtinTypeInfo = [H.getTypeArgumentByIndex(t1, 0)];
+        t1 = t2.toList$0(0);
+      } else
+        t1 = pieces;
+      return t1;
+    },
+    clearMatches$0: function() {
+      var matches = this.getMatches$0();
+      if (matches.length === 0)
+        return false;
+      matches.toString;
+      H.IterableMixinWorkaround_forEach(matches, new M.Grid_clearMatches_closure());
+      return true;
+    },
+    applyGravity$0: function() {
+      var t1, t2, direction, horizontal, reverse, fallingPieces, limit, i, applyGravity, fallingPiecesWithoutEmpty;
+      t1 = {};
+      t2 = this.gravity;
+      if (t2 !== "none") {
+        direction = this.directions.$index(0, t2);
+        horizontal = !J.$eq(direction.x, 0);
+        reverse = horizontal ? J.$eq(direction.x, 1) : J.$eq(direction.y, 1);
+        fallingPieces = [];
+        limit = horizontal ? this.height : this.width;
+        t1.chunk_2 = null;
+        if (typeof limit !== "number")
+          return H.iae(limit);
+        i = 0;
+        for (; i < limit; ++i) {
+          t2 = {};
+          t1.chunk_2 = horizontal ? this.getRow$2(i, reverse) : this.getColumn$2(i, reverse);
+          t2.applyGravity_1 = null;
+          applyGravity = new M.Grid_applyGravity_closure(t1, t2, direction, fallingPieces);
+          t2.applyGravity_1 = applyGravity;
+          applyGravity.call$1(this);
+        }
+        fallingPiecesWithoutEmpty = [];
+        H.IterableMixinWorkaround_forEach(fallingPieces, new M.Grid_applyGravity_closure0(fallingPiecesWithoutEmpty));
+        return fallingPiecesWithoutEmpty;
+      }
+      return;
+    },
+    Grid$3$gravity$height$width: function(gravity, height, width) {
+      var i, t1, t2, y, x;
+      this.gravity = gravity;
+      this.height = height;
+      this.width = width;
+      this.pieces = [];
+      for (i = 0; i < width; ++i) {
+        t1 = this.pieces;
+        t2 = Array(height);
+        t2.fixed$length = init;
+        t1.push(t2);
+      }
+      for (y = 0; y < height; ++y)
+        for (x = 0; x < width; ++x) {
+          t1 = this.pieces;
+          if (x >= t1.length)
+            return H.ioore(t1, x);
+          t1 = t1[x];
+          t2 = new M.Piece(this, null, x, y);
+          t2.object = new M.VoidObject("empty");
+          if (y >= t1.length)
+            return H.ioore(t1, y);
+          t1[y] = t2;
+        }
+    },
+    static: {"^": "Grid_voidObject", Grid$: function(gravity, height, width) {
+        var t1 = new M.Grid(null, null, null, null, P.LinkedHashMap_LinkedHashMap$_literal(["up", new M.Pointe(0, -1), "down", new M.Pointe(0, 1), "right", new M.Pointe(1, 0), "left", new M.Pointe(-1, 0)], null, null));
+        t1.Grid$3$gravity$height$width(gravity, height, width);
+        return t1;
+      }, Grid_getLastEmptyPiece: function(pieces) {
+        var t1 = {};
+        t1.lastEmpty_0 = null;
+        H.IterableMixinWorkaround_forEach(pieces, new M.Grid_getLastEmptyPiece_closure(t1));
+        return t1.lastEmpty_0;
+      }}
+  },
+  Grid_getLastEmptyPiece_closure: {
+    "^": "Closure:63;box_0",
+    call$1: function(piece) {
+      var t1 = piece.get$object();
+      if (t1.get$type(t1) === $.get$Grid_voidObject().type)
+        this.box_0.lastEmpty_0 = piece;
+    },
+    $isFunction: true
+  },
+  Grid_neighboursOf_closure: {
+    "^": "Closure:935;this_0,piece_1,result_2",
+    call$2: function(directionName, direction) {
+      this.result_2.$indexSet(0, directionName, this.this_0.getPiece$1(this.piece_1.relativeCoordinates$2(direction, 1)));
+    },
+    $isFunction: true
+  },
+  Grid_forEachMatch_closure: {
+    "^": "Closure:63;callback_0",
+    call$1: function(match) {
+      var t1 = J.$index$asx(match, 0).get$object();
+      return this.callback_0.call$2(match, t1.get$type(t1));
+    },
+    $isFunction: true
+  },
+  Grid_getMatches_closure: {
+    "^": "Closure:63;checked_0,matches_1",
+    call$1: function(pieces) {
+      J.forEach$1$ax(pieces, new M.Grid_getMatches__closure(this.checked_0, this.matches_1));
+    },
+    $isFunction: true
+  },
+  Grid_getMatches__closure: {
+    "^": "Closure:63;checked_2,matches_3",
+    call$1: [function(piece) {
+      var t1, match;
+      t1 = this.checked_2;
+      if (J.$eq(H.Lists_indexOf(t1, piece, 0, t1.length), -1)) {
+        match = piece.deepMatchingNeighbours$0();
+        H.IterableMixinWorkaround_forEach(match, new M.Grid_getMatches___closure(t1));
+        if (match.length >= 3) {
+          t1 = piece.get$object();
+          if (t1.get$type(t1) !== $.get$Grid_voidObject().type)
+            this.matches_3.push(match);
+        }
+      }
+    }, "call$1", null, 2, 0, null, 1709, [], "call"],
+    $isFunction: true
+  },
+  Grid_getMatches___closure: {
+    "^": "Closure:63;checked_4",
+    call$1: function(m) {
+      return this.checked_4.push(m);
+    },
+    $isFunction: true
+  },
+  Grid_getRow_closure: {
+    "^": "Closure:63;row_0,pieces_1",
+    call$1: function(piece) {
+      return this.pieces_1.push(J.$index$asx(piece, this.row_0));
+    },
+    $isFunction: true
+  },
+  Grid_clearMatches_closure: {
+    "^": "Closure:63;",
+    call$1: function(pieces) {
+      J.forEach$1$ax(pieces, new M.Grid_clearMatches__closure());
+    },
+    $isFunction: true
+  },
+  Grid_clearMatches__closure: {
+    "^": "Closure:63;",
+    call$1: [function(p) {
+      return J.clear$0$ax(p);
+    }, "call$1", null, 2, 0, null, 192, [], "call"],
+    $isFunction: true
+  },
+  Grid_applyGravity_closure: {
+    "^": "Closure:63;box_2,box_1,direction_3,fallingPieces_4",
+    call$1: function(grid) {
+      var t1, t2;
+      t1 = {};
+      t1.swaps_0 = 0;
+      t2 = this.box_2.chunk_2;
+      t2.toString;
+      H.IterableMixinWorkaround_forEach(t2, new M.Grid_applyGravity__closure(t1, this.direction_3, this.fallingPieces_4, grid));
+      if (t1.swaps_0 > 0)
+        this.box_1.applyGravity_1.call$1(grid);
+    },
+    $isFunction: true
+  },
+  Grid_applyGravity__closure: {
+    "^": "Closure:63;box_0,direction_5,fallingPieces_6,grid_7",
+    call$1: function(piece) {
+      var neighbour, t1, tmp1;
+      neighbour = piece.neighbour$1(this.direction_5);
+      if (neighbour != null) {
+        t1 = piece.get$object();
+        if (t1.get$type(t1) !== $.get$Grid_voidObject().type) {
+          t1 = neighbour.get$object();
+          t1 = t1.get$type(t1) === $.get$Grid_voidObject().type;
+        } else
+          t1 = false;
+        if (t1) {
+          tmp1 = piece.get$object();
+          piece.set$object(neighbour.get$object());
+          neighbour.set$object(tmp1);
+          t1 = this.fallingPieces_6;
+          if (J.$eq(H.Lists_indexOf(t1, neighbour, 0, t1.length), -1))
+            t1.push(neighbour);
+          ++this.box_0.swaps_0;
+        }
+      }
+    },
+    $isFunction: true
+  },
+  Grid_applyGravity_closure0: {
+    "^": "Closure:63;fallingPiecesWithoutEmpty_8",
+    call$1: function(piece) {
+      var t1 = piece.get$object();
+      if (t1.get$type(t1) !== $.get$Grid_voidObject().type)
+        this.fallingPiecesWithoutEmpty_8.push(piece);
+    },
+    $isFunction: true
+  },
+  Pair: {
+    "^": "Object;order,first,second<,ordinals",
+    order$0: function($receiver) {
+      return this.order.call$0();
+    }
+  },
+  Piece: {
+    "^": "Pointe;grid,object@,x,y",
+    clear$0: function(_) {
+      this.object = new M.VoidObject("empty");
+    },
+    relativeCoordinates$2: function(direction, distance) {
+      var t1, t2, t3;
+      t1 = this.x;
+      t2 = J.getInterceptor$x(direction);
+      t3 = t2.get$x(direction);
+      if (typeof t3 !== "number")
+        return H.iae(t3);
+      t3 = J.$add$ns(t1, distance * t3);
+      t1 = this.y;
+      t2 = t2.get$y(direction);
+      if (typeof t2 !== "number")
+        return H.iae(t2);
+      return new M.Pointe(t3, J.$add$ns(t1, distance * t2));
+    },
+    neighbour$1: function(direction) {
+      return this.grid.getPiece$1(this.relativeCoordinates$2(direction, 1));
+    },
+    matchingNeighbours$0: function() {
+      var matches = [];
+      this.grid.neighboursOf$1(this).forEach$1(0, new M.Piece_matchingNeighbours_closure(this, matches));
+      return matches;
+    },
+    deepMatchingNeighbours$0: function() {
+      var t1, deepMatches, deepMatchingNeighbours;
+      t1 = {};
+      deepMatches = [];
+      t1.deepMatchingNeighbours_0 = null;
+      deepMatchingNeighbours = new M.Piece_deepMatchingNeighbours_closure(t1, deepMatches);
+      t1.deepMatchingNeighbours_0 = deepMatchingNeighbours;
+      deepMatchingNeighbours.call$1(this);
+      return deepMatches;
+    }
+  },
+  Piece_matchingNeighbours_closure: {
+    "^": "Closure:935;this_0,matches_1",
+    call$2: function(direction, neighbour) {
+      var t1, t2;
+      if (neighbour != null) {
+        t1 = neighbour.get$object();
+        t1 = t1.get$type(t1);
+        t2 = this.this_0.object;
+        if (t1 === t2.get$type(t2))
+          this.matches_1.push(neighbour);
+      }
+    },
+    $isFunction: true
+  },
+  Piece_deepMatchingNeighbours_closure: {
+    "^": "Closure:63;box_0,deepMatches_1",
+    call$1: function(piece) {
+      H.IterableMixinWorkaround_forEach(piece.matchingNeighbours$0(), new M.Piece_deepMatchingNeighbours__closure(this.box_0, this.deepMatches_1));
+    },
+    $isFunction: true
+  },
+  Piece_deepMatchingNeighbours__closure: {
+    "^": "Closure:63;box_0,deepMatches_2",
+    call$1: function(matchingNeighbour) {
+      var t1 = this.deepMatches_2;
+      if (J.$eq(H.Lists_indexOf(t1, matchingNeighbour, 0, t1.length), -1)) {
+        t1.push(matchingNeighbour);
+        this.box_0.deepMatchingNeighbours_0.call$1(matchingNeighbour);
+      }
+    },
+    $isFunction: true
+  },
+  Pointe: {
+    "^": "Object;x*,y*",
+    toString$0: function(_) {
+      return "Pointe(" + H.S(this.x) + ", " + H.S(this.y) + ")";
+    }
+  },
+  VoidObject: {
+    "^": "Object;type*"
+  }
+}],
 ["metadata", "../../../Applications/dart/dart-sdk/lib/html/html_common/metadata.dart", , B, {
   "^": "",
   SupportedBrowser: {
@@ -57343,6 +57395,13 @@ $$ = null;
   _ = P.StackTrace;
   _.$isStackTrace = TRUE;
   _.$isObject = TRUE;
+  _ = R.Sprite0;
+  _.$isSprite0 = TRUE;
+  _.$isSprite = TRUE;
+  _.$isGameObject = TRUE;
+  _.$isDisplayObjectContainer = TRUE;
+  _.$isSpriteInterface = TRUE;
+  _.$isObject = TRUE;
   _ = M.PixiEvent;
   _.$isPixiEvent = TRUE;
   _.$isObject = TRUE;
@@ -57424,13 +57483,6 @@ $$ = null;
   _.$isObject = TRUE;
   _ = R.Key;
   _.$isKey = TRUE;
-  _.$isObject = TRUE;
-  _ = R.Sprite0;
-  _.$isSprite0 = TRUE;
-  _.$isSprite = TRUE;
-  _.$isGameObject = TRUE;
-  _.$isDisplayObjectContainer = TRUE;
-  _.$isSpriteInterface = TRUE;
   _.$isObject = TRUE;
   _ = R.Group;
   _.$isGroup = TRUE;
@@ -59328,9 +59380,6 @@ Isolate.$lazy($, "undefinedLiteralPropertyPattern", "TypeErrorDecoder_undefinedL
 Isolate.$lazy($, "GEMTYPES", "Alienzed_GEMTYPES", "get$Alienzed_GEMTYPES", function() {
   return ["blue", "cyan", "green", "magenta", "orange", "pink", "red", "yellow"];
 });
-Isolate.$lazy($, "voidObject", "Grid_voidObject", "get$Grid_voidObject", function() {
-  return new Z.VoidObject("empty");
-});
 Isolate.$lazy($, "publicSymbolPattern", "Symbol_publicSymbolPattern", "get$Symbol_publicSymbolPattern", function() {
   return new H.JSSyntaxRegExp("^(?:(?:[\\-+*/%&|^]|\\[\\]=?|==|~/?|<[<=]?|>[>=]?|unary-)$|(?!(?:assert|break|c(?:a(?:se|tch)|lass|on(?:st|tinue))|d(?:efault|o)|e(?:lse|num|xtends)|f(?:alse|inal(?:ly)?|or)|i[fns]|n(?:ew|ull)|ret(?:hrow|urn)|s(?:uper|witch)|t(?:h(?:is|row)|r(?:ue|y))|v(?:ar|oid)|w(?:hile|ith))\\b(?!\\$))[a-zA-Z$][\\w$]*(?:=?$|[.](?!$)))+?$", H.JSSyntaxRegExp_makeNative("^(?:(?:[\\-+*/%&|^]|\\[\\]=?|==|~/?|<[<=]?|>[>=]?|unary-)$|(?!(?:assert|break|c(?:a(?:se|tch)|lass|on(?:st|tinue))|d(?:efault|o)|e(?:lse|num|xtends)|f(?:alse|inal(?:ly)?|or)|i[fns]|n(?:ew|ull)|ret(?:hrow|urn)|s(?:uper|witch)|t(?:h(?:is|row)|r(?:ue|y))|v(?:ar|oid)|w(?:hile|ith))\\b(?!\\$))[a-zA-Z$][\\w$]*(?:=?$|[.](?!$)))+?$", false, true, false), null, null);
 });
@@ -59374,6 +59423,9 @@ Isolate.$lazy($, "_dartProxyCtor", "_dartProxyCtor", "get$_dartProxyCtor", funct
   return function DartObject(o) {
     this.o = o;
   };
+});
+Isolate.$lazy($, "voidObject", "Grid_voidObject", "get$Grid_voidObject", function() {
+  return new M.VoidObject("empty");
 });
 Isolate.$lazy($, "IN", "Back_IN", "get$Back_IN", function() {
   var t1 = new B.Back(null, null);
@@ -61228,7 +61280,6 @@ H.TearOffClosure,
 {func: "dynamic__dynamic_String", args: [null, P.String]},
 "flag",
 "matchingPiece",
-"piece",
 {func: "dynamic__Symbol_dynamic", args: [P.Symbol0, null]},
 {func: "TypeMirror__int", ret: P.TypeMirror, args: [P.$int]},
 "_",
@@ -61255,6 +61306,7 @@ H.TearOffClosure,
 {func: "Element__Element", ret: W.Element, args: [W.Element]},
 "stream",
 {func: "void__Node", void: true, args: [W.Node]},
+"piece",
 [P.Map, P.String, M.BaseTexture],
 P.Set,
 [P.List, R.Game],
@@ -90769,247 +90821,6 @@ function dart_precompiled($collectedClasses) {
   Levels.prototype.set$level = function(v) {
     return this.level = v;
   };
-  function Grid(width, height, gravity, pieces, directions) {
-    this.width = width;
-    this.height = height;
-    this.gravity = gravity;
-    this.pieces = pieces;
-    this.directions = directions;
-  }
-  Grid.builtin$cls = "Grid";
-  if (!"name" in Grid)
-    Grid.name = "Grid";
-  $desc = $collectedClasses.Grid;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid.prototype = $desc;
-  Grid.prototype.get$width = function(receiver) {
-    return this.width;
-  };
-  Grid.prototype.set$width = function(receiver, v) {
-    return this.width = v;
-  };
-  Grid.prototype.get$height = function(receiver) {
-    return this.height;
-  };
-  Grid.prototype.set$height = function(receiver, v) {
-    return this.height = v;
-  };
-  Grid.prototype.get$gravity = function() {
-    return this.gravity;
-  };
-  Grid.prototype.set$gravity = function(v) {
-    return this.gravity = v;
-  };
-  function Grid_getLastEmptyPiece_closure(box_0) {
-    this.box_0 = box_0;
-  }
-  Grid_getLastEmptyPiece_closure.builtin$cls = "Grid_getLastEmptyPiece_closure";
-  if (!"name" in Grid_getLastEmptyPiece_closure)
-    Grid_getLastEmptyPiece_closure.name = "Grid_getLastEmptyPiece_closure";
-  $desc = $collectedClasses.Grid_getLastEmptyPiece_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_getLastEmptyPiece_closure.prototype = $desc;
-  function Grid_neighboursOf_closure(this_0, piece_1, result_2) {
-    this.this_0 = this_0;
-    this.piece_1 = piece_1;
-    this.result_2 = result_2;
-  }
-  Grid_neighboursOf_closure.builtin$cls = "Grid_neighboursOf_closure";
-  if (!"name" in Grid_neighboursOf_closure)
-    Grid_neighboursOf_closure.name = "Grid_neighboursOf_closure";
-  $desc = $collectedClasses.Grid_neighboursOf_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_neighboursOf_closure.prototype = $desc;
-  function Grid_forEachMatch_closure(callback_0) {
-    this.callback_0 = callback_0;
-  }
-  Grid_forEachMatch_closure.builtin$cls = "Grid_forEachMatch_closure";
-  if (!"name" in Grid_forEachMatch_closure)
-    Grid_forEachMatch_closure.name = "Grid_forEachMatch_closure";
-  $desc = $collectedClasses.Grid_forEachMatch_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_forEachMatch_closure.prototype = $desc;
-  function Grid_getMatches_closure(checked_0, matches_1) {
-    this.checked_0 = checked_0;
-    this.matches_1 = matches_1;
-  }
-  Grid_getMatches_closure.builtin$cls = "Grid_getMatches_closure";
-  if (!"name" in Grid_getMatches_closure)
-    Grid_getMatches_closure.name = "Grid_getMatches_closure";
-  $desc = $collectedClasses.Grid_getMatches_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_getMatches_closure.prototype = $desc;
-  function Grid_getMatches__closure(checked_2, matches_3) {
-    this.checked_2 = checked_2;
-    this.matches_3 = matches_3;
-  }
-  Grid_getMatches__closure.builtin$cls = "Grid_getMatches__closure";
-  if (!"name" in Grid_getMatches__closure)
-    Grid_getMatches__closure.name = "Grid_getMatches__closure";
-  $desc = $collectedClasses.Grid_getMatches__closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_getMatches__closure.prototype = $desc;
-  function Grid_getMatches___closure(checked_4) {
-    this.checked_4 = checked_4;
-  }
-  Grid_getMatches___closure.builtin$cls = "Grid_getMatches___closure";
-  if (!"name" in Grid_getMatches___closure)
-    Grid_getMatches___closure.name = "Grid_getMatches___closure";
-  $desc = $collectedClasses.Grid_getMatches___closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_getMatches___closure.prototype = $desc;
-  function Grid_getRow_closure(row_0, result_1) {
-    this.row_0 = row_0;
-    this.result_1 = result_1;
-  }
-  Grid_getRow_closure.builtin$cls = "Grid_getRow_closure";
-  if (!"name" in Grid_getRow_closure)
-    Grid_getRow_closure.name = "Grid_getRow_closure";
-  $desc = $collectedClasses.Grid_getRow_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_getRow_closure.prototype = $desc;
-  function Grid_clearMatches_closure() {
-  }
-  Grid_clearMatches_closure.builtin$cls = "Grid_clearMatches_closure";
-  if (!"name" in Grid_clearMatches_closure)
-    Grid_clearMatches_closure.name = "Grid_clearMatches_closure";
-  $desc = $collectedClasses.Grid_clearMatches_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_clearMatches_closure.prototype = $desc;
-  function Grid_clearMatches__closure() {
-  }
-  Grid_clearMatches__closure.builtin$cls = "Grid_clearMatches__closure";
-  if (!"name" in Grid_clearMatches__closure)
-    Grid_clearMatches__closure.name = "Grid_clearMatches__closure";
-  $desc = $collectedClasses.Grid_clearMatches__closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_clearMatches__closure.prototype = $desc;
-  function Grid_applyGravity_closure(box_2, box_1, direction_3, fallingPieces_4) {
-    this.box_2 = box_2;
-    this.box_1 = box_1;
-    this.direction_3 = direction_3;
-    this.fallingPieces_4 = fallingPieces_4;
-  }
-  Grid_applyGravity_closure.builtin$cls = "Grid_applyGravity_closure";
-  if (!"name" in Grid_applyGravity_closure)
-    Grid_applyGravity_closure.name = "Grid_applyGravity_closure";
-  $desc = $collectedClasses.Grid_applyGravity_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_applyGravity_closure.prototype = $desc;
-  function Grid_applyGravity__closure(box_0, direction_5, fallingPieces_6, grid_7) {
-    this.box_0 = box_0;
-    this.direction_5 = direction_5;
-    this.fallingPieces_6 = fallingPieces_6;
-    this.grid_7 = grid_7;
-  }
-  Grid_applyGravity__closure.builtin$cls = "Grid_applyGravity__closure";
-  if (!"name" in Grid_applyGravity__closure)
-    Grid_applyGravity__closure.name = "Grid_applyGravity__closure";
-  $desc = $collectedClasses.Grid_applyGravity__closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_applyGravity__closure.prototype = $desc;
-  function Grid_applyGravity_closure0(fallingPiecesWithoutEmpty_8) {
-    this.fallingPiecesWithoutEmpty_8 = fallingPiecesWithoutEmpty_8;
-  }
-  Grid_applyGravity_closure0.builtin$cls = "Grid_applyGravity_closure0";
-  if (!"name" in Grid_applyGravity_closure0)
-    Grid_applyGravity_closure0.name = "Grid_applyGravity_closure0";
-  $desc = $collectedClasses.Grid_applyGravity_closure0;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Grid_applyGravity_closure0.prototype = $desc;
-  function Piece(grid, x, y, object) {
-    this.grid = grid;
-    this.x = x;
-    this.y = y;
-    this.object = object;
-  }
-  Piece.builtin$cls = "Piece";
-  if (!"name" in Piece)
-    Piece.name = "Piece";
-  $desc = $collectedClasses.Piece;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Piece.prototype = $desc;
-  Piece.prototype.get$x = function(receiver) {
-    return this.x;
-  };
-  Piece.prototype.set$x = function(receiver, v) {
-    return this.x = v;
-  };
-  Piece.prototype.get$y = function(receiver) {
-    return this.y;
-  };
-  Piece.prototype.set$y = function(receiver, v) {
-    return this.y = v;
-  };
-  Piece.prototype.get$object = function() {
-    return this.object;
-  };
-  Piece.prototype.set$object = function(v) {
-    return this.object = v;
-  };
-  function Piece_matchingNeighbours_closure(this_0, matches_1) {
-    this.this_0 = this_0;
-    this.matches_1 = matches_1;
-  }
-  Piece_matchingNeighbours_closure.builtin$cls = "Piece_matchingNeighbours_closure";
-  if (!"name" in Piece_matchingNeighbours_closure)
-    Piece_matchingNeighbours_closure.name = "Piece_matchingNeighbours_closure";
-  $desc = $collectedClasses.Piece_matchingNeighbours_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Piece_matchingNeighbours_closure.prototype = $desc;
-  function Piece_deepMatchingNeighbours_closure(box_0, deepMatches_1) {
-    this.box_0 = box_0;
-    this.deepMatches_1 = deepMatches_1;
-  }
-  Piece_deepMatchingNeighbours_closure.builtin$cls = "Piece_deepMatchingNeighbours_closure";
-  if (!"name" in Piece_deepMatchingNeighbours_closure)
-    Piece_deepMatchingNeighbours_closure.name = "Piece_deepMatchingNeighbours_closure";
-  $desc = $collectedClasses.Piece_deepMatchingNeighbours_closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Piece_deepMatchingNeighbours_closure.prototype = $desc;
-  function Piece_deepMatchingNeighbours__closure(box_0, deepMatches_2) {
-    this.box_0 = box_0;
-    this.deepMatches_2 = deepMatches_2;
-  }
-  Piece_deepMatchingNeighbours__closure.builtin$cls = "Piece_deepMatchingNeighbours__closure";
-  if (!"name" in Piece_deepMatchingNeighbours__closure)
-    Piece_deepMatchingNeighbours__closure.name = "Piece_deepMatchingNeighbours__closure";
-  $desc = $collectedClasses.Piece_deepMatchingNeighbours__closure;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  Piece_deepMatchingNeighbours__closure.prototype = $desc;
-  function VoidObject(type) {
-    this.type = type;
-  }
-  VoidObject.builtin$cls = "VoidObject";
-  if (!"name" in VoidObject)
-    VoidObject.name = "VoidObject";
-  $desc = $collectedClasses.VoidObject;
-  if ($desc instanceof Array)
-    $desc = $desc[1];
-  VoidObject.prototype = $desc;
-  VoidObject.prototype.get$type = function(receiver) {
-    return this.type;
-  };
-  VoidObject.prototype.set$type = function(receiver, v) {
-    return this.type = v;
-  };
   function ListIterable() {
   }
   ListIterable.builtin$cls = "ListIterable";
@@ -94819,6 +94630,274 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   FilteredElementList_removeRange_closure.prototype = $desc;
+  function Grid(width, height, gravity, pieces, directions) {
+    this.width = width;
+    this.height = height;
+    this.gravity = gravity;
+    this.pieces = pieces;
+    this.directions = directions;
+  }
+  Grid.builtin$cls = "Grid";
+  if (!"name" in Grid)
+    Grid.name = "Grid";
+  $desc = $collectedClasses.Grid;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid.prototype = $desc;
+  Grid.prototype.get$width = function(receiver) {
+    return this.width;
+  };
+  Grid.prototype.set$width = function(receiver, v) {
+    return this.width = v;
+  };
+  Grid.prototype.get$height = function(receiver) {
+    return this.height;
+  };
+  Grid.prototype.set$height = function(receiver, v) {
+    return this.height = v;
+  };
+  Grid.prototype.get$gravity = function() {
+    return this.gravity;
+  };
+  Grid.prototype.set$gravity = function(v) {
+    return this.gravity = v;
+  };
+  function Grid_getLastEmptyPiece_closure(box_0) {
+    this.box_0 = box_0;
+  }
+  Grid_getLastEmptyPiece_closure.builtin$cls = "Grid_getLastEmptyPiece_closure";
+  if (!"name" in Grid_getLastEmptyPiece_closure)
+    Grid_getLastEmptyPiece_closure.name = "Grid_getLastEmptyPiece_closure";
+  $desc = $collectedClasses.Grid_getLastEmptyPiece_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_getLastEmptyPiece_closure.prototype = $desc;
+  function Grid_neighboursOf_closure(this_0, piece_1, result_2) {
+    this.this_0 = this_0;
+    this.piece_1 = piece_1;
+    this.result_2 = result_2;
+  }
+  Grid_neighboursOf_closure.builtin$cls = "Grid_neighboursOf_closure";
+  if (!"name" in Grid_neighboursOf_closure)
+    Grid_neighboursOf_closure.name = "Grid_neighboursOf_closure";
+  $desc = $collectedClasses.Grid_neighboursOf_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_neighboursOf_closure.prototype = $desc;
+  function Grid_forEachMatch_closure(callback_0) {
+    this.callback_0 = callback_0;
+  }
+  Grid_forEachMatch_closure.builtin$cls = "Grid_forEachMatch_closure";
+  if (!"name" in Grid_forEachMatch_closure)
+    Grid_forEachMatch_closure.name = "Grid_forEachMatch_closure";
+  $desc = $collectedClasses.Grid_forEachMatch_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_forEachMatch_closure.prototype = $desc;
+  function Grid_getMatches_closure(checked_0, matches_1) {
+    this.checked_0 = checked_0;
+    this.matches_1 = matches_1;
+  }
+  Grid_getMatches_closure.builtin$cls = "Grid_getMatches_closure";
+  if (!"name" in Grid_getMatches_closure)
+    Grid_getMatches_closure.name = "Grid_getMatches_closure";
+  $desc = $collectedClasses.Grid_getMatches_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_getMatches_closure.prototype = $desc;
+  function Grid_getMatches__closure(checked_2, matches_3) {
+    this.checked_2 = checked_2;
+    this.matches_3 = matches_3;
+  }
+  Grid_getMatches__closure.builtin$cls = "Grid_getMatches__closure";
+  if (!"name" in Grid_getMatches__closure)
+    Grid_getMatches__closure.name = "Grid_getMatches__closure";
+  $desc = $collectedClasses.Grid_getMatches__closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_getMatches__closure.prototype = $desc;
+  function Grid_getMatches___closure(checked_4) {
+    this.checked_4 = checked_4;
+  }
+  Grid_getMatches___closure.builtin$cls = "Grid_getMatches___closure";
+  if (!"name" in Grid_getMatches___closure)
+    Grid_getMatches___closure.name = "Grid_getMatches___closure";
+  $desc = $collectedClasses.Grid_getMatches___closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_getMatches___closure.prototype = $desc;
+  function Grid_getRow_closure(row_0, pieces_1) {
+    this.row_0 = row_0;
+    this.pieces_1 = pieces_1;
+  }
+  Grid_getRow_closure.builtin$cls = "Grid_getRow_closure";
+  if (!"name" in Grid_getRow_closure)
+    Grid_getRow_closure.name = "Grid_getRow_closure";
+  $desc = $collectedClasses.Grid_getRow_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_getRow_closure.prototype = $desc;
+  function Grid_clearMatches_closure() {
+  }
+  Grid_clearMatches_closure.builtin$cls = "Grid_clearMatches_closure";
+  if (!"name" in Grid_clearMatches_closure)
+    Grid_clearMatches_closure.name = "Grid_clearMatches_closure";
+  $desc = $collectedClasses.Grid_clearMatches_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_clearMatches_closure.prototype = $desc;
+  function Grid_clearMatches__closure() {
+  }
+  Grid_clearMatches__closure.builtin$cls = "Grid_clearMatches__closure";
+  if (!"name" in Grid_clearMatches__closure)
+    Grid_clearMatches__closure.name = "Grid_clearMatches__closure";
+  $desc = $collectedClasses.Grid_clearMatches__closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_clearMatches__closure.prototype = $desc;
+  function Grid_applyGravity_closure(box_2, box_1, direction_3, fallingPieces_4) {
+    this.box_2 = box_2;
+    this.box_1 = box_1;
+    this.direction_3 = direction_3;
+    this.fallingPieces_4 = fallingPieces_4;
+  }
+  Grid_applyGravity_closure.builtin$cls = "Grid_applyGravity_closure";
+  if (!"name" in Grid_applyGravity_closure)
+    Grid_applyGravity_closure.name = "Grid_applyGravity_closure";
+  $desc = $collectedClasses.Grid_applyGravity_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_applyGravity_closure.prototype = $desc;
+  function Grid_applyGravity__closure(box_0, direction_5, fallingPieces_6, grid_7) {
+    this.box_0 = box_0;
+    this.direction_5 = direction_5;
+    this.fallingPieces_6 = fallingPieces_6;
+    this.grid_7 = grid_7;
+  }
+  Grid_applyGravity__closure.builtin$cls = "Grid_applyGravity__closure";
+  if (!"name" in Grid_applyGravity__closure)
+    Grid_applyGravity__closure.name = "Grid_applyGravity__closure";
+  $desc = $collectedClasses.Grid_applyGravity__closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_applyGravity__closure.prototype = $desc;
+  function Grid_applyGravity_closure0(fallingPiecesWithoutEmpty_8) {
+    this.fallingPiecesWithoutEmpty_8 = fallingPiecesWithoutEmpty_8;
+  }
+  Grid_applyGravity_closure0.builtin$cls = "Grid_applyGravity_closure0";
+  if (!"name" in Grid_applyGravity_closure0)
+    Grid_applyGravity_closure0.name = "Grid_applyGravity_closure0";
+  $desc = $collectedClasses.Grid_applyGravity_closure0;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Grid_applyGravity_closure0.prototype = $desc;
+  function Pair(order, first, second, ordinals) {
+    this.order = order;
+    this.first = first;
+    this.second = second;
+    this.ordinals = ordinals;
+  }
+  Pair.builtin$cls = "Pair";
+  if (!"name" in Pair)
+    Pair.name = "Pair";
+  $desc = $collectedClasses.Pair;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Pair.prototype = $desc;
+  Pair.prototype.get$second = function() {
+    return this.second;
+  };
+  function Piece(grid, object, x, y) {
+    this.grid = grid;
+    this.object = object;
+    this.x = x;
+    this.y = y;
+  }
+  Piece.builtin$cls = "Piece";
+  if (!"name" in Piece)
+    Piece.name = "Piece";
+  $desc = $collectedClasses.Piece;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Piece.prototype = $desc;
+  Piece.prototype.get$object = function() {
+    return this.object;
+  };
+  Piece.prototype.set$object = function(v) {
+    return this.object = v;
+  };
+  function Piece_matchingNeighbours_closure(this_0, matches_1) {
+    this.this_0 = this_0;
+    this.matches_1 = matches_1;
+  }
+  Piece_matchingNeighbours_closure.builtin$cls = "Piece_matchingNeighbours_closure";
+  if (!"name" in Piece_matchingNeighbours_closure)
+    Piece_matchingNeighbours_closure.name = "Piece_matchingNeighbours_closure";
+  $desc = $collectedClasses.Piece_matchingNeighbours_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Piece_matchingNeighbours_closure.prototype = $desc;
+  function Piece_deepMatchingNeighbours_closure(box_0, deepMatches_1) {
+    this.box_0 = box_0;
+    this.deepMatches_1 = deepMatches_1;
+  }
+  Piece_deepMatchingNeighbours_closure.builtin$cls = "Piece_deepMatchingNeighbours_closure";
+  if (!"name" in Piece_deepMatchingNeighbours_closure)
+    Piece_deepMatchingNeighbours_closure.name = "Piece_deepMatchingNeighbours_closure";
+  $desc = $collectedClasses.Piece_deepMatchingNeighbours_closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Piece_deepMatchingNeighbours_closure.prototype = $desc;
+  function Piece_deepMatchingNeighbours__closure(box_0, deepMatches_2) {
+    this.box_0 = box_0;
+    this.deepMatches_2 = deepMatches_2;
+  }
+  Piece_deepMatchingNeighbours__closure.builtin$cls = "Piece_deepMatchingNeighbours__closure";
+  if (!"name" in Piece_deepMatchingNeighbours__closure)
+    Piece_deepMatchingNeighbours__closure.name = "Piece_deepMatchingNeighbours__closure";
+  $desc = $collectedClasses.Piece_deepMatchingNeighbours__closure;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Piece_deepMatchingNeighbours__closure.prototype = $desc;
+  function Pointe(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  Pointe.builtin$cls = "Pointe";
+  if (!"name" in Pointe)
+    Pointe.name = "Pointe";
+  $desc = $collectedClasses.Pointe;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  Pointe.prototype = $desc;
+  Pointe.prototype.get$x = function(receiver) {
+    return this.x;
+  };
+  Pointe.prototype.set$x = function(receiver, v) {
+    return this.x = v;
+  };
+  Pointe.prototype.get$y = function(receiver) {
+    return this.y;
+  };
+  Pointe.prototype.set$y = function(receiver, v) {
+    return this.y = v;
+  };
+  function VoidObject(type) {
+    this.type = type;
+  }
+  VoidObject.builtin$cls = "VoidObject";
+  if (!"name" in VoidObject)
+    VoidObject.name = "VoidObject";
+  $desc = $collectedClasses.VoidObject;
+  if ($desc instanceof Array)
+    $desc = $desc[1];
+  VoidObject.prototype = $desc;
+  VoidObject.prototype.get$type = function(receiver) {
+    return this.type;
+  };
+  VoidObject.prototype.set$type = function(receiver, v) {
+    return this.type = v;
+  };
   function SupportedBrowser(browserName, minimumVersion) {
     this.browserName = browserName;
     this.minimumVersion = minimumVersion;
@@ -95324,5 +95403,5 @@ function dart_precompiled($collectedClasses) {
   if ($desc instanceof Array)
     $desc = $desc[1];
   EasingFunction.prototype = $desc;
-  return [HtmlElement, AnchorElement, AnimationEvent, AreaElement, AudioElement, AutocompleteErrorEvent, BRElement, BaseElement, BeforeLoadEvent, BeforeUnloadEvent, Blob, BodyElement, ButtonElement, CDataSection, CanvasElement, CanvasGradient, CanvasPattern, CanvasRenderingContext, CanvasRenderingContext2D, CharacterData, CloseEvent, Comment, CompositionEvent, ContentElement, CssFontFaceLoadEvent, CssStyleDeclaration, CustomEvent, DListElement, DataListElement, DetailsElement, DeviceAcceleration, DeviceMotionEvent, DeviceOrientationEvent, DialogElement, DivElement, Document, DocumentFragment, DomError, DomException, DomParser, Element, EmbedElement, ErrorEvent, Event, EventTarget, FieldSetElement, File, FileError, FocusEvent, FormElement, HRElement, HashChangeEvent, HeadElement, HeadingElement, HtmlCollection, HtmlDocument, HtmlFormControlsCollection, HtmlHtmlElement, HtmlOptionsCollection, HttpRequest, HttpRequestEventTarget, HttpRequestUpload, IFrameElement, ImageData, ImageElement, InputElement, InstallEvent, InstallPhaseEvent, KeyboardEvent, KeygenElement, LIElement, LabelElement, LegendElement, LinkElement, Location, MapElement, MediaElement, MediaError, MediaKeyError, MediaKeyEvent, MediaKeyMessageEvent, MediaKeyNeededEvent, MediaStream, MediaStreamEvent, MediaStreamTrackEvent, MenuElement, MessageEvent, MetaElement, MeterElement, MidiConnectionEvent, MidiInput, MidiMessageEvent, MidiOutput, MidiPort, ModElement, MouseEvent, Navigator, NavigatorUserMediaError, Node, NodeList, OListElement, ObjectElement, OptGroupElement, OptionElement, OutputElement, OverflowEvent, PageTransitionEvent, ParagraphElement, ParamElement, PopStateEvent, PositionError, PreElement, ProcessingInstruction, ProgressElement, ProgressEvent, QuoteElement, ResourceProgressEvent, RtcDataChannelEvent, RtcDtmfToneChangeEvent, RtcIceCandidateEvent, Screen, ScriptElement, SecurityPolicyViolationEvent, SelectElement, ShadowElement, ShadowRoot, SourceElement, SpanElement, SpeechInputEvent, SpeechRecognitionError, SpeechRecognitionEvent, SpeechSynthesisEvent, Storage, StorageEvent, StyleElement, TableCaptionElement, TableCellElement, TableColElement, TableElement, TableRowElement, TableSectionElement, TemplateElement, Text1, TextAreaElement, TextEvent, TextMetrics, TitleElement, Touch0, TouchEvent, TouchList, TrackElement, TrackEvent, TransitionEvent, UIEvent, UListElement, UnknownElement, VideoElement, WheelEvent, Window, XmlDocument, _Attr, _ClientRect, _DocumentType, _HTMLAppletElement, _HTMLDirectoryElement, _HTMLFontElement, _HTMLFrameElement, _HTMLFrameSetElement, _HTMLMarqueeElement, _MutationEvent, _NamedNodeMap, _Notation, _XMLHttpRequestProgressEvent, KeyRange, VersionChangeEvent, AElement, AltGlyphElement, AnimateElement, AnimateMotionElement, AnimateTransformElement, AnimatedEnumeration, AnimatedLength, AnimatedLengthList, AnimatedNumber, AnimatedNumberList, AnimatedString, AnimatedTransformList, AnimationElement, CircleElement, ClipPathElement, DefsElement, DescElement, DiscardElement, EllipseElement, FEBlendElement, FEColorMatrixElement, FEComponentTransferElement, FECompositeElement, FEConvolveMatrixElement, FEDiffuseLightingElement, FEDisplacementMapElement, FEDistantLightElement, FEFloodElement, FEFuncAElement, FEFuncBElement, FEFuncGElement, FEFuncRElement, FEGaussianBlurElement, FEImageElement, FEMergeElement, FEMergeNodeElement, FEMorphologyElement, FEOffsetElement, FEPointLightElement, FESpecularLightingElement, FESpotLightElement, FETileElement, FETurbulenceElement, FilterElement, ForeignObjectElement, GElement, GeometryElement, GraphicsElement, ImageElement0, LineElement, LinearGradientElement, MarkerElement, MaskElement, MetadataElement, PathElement, PatternElement, PointList, PolygonElement, PolylineElement, RadialGradientElement, Rect, RectElement, ScriptElement0, SetElement, StopElement, StyleElement0, SvgElement, SvgSvgElement, SwitchElement, SymbolElement, TSpanElement, TextContentElement, TextElement, TextPathElement, TextPositioningElement, TitleElement0, UseElement, ViewElement, ZoomEvent, _GradientElement, _SVGAltGlyphDefElement, _SVGAltGlyphItemElement, _SVGComponentTransferFunctionElement, _SVGCursorElement, _SVGFEDropShadowElement, _SVGFontElement, _SVGFontFaceElement, _SVGFontFaceFormatElement, _SVGFontFaceNameElement, _SVGFontFaceSrcElement, _SVGFontFaceUriElement, _SVGGlyphElement, _SVGGlyphRefElement, _SVGHKernElement, _SVGMPathElement, _SVGMissingGlyphElement, _SVGVKernElement, AudioBuffer, AudioBufferSourceNode, AudioContext, AudioDestinationNode, AudioNode, AudioParam, AudioProcessingEvent, AudioSourceNode, GainNode, OfflineAudioCompletionEvent, OfflineAudioContext, Buffer, ContextEvent, Framebuffer, Program, Renderbuffer, RenderingContext, Shader0, Texture0, UniformLocation, SqlError, NativeByteBuffer, NativeTypedData, NativeByteData, NativeFloat32List, NativeFloat64List, NativeInt16List, NativeInt32List, NativeInt8List, NativeUint16List, NativeUint32List, NativeUint8ClampedList, NativeUint8List, Body, AABB, Body2, Circle1, Shape0, Tile0, Circle, Ellipse, Matrix, Point0, Polygon, Rectangle0, Shape, DisplayInterface, DisplayObject, DisplayObjectContainer, MovieClip, Sprite, SpriteBatch0, Stage0, Rope, BoneData, SlotData, Bone, Slot, Skin, Animation0, Curves, Timeline, RotateTimeline, TranslateTimeline, ScaleTimeline, ColorTimeline, AttachmentTimeline, SkeletonData, Skeleton, Attachment, RegionAttachment, AnimationStateData, Entry, AnimationState, SkeletonJson, Atlas, AtlasPage, AtlasRegion, AtlasReader, AtlasAttachmentLoader, Spine, Strip, TilingSprite, AbstractFilter, AlphaMaskFilter, BlurFilter, BlurXFilter, BlurYFilter, ColorMatrixFilter, ColorStepFilter, CrossHatchFilter, DisplacementFilter, DotScreenFilter, FilterBlock, GrayFilter, InvertFilter, NormalMapFilter, PixelateFilter, RGBSplitFilter, SepiaFilter, SmartBlurFilter, TwistFilter, InteractionData, InteractionManager, AssetLoader, AssetLoader_load_onLoad, AtlasLoader, BitmapFontLoader, BitmapFontLoader_onXMLLoaded_closure, ImageLoader, ImageLoader_load_closure, ImageLoader_loadFramedSpriteSheet_closure, JsonLoader, JsonLoader_load_closure, JsonLoader_onJSONLoaded_closure, Loader0, SpineLoader, SpineLoader_load_closure, SpriteSheetLoader, SpriteSheetLoader_load_closure, BlendModes, scaleModes, GraphicsData, Graphics0, CanvasGraphics, CanvasRenderer, CanvasBuffer, CanvasMaskManager, CanvasTinter, MaskManager, RenderSession, Renderer, ComplexPrimitiveShader, PixiFastShader, PixiShader, PrimitiveShader, Shader, StripShader, FilterTexture, WebGLBlendModeManager, WebGLFastSpriteBatch, WebGLFilterManager, WebGLGraphicsData, WebGLGraphicsData_upload_closure, WebGLGraphicsData_upload_closure0, WebGLGraphics, WebGLGraphics_quadraticBezierCurve_getPt, WebGLMaskManager, WebGLShaderManager, WebGLShaderUtils, WebGLSpriteBatch, WebGLStencilManager, WebGLRenderer, ChartData, Char, BitmapText, TextStyle, Text, BaseTexture, BaseTexture_closure, BaseTexture_closure0, RenderTexture0, Texture, Texture_closure, TextureUvs, PixiEvent, EventTarget0, PolyK, Animation, AnimationManager, AnimationParser, Frame, FrameData, AtLimit, Camera, Signal, Filter, Game, Game_closure, Group, Group_closure, Group_total_closure, Group_forEachExists_closure, Group_forEachAlive_closure, Group_forEachDead_closure, Group_getFirst_closure, Group_getFirstExists_closure, Group_getFirstExists_closure0, Group_getFirstAlive_closure, Group_getFirstAlive_closure0, Group_getFirstDead_closure, Group_getFirstDead_closure0, Group_countLiving_closure, Group_countDead_closure, Plugin, PluginManager, ScaleManager, ScaleManager_refresh_closure, SignalBinding, Stage, Stage_boot_closure, State, StateManager, World, BitmapData, BitmapData_extract_closure, BitmapText0, Button, Events, CoreInterfact, SpriteInterface, AnimationInterface, GameObject, GameObjectCreator, GameObjectFactory, Graphics, Image, Particle, RenderTexture, RetroFont, Sprite0, SpriteBatch, TextStyle0, Text0, TileSprite, Circle0, Ellipse0, Line, Point, Polygon0, Rectangle1, Gamepad, GamepadButton, Input, InputHandler, Key, CursorKeys, Keyboard, Keyboard_start_closure, Keyboard_start_closure0, Keyboard_start_closure1, Mouse, Mouse_start_closure, Mouse_start_closure0, Mouse_start_closure1, Mouse_start_closure2, Mouse_start_closure3, Mouse_start_closure4, Mouse_requestPointerLock_closure, MSPointer, Pointer, SinglePad, Touch, Cache, Cache_reloadSound_closure, Cache_getKeys_closure, Loader, Loader_loadFile_closure, Loader_loadFile_closure0, Loader_loadFile_closure1, Loader_loadFile_closure2, Loader_xhrLoad_closure, Loader_xhrLoad_closure0, Loader_fileComplete_closure, Loader_fileComplete_closure0, LoaderParser, SinCosTable, Math, Math_average_closure, Math_minList_closure, Math_maxList_closure, Math_minProperty_closure, Math_maxProperty_closure, Bounds, QuadTree, RandomDataGenerator, Net, Emitter, Particles, Arcade0, CollisionInfo, Body0, Ninja, P2, Physics, Marker, Sound, SoundManager, SoundManager_decode_closure, Canvas, Device, RequestAnimationFrame, Tile, TilemapData, Tilemap, MapCache, TilemapLayerData, TilemapLayer, TilemapImageData, TilemapParser, TilemapParser_parseTiledJSON_slice, Tileset, Time, Timer, TimerEvent, Linears, Quads, Cubics, Quarts, Circs, Sines, Expos, Backs, Bounces, Elastics, Quints, Easing, Tween, TweenManager, TweenManager_isTweening_closure, Color, Debug, Utils, JS_CONST, Interceptor, JSBool, JSNull, JavaScriptObject, PlainJavaScriptObject, UnknownJavaScriptObject, JSArray, JSMutableArray, JSFixedArray, JSExtendableArray, JSNumber, JSInt, JSDouble, JSPositiveInt, JSUInt32, JSUInt31, JSString, _CodeUnits, startRootIsolate_closure, startRootIsolate_closure0, _Manager, _IsolateContext, _IsolateContext_handlePing_respond, _EventLoop, _EventLoop__runHelper_next, _IsolateEvent, _MainManagerStub, IsolateNatives__processWorkerMessage_closure, IsolateNatives__startIsolate_runStartFunction, _BaseSendPort, _NativeJsSendPort, _NativeJsSendPort_send_closure, _WorkerSendPort, RawReceivePortImpl, _JsSerializer, _JsCopier, _JsDeserializer, _JsVisitedMap, _MessageTraverserVisitedMap, _MessageTraverser, _Copier, _Copier_visitMap_closure, _Serializer, _Deserializer, TimerImpl, TimerImpl_internalCallback, TimerImpl_internalCallback0, TimerImpl$periodic_closure, CapabilityImpl, NoSideEffects, NoThrows, NoInline, Native, ConstantMap, ConstantStringMap, ConstantStringMap_values_closure, _ConstantMapKeyIterable, _Patch, JSInvocationMirror, CachedInvocation, CachedCatchAllInvocation, CachedNoSuchMethodInvocation, ReflectionInfo, ReflectionInfo_sortedIndex_closure, Primitives_functionNoSuchMethod_closure, Primitives_applyFunction_closure, TypeErrorDecoder, NullError, JsNoSuchMethodError, UnknownJsTypeError, unwrapException_saveStackTrace, _StackTrace, invokeClosure_closure, invokeClosure_closure0, invokeClosure_closure1, invokeClosure_closure2, invokeClosure_closure3, Closure, TearOffClosure, BoundClosure, Creates, Returns, JSName, CastErrorImplementation, RuntimeError, RuntimeType, RuntimeFunctionType, DynamicRuntimeType, UnimplementedNoSuchMethodError, TypeImpl, TypeVariable, initHooks_closure, initHooks_closure0, initHooks_closure1, JSSyntaxRegExp, _MatchImplementation, _AllMatchesIterable, _AllMatchesIterator, StringMatch, Alienzed, Assets, GameOver, Gem, GemGroup, GemGroup_drop_closure, GemGroup_drop__closure, Initialize, Level1, Level1_handleMatches_closure, Level1_handleMatches__closure, Level1_handleFalling_closure, Level1_handleFalling__closure, Level1_handleUpgrade_closure, Levels, Grid, Grid_getLastEmptyPiece_closure, Grid_neighboursOf_closure, Grid_forEachMatch_closure, Grid_getMatches_closure, Grid_getMatches__closure, Grid_getMatches___closure, Grid_getRow_closure, Grid_clearMatches_closure, Grid_clearMatches__closure, Grid_applyGravity_closure, Grid_applyGravity__closure, Grid_applyGravity_closure0, Piece, Piece_matchingNeighbours_closure, Piece_deepMatchingNeighbours_closure, Piece_deepMatchingNeighbours__closure, VoidObject, ListIterable, SubListIterable, ListIterator, MappedIterable, EfficientLengthMappedIterable, MappedIterator, MappedListIterable, WhereIterable, WhereIterator, IterableMixinWorkaround, FixedLengthListMixin, UnmodifiableListMixin, UnmodifiableListBase, ReversedListIterable, Symbol, JsMirrorSystem, JsMirrorSystem_computeLibrariesByName_closure, JsMirror, JsIsolateMirror, JsDeclarationMirror, JsTypeVariableMirror, JsTypeMirror, JsLibraryMirror, JsDeclarationMirror_JsObjectMirror, JsMixinApplication, JsTypeMirror_JsObjectMirror, JsObjectMirror, JsInstanceMirror, JsInstanceMirror__invokeMethodWithNamedArguments_closure, JsTypeBoundClassMirror, JsTypeBoundClassMirror_typeArguments_addTypeArgument, JsTypeBoundClassMirror_typeArguments_addTypeArgument_closure, JsTypeBoundClassMirror_typeArguments_closure, JsTypeBoundClassMirror_newInstance_closure, JsTypeBoundClassMirror__asRuntimeType_closure, JsClassMirror, JsTypeMirror_JsObjectMirror0, JsClassMirror__getInvokedInstance_closure, JsClassMirror__getInvokedInstance_closure0, JsClosureMirror, JsMethodMirror, JsParameterMirror, JsTypedefMirror, BrokenClassMirror, JsFunctionTypeMirror, typeMirrorFromRuntimeTypeRepresentation_getTypeArgument, typeMirrorFromRuntimeTypeRepresentation_substituteTypeVariable, extractMetadata_closure, NoSuchStaticMethodError, computeReflectiveNames_closure, _AsyncRun__initializeScheduleImmediate_internalCallback, _AsyncRun__initializeScheduleImmediate_closure, _AsyncRun__scheduleImmediateJsOverride_internalCallback, _AsyncError, _UncaughtAsyncError, _BroadcastStream, _BroadcastSubscription, _BroadcastStreamController, _SyncBroadcastStreamController, _SyncBroadcastStreamController__sendData_closure, _SyncBroadcastStreamController__sendError_closure, _SyncBroadcastStreamController__sendDone_closure, Future, _Completer, _AsyncCompleter, _Future, _Future__addListener_closure, _Future__chainForeignFuture_closure, _Future__chainForeignFuture_closure0, _Future__asyncComplete_closure, _Future__asyncComplete_closure0, _Future__asyncCompleteError_closure, _Future__propagateToListeners_handleValueCallback, _Future__propagateToListeners_handleError, _Future__propagateToListeners_handleWhenCompleteCallback, _Future__propagateToListeners_handleWhenCompleteCallback_closure, _Future__propagateToListeners_handleWhenCompleteCallback_closure0, _AsyncCallbackEntry, Stream, Stream_fold_closure, Stream_fold__closure, Stream_fold__closure0, Stream_fold_closure1, Stream_fold_closure0, Stream_join_closure, Stream_join_closure1, Stream_join_closure0, Stream_contains_closure, Stream_contains__closure, Stream_contains__closure0, Stream_contains_closure0, Stream_forEach_closure, Stream_forEach__closure, Stream_forEach__closure0, Stream_forEach_closure0, Stream_any_closure, Stream_any__closure, Stream_any__closure0, Stream_any_closure0, Stream_length_closure, Stream_length_closure0, Stream_isEmpty_closure, Stream_isEmpty_closure0, Stream_toList_closure, Stream_toList_closure0, Stream_last_closure, Stream_last_closure0, Stream_elementAt_closure, Stream_elementAt_closure0, StreamSubscription, _ControllerStream, _ControllerSubscription, _EventSink, _BufferingStreamSubscription, _BufferingStreamSubscription__sendError_sendError, _BufferingStreamSubscription__sendDone_sendDone, _StreamImpl, _DelayedEvent, _DelayedData, _DelayedError, _DelayedDone, _PendingEvents, _PendingEvents_schedule_closure, _StreamImplEvents, _DoneStreamSubscription, _cancelAndError_closure, _cancelAndErrorClosure_closure, _cancelAndValue_closure, _ForwardingStream, _ForwardingStreamSubscription, _WhereStream, _MapStream, _Zone, _rootHandleUncaughtError_closure, _RootZone, _RootZone_bindCallback_closure, _RootZone_bindCallback_closure0, _RootZone_bindUnaryCallback_closure, _RootZone_bindUnaryCallback_closure0, _HashMap, _HashMap_values_closure, _HashMap_addAll_closure, HashMapKeyIterable, HashMapKeyIterator, _LinkedHashMap, _LinkedHashMap_values_closure, _LinkedHashMap_addAll_closure, LinkedHashMapCell, LinkedHashMapKeyIterable, LinkedHashMapKeyIterator, _LinkedHashSet, LinkedHashSetCell, LinkedHashSetIterator, UnmodifiableListView, _HashSetBase, IterableBase, ListBase, Object_ListMixin, ListMixin, _UnmodifiableMapMixin, MapView, UnmodifiableMapView, Maps_mapToString_closure, DoubleLinkedQueueEntry, _DoubleLinkedQueueEntrySentinel, DoubleLinkedQueue, _DoubleLinkedQueueIterator, ListQueue, _ListQueueIterator, SetMixin, SetBase, _JsonMap, _JsonMap_values_closure, _JsonMap_addAll_closure, Codec, Converter, Encoding, JsonCodec, JsonDecoder, Utf8Codec, Utf8Encoder, _Utf8Encoder, Utf8Decoder, _Utf8Decoder, _Utf8Decoder_convert_scanOneByteCharacters, _Utf8Decoder_convert_addSingleBytes, Function__toMangledNames_closure, NoSuchMethodError_toString_closure, Deprecated, bool, Comparable, DateTime, $double, Duration, Duration_toString_sixDigits, Duration_toString_twoDigits, Error, NullThrownError, ArgumentError, RangeError, NoSuchMethodError, UnsupportedError, UnimplementedError, StateError, ConcurrentModificationError, OutOfMemoryError, StackOverflowError, CyclicInitializationError, _ExceptionImplementation, FormatException, IntegerDivisionByZeroException, Expando, Function, $int, Invocation, Iterable, Iterator, List, Map, Null, num, Object, Pattern, Match, StackTrace, String, StringBuffer, Symbol0, Type, Uri, Uri_parse_isRegName, Uri_parse_parseAuth, Uri__makePath_closure, Uri__makeQuery_closure, Uri_hashCode_combine, Uri_parseIPv4Address_error, Uri_parseIPv4Address_closure, Uri_parseIPv6Address_error, Uri_parseIPv6Address_parseHex, Uri__uriEncode_byteToHex, Interceptor_CssStyleDeclarationBase, _CssStyleDeclarationSet, Object_CssStyleDeclarationBase, _CssStyleDeclarationSet_closure, _CssStyleDeclarationSet_setProperty_closure, CssStyleDeclarationBase, _ChildrenElementList, _FrozenElementList, _FrozenElementList$_wrap_closure, Events0, ElementEvents, Interceptor_ListMixin, Interceptor_ListMixin_ImmutableListMixin, Navigator_getUserMedia_closure, Navigator_getUserMedia_closure0, _ChildNodeListLazy, Interceptor_ListMixin0, Interceptor_ListMixin_ImmutableListMixin0, SelectElement_options_closure, Storage_addAll_closure, Storage_keys_closure, Storage_values_closure, Interceptor_ListMixin1, Interceptor_ListMixin_ImmutableListMixin1, Interceptor_ListMixin2, Interceptor_ListMixin_ImmutableListMixin2, _AttributeMap, _AttributeMap_addAll_closure, _ElementAttributeMap, _DataAttributeMap, _DataAttributeMap_addAll_closure, _DataAttributeMap_forEach_closure, _DataAttributeMap_keys_closure, _DataAttributeMap_values_closure, CanvasImageSource, EventStreamProvider, _EventStream, _ElementEventStreamImpl, _ElementListEventStreamImpl, _EventStreamSubscription, _StreamPool, _StreamPool_add_closure, _CustomEventStreamProvider, ImmutableListMixin, _WrappedList, _WrappedIterator, FixedSizeListIterator, _DOMWindowCrossFrame, AudioContext_decodeAudioData_closure, AudioContext_decodeAudioData_closure0, Capability, JsObject, JsFunction, JsArray, JsObject_ListMixin, _convertToJS_closure, _convertToJS_closure0, _wrapToDart_closure, _wrapToDart_closure0, _wrapToDart_closure1, _JSRandom, Point1, _RectangleBase, Rectangle, InstanceMirror, LibraryMirror, TypeMirror, ClassMirror, TypeVariableMirror, MethodMirror, ParameterMirror, MirrorsUsed, Float32List, NativeTypedArray, NativeTypedArrayOfDouble, NativeTypedArray_ListMixin, NativeTypedArray_ListMixin_FixedLengthListMixin, NativeTypedArrayOfInt, NativeTypedArray_ListMixin0, NativeTypedArray_ListMixin_FixedLengthListMixin0, convertDartToNative_Dictionary_closure, _convertDartToNative_PrepareForStructuredClone_findSlot, _convertDartToNative_PrepareForStructuredClone_readSlot, _convertDartToNative_PrepareForStructuredClone_writeSlot, _convertDartToNative_PrepareForStructuredClone_cleanupSlots, _convertDartToNative_PrepareForStructuredClone_walk, _convertDartToNative_PrepareForStructuredClone_walk_closure, convertNativeToDart_AcceptStructuredClone_findSlot, convertNativeToDart_AcceptStructuredClone_readSlot, convertNativeToDart_AcceptStructuredClone_writeSlot, convertNativeToDart_AcceptStructuredClone_walk, _TypedImageData, FilteredElementList, FilteredElementList__filtered_closure, FilteredElementList_removeRange_closure, SupportedBrowser, Experimental, DomName, DocsEditable, Unstable, Back, Bounce, Circ, Elastic, Expo, Linear, closure, Quad, closure1, closure0, Quart, closure3, closure2, Quint, closure7, closure8, Sine, closure6, closure4, closure5, TweenEquation, InteractionHandler, EventFunc, Render, Creator, SelectWhere, ScreenFunc, ResizeFunc, GameFunc, GameObjectFunc, InputFunc, InputUpFunc, GroupFunc, AnimationFunc, PointerFunc, KeyFunc, LoaderStartFunc, FileStartFunc, FileCompleteFunc, FileError0, PackCompleteFunc, doubleFunc, CollideFunc, ProcessFunc, SoundFunc, TimerFunc, EasingFunction];
+  return [HtmlElement, AnchorElement, AnimationEvent, AreaElement, AudioElement, AutocompleteErrorEvent, BRElement, BaseElement, BeforeLoadEvent, BeforeUnloadEvent, Blob, BodyElement, ButtonElement, CDataSection, CanvasElement, CanvasGradient, CanvasPattern, CanvasRenderingContext, CanvasRenderingContext2D, CharacterData, CloseEvent, Comment, CompositionEvent, ContentElement, CssFontFaceLoadEvent, CssStyleDeclaration, CustomEvent, DListElement, DataListElement, DetailsElement, DeviceAcceleration, DeviceMotionEvent, DeviceOrientationEvent, DialogElement, DivElement, Document, DocumentFragment, DomError, DomException, DomParser, Element, EmbedElement, ErrorEvent, Event, EventTarget, FieldSetElement, File, FileError, FocusEvent, FormElement, HRElement, HashChangeEvent, HeadElement, HeadingElement, HtmlCollection, HtmlDocument, HtmlFormControlsCollection, HtmlHtmlElement, HtmlOptionsCollection, HttpRequest, HttpRequestEventTarget, HttpRequestUpload, IFrameElement, ImageData, ImageElement, InputElement, InstallEvent, InstallPhaseEvent, KeyboardEvent, KeygenElement, LIElement, LabelElement, LegendElement, LinkElement, Location, MapElement, MediaElement, MediaError, MediaKeyError, MediaKeyEvent, MediaKeyMessageEvent, MediaKeyNeededEvent, MediaStream, MediaStreamEvent, MediaStreamTrackEvent, MenuElement, MessageEvent, MetaElement, MeterElement, MidiConnectionEvent, MidiInput, MidiMessageEvent, MidiOutput, MidiPort, ModElement, MouseEvent, Navigator, NavigatorUserMediaError, Node, NodeList, OListElement, ObjectElement, OptGroupElement, OptionElement, OutputElement, OverflowEvent, PageTransitionEvent, ParagraphElement, ParamElement, PopStateEvent, PositionError, PreElement, ProcessingInstruction, ProgressElement, ProgressEvent, QuoteElement, ResourceProgressEvent, RtcDataChannelEvent, RtcDtmfToneChangeEvent, RtcIceCandidateEvent, Screen, ScriptElement, SecurityPolicyViolationEvent, SelectElement, ShadowElement, ShadowRoot, SourceElement, SpanElement, SpeechInputEvent, SpeechRecognitionError, SpeechRecognitionEvent, SpeechSynthesisEvent, Storage, StorageEvent, StyleElement, TableCaptionElement, TableCellElement, TableColElement, TableElement, TableRowElement, TableSectionElement, TemplateElement, Text1, TextAreaElement, TextEvent, TextMetrics, TitleElement, Touch0, TouchEvent, TouchList, TrackElement, TrackEvent, TransitionEvent, UIEvent, UListElement, UnknownElement, VideoElement, WheelEvent, Window, XmlDocument, _Attr, _ClientRect, _DocumentType, _HTMLAppletElement, _HTMLDirectoryElement, _HTMLFontElement, _HTMLFrameElement, _HTMLFrameSetElement, _HTMLMarqueeElement, _MutationEvent, _NamedNodeMap, _Notation, _XMLHttpRequestProgressEvent, KeyRange, VersionChangeEvent, AElement, AltGlyphElement, AnimateElement, AnimateMotionElement, AnimateTransformElement, AnimatedEnumeration, AnimatedLength, AnimatedLengthList, AnimatedNumber, AnimatedNumberList, AnimatedString, AnimatedTransformList, AnimationElement, CircleElement, ClipPathElement, DefsElement, DescElement, DiscardElement, EllipseElement, FEBlendElement, FEColorMatrixElement, FEComponentTransferElement, FECompositeElement, FEConvolveMatrixElement, FEDiffuseLightingElement, FEDisplacementMapElement, FEDistantLightElement, FEFloodElement, FEFuncAElement, FEFuncBElement, FEFuncGElement, FEFuncRElement, FEGaussianBlurElement, FEImageElement, FEMergeElement, FEMergeNodeElement, FEMorphologyElement, FEOffsetElement, FEPointLightElement, FESpecularLightingElement, FESpotLightElement, FETileElement, FETurbulenceElement, FilterElement, ForeignObjectElement, GElement, GeometryElement, GraphicsElement, ImageElement0, LineElement, LinearGradientElement, MarkerElement, MaskElement, MetadataElement, PathElement, PatternElement, PointList, PolygonElement, PolylineElement, RadialGradientElement, Rect, RectElement, ScriptElement0, SetElement, StopElement, StyleElement0, SvgElement, SvgSvgElement, SwitchElement, SymbolElement, TSpanElement, TextContentElement, TextElement, TextPathElement, TextPositioningElement, TitleElement0, UseElement, ViewElement, ZoomEvent, _GradientElement, _SVGAltGlyphDefElement, _SVGAltGlyphItemElement, _SVGComponentTransferFunctionElement, _SVGCursorElement, _SVGFEDropShadowElement, _SVGFontElement, _SVGFontFaceElement, _SVGFontFaceFormatElement, _SVGFontFaceNameElement, _SVGFontFaceSrcElement, _SVGFontFaceUriElement, _SVGGlyphElement, _SVGGlyphRefElement, _SVGHKernElement, _SVGMPathElement, _SVGMissingGlyphElement, _SVGVKernElement, AudioBuffer, AudioBufferSourceNode, AudioContext, AudioDestinationNode, AudioNode, AudioParam, AudioProcessingEvent, AudioSourceNode, GainNode, OfflineAudioCompletionEvent, OfflineAudioContext, Buffer, ContextEvent, Framebuffer, Program, Renderbuffer, RenderingContext, Shader0, Texture0, UniformLocation, SqlError, NativeByteBuffer, NativeTypedData, NativeByteData, NativeFloat32List, NativeFloat64List, NativeInt16List, NativeInt32List, NativeInt8List, NativeUint16List, NativeUint32List, NativeUint8ClampedList, NativeUint8List, Body, AABB, Body2, Circle1, Shape0, Tile0, Circle, Ellipse, Matrix, Point0, Polygon, Rectangle0, Shape, DisplayInterface, DisplayObject, DisplayObjectContainer, MovieClip, Sprite, SpriteBatch0, Stage0, Rope, BoneData, SlotData, Bone, Slot, Skin, Animation0, Curves, Timeline, RotateTimeline, TranslateTimeline, ScaleTimeline, ColorTimeline, AttachmentTimeline, SkeletonData, Skeleton, Attachment, RegionAttachment, AnimationStateData, Entry, AnimationState, SkeletonJson, Atlas, AtlasPage, AtlasRegion, AtlasReader, AtlasAttachmentLoader, Spine, Strip, TilingSprite, AbstractFilter, AlphaMaskFilter, BlurFilter, BlurXFilter, BlurYFilter, ColorMatrixFilter, ColorStepFilter, CrossHatchFilter, DisplacementFilter, DotScreenFilter, FilterBlock, GrayFilter, InvertFilter, NormalMapFilter, PixelateFilter, RGBSplitFilter, SepiaFilter, SmartBlurFilter, TwistFilter, InteractionData, InteractionManager, AssetLoader, AssetLoader_load_onLoad, AtlasLoader, BitmapFontLoader, BitmapFontLoader_onXMLLoaded_closure, ImageLoader, ImageLoader_load_closure, ImageLoader_loadFramedSpriteSheet_closure, JsonLoader, JsonLoader_load_closure, JsonLoader_onJSONLoaded_closure, Loader0, SpineLoader, SpineLoader_load_closure, SpriteSheetLoader, SpriteSheetLoader_load_closure, BlendModes, scaleModes, GraphicsData, Graphics0, CanvasGraphics, CanvasRenderer, CanvasBuffer, CanvasMaskManager, CanvasTinter, MaskManager, RenderSession, Renderer, ComplexPrimitiveShader, PixiFastShader, PixiShader, PrimitiveShader, Shader, StripShader, FilterTexture, WebGLBlendModeManager, WebGLFastSpriteBatch, WebGLFilterManager, WebGLGraphicsData, WebGLGraphicsData_upload_closure, WebGLGraphicsData_upload_closure0, WebGLGraphics, WebGLGraphics_quadraticBezierCurve_getPt, WebGLMaskManager, WebGLShaderManager, WebGLShaderUtils, WebGLSpriteBatch, WebGLStencilManager, WebGLRenderer, ChartData, Char, BitmapText, TextStyle, Text, BaseTexture, BaseTexture_closure, BaseTexture_closure0, RenderTexture0, Texture, Texture_closure, TextureUvs, PixiEvent, EventTarget0, PolyK, Animation, AnimationManager, AnimationParser, Frame, FrameData, AtLimit, Camera, Signal, Filter, Game, Game_closure, Group, Group_closure, Group_total_closure, Group_forEachExists_closure, Group_forEachAlive_closure, Group_forEachDead_closure, Group_getFirst_closure, Group_getFirstExists_closure, Group_getFirstExists_closure0, Group_getFirstAlive_closure, Group_getFirstAlive_closure0, Group_getFirstDead_closure, Group_getFirstDead_closure0, Group_countLiving_closure, Group_countDead_closure, Plugin, PluginManager, ScaleManager, ScaleManager_refresh_closure, SignalBinding, Stage, Stage_boot_closure, State, StateManager, World, BitmapData, BitmapData_extract_closure, BitmapText0, Button, Events, CoreInterfact, SpriteInterface, AnimationInterface, GameObject, GameObjectCreator, GameObjectFactory, Graphics, Image, Particle, RenderTexture, RetroFont, Sprite0, SpriteBatch, TextStyle0, Text0, TileSprite, Circle0, Ellipse0, Line, Point, Polygon0, Rectangle1, Gamepad, GamepadButton, Input, InputHandler, Key, CursorKeys, Keyboard, Keyboard_start_closure, Keyboard_start_closure0, Keyboard_start_closure1, Mouse, Mouse_start_closure, Mouse_start_closure0, Mouse_start_closure1, Mouse_start_closure2, Mouse_start_closure3, Mouse_start_closure4, Mouse_requestPointerLock_closure, MSPointer, Pointer, SinglePad, Touch, Cache, Cache_reloadSound_closure, Cache_getKeys_closure, Loader, Loader_loadFile_closure, Loader_loadFile_closure0, Loader_loadFile_closure1, Loader_loadFile_closure2, Loader_xhrLoad_closure, Loader_xhrLoad_closure0, Loader_fileComplete_closure, Loader_fileComplete_closure0, LoaderParser, SinCosTable, Math, Math_average_closure, Math_minList_closure, Math_maxList_closure, Math_minProperty_closure, Math_maxProperty_closure, Bounds, QuadTree, RandomDataGenerator, Net, Emitter, Particles, Arcade0, CollisionInfo, Body0, Ninja, P2, Physics, Marker, Sound, SoundManager, SoundManager_decode_closure, Canvas, Device, RequestAnimationFrame, Tile, TilemapData, Tilemap, MapCache, TilemapLayerData, TilemapLayer, TilemapImageData, TilemapParser, TilemapParser_parseTiledJSON_slice, Tileset, Time, Timer, TimerEvent, Linears, Quads, Cubics, Quarts, Circs, Sines, Expos, Backs, Bounces, Elastics, Quints, Easing, Tween, TweenManager, TweenManager_isTweening_closure, Color, Debug, Utils, JS_CONST, Interceptor, JSBool, JSNull, JavaScriptObject, PlainJavaScriptObject, UnknownJavaScriptObject, JSArray, JSMutableArray, JSFixedArray, JSExtendableArray, JSNumber, JSInt, JSDouble, JSPositiveInt, JSUInt32, JSUInt31, JSString, _CodeUnits, startRootIsolate_closure, startRootIsolate_closure0, _Manager, _IsolateContext, _IsolateContext_handlePing_respond, _EventLoop, _EventLoop__runHelper_next, _IsolateEvent, _MainManagerStub, IsolateNatives__processWorkerMessage_closure, IsolateNatives__startIsolate_runStartFunction, _BaseSendPort, _NativeJsSendPort, _NativeJsSendPort_send_closure, _WorkerSendPort, RawReceivePortImpl, _JsSerializer, _JsCopier, _JsDeserializer, _JsVisitedMap, _MessageTraverserVisitedMap, _MessageTraverser, _Copier, _Copier_visitMap_closure, _Serializer, _Deserializer, TimerImpl, TimerImpl_internalCallback, TimerImpl_internalCallback0, TimerImpl$periodic_closure, CapabilityImpl, NoSideEffects, NoThrows, NoInline, Native, ConstantMap, ConstantStringMap, ConstantStringMap_values_closure, _ConstantMapKeyIterable, _Patch, JSInvocationMirror, CachedInvocation, CachedCatchAllInvocation, CachedNoSuchMethodInvocation, ReflectionInfo, ReflectionInfo_sortedIndex_closure, Primitives_functionNoSuchMethod_closure, Primitives_applyFunction_closure, TypeErrorDecoder, NullError, JsNoSuchMethodError, UnknownJsTypeError, unwrapException_saveStackTrace, _StackTrace, invokeClosure_closure, invokeClosure_closure0, invokeClosure_closure1, invokeClosure_closure2, invokeClosure_closure3, Closure, TearOffClosure, BoundClosure, Creates, Returns, JSName, CastErrorImplementation, RuntimeError, RuntimeType, RuntimeFunctionType, DynamicRuntimeType, UnimplementedNoSuchMethodError, TypeImpl, TypeVariable, initHooks_closure, initHooks_closure0, initHooks_closure1, JSSyntaxRegExp, _MatchImplementation, _AllMatchesIterable, _AllMatchesIterator, StringMatch, Alienzed, Assets, GameOver, Gem, GemGroup, GemGroup_drop_closure, GemGroup_drop__closure, Initialize, Level1, Level1_handleMatches_closure, Level1_handleMatches__closure, Level1_handleFalling_closure, Level1_handleFalling__closure, Level1_handleUpgrade_closure, Levels, ListIterable, SubListIterable, ListIterator, MappedIterable, EfficientLengthMappedIterable, MappedIterator, MappedListIterable, WhereIterable, WhereIterator, IterableMixinWorkaround, FixedLengthListMixin, UnmodifiableListMixin, UnmodifiableListBase, ReversedListIterable, Symbol, JsMirrorSystem, JsMirrorSystem_computeLibrariesByName_closure, JsMirror, JsIsolateMirror, JsDeclarationMirror, JsTypeVariableMirror, JsTypeMirror, JsLibraryMirror, JsDeclarationMirror_JsObjectMirror, JsMixinApplication, JsTypeMirror_JsObjectMirror, JsObjectMirror, JsInstanceMirror, JsInstanceMirror__invokeMethodWithNamedArguments_closure, JsTypeBoundClassMirror, JsTypeBoundClassMirror_typeArguments_addTypeArgument, JsTypeBoundClassMirror_typeArguments_addTypeArgument_closure, JsTypeBoundClassMirror_typeArguments_closure, JsTypeBoundClassMirror_newInstance_closure, JsTypeBoundClassMirror__asRuntimeType_closure, JsClassMirror, JsTypeMirror_JsObjectMirror0, JsClassMirror__getInvokedInstance_closure, JsClassMirror__getInvokedInstance_closure0, JsClosureMirror, JsMethodMirror, JsParameterMirror, JsTypedefMirror, BrokenClassMirror, JsFunctionTypeMirror, typeMirrorFromRuntimeTypeRepresentation_getTypeArgument, typeMirrorFromRuntimeTypeRepresentation_substituteTypeVariable, extractMetadata_closure, NoSuchStaticMethodError, computeReflectiveNames_closure, _AsyncRun__initializeScheduleImmediate_internalCallback, _AsyncRun__initializeScheduleImmediate_closure, _AsyncRun__scheduleImmediateJsOverride_internalCallback, _AsyncError, _UncaughtAsyncError, _BroadcastStream, _BroadcastSubscription, _BroadcastStreamController, _SyncBroadcastStreamController, _SyncBroadcastStreamController__sendData_closure, _SyncBroadcastStreamController__sendError_closure, _SyncBroadcastStreamController__sendDone_closure, Future, _Completer, _AsyncCompleter, _Future, _Future__addListener_closure, _Future__chainForeignFuture_closure, _Future__chainForeignFuture_closure0, _Future__asyncComplete_closure, _Future__asyncComplete_closure0, _Future__asyncCompleteError_closure, _Future__propagateToListeners_handleValueCallback, _Future__propagateToListeners_handleError, _Future__propagateToListeners_handleWhenCompleteCallback, _Future__propagateToListeners_handleWhenCompleteCallback_closure, _Future__propagateToListeners_handleWhenCompleteCallback_closure0, _AsyncCallbackEntry, Stream, Stream_fold_closure, Stream_fold__closure, Stream_fold__closure0, Stream_fold_closure1, Stream_fold_closure0, Stream_join_closure, Stream_join_closure1, Stream_join_closure0, Stream_contains_closure, Stream_contains__closure, Stream_contains__closure0, Stream_contains_closure0, Stream_forEach_closure, Stream_forEach__closure, Stream_forEach__closure0, Stream_forEach_closure0, Stream_any_closure, Stream_any__closure, Stream_any__closure0, Stream_any_closure0, Stream_length_closure, Stream_length_closure0, Stream_isEmpty_closure, Stream_isEmpty_closure0, Stream_toList_closure, Stream_toList_closure0, Stream_last_closure, Stream_last_closure0, Stream_elementAt_closure, Stream_elementAt_closure0, StreamSubscription, _ControllerStream, _ControllerSubscription, _EventSink, _BufferingStreamSubscription, _BufferingStreamSubscription__sendError_sendError, _BufferingStreamSubscription__sendDone_sendDone, _StreamImpl, _DelayedEvent, _DelayedData, _DelayedError, _DelayedDone, _PendingEvents, _PendingEvents_schedule_closure, _StreamImplEvents, _DoneStreamSubscription, _cancelAndError_closure, _cancelAndErrorClosure_closure, _cancelAndValue_closure, _ForwardingStream, _ForwardingStreamSubscription, _WhereStream, _MapStream, _Zone, _rootHandleUncaughtError_closure, _RootZone, _RootZone_bindCallback_closure, _RootZone_bindCallback_closure0, _RootZone_bindUnaryCallback_closure, _RootZone_bindUnaryCallback_closure0, _HashMap, _HashMap_values_closure, _HashMap_addAll_closure, HashMapKeyIterable, HashMapKeyIterator, _LinkedHashMap, _LinkedHashMap_values_closure, _LinkedHashMap_addAll_closure, LinkedHashMapCell, LinkedHashMapKeyIterable, LinkedHashMapKeyIterator, _LinkedHashSet, LinkedHashSetCell, LinkedHashSetIterator, UnmodifiableListView, _HashSetBase, IterableBase, ListBase, Object_ListMixin, ListMixin, _UnmodifiableMapMixin, MapView, UnmodifiableMapView, Maps_mapToString_closure, DoubleLinkedQueueEntry, _DoubleLinkedQueueEntrySentinel, DoubleLinkedQueue, _DoubleLinkedQueueIterator, ListQueue, _ListQueueIterator, SetMixin, SetBase, _JsonMap, _JsonMap_values_closure, _JsonMap_addAll_closure, Codec, Converter, Encoding, JsonCodec, JsonDecoder, Utf8Codec, Utf8Encoder, _Utf8Encoder, Utf8Decoder, _Utf8Decoder, _Utf8Decoder_convert_scanOneByteCharacters, _Utf8Decoder_convert_addSingleBytes, Function__toMangledNames_closure, NoSuchMethodError_toString_closure, Deprecated, bool, Comparable, DateTime, $double, Duration, Duration_toString_sixDigits, Duration_toString_twoDigits, Error, NullThrownError, ArgumentError, RangeError, NoSuchMethodError, UnsupportedError, UnimplementedError, StateError, ConcurrentModificationError, OutOfMemoryError, StackOverflowError, CyclicInitializationError, _ExceptionImplementation, FormatException, IntegerDivisionByZeroException, Expando, Function, $int, Invocation, Iterable, Iterator, List, Map, Null, num, Object, Pattern, Match, StackTrace, String, StringBuffer, Symbol0, Type, Uri, Uri_parse_isRegName, Uri_parse_parseAuth, Uri__makePath_closure, Uri__makeQuery_closure, Uri_hashCode_combine, Uri_parseIPv4Address_error, Uri_parseIPv4Address_closure, Uri_parseIPv6Address_error, Uri_parseIPv6Address_parseHex, Uri__uriEncode_byteToHex, Interceptor_CssStyleDeclarationBase, _CssStyleDeclarationSet, Object_CssStyleDeclarationBase, _CssStyleDeclarationSet_closure, _CssStyleDeclarationSet_setProperty_closure, CssStyleDeclarationBase, _ChildrenElementList, _FrozenElementList, _FrozenElementList$_wrap_closure, Events0, ElementEvents, Interceptor_ListMixin, Interceptor_ListMixin_ImmutableListMixin, Navigator_getUserMedia_closure, Navigator_getUserMedia_closure0, _ChildNodeListLazy, Interceptor_ListMixin0, Interceptor_ListMixin_ImmutableListMixin0, SelectElement_options_closure, Storage_addAll_closure, Storage_keys_closure, Storage_values_closure, Interceptor_ListMixin1, Interceptor_ListMixin_ImmutableListMixin1, Interceptor_ListMixin2, Interceptor_ListMixin_ImmutableListMixin2, _AttributeMap, _AttributeMap_addAll_closure, _ElementAttributeMap, _DataAttributeMap, _DataAttributeMap_addAll_closure, _DataAttributeMap_forEach_closure, _DataAttributeMap_keys_closure, _DataAttributeMap_values_closure, CanvasImageSource, EventStreamProvider, _EventStream, _ElementEventStreamImpl, _ElementListEventStreamImpl, _EventStreamSubscription, _StreamPool, _StreamPool_add_closure, _CustomEventStreamProvider, ImmutableListMixin, _WrappedList, _WrappedIterator, FixedSizeListIterator, _DOMWindowCrossFrame, AudioContext_decodeAudioData_closure, AudioContext_decodeAudioData_closure0, Capability, JsObject, JsFunction, JsArray, JsObject_ListMixin, _convertToJS_closure, _convertToJS_closure0, _wrapToDart_closure, _wrapToDart_closure0, _wrapToDart_closure1, _JSRandom, Point1, _RectangleBase, Rectangle, InstanceMirror, LibraryMirror, TypeMirror, ClassMirror, TypeVariableMirror, MethodMirror, ParameterMirror, MirrorsUsed, Float32List, NativeTypedArray, NativeTypedArrayOfDouble, NativeTypedArray_ListMixin, NativeTypedArray_ListMixin_FixedLengthListMixin, NativeTypedArrayOfInt, NativeTypedArray_ListMixin0, NativeTypedArray_ListMixin_FixedLengthListMixin0, convertDartToNative_Dictionary_closure, _convertDartToNative_PrepareForStructuredClone_findSlot, _convertDartToNative_PrepareForStructuredClone_readSlot, _convertDartToNative_PrepareForStructuredClone_writeSlot, _convertDartToNative_PrepareForStructuredClone_cleanupSlots, _convertDartToNative_PrepareForStructuredClone_walk, _convertDartToNative_PrepareForStructuredClone_walk_closure, convertNativeToDart_AcceptStructuredClone_findSlot, convertNativeToDart_AcceptStructuredClone_readSlot, convertNativeToDart_AcceptStructuredClone_writeSlot, convertNativeToDart_AcceptStructuredClone_walk, _TypedImageData, FilteredElementList, FilteredElementList__filtered_closure, FilteredElementList_removeRange_closure, Grid, Grid_getLastEmptyPiece_closure, Grid_neighboursOf_closure, Grid_forEachMatch_closure, Grid_getMatches_closure, Grid_getMatches__closure, Grid_getMatches___closure, Grid_getRow_closure, Grid_clearMatches_closure, Grid_clearMatches__closure, Grid_applyGravity_closure, Grid_applyGravity__closure, Grid_applyGravity_closure0, Pair, Piece, Piece_matchingNeighbours_closure, Piece_deepMatchingNeighbours_closure, Piece_deepMatchingNeighbours__closure, Pointe, VoidObject, SupportedBrowser, Experimental, DomName, DocsEditable, Unstable, Back, Bounce, Circ, Elastic, Expo, Linear, closure, Quad, closure1, closure0, Quart, closure3, closure2, Quint, closure7, closure8, Sine, closure6, closure4, closure5, TweenEquation, InteractionHandler, EventFunc, Render, Creator, SelectWhere, ScreenFunc, ResizeFunc, GameFunc, GameObjectFunc, InputFunc, InputUpFunc, GroupFunc, AnimationFunc, PointerFunc, KeyFunc, LoaderStartFunc, FileStartFunc, FileCompleteFunc, FileError0, PackCompleteFunc, doubleFunc, CollideFunc, ProcessFunc, SoundFunc, TimerFunc, EasingFunction];
 }

@@ -51,15 +51,17 @@ class Level1 extends State {
     background = add.sprite(0, 0, 'background');
     board = add.sprite(0, 0, 'board');
     board.alpha = 0.7;
-    text = add.text(100, 20, "Score: 0",{
-      'font'      : "bold 30px Acme",
-      'fill'      : "#e0e0e0"
-    });
+    var style = new TextStyle(
+      font      : "bold 30px Acme",
+      fill      : "#e0e0e0"
+    );
+    text = add.text(100, 20, "Score: 0", style);
     grid = new Grid(
       width     : 6,
       height    : 7,
       gravity   : 'down'
     );
+    print(Alienzed.GEMTYPES);
     discoveredGems = [Alienzed.GEMTYPES[0], Alienzed.GEMTYPES[1], Alienzed.GEMTYPES[2]];
 
     newGemGroup();
@@ -74,24 +76,24 @@ class Level1 extends State {
   //
   // return none
   //
-  leftButton() {
+  leftButton(source, input, flag) {
     gemGroup.move(-1);
   }
   
     
-  rightButton() {
+  rightButton(source, input, flag) {
     gemGroup.move(1);
   }
     
-  lrotButton() {
+  lrotButton(source, input, flag) {
     gemGroup.rotate(-1);
   }
     
-  rrotButton() {
+  rrotButton(source, input, flag) {
     gemGroup.rotate(1);
   }
     
-  dropButton() {
+  dropButton(source, input, flag) {
     gemGroup.drop();
     gemGroup = null;
   }
@@ -126,7 +128,7 @@ class Level1 extends State {
         // Add to score
         addToScore((Alienzed.GEMTYPES.indexOf(type) + 1) * matchingPieces.length);
         // For each match take the first piece to upgrade it
-        piecesToUpgrade.push({
+        piecesToUpgrade.add({
           'piece'   : matchingPieces[0],
           'type'    : type
         });
@@ -188,7 +190,7 @@ class Level1 extends State {
         // And if the type is not already discovered
         if (discoveredGems.indexOf(upgradedType) == -1)
           // Push it to discovered gems array
-          discoveredGems.push(upgradedType);
+          discoveredGems.add(upgradedType);
       }
     });
   }
@@ -199,7 +201,10 @@ class Level1 extends State {
   // return string - random gem type
   //
   randomGemType() {
-    discoveredGems[(rnd.nextDouble() * discoveredGems.length).floor()];
+
+    int i = (rnd.rnd() * discoveredGems.length).floor();
+    print("i = $i");
+    return discoveredGems[i];
   }
 
   //

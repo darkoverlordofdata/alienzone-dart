@@ -67,8 +67,8 @@ class GemGroup {
 
     // Create 2 gems
     gems = {
-      'first'   : new Gem(level, level.randomGemType(), x + patterns[currentPattern].first.x, patterns[currentPattern].first.y),
-      'second'  : new Gem(level, level.randomGemType(), x + patterns[currentPattern].second.x, patterns[currentPattern].second.y)
+      'first'   : new Gem(level, level.randomGemType(), x + patterns[currentPattern]["first"]["x"], patterns[currentPattern]["first"]["y"]),
+      'second'  : new Gem(level, level.randomGemType(), x + patterns[currentPattern]["second"]["x"], patterns[currentPattern]["second"]["y"])
     };
   }
   //
@@ -76,8 +76,8 @@ class GemGroup {
   //
   updatePositions() {
     var pattern = patterns[currentPattern];
-    gems.first.move(x + pattern.first.x, pattern.first.y);
-    gems.second.move(x + pattern.second.x, pattern.second.y);
+    gems["first"].move(x + pattern["first"]["x"], pattern["first"]["y"]);
+    gems["second"].move(x + pattern["second"]["x"], pattern["second"]["y"]);
   }
   //
   // Drop method
@@ -89,10 +89,10 @@ class GemGroup {
     // Drop counter
     var dropped = 0;
     // gems to drop
-    var gemsCount = pattern.order.length;
+    var gemsCount = pattern["order"].length;
     // Drop gems in order
 
-    pattern.order.forEach((i) {
+    pattern["order"].forEach((i) {
       gems[i].drop((){
         dropped += 1;
         // If all gems have been dropped

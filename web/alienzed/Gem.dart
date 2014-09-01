@@ -64,7 +64,7 @@ class Gem {
   //
   drop(next) {
     // Get the gem column
-    var column = level.grid.getColumn(x);
+    var column = level.grid.getColumn(x, 1);
     // Get the last empty piece to place the gem
     var lastEmpty = Grid.getLastEmptyPiece(column);
     // If an empty piece has been found

@@ -54,7 +54,7 @@ class Grid {
     this.pieces = [];
 
     for (int i=0; i<width; i++) {
-      pieces.push(new List(height));
+      pieces.add(new List(height));
     }
 
     for (int y=0; y<height; y++) {
@@ -110,10 +110,10 @@ class Grid {
         if (checked.indexOf(piece) == -1) {
           var match = piece.deepMatchingNeighbours();
 
-          match.forEach((m) => checked.push(m));
+          match.forEach((m) => checked.add(m));
           if (match.length >= 3) {
             if (piece.object != voidObject) {
-              matches.push(match);
+              matches.add(match);
             }
           }
         }
@@ -126,20 +126,20 @@ class Grid {
 
   // Return an Array of pieces
   getRow(row, reverse) {
-    var pieces = [];
+    var result = [];
 
-    pieces.forEach((piece) => pieces.push(piece[row]));
-    return (reverse) ? pieces.reverse() : pieces;
+    result.forEach((piece) => result.add(piece[row]));
+    return (reverse) ? result.reverse() : result;
   }
 
   // Return an Array of pieces
   getColumn(column, reverse) {
-    var pieces = [];
+    var result = [];
 
     for (int i=0; i<height; i++) {
-      pieces.push(pieces[column][i]);
+      result.add(pieces[column][i]);
     }
-    return (reverse) ? pieces.reverse() : pieces;
+    return (reverse) ? result.reverse() : result;
   }
 
   // Destroy all matches and update the grid
@@ -165,6 +165,7 @@ class Grid {
 
   // Return an Array of falling pieces
   applyGravity() {
+    print("applyGravity");
     if (gravity != 'none') {
 
       var direction = directions[gravity];
@@ -179,7 +180,8 @@ class Grid {
 
         chunk = (horizontal) ? getRow(i, reverse) : getColumn(i, reverse);
 
-        doGravity applyGravity = (grid) {
+        doGravity applyGravity;
+        applyGravity = (grid) {
 
           var swaps = 0;
           chunk.forEach((piece) {
@@ -189,21 +191,21 @@ class Grid {
             if (piece.object != voidObject && neighbour.object == voidObject) {
               grid.swapPieces(piece, neighbour);
               if (fallingPieces.indexOf(neighbour) == -1)
-                fallingPieces.push(neighbour);
+                fallingPieces.add(neighbour);
               swaps++;
             }
           });
 
           if (swaps > 0)
             applyGravity(grid);
-        }
+        };
         applyGravity(this);
       }
       var fallingPiecesWithoutEmpty = [];
 
       fallingPieces.forEach((piece) {
         if (piece.object != voidObject)
-          fallingPiecesWithoutEmpty.push(piece);
+          fallingPiecesWithoutEmpty.add(piece);
       });
 
       return fallingPiecesWithoutEmpty;

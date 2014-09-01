@@ -29,11 +29,11 @@ class Levels extends State {
 
   create() {
     background = add.sprite(0, 0, 'splashScreen');
-    startButton = add.button(world.centerX - 95, 350, 'startButton', startGame, this, 2, 1, 0);
+    startButton = add.button(world.centerX - 95, 350, 'startButton', startGame, this);
   }
 
 
-  startGame() {
+  startGame(source, input, flag) {
 
     state.start("Level$level", true, false);
   }

@@ -21,14 +21,14 @@ class Alienzed extends Game {
 
   static const GEMSIZE    = 48;    // Gem size constant in pixels
   static const MARGINTOP  = 2;     // Margin top equal to 2 gems height
-  static const GEMTYPES   = [      // All gem types:
-    "blue"
-    "cyan"
-    "green"
-    "magenta"
-    "orange"
-    "pink"
-    "red"
+  static var GEMTYPES   = [      // All gem types:
+    "blue",
+    "cyan",
+    "green",
+    "magenta",
+    "orange",
+    "pink",
+    "red",
     "yellow"
   ];
 

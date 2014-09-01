@@ -1,7 +1,7 @@
 library alienzed;
 import "package:alienzed/phaser.dart";
 
-import "dart:html" as dom;
+import "dart:html";
 import 'dart:math';
 
 
@@ -18,7 +18,6 @@ part "alienzed/Initialize.dart";
 part "alienzed/Level1.dart";
 part "alienzed/Levels.dart";
 
-part "hellophaser/hello.dart";
 
 
 main() {

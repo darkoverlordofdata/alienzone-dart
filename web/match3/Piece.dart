@@ -53,7 +53,7 @@ class Piece {
 
     directions.forEach((direction, neighbour) {
       if (neighbour.object.type == this.object.type) {
-        matches.push(neighbour);
+        matches.add(neighbour);
       }
     });
     return matches;
@@ -69,7 +69,7 @@ class Piece {
 
       matchingNeighbours.forEach((matchingNeighbour) {
         if (deepMatches.indexOf(matchingNeighbour) == -1) {
-          deepMatches.push(matchingNeighbour);
+          deepMatches.add(matchingNeighbour);
           deepMatchingNeighbours(matchingNeighbour);
         }
       });

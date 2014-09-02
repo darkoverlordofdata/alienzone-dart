@@ -22,7 +22,7 @@ class Assets extends State {
    *   * Show the splash screen
    *   * Load the game assets
    */
-  var splashScreen;
+  Sprite splashScreen;
 
   preload() {
 

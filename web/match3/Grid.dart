@@ -25,14 +25,14 @@ class Grid {
   String gravity;
   var pieces;
 
-  var directions = {
+  Map<String,Locus> directions = {
     'up'    : new Locus(0, -1),
     'down'  : new Locus(0, 1),
     'right' : new Locus(1,0),
     'left'  : new Locus(-1,0)
   };
 
-  static var emptyObject = new MatchObject.empty();
+  static MatchObject emptyObject = new MatchObject.empty();
 
   Grid({String gravity: 'none', int height: 10, int width: 10}) {
     this.gravity = gravity;

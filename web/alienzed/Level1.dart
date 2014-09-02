@@ -25,16 +25,15 @@ class Level1 extends State {
   /**
    * Members
    */
+  Random rnd = new Random();
   Sprite background;
   Sprite board;
   Grid grid;
   Sprite startButton;
-  var cells           = null;
-  var discoveredGems  = null;
-  Text text            = null;
-  var gemGroup        = null;
-  var score           = 0;
-  var rnd             = new Random();
+  Text text;
+  List discoveredGems;
+  GemGroup gemGroup;
+  int score = 0;
 
   /**
    * == Create the game level

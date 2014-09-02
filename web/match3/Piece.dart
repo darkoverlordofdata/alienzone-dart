@@ -27,7 +27,7 @@ class Piece extends Locus {
   }
 
   void clear() {
-    object = new MatchObject().empty;
+    object = new MatchObject.empty();
   }
 
   Locus relativeCoordinates(Locus direction, int distance) {

@@ -22,10 +22,10 @@ class GemGroup {
   /**
    * GemGroup
    */
-  var x               = 0;
-  var currentPattern  = 0;
-  var patterns;
-  var gems;
+  int x               = 0;
+  int currentPattern  = 0;
+  List patterns;
+  Map gems;
   var level;
   
   /**
@@ -58,22 +58,22 @@ class GemGroup {
   /**
    * Update Positions method
    */
-  updatePositions() {
-    var pattern = patterns[currentPattern];
+  void updatePositions() {
+    Pair pattern = patterns[currentPattern];
     gems["first"].move(x + pattern.first.x, pattern.first.y);
     gems["second"].move(x + pattern.second.x, pattern.second.y);
   }
   /**
    * Drop method
    */
-  drop() {
+  void drop() {
 
     // Get the pattern
-    var pattern = patterns[currentPattern];
+    Pair pattern = patterns[currentPattern];
     // Drop counter
-    var dropped = 0;
+    int dropped = 0;
     // gems to drop
-    var gemsCount = pattern.order.length;
+    int gemsCount = pattern.order.length;
     // Drop gems in order
 
     pattern.order.forEach((i) {
@@ -93,12 +93,12 @@ class GemGroup {
    * param  [Number]  deltaX {LEFT: -1, RIGHT: 1}
    * returns none
    */
-  move(deltaX) {
+  void move(int deltaX) {
 
     // new x position
-    var newX = x + deltaX;
+    int newX = x + deltaX;
     // if current pattern is 1 or 3 max x is 4
-    var maxX = (currentPattern == 1 || currentPattern == 3) ? 4 : 5;
+    int maxX = (currentPattern == 1 || currentPattern == 3) ? 4 : 5;
     // if x is >= to 0 and <0 maxX
     // we can update x
     if (newX >= 0 && newX <= maxX)
@@ -112,7 +112,7 @@ class GemGroup {
    * param  [Number]  direction {LEFT: -1, RIGHT: 1}
    * returns none
    */
-  rotate(direction) {
+  void rotate(Locus direction) {
 
     // Update the current pattern
     currentPattern = currentPattern + direction;

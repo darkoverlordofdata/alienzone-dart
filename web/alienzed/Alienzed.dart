@@ -21,7 +21,7 @@ class Alienzed extends Game {
 
   static const GEMSIZE    = 48;     // Gem size constant in pixels
   static const MARGINTOP  = 2;      // Margin top equal to 2 gems height
-  static var GEMTYPES   = [         // All gem types:
+  static final List GEMTYPES = [    // All gem types:
     "blue",
     "cyan",
     "green",
@@ -32,10 +32,6 @@ class Alienzed extends Game {
     "yellow"
   ];
 
-  var id          = '';
-  var width       = 320;
-  var height      = 480;
-  var renderer    = CANVAS;
   Game game;
  
   /**
@@ -44,10 +40,9 @@ class Alienzed extends Game {
    *   * Configure the game states
    *   * Start the game
    *
-   * param  [String]  dom id
    * returns this
    */
-  Alienzed(): super(320, 480, AUTO, '') {
+  Alienzed(): super(320, 480, AUTO) {
 
     state.add('Initialize', new Initialize());
     state.add('Assets',     new Assets());

@@ -15,41 +15,41 @@
 */
 part of match3;
 
-typedef void getDeepMatching(Piece piece);
+typedef void GetDeepMatching(Piece piece);
 
-class Piece extends Pointe {
+class Piece extends Locus {
 
-  var grid;
-  var object;
+  Grid grid;
+  MatchObject object;
 
   Piece(this.grid, x, y) : super(x, y) {
     clear();
   }
 
-  clear() {
-    this.object = new VoidObject();
+  void clear() {
+    object = new MatchObject().empty;
   }
 
-  relativeCoordinates(direction, distance) {
-    return new Pointe(x + distance * direction.x, y + distance * direction.y);
+  Locus relativeCoordinates(Locus direction, int distance) {
+    return new Locus(x + distance * direction.x, y + distance * direction.y);
   }
 
-  neighbour(direction) {
+  Piece neighbour(Locus direction) {
     return grid.neighbourOf(this, direction);
   }
 
 
-  neighbours() {
+  List neighbours() {
     return grid.neighboursOf(this);
   }
 
-  matchingNeighbours() {
+  List matchingNeighbours() {
     var matches = [];
     var directions = neighbours();
 
     directions.forEach((direction, neighbour) {
       if (neighbour != null) {
-        if (neighbour.object.type == this.object.type) {
+        if (neighbour.object.type == object.type) {
           matches.add(neighbour);
         }
       }
@@ -58,9 +58,10 @@ class Piece extends Pointe {
 
   }
 
-  deepMatchingNeighbours() {
+  List deepMatchingNeighbours() {
     var deepMatches = [];
-    getDeepMatching deepMatchingNeighbours;
+
+    GetDeepMatching deepMatchingNeighbours;
 
     deepMatchingNeighbours = (piece) {
       var matchingNeighbours = piece.matchingNeighbours();

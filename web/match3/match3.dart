@@ -20,8 +20,8 @@
 */
 library match3;
 
-part "VoidObject.dart";
-part "Pointe.dart";
+part "MatchObject.dart";
+part "Locus.dart";
 part "Pair.dart";
 part "Piece.dart";
 part "Grid.dart";

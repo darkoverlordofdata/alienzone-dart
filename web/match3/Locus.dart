@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| Pair.dart
+#| Locus.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -16,17 +16,14 @@
 
 part of match3;
 
-class Pair {
+class Locus {
 
-  List order;
-  Locus first;
-  Locus second;
-  var ordinals = ["first", "second"];
+  int x;
+  int y;
 
-  Pair(int ordinal1, int ordinal2, Locus this.first, Locus this.second) {
+  Locus(int this.x, int this.y);
 
-    order = [ordinals[ordinal1-1], ordinals[ordinal2-1]];
-
+  String toString() {
+    return "Locus($x, $y)";
   }
-
 }

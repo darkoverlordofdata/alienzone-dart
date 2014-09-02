@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| VoidObject.dart
+#| MatchObject.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -15,11 +15,11 @@
 */
 part of match3;
 
-class VoidObject {
+class MatchObject {
 
-  var type = "empty";
+  String type;
 
-  VoidObject() {
+  MatchObject(this.type);
+  MatchObject.empty() : type = "__empty__";
 
-  }
 }

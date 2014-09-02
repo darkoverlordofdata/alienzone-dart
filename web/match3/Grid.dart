@@ -15,7 +15,8 @@
 */
 part of match3;
 
-typedef void doGravity(dynamic grid);
+typedef void ApplyGravity(dynamic grid);
+typedef void FoundMatch(List matches, String type);
 
 class Grid {
 
@@ -25,13 +26,13 @@ class Grid {
   var pieces;
 
   var directions = {
-    'up'    : new Pointe(0, -1),
-    'down'  : new Pointe(0, 1),
-    'right' : new Pointe(1,0),
-    'left'  : new Pointe(-1,0)
+    'up'    : new Locus(0, -1),
+    'down'  : new Locus(0, 1),
+    'right' : new Locus(1,0),
+    'left'  : new Locus(-1,0)
   };
 
-  static var voidObject = new VoidObject();
+  static var emptyObject = new MatchObject.empty();
 
   Grid({String gravity: 'none', int height: 10, int width: 10}) {
     this.gravity = gravity;
@@ -53,10 +54,10 @@ class Grid {
   /**
    *  Get last empty piece from an Array of pieces
    */
-  static getLastEmptyPiece(pieces){
+  static Piece getLastEmptyPiece(List pieces){
     var lastEmpty = null;
     pieces.forEach((piece) {
-      if (piece.object.type == voidObject.type) {
+      if (piece.object.type == emptyObject.type) {
         lastEmpty = piece;
       }
     });
@@ -67,12 +68,12 @@ class Grid {
   /**
    * Return if given coordinates are in the grid
    */
-  coordsInWorld(point)  {
+  bool coordsInWorld(Locus point)  {
     return (point.x >= 0 && point.y >= 0 && point.x < width && point.y < height);
   }
 
   // Return the piece from given coordinates
-  getPiece(Point point) {
+  Piece getPiece(Locus point) {
 
     if (coordsInWorld(point)) {
       return pieces[point.x][point.y];
@@ -85,7 +86,7 @@ class Grid {
   /**
    * Return the piece neighbour of another piece from a given direction
    */
-  neighbourOf(piece, direction) {
+  Piece neighbourOf(Piece piece, Locus direction) {
     var targetCoords = piece.relativeCoordinates(direction, 1);
     return getPiece(targetCoords);
   }
@@ -93,7 +94,7 @@ class Grid {
   /**
    * Return a Hash of pieces by direction
    */
-  neighboursOf(piece) {
+  Map neighboursOf(Piece piece) {
     var result = {};
     directions.forEach((directionName, direction) {
       result[directionName] = neighbourOf(piece, direction);
@@ -104,7 +105,7 @@ class Grid {
   /**
    * Execute a callback for each current match
    */
-  forEachMatch(callback) {
+  void forEachMatch(FoundMatch callback) {
     var matches = getMatches();
     matches.forEach((match) => callback(match, match[0].object.type));
   }
@@ -112,7 +113,7 @@ class Grid {
   /**
    * Return an array of matches or false
    */
-  getMatches() {
+  List getMatches() {
     var checked = [];
     var matches = [];
 
@@ -123,7 +124,7 @@ class Grid {
 
           match.forEach((m) => checked.add(m));
           if (match.length >= 3) {
-            if (piece.object.type != voidObject.type) {
+            if (piece.object.type != emptyObject.type) {
               matches.add(match);
             }
           }
@@ -137,7 +138,7 @@ class Grid {
   /**
    * Return an Array of pieces
    */
-  getRow(row, reverse) {
+  List getRow(List row, bool reverse) {
     var pieces = [];
 
     pieces.forEach((piece) => pieces.add(piece[row]));
@@ -147,7 +148,7 @@ class Grid {
   /**
    * Return an Array of pieces
    */
-  getColumn(column, reverse) {
+  List getColumn(List column, bool reverse) {
     var pieces = [];
 
     for (int i=0; i<height; i++) {
@@ -159,7 +160,7 @@ class Grid {
   /**
    * Destroy all matches and update the grid
    */
-  clearMatches() {
+  bool clearMatches() {
     var matches = getMatches();
 
     if (matches.length == 0)
@@ -174,7 +175,7 @@ class Grid {
   /**
    * Swap 2 pieces object
    */
-  swapPieces(piece1, piece2) {
+  void swapPieces(Piece piece1, Piece piece2) {
     var tmp1 = piece1.object;
     var tmp2 = piece2.object;
     piece1.object = tmp2;
@@ -184,12 +185,12 @@ class Grid {
   /**
    * Return an Array of falling pieces
    */
-  applyGravity() {
+  List applyGravity() {
     if (gravity != 'none') {
 
-      Pointe direction = directions[gravity];
-      var horizontal = (direction.x != 0);
-      var reverse = (horizontal) ? (direction.x == 1) : (direction.y == 1);
+      Locus direction = directions[gravity];
+      bool horizontal = (direction.x != 0);
+      bool reverse = (horizontal) ? (direction.x == 1) : (direction.y == 1);
       var fallingPieces = [];
       var limit = (horizontal) ? height : width;
       var chunk;
@@ -199,7 +200,7 @@ class Grid {
 
         chunk = (horizontal) ? getRow(i, reverse) : getColumn(i, reverse);
 
-        doGravity applyGravity;
+        ApplyGravity applyGravity;
         applyGravity = (grid) {
 
           var swaps = 0;
@@ -208,7 +209,7 @@ class Grid {
             var neighbour = piece.neighbour(direction);
 
             if (neighbour != null) {
-              if (piece.object.type != voidObject.type && neighbour.object.type == voidObject.type) {
+              if (piece.object.type != emptyObject.type && neighbour.object.type == emptyObject.type) {
                 grid.swapPieces(piece, neighbour);
                 if (fallingPieces.indexOf(neighbour) == -1)
                   fallingPieces.add(neighbour);
@@ -225,7 +226,7 @@ class Grid {
       var fallingPiecesWithoutEmpty = [];
 
       fallingPieces.forEach((piece) {
-        if (piece.object.type != voidObject.type)
+        if (piece.object.type != emptyObject.type)
           fallingPiecesWithoutEmpty.add(piece);
       });
 

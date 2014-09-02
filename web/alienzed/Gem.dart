@@ -17,17 +17,16 @@
 */
 part of alienzed;
 
-class Gem {
+class Gem extends MatchObject {
 
   /**
    * Gem Class
    */
 
-  Sprite sprite;
   int x;
   int y;
-  var level;
-  var type;
+  Sprite sprite;
+  State level;
 
   /**
    * == New Gem ==
@@ -40,7 +39,7 @@ class Gem {
    * param  [Number]  y coordinate
    * returns this
    */
-  Gem(this.level, this.type, this.x, this.y) {
+  Gem(State this.level, String type, int this.x, int this.y) : super(type) {
     sprite = level.add.sprite(0, 0, "gem_$type");
     move(x, y);
   }
@@ -51,7 +50,7 @@ class Gem {
    * param  [Number]  y coordinate
    * returns none
    */
-  move(x, y) {
+  void move(int x, int y) {
     this.x = x;
     this.y = y;
     sprite.x = x * Alienzed.GEMSIZE;
@@ -63,11 +62,11 @@ class Gem {
    * param  [Function]  next function
    * returns none
    */
-  drop(next) {
+  void drop(next) {
     // Get the gem column
-    var column = level.grid.getColumn(x, 1);
+    List column = level.grid.getColumn(x, 1);
     // Get the last empty piece to place the gem
-    var lastEmpty = Grid.getLastEmptyPiece(column);
+    Piece lastEmpty = Grid.getLastEmptyPiece(column);
     // If an empty piece has been found
     if (lastEmpty != null) {
       // Bind this gem to the piece
@@ -88,7 +87,7 @@ class Gem {
    * param  [Function]  next function
    * returns none
    */
-  fall(x, y, next) {
+  void fall(int x, int y, next) {
    // next = next or ()->
     // Create a tween animation
     var point = {

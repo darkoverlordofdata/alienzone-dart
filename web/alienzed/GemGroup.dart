@@ -40,10 +40,10 @@ class GemGroup {
   
     x = 0;
     patterns = [
-        new Pair(2, 1, new Pointe(0,0), new Pointe(0,1)),
-        new Pair(2, 1, new Pointe(1,1), new Pointe(0,1)),
-        new Pair(1, 2, new Pointe(0,1), new Pointe(0,0)),
-        new Pair(1, 2, new Pointe(0,1), new Pointe(1,1))
+        new Pair(2, 1, new Locus(0,0), new Locus(0,1)),
+        new Pair(2, 1, new Locus(1,1), new Locus(0,1)),
+        new Pair(1, 2, new Locus(0,1), new Locus(0,0)),
+        new Pair(1, 2, new Locus(0,1), new Locus(1,1))
     ];
 
 

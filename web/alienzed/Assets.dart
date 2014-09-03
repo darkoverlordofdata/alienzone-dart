@@ -22,38 +22,35 @@ class Assets extends State {
    *   * Show the splash screen
    *   * Load the game assets
    */
-  Sprite splashScreen;
-
   preload() {
 
-    //  Splash...
-    splashScreen = add.sprite(0, 0, 'splashScreen');
-    load.setPreloadSprite(splashScreen);
-
-    //  Start loading the remaining game assets
-    load.image('startButton',  'images/start_button.png');
-    load.image('background',   'images/background.png');
-    load.image('board',        'images/board.png');
-
-    load.image('arrow_right',  'images/arrows/right.png');
-    load.image('arrow_left',   'images/arrows/left.png');
-    load.image('arrow_down',   'images/arrows/down.png');
-    load.image('arrow_lrot',   'images/arrows/lrot.png');
-    load.image('arrow_rrot',   'images/arrows/rrot.png');
-
-    load.image('gem_blue',     'images/gems/blue.png');
-    load.image('gem_cyan',     'images/gems/cyan.png');
-    load.image('gem_green',    'images/gems/green.png');
-    load.image('gem_magenta',  'images/gems/magenta.png');
-    load.image('gem_orange',   'images/gems/orange.png');
-    load.image('gem_pink',     'images/gems/pink.png');
-    load.image('gem_red',      'images/gems/red.png');
-    load.image('gem_yellow',   'images/gems/yellow.png');
+    load // the assets
+      //  start loading the Splash...
+      ..setPreloadSprite(add.sprite(0, 0, 'splashScreen'))
+      //  and then the remaining resources
+      ..image('background',   'images/background.png')
+      ..image('board',        'images/board.png')
+      //  ui buttons
+      ..image('startButton',  'images/start_button.png')
+      ..image('arrow_right',  'images/arrows/right.png')
+      ..image('arrow_left',   'images/arrows/left.png')
+      ..image('arrow_down',   'images/arrows/down.png')
+      ..image('arrow_lrot',   'images/arrows/lrot.png')
+      ..image('arrow_rrot',   'images/arrows/rrot.png')
+      // game pieces
+      ..image('gem_blue',     'images/gems/blue.png')
+      ..image('gem_cyan',     'images/gems/cyan.png')
+      ..image('gem_green',    'images/gems/green.png')
+      ..image('gem_magenta',  'images/gems/magenta.png')
+      ..image('gem_orange',   'images/gems/orange.png')
+      ..image('gem_pink',     'images/gems/pink.png')
+      ..image('gem_red',      'images/gems/red.png')
+      ..image('gem_yellow',   'images/gems/yellow.png');
 
   }
 
   create() {
-    state.start('Levels', true, false);
+    state.start('Intro', true, false);
     
   }
 

@@ -44,11 +44,12 @@ class Alienzed extends Game {
    */
   Alienzed(): super(320, 480, AUTO) {
 
-    state.add('Initialize', new Initialize());
-    state.add('Assets',     new Assets());
-    state.add('Levels',     new Levels());
-    state.add('Level1',     new Level1());
-    state.add('GameOver',   new GameOver());
-    state.start('Initialize');
+    state
+      ..add('Start',      new Start())
+      ..add('Assets',     new Assets())
+      ..add('Intro',      new Intro())
+      ..add('Levels',     new Levels())
+      ..add('GameOver',   new GameOver())
+      ..start('Start');
   }
 }

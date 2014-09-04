@@ -24,6 +24,8 @@ class Assets extends State {
    */
   preload() {
 
+    print("Class Assets initialized");
+
     load // the assets
       //  start loading the Splash...
       ..setPreloadSprite(add.sprite(0, 0, 'splashScreen'))

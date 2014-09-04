@@ -32,6 +32,8 @@ class Start extends State {
    *   * Configure the game engine to the environment
    */
   create() {
+
+    print("Class Start initialized");
     input.maxPointers = 1;
     stage.disableVisibilityChange = true;
 

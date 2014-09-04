@@ -16,10 +16,15 @@
 #   Match 3 Style Game
 */
 library alienzed;
-import "package:alienzed/phaser.dart";
 
+
+import "dart:async";
 import "dart:html";
 import 'dart:math';
+import 'dart:async' as async;
+import "package:alienzed/phaser.dart";
+import 'package:js/js.dart' as js;
+import 'package:rikulo_gap/device.dart' as cordova;
 import 'match3/match3.dart';
 
 part "alienzed/Alienzed.dart";
@@ -33,12 +38,17 @@ part "alienzed/GameOver.dart";
 
 
 
-main() {
+void main() {
 
+
+//  new async.Timer(const Duration(milliseconds: 1000), () => start());
   querySelector('#logo').style.display = 'none';
   querySelector('body').style.backgroundColor = 'black';
-
+  print("create new game.0");
   Game game = new Alienzed();
+  print("create new game.1");
 
+}
 
+void start() {
 }

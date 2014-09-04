@@ -487,7 +487,7 @@ class Game {
 
     this.stage = new Stage(this, this.width, this.height);
 
-    this.setUpRenderer();
+    this.setUpRenderer(); // DYING
 
     this.scale = new ScaleManager(this, this.width, this.height);
 
@@ -612,6 +612,7 @@ class Game {
       //  Enable screencanvas for Cocoon on this Canvas object only
       this.canvas.dataset['screencanvas'] = 'true';
     }
+    print("setUpRenderer 5");
 
     if (this.renderType == HEADLESS || this.renderType == CANVAS || (this.renderType == AUTO && this.device.webGL == false)) {
       if (this.device.canvas) {
@@ -635,6 +636,7 @@ class Game {
       this.stage.smoothed = this.antialias;
 
       Canvas.addToDOM(this.canvas, this.parent, false);
+      print("setUpRenderer 8");
       //Canvas.setTouchAction(this.canvas);
     }
 

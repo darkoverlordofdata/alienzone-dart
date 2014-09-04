@@ -5,9 +5,10 @@ description:
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
+  js: "<0.3.0"
   browser: ">=0.10.0+2 <0.11.0"
   play_pixi: any
-
+  rikulo_gap:
 
 transformers:
 - $dart2js:

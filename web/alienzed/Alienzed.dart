@@ -42,8 +42,9 @@ class Alienzed extends Game {
    *
    * returns this
    */
-  Alienzed(): super(320, 480, AUTO) {
+  Alienzed(): super(320, 480, CANVAS) {
 
+    print("Class Alienzed initialized");
     state
       ..add('Start',      new Start())
       ..add('Assets',     new Assets())

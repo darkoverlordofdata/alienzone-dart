@@ -10,8 +10,9 @@
 ==< Alien Zed >==
 
     * Match 3 game writtem using Phaser.io
-    * Engine based on https://github.com/hugeen/jmatch3
+    * Match Engine based on https://github.com/hugeen/jmatch3
     * dart language version
+    * cordova based apk
     
 
 # MIT License

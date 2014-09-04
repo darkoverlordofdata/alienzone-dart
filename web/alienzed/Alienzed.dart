@@ -32,7 +32,7 @@ class Alienzed extends Game {
     "yellow"
   ];
 
-  Game game;
+  cordova.Device device;
  
   /**
    * == New Game ==
@@ -42,7 +42,7 @@ class Alienzed extends Game {
    *
    * returns this
    */
-  Alienzed(): super(320, 480, CANVAS) {
+  Alienzed(cordova.Device this.device): super(320, 480, CANVAS) {
 
     print("Class Alienzed initialized");
     state

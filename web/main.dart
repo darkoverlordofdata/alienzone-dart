@@ -21,11 +21,12 @@ library alienzed;
 import "dart:async";
 import "dart:html";
 import 'dart:math';
-import "package:alienzed/phaser.dart";
-import 'package:js/js.dart' as js;
-import 'package:rikulo_gap/device.dart' as cordova;
-import 'match3/match3.dart';
+import 'dart:js';
 
+import "package:alienzed/phaser.dart";
+import 'package:rikulo_gap/device.dart' as cordova;
+
+import 'match3/match3.dart';
 part "alienzed/Alienzed.dart";
 part "alienzed/Gem.dart";
 part "alienzed/GemGroup.dart";
@@ -38,24 +39,20 @@ part "alienzed/GameOver.dart";
 
 
 void main() {
-
-  querySelector('#logo').style.display = 'none';
-  querySelector('body').style.backgroundColor = 'black';
-
-  if (js.context['cordova'] == null) {
-    print("Desktop");
-    Game game = new Alienzed(null);
-
-  } else {
-    print("Cordova");
+  if (context['cordova'] != null) {
     cordova.Device.init()
-    .then((cordova.Device device) {
-      Game game = new Alienzed(device);
-    })
+    .then((device)=> startGame(device))
     .catchError((ex, st) {
       print(ex);
       print(st);
     });
   }
+  else startGame(null);
 }
 
+
+void startGame(device) {
+  querySelector('#logo').style.display = 'none';
+  querySelector('body').style.backgroundColor = 'black';
+  Game game = new Alienzed(device);
+}

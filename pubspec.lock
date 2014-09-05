@@ -6,11 +6,8 @@ packages:
     source: hosted
     version: "0.10.0+2"
   match3:
-    description:
-      ref: null
-      resolved-ref: "1333b1b9cfa49fef42b67793382e4bdea89e1d83"
-      url: "git://github.com/darkoverlordofdata/match3.git"
-    source: git
+    description: match3
+    source: hosted
     version: "0.0.1"
   play_phaser:
     description: play_phaser
@@ -21,9 +18,6 @@ packages:
     source: hosted
     version: "0.10.2"
   rikulo_gap:
-    description:
-      ref: null
-      resolved-ref: caf1da891db17c50dd81aaadf64e5b1ab31f8558
-      url: "git://github.com/rikulo/gap.git"
-    source: git
+    description: rikulo_gap
+    source: hosted
     version: "0.6.0"

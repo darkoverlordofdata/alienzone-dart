@@ -4185,17 +4185,17 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return M.WebGLRenderer$(width, height, view, transparent, antialias, false);
     else
       return M.CanvasRenderer$(width, height, view, transparent, false);
-  }, function() {
-    return M.autoDetectRenderer(800, 600, null, false, false);
-  }, null, function(width) {
+  }, function(width) {
     return M.autoDetectRenderer(width, 600, null, false, false);
   }, null, function(width, height) {
     return M.autoDetectRenderer(width, height, null, false, false);
+  }, null, function() {
+    return M.autoDetectRenderer(800, 600, null, false, false);
   }, null, function(width, height, view) {
     return M.autoDetectRenderer(width, height, view, false, false);
   }, null, function(width, height, view, transparent) {
     return M.autoDetectRenderer(width, height, view, transparent, false);
-  }, null, "call$5", "call$0", "call$1", "call$2", "call$3", "call$4", "autoDetectRenderer$closure", 0, 10, 186, 106, 107, 32, 95, 95, 10, [], 11, [], 108, [], 109, [], 110, [], "autoDetectRenderer"],
+  }, null, "call$5", "call$1", "call$2", "call$0", "call$3", "call$4", "autoDetectRenderer$closure", 0, 10, 186, 106, 107, 32, 95, 95, 10, [], 11, [], 108, [], 109, [], 110, [], "autoDetectRenderer"],
   hex2rgb: [function(hex) {
     var t1 = J.getInterceptor$n(hex);
     return [(t1.$shr(hex, 16) & 255) / 255, (t1.$shr(hex, 8) & 255) / 255, t1.$and(hex, 255) / 255];
@@ -4879,11 +4879,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         return removed;
       } else
         throw H.wrapException(P.Exception_Exception("Range Error, numeric values are outside the acceptable range"));
-    }, function() {
-      return this.removeChildren$2(0, null);
-    }, "removeChildren$0", function(begin) {
+    }, function(begin) {
       return this.removeChildren$2(begin, null);
-    }, "removeChildren$1", "call$2", "call$0", "call$1", "get$removeChildren", 0, 4, 664, 5, 32, 665, [], 666, [], "removeChildren"],
+    }, "removeChildren$1", function() {
+      return this.removeChildren$2(0, null);
+    }, "removeChildren$0", "call$2", "call$1", "call$0", "get$removeChildren", 0, 4, 664, 5, 32, 665, [], 666, [], "removeChildren"],
     updateTransform$0: [function() {
       var j, i;
       if (this.visible !== true)
@@ -10332,13 +10332,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this._currentPath = t2;
       J.add$1$ax(this._graphicsData, t2);
       return this;
-    }, function() {
-      return this.lineStyle$3(0, 0, 1);
-    }, "lineStyle$0", function(lineWidth) {
+    }, function(lineWidth) {
       return this.lineStyle$3(lineWidth, 0, 1);
     }, "lineStyle$1", function(lineWidth, color) {
       return this.lineStyle$3(lineWidth, color, 1);
-    }, "lineStyle$2", "call$3", "call$0", "call$1", "call$2", "get$lineStyle", 0, 6, 832, 5, 5, 390, 833, [], 114, [], 524, [], "lineStyle"],
+    }, "lineStyle$2", function() {
+      return this.lineStyle$3(0, 0, 1);
+    }, "lineStyle$0", "call$3", "call$1", "call$2", "call$0", "get$lineStyle", 0, 6, 832, 5, 5, 390, 833, [], 114, [], 524, [], "lineStyle"],
     moveTo$2: [function(_, x, y) {
       var t1, t2;
       if (J.$eq(J.get$length$asx(J.get$points$x(this._currentPath)), 0)) {
@@ -10574,11 +10574,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.fillColor = color;
       this.fillAlpha = alpha;
       return this;
-    }, function() {
-      return this.beginFill$2(null, 1);
-    }, "beginFill$0", function(color) {
+    }, function(color) {
       return this.beginFill$2(color, 1);
-    }, "beginFill$1", "call$2", "call$0", "call$1", "get$beginFill", 0, 4, 846, 32, 390, 114, [], 524, [], "beginFill"],
+    }, "beginFill$1", function() {
+      return this.beginFill$2(null, 1);
+    }, "beginFill$0", "call$2", "call$1", "call$0", "get$beginFill", 0, 4, 846, 32, 390, 114, [], 524, [], "beginFill"],
     endFill$0: [function() {
       this.filling = false;
       this.fillColor = null;
@@ -14682,7 +14682,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       }, null, null, 2, 2, 155, 32, 85, [], 156, [], "new BitmapText"]}
   },
   "+BitmapText": [678],
-  TextStyle: {
+  TextStyle0: {
     "^": "Object;fill*-639,font*-639,align@-639,stroke*-639,strokeThickness@-601,wordWrap*-602,wordWrapWidth@-601,dropShadow@-602,dropShadowAngle@-601,dropShadowDistance@-601,dropShadowColor@-639,tint@-601",
     fill$0: function($receiver) {
       return this.fill.call$0();
@@ -14708,7 +14708,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.tint = tint;
     },
     static: {TextStyle$0: [function(align, fill, font, stroke, strokeThickness, tint) {
-        var t1 = new M.TextStyle("black", "bold 20pt Arial", "left", "black", 0, false, 100, false, 0.5235987755982988, 4, "black", 16777215);
+        var t1 = new M.TextStyle0("black", "bold 20pt Arial", "left", "black", 0, false, 100, false, 0.5235987755982988, 4, "black", 16777215);
         t1.TextStyle$6$align$fill$font$stroke$strokeThickness$tint(align, fill, font, stroke, strokeThickness, tint);
         return t1;
       }, null, null, 0, 13, 157, 158, 159, 160, 158, 5, 161, 162, [], 163, [], 164, [], 165, [], 166, [], 167, [], "new TextStyle"]}
@@ -15670,7 +15670,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       }, "call$7", "PolyK__convex$closure", 14, 0, 202, 196, [], 197, [], 198, [], 199, [], 200, [], 201, [], 203, [], "_convex"]}
   },
   "+PolyK": [632],
-  "^": "TextureCacheIdGenerator@-599,FrameCache@-754,TextureCache@-754,BaseTextureCacheIdGenerator@-599,texturesToDestroy@-720,texturesToUpdate@-720,BaseTextureCache@-1712,glContexts@-1713,AttachmentType@-754,AnimCache@-754,EmptyRectangle@-641,Matrix2@-1057,IdentityMatrix@-640,requestAnimFrame@-0,_UID@-599,DEG_TO_RAD<-601,RAD_TO_DEG<-601,AUTO_PREVENT_DEFAULT<-602,INTERACTION_FREQUENCY<-599,VERSION<-639,CANVAS_RENDERER<-599,WEBGL_RENDERER<-599,blendModesCanvas@-754,blendModesWebGL@-754,defaultRenderer@-809",
+  "^": "TextureCacheIdGenerator@-599,FrameCache@-754,TextureCache@-754,BaseTextureCacheIdGenerator@-599,texturesToDestroy@-720,texturesToUpdate@-720,BaseTextureCache@-1715,glContexts@-1716,AttachmentType@-754,AnimCache@-754,EmptyRectangle@-641,Matrix2@-1057,IdentityMatrix@-640,requestAnimFrame@-0,_UID@-599,DEG_TO_RAD<-601,RAD_TO_DEG<-601,AUTO_PREVENT_DEFAULT<-602,INTERACTION_FREQUENCY<-599,VERSION<-639,CANVAS_RENDERER<-599,WEBGL_RENDERER<-599,blendModesCanvas@-754,blendModesWebGL@-754,defaultRenderer@-809",
   InteractionHandler: {"^": ":636;"},
   "+InteractionHandler": "",
   EventFunc: {"^": ":923;"},
@@ -16001,17 +16001,17 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
           for (t1 = J.getInterceptor$ns(prefix), t2 = typeof zeroPad === "number", i = start; t3 = J.getInterceptor$n(i), t3.$ge(i, $stop); i = t3.$sub(i, 1))
             output.push(J.$add$ns(t1.$add(prefix, t2 ? J.padLeft$2$s(t3.toString$0(i), zeroPad, "0") : t3.toString$0(i)), suffix));
         return output;
-      }, function() {
-        return R.Animation_generateFrameNames("", null, null, null, null);
-      }, null, function(prefix) {
+      }, function(prefix) {
         return R.Animation_generateFrameNames(prefix, null, null, null, null);
       }, null, function(prefix, start) {
         return R.Animation_generateFrameNames(prefix, start, null, null, null);
+      }, null, function() {
+        return R.Animation_generateFrameNames("", null, null, null, null);
       }, null, function(prefix, start, stop) {
         return R.Animation_generateFrameNames(prefix, start, stop, null, null);
       }, null, function(prefix, start, stop, suffix) {
         return R.Animation_generateFrameNames(prefix, start, stop, suffix, null);
-      }, null, "call$5", "call$0", "call$1", "call$2", "call$3", "call$4", "Animation_generateFrameNames$closure", 0, 10, 220, 221, 32, 32, 32, 32, 222, [], 223, [], 224, [], 225, [], 226, [], "generateFrameNames"]}
+      }, null, "call$5", "call$1", "call$2", "call$0", "call$3", "call$4", "Animation_generateFrameNames$closure", 0, 10, 220, 221, 32, 32, 32, 32, 222, [], 223, [], 224, [], 225, [], 226, [], "generateFrameNames"]}
   },
   "+Animation": [632],
   AnimationManager: {
@@ -16660,13 +16660,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
             t3.add$1(output, J.get$index$x(this.getFrameByName$1(t1.$index($frames, i))));
       }
       return output;
-    }, function() {
-      return this.getFrameIndexes$3(null, null, null);
-    }, "getFrameIndexes$0", function(frames) {
+    }, function(frames) {
       return this.getFrameIndexes$3(frames, null, null);
     }, "getFrameIndexes$1", function(frames, useNumericIndex) {
       return this.getFrameIndexes$3(frames, useNumericIndex, null);
-    }, "getFrameIndexes$2", "call$3", "call$0", "call$1", "call$2", "get$getFrameIndexes", 0, 6, 982, 32, 32, 32, 25, [], 958, [], 973, [], "getFrameIndexes"],
+    }, "getFrameIndexes$2", function() {
+      return this.getFrameIndexes$3(null, null, null);
+    }, "getFrameIndexes$0", "call$3", "call$1", "call$2", "call$0", "get$getFrameIndexes", 0, 6, 982, 32, 32, 32, 25, [], 958, [], 973, [], "getFrameIndexes"],
     static: {FrameData$: [function() {
         return new R.FrameData([], P.LinkedHashMap_LinkedHashMap$_empty(null, null));
       }, null, null, 0, 0, 13, "new FrameData"]}
@@ -17182,7 +17182,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.isBooted = true;
       t1 = new R.Device(this, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
       t1.Device$1(this);
-      this.device = t1;
+      this.set$device(t1);
       t1 = this.width;
       t2 = this.height;
       t3 = new R.Point(null, null);
@@ -17203,7 +17203,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t3.Stage$2(0, true);
       t3.Stage$3(this, t1, t2);
       this.stage = t3;
-      if (this.device.get$trident() === true)
+      if (this.get$device().get$trident() === true)
         this.renderType = 1;
       t1 = J.$index$asx(this.config, "canvasID");
       t2 = this.width;
@@ -17212,20 +17212,20 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.canvas = R.Canvas_create(t2, t3, J.$index$asx(this.config, "canvasID"), false);
       else
         this.canvas = R.Canvas_create(t2, t3, null, false);
-      if (this.device.get$cocoonJS() === true) {
+      if (this.get$device().get$cocoonJS() === true) {
         t1 = J.get$dataset$x(this.canvas);
         t1._attributes._element.setAttribute("data-" + t1._toHyphenedName$1("screencanvas"), "true");
       }
       P.print("setUpRenderer 5");
       if (!J.$eq(this.renderType, 3))
         if (!J.$eq(this.renderType, 1))
-          t1 = J.$eq(this.renderType, 0) && J.$eq(this.device.get$webGL(), false);
+          t1 = J.$eq(this.renderType, 0) && J.$eq(this.get$device().get$webGL(), false);
         else
           t1 = true;
       else
         t1 = true;
       if (t1)
-        if (J.get$canvas$x(this.device) === true) {
+        if (J.get$canvas$x(this.get$device()) === true) {
           if (J.$eq(this.renderType, 0))
             this.renderType = 1;
           t1 = M.CanvasRenderer$(this.width, this.height, this.canvas, this.transparent, false);
@@ -17255,7 +17255,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         P.print("setUpRenderer 8");
       }
       this.scale = R.ScaleManager$(this, this.width, this.height);
-      this.device.checkFullScreenSupport$0();
+      this.get$device().checkFullScreenSupport$0();
       t1 = new R.Point(null, null);
       t1.x = 0;
       t1.y = 0;
@@ -17349,12 +17349,12 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         r = J.$eq(this.renderType, 3) ? "Headless" : "Canvas";
         c = 1;
       }
-      if (this.device.get$webAudio() === true) {
+      if (this.get$device().get$webAudio() === true) {
         ++c;
         a = "WebAudio";
       } else
         a = "HTML Audio";
-      if (this.device.get$chrome() === true) {
+      if (this.get$device().get$chrome() === true) {
         args = ["%c %c %c Phaser v2.0.5 | Pixi.js v1.6.\uff11 | " + r + " | " + a + "  %c %c  http://phaser.io  %c %c \u2665%c\u2665%c\u2665 ", "background: #0cf300", "background: #00bc17", "color: #ffffff; background: #00711f;", "background: #00bc17", "background: #0cf300", "background: #00bc17"];
         for (i = 0; i < 3; ++i)
           if (i < c)
@@ -17365,7 +17365,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$showDebugHeader", 0, 0, 13, "showDebugHeader"],
     setUpRenderer$0: [function() {
       var t1, t2, t3, target;
-      if (this.device.get$trident() === true)
+      if (this.get$device().get$trident() === true)
         this.renderType = 1;
       t1 = J.$index$asx(this.config, "canvasID");
       t2 = this.width;
@@ -17374,20 +17374,20 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.canvas = R.Canvas_create(t2, t3, J.$index$asx(this.config, "canvasID"), false);
       else
         this.canvas = R.Canvas_create(t2, t3, null, false);
-      if (this.device.get$cocoonJS() === true) {
+      if (this.get$device().get$cocoonJS() === true) {
         t1 = J.get$dataset$x(this.canvas);
         t1._attributes._element.setAttribute("data-" + t1._toHyphenedName$1("screencanvas"), "true");
       }
       P.print("setUpRenderer 5");
       if (!J.$eq(this.renderType, 3))
         if (!J.$eq(this.renderType, 1))
-          t1 = J.$eq(this.renderType, 0) && J.$eq(this.device.get$webGL(), false);
+          t1 = J.$eq(this.renderType, 0) && J.$eq(this.get$device().get$webGL(), false);
         else
           t1 = true;
       else
         t1 = true;
       if (t1)
-        if (J.get$canvas$x(this.device) === true) {
+        if (J.get$canvas$x(this.get$device()) === true) {
           if (J.$eq(this.renderType, 0))
             this.renderType = 1;
           t1 = M.CanvasRenderer$(this.width, this.height, this.canvas, this.transparent, false);
@@ -17447,7 +17447,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.plugins.render$0();
         this.state.render$0();
         this.plugins.postRender$0();
-        if (this.device.get$cocoonJS() === true && J.$eq(this.renderType, 1) && J.$eq(this.stage.get$currentRenderOrderID(), 1))
+        if (this.get$device().get$cocoonJS() === true && J.$eq(this.renderType, 1) && J.$eq(this.stage.get$currentRenderOrderID(), 1))
           J.fillRect$4$x(this.context, 0, 0, 0, 0);
       }
     }, "call$1", "get$update", 2, 0, 1016, 568, [], "update"],
@@ -17539,7 +17539,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.world = null;
       this.physics = null;
       this.rnd = null;
-      this.device = null;
+      this.set$device(null);
       this.camera = null;
       this.canvas = null;
       this.context = null;
@@ -18101,11 +18101,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if ($length == null)
         $length = J.get$length$asx(this.Phaser$Group$children);
       return R.Math_getRandom(this.Phaser$Group$children, startIndex, $length);
-    }, function() {
-      return this.getRandom$2(0, null);
-    }, "getRandom$0", function(startIndex) {
+    }, function(startIndex) {
       return this.getRandom$2(startIndex, null);
-    }, "getRandom$1", "call$2", "call$0", "call$1", "get$getRandom", 0, 4, function() {
+    }, "getRandom$1", function() {
+      return this.getRandom$2(0, null);
+    }, "getRandom$0", "call$2", "call$1", "call$0", "get$getRandom", 0, 4, function() {
       return H.computeSignature(function(T) {
         return {func: "T___int_int", ret: T, opt: [P.$int, P.$int]};
       }, this.$receiver, "Group");
@@ -20108,15 +20108,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         }
       J.putImageData$3$x(this.context, this.imageData, 0, 0);
       this.dirty = true;
-    }, function() {
-      return this.setHSL$4(null, null, null, null);
-    }, "setHSL$0", function(h) {
+    }, function(h) {
       return this.setHSL$4(h, null, null, null);
     }, "setHSL$1", function(h, s) {
       return this.setHSL$4(h, s, null, null);
-    }, "setHSL$2", function(h, s, l) {
+    }, "setHSL$2", function() {
+      return this.setHSL$4(null, null, null, null);
+    }, "setHSL$0", function(h, s, l) {
       return this.setHSL$4(h, s, l, null);
-    }, "setHSL$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$setHSL", 0, 8, 1083, 32, 32, 32, 32, 501, [], 502, [], 503, [], 1082, [], "setHSL"],
+    }, "setHSL$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$setHSL", 0, 8, 1083, 32, 32, 32, 32, 501, [], 502, [], 503, [], 1082, [], "setHSL"],
     shiftHSL$4: [function(h, s, l, region) {
       var t1, pixel, t2, y, t3, t4, t5, x, t6, t7, t8;
       t1 = h == null;
@@ -20153,15 +20153,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         }
       J.putImageData$3$x(this.context, this.imageData, 0, 0);
       this.dirty = true;
-    }, function() {
-      return this.shiftHSL$4(null, null, null, null);
-    }, "shiftHSL$0", function(h) {
+    }, function(h) {
       return this.shiftHSL$4(h, null, null, null);
     }, "shiftHSL$1", function(h, s) {
       return this.shiftHSL$4(h, s, null, null);
-    }, "shiftHSL$2", function(h, s, l) {
+    }, "shiftHSL$2", function() {
+      return this.shiftHSL$4(null, null, null, null);
+    }, "shiftHSL$0", function(h, s, l) {
       return this.shiftHSL$4(h, s, l, null);
-    }, "shiftHSL$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$shiftHSL", 0, 8, 1083, 32, 32, 32, 32, 501, [], 502, [], 503, [], 1082, [], "shiftHSL"],
+    }, "shiftHSL$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$shiftHSL", 0, 8, 1083, 32, 32, 32, 32, 501, [], 502, [], 503, [], 1082, [], "shiftHSL"],
     setPixel32$7: [function(x, y, red, green, blue, alpha, immediate) {
       var t1, index, t2, t3, t4, i, i0;
       t1 = J.getInterceptor$ns(y);
@@ -20805,13 +20805,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.onDownSoundMarker = downMarker;
       this.onUpSound = upSound;
       this.onUpSoundMarker = upMarker;
-    }, function() {
-      return this.setSounds$8(null, null, null, null, null, null, null, null);
-    }, "setSounds$0", function(overSound) {
+    }, function(overSound) {
       return this.setSounds$8(overSound, null, null, null, null, null, null, null);
     }, "setSounds$1", function(overSound, overMarker) {
       return this.setSounds$8(overSound, overMarker, null, null, null, null, null, null);
-    }, "setSounds$2", function(overSound, overMarker, downSound) {
+    }, "setSounds$2", function() {
+      return this.setSounds$8(null, null, null, null, null, null, null, null);
+    }, "setSounds$0", function(overSound, overMarker, downSound) {
       return this.setSounds$8(overSound, overMarker, downSound, null, null, null, null, null);
     }, "setSounds$3", function(overSound, overMarker, downSound, downMarker) {
       return this.setSounds$8(overSound, overMarker, downSound, downMarker, null, null, null, null);
@@ -20821,39 +20821,39 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.setSounds$8(overSound, overMarker, downSound, downMarker, outSound, null, null, null);
     }, "setSounds$5", function(overSound, overMarker, downSound, downMarker, outSound, outMarker, upSound) {
       return this.setSounds$8(overSound, overMarker, downSound, downMarker, outSound, outMarker, upSound, null);
-    }, "setSounds$7", "call$8", "call$0", "call$1", "call$2", "call$3", "call$4", "call$6", "call$5", "call$7", "get$setSounds", 0, 16, 1119, 32, 32, 32, 32, 32, 32, 32, 32, 1120, [], 1121, [], 1122, [], 1123, [], 1124, [], 1125, [], 1126, [], 1127, [], "setSounds"],
+    }, "setSounds$7", "call$8", "call$1", "call$2", "call$0", "call$3", "call$4", "call$6", "call$5", "call$7", "get$setSounds", 0, 16, 1119, 32, 32, 32, 32, 32, 32, 32, 32, 1120, [], 1121, [], 1122, [], 1123, [], 1124, [], 1125, [], 1126, [], 1127, [], "setSounds"],
     setOverSound$2: [function(sound, marker) {
       this.onOverSound = sound;
       this.onOverSoundMarker = marker;
-    }, function() {
-      return this.setOverSound$2(null, "");
-    }, "setOverSound$0", function(sound) {
+    }, function(sound) {
       return this.setOverSound$2(sound, "");
-    }, "setOverSound$1", "call$2", "call$0", "call$1", "get$setOverSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setOverSound"],
+    }, "setOverSound$1", function() {
+      return this.setOverSound$2(null, "");
+    }, "setOverSound$0", "call$2", "call$1", "call$0", "get$setOverSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setOverSound"],
     setOutSound$2: [function(sound, marker) {
       this.onOutSound = sound;
       this.onOutSoundMarker = marker;
-    }, function() {
-      return this.setOutSound$2(null, "");
-    }, "setOutSound$0", function(sound) {
+    }, function(sound) {
       return this.setOutSound$2(sound, "");
-    }, "setOutSound$1", "call$2", "call$0", "call$1", "get$setOutSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setOutSound"],
+    }, "setOutSound$1", function() {
+      return this.setOutSound$2(null, "");
+    }, "setOutSound$0", "call$2", "call$1", "call$0", "get$setOutSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setOutSound"],
     setDownSound$2: [function(sound, marker) {
       this.onDownSound = sound;
       this.onDownSoundMarker = marker;
-    }, function() {
-      return this.setDownSound$2(null, "");
-    }, "setDownSound$0", function(sound) {
+    }, function(sound) {
       return this.setDownSound$2(sound, "");
-    }, "setDownSound$1", "call$2", "call$0", "call$1", "get$setDownSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setDownSound"],
+    }, "setDownSound$1", function() {
+      return this.setDownSound$2(null, "");
+    }, "setDownSound$0", "call$2", "call$1", "call$0", "get$setDownSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setDownSound"],
     setUpSound$2: [function(sound, marker) {
       this.onUpSound = sound;
       this.onUpSoundMarker = marker;
-    }, function() {
-      return this.setUpSound$2(null, "");
-    }, "setUpSound$0", function(sound) {
+    }, function(sound) {
       return this.setUpSound$2(sound, "");
-    }, "setUpSound$1", "call$2", "call$0", "call$1", "get$setUpSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setUpSound"],
+    }, "setUpSound$1", function() {
+      return this.setUpSound$2(null, "");
+    }, "setUpSound$0", "call$2", "call$1", "call$0", "get$setUpSound", 0, 4, 1128, 32, 221, 1129, [], 1130, [], "setUpSound"],
     onInputOverHandler$2: [function(sprite, pointer) {
       var t1;
       if (J.$eq(this.freezeFrames, false))
@@ -21182,15 +21182,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$1", "get$tween", 2, 0, 1142, 617, [], "tween"],
     group$4: [function($name, addToStage, enableBody, physicsBodyType) {
       return R.Group$(this.game, null, $name, addToStage, enableBody, physicsBodyType, null);
-    }, function() {
-      return this.group$4(null, false, false, 0);
-    }, "group$0", function(name) {
+    }, function(name) {
       return this.group$4(name, false, false, 0);
     }, "group$1", function(name, addToStage) {
       return this.group$4(name, addToStage, false, 0);
-    }, "group$2", function(name, addToStage, enableBody) {
+    }, "group$2", function() {
+      return this.group$4(null, false, false, 0);
+    }, "group$0", function(name, addToStage, enableBody) {
       return this.group$4(name, addToStage, enableBody, 0);
-    }, "group$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$group", 0, 8, 1143, 32, 95, 95, 5, 44, [], 254, [], 255, [], 256, [], "group"],
+    }, "group$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$group", 0, 8, 1143, 32, 95, 95, 5, 44, [], 254, [], 255, [], 256, [], "group"],
     spriteBatch$3: [function($parent, $name, addToStage) {
       if ($name == null)
         $name = "group";
@@ -21230,13 +21230,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return R.Button$(this.game, x, y, key, callback, overFrame, outFrame, downFrame, upFrame);
     }, function($receiver, x, y, key, callback, overFrame) {
       return this.button$8($receiver, x, y, key, callback, overFrame, null, null, null);
-    }, "button$5", function($receiver) {
-      return this.button$8($receiver, 0, 0, null, null, null, null, null, null);
-    }, "button$0", function($receiver, x) {
+    }, "button$5", function($receiver, x) {
       return this.button$8($receiver, x, 0, null, null, null, null, null, null);
     }, "button$1", function($receiver, x, y) {
       return this.button$8($receiver, x, y, null, null, null, null, null, null);
-    }, "button$2", function($receiver, x, y, key) {
+    }, "button$2", function($receiver) {
+      return this.button$8($receiver, 0, 0, null, null, null, null, null, null);
+    }, "button$0", function($receiver, x, y, key) {
       return this.button$8($receiver, x, y, key, null, null, null, null, null);
     }, "button$3", function($receiver, x, y, key, callback) {
       return this.button$8($receiver, x, y, key, callback, null, null, null, null);
@@ -21244,23 +21244,23 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.button$8($receiver, x, y, key, callback, overFrame, outFrame, null, null);
     }, "button$6", function($receiver, x, y, key, callback, overFrame, outFrame, downFrame) {
       return this.button$8($receiver, x, y, key, callback, overFrame, outFrame, downFrame, null);
-    }, "button$7", "call$8", "call$5", "call$0", "call$1", "call$2", "call$3", "call$4", "call$6", "call$7", "get$button", 0, 16, 1148, 5, 5, 32, 32, 32, 32, 32, 32, 6, [], 7, [], 231, [], 272, [], 273, [], 274, [], 275, [], 276, [], "button"],
+    }, "button$7", "call$8", "call$5", "call$1", "call$2", "call$0", "call$3", "call$4", "call$6", "call$7", "get$button", 0, 16, 1148, 5, 5, 32, 32, 32, 32, 32, 32, 6, [], 7, [], 231, [], 272, [], 273, [], 274, [], 275, [], 276, [], "button"],
     graphics$2: [function(x, y) {
       return R.Graphics$(this.game, x, y);
-    }, function() {
-      return this.graphics$2(0, 0);
-    }, "graphics$0", function(x) {
+    }, function(x) {
       return this.graphics$2(x, 0);
-    }, "graphics$1", "call$2", "call$0", "call$1", "get$graphics", 0, 4, 1149, 5, 5, 6, [], 7, [], "graphics"],
+    }, "graphics$1", function() {
+      return this.graphics$2(0, 0);
+    }, "graphics$0", "call$2", "call$1", "call$0", "get$graphics", 0, 4, 1149, 5, 5, 6, [], 7, [], "graphics"],
     emitter$3: [function(x, y, maxParticles) {
       return R.Emitter$(this.game, x, y, maxParticles);
-    }, function() {
-      return this.emitter$3(null, null, 50);
-    }, "emitter$0", function(x) {
+    }, function(x) {
       return this.emitter$3(x, null, 50);
     }, "emitter$1", function(x, y) {
       return this.emitter$3(x, y, 50);
-    }, "emitter$2", "call$3", "call$0", "call$1", "call$2", "get$emitter", 0, 6, 1150, 32, 32, 361, 6, [], 7, [], 415, [], "emitter"],
+    }, "emitter$2", function() {
+      return this.emitter$3(null, null, 50);
+    }, "emitter$0", "call$3", "call$1", "call$2", "call$0", "get$emitter", 0, 6, 1150, 32, 32, 361, 6, [], 7, [], 415, [], "emitter"],
     retroFont$9: [function(font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset) {
       return R.RetroFont$(this.game, font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset);
     }, function(font, characterWidth, characterHeight, chars, charsPerRow, xSpacing) {
@@ -21298,15 +21298,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (addToCache === true)
         this.game.get$cache().addRenderTexture$2(key, texture);
       return texture;
-    }, function() {
-      return this.renderTexture$4(100, 100, null, false);
-    }, "renderTexture$0", function(width) {
+    }, function(width) {
       return this.renderTexture$4(width, 100, null, false);
     }, "renderTexture$1", function(width, height) {
       return this.renderTexture$4(width, height, null, false);
-    }, "renderTexture$2", function(width, height, key) {
+    }, "renderTexture$2", function() {
+      return this.renderTexture$4(100, 100, null, false);
+    }, "renderTexture$0", function(width, height, key) {
       return this.renderTexture$4(width, height, key, false);
-    }, "renderTexture$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$renderTexture", 0, 8, 1154, 90, 90, 32, 95, 10, [], 11, [], 231, [], 1155, [], "renderTexture"],
+    }, "renderTexture$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$renderTexture", 0, 8, 1154, 90, 90, 32, 95, 10, [], 11, [], 231, [], 1155, [], "renderTexture"],
     bitmapData$4: [function(width, height, key, addToCache) {
       var texture;
       if (key == null)
@@ -21315,15 +21315,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (addToCache === true)
         this.game.get$cache().addBitmapData$2(key, texture);
       return texture;
-    }, function() {
-      return this.bitmapData$4(100, 100, null, false);
-    }, "bitmapData$0", function(width) {
+    }, function(width) {
       return this.bitmapData$4(width, 100, null, false);
     }, "bitmapData$1", function(width, height) {
       return this.bitmapData$4(width, height, null, false);
-    }, "bitmapData$2", function(width, height, key) {
+    }, "bitmapData$2", function() {
+      return this.bitmapData$4(100, 100, null, false);
+    }, "bitmapData$0", function(width, height, key) {
       return this.bitmapData$4(width, height, key, false);
-    }, "bitmapData$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$bitmapData", 0, 8, 1156, 90, 90, 32, 95, 10, [], 11, [], 231, [], 1155, [], "bitmapData"],
+    }, "bitmapData$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$bitmapData", 0, 8, 1156, 90, 90, 32, 95, 10, [], 11, [], 231, [], 1155, [], "bitmapData"],
     filter$1: [function(_, filter) {
       return filter;
     }, "call$1", "get$filter", 2, 0, 1157, 886, [], "filter"],
@@ -21364,26 +21364,26 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return R.Group$(this.game, $parent, $name, addToStage, enableBody, physicsBodyType, null);
     }, function(parent, name, addToStage, enableBody) {
       return this.group$5(parent, name, addToStage, enableBody, 0);
-    }, "group$4", function() {
-      return this.group$5(null, null, false, false, 0);
-    }, "group$0", function(parent) {
+    }, "group$4", function(parent) {
       return this.group$5(parent, null, false, false, 0);
     }, "group$1", function(parent, name) {
       return this.group$5(parent, name, false, false, 0);
-    }, "group$2", function(parent, name, addToStage) {
+    }, "group$2", function() {
+      return this.group$5(null, null, false, false, 0);
+    }, "group$0", function(parent, name, addToStage) {
       return this.group$5(parent, name, addToStage, false, 0);
-    }, "group$3", "call$5", "call$4", "call$0", "call$1", "call$2", "call$3", "get$group", 0, 10, 1161, 32, 32, 95, 95, 5, 45, [], 44, [], 254, [], 255, [], 256, [], "group"],
+    }, "group$3", "call$5", "call$4", "call$1", "call$2", "call$0", "call$3", "get$group", 0, 10, 1161, 32, 32, 95, 95, 5, 45, [], 44, [], 254, [], 255, [], 256, [], "group"],
     physicsGroup$4: [function(physicsBodyType, $parent, $name, addToStage) {
       return R.Group$(this.game, $parent, $name, addToStage, true, physicsBodyType, null);
-    }, function() {
-      return this.physicsGroup$4(0, null, "group", false);
-    }, "physicsGroup$0", function(physicsBodyType) {
+    }, function(physicsBodyType) {
       return this.physicsGroup$4(physicsBodyType, null, "group", false);
     }, "physicsGroup$1", function(physicsBodyType, parent) {
       return this.physicsGroup$4(physicsBodyType, parent, "group", false);
-    }, "physicsGroup$2", function(physicsBodyType, parent, name) {
+    }, "physicsGroup$2", function() {
+      return this.physicsGroup$4(0, null, "group", false);
+    }, "physicsGroup$0", function(physicsBodyType, parent, name) {
       return this.physicsGroup$4(physicsBodyType, parent, name, false);
-    }, "physicsGroup$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$physicsGroup", 0, 8, 1162, 5, 32, 253, 95, 256, [], 45, [], 44, [], 254, [], "physicsGroup"],
+    }, "physicsGroup$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$physicsGroup", 0, 8, 1162, 5, 32, 253, 95, 256, [], 45, [], 44, [], 254, [], "physicsGroup"],
     spriteBatch$3: [function($parent, $name, addToStage) {
       if ($parent == null)
         $parent = null;
@@ -21392,13 +21392,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (addToStage == null)
         addToStage = false;
       return R.SpriteBatch$(this.game, $parent, $name, addToStage);
-    }, function() {
-      return this.spriteBatch$3(null, null, false);
-    }, "spriteBatch$0", function(parent) {
+    }, function(parent) {
       return this.spriteBatch$3(parent, null, false);
     }, "spriteBatch$1", function(parent, name) {
       return this.spriteBatch$3(parent, name, false);
-    }, "spriteBatch$2", "call$3", "call$0", "call$1", "call$2", "get$spriteBatch", 0, 6, 1163, 32, 32, 95, 45, [], 44, [], 254, [], "spriteBatch"],
+    }, "spriteBatch$2", function() {
+      return this.spriteBatch$3(null, null, false);
+    }, "spriteBatch$0", "call$3", "call$1", "call$2", "call$0", "get$spriteBatch", 0, 6, 1163, 32, 32, 95, 45, [], 44, [], 254, [], "spriteBatch"],
     audio$4: [function(_, key, volume, loop, connect) {
       return J.add$4$ax(this.game.get$sound(), key, volume, loop, connect);
     }, function($receiver, key, volume, loop) {
@@ -21441,13 +21441,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.button$9($receiver, x, y, key, callback, overFrame, null, null, null, null);
     }, "button$5", function($receiver, x, y, key, callback, overFrame, outFrame, downFrame, upFrame) {
       return this.button$9($receiver, x, y, key, callback, overFrame, outFrame, downFrame, upFrame, null);
-    }, "button$8", function($receiver) {
-      return this.button$9($receiver, null, null, null, null, null, null, null, null, null);
-    }, "button$0", function($receiver, x) {
+    }, "button$8", function($receiver, x) {
       return this.button$9($receiver, x, null, null, null, null, null, null, null, null);
     }, "button$1", function($receiver, x, y) {
       return this.button$9($receiver, x, y, null, null, null, null, null, null, null);
-    }, "button$2", function($receiver, x, y, key) {
+    }, "button$2", function($receiver) {
+      return this.button$9($receiver, null, null, null, null, null, null, null, null, null);
+    }, "button$0", function($receiver, x, y, key) {
       return this.button$9($receiver, x, y, key, null, null, null, null, null, null);
     }, "button$3", function($receiver, x, y, key, callback) {
       return this.button$9($receiver, x, y, key, callback, null, null, null, null, null);
@@ -21455,27 +21455,27 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.button$9($receiver, x, y, key, callback, overFrame, outFrame, null, null, null);
     }, "button$6", function($receiver, x, y, key, callback, overFrame, outFrame, downFrame) {
       return this.button$9($receiver, x, y, key, callback, overFrame, outFrame, downFrame, null, null);
-    }, "button$7", "call$9", "call$5", "call$8", "call$0", "call$1", "call$2", "call$3", "call$4", "call$6", "call$7", "get$button", 0, 18, 1167, 32, 32, 32, 32, 32, 32, 32, 32, 32, 6, [], 7, [], 231, [], 272, [], 273, [], 274, [], 275, [], 276, [], 253, [], "button"],
+    }, "button$7", "call$9", "call$5", "call$8", "call$1", "call$2", "call$0", "call$3", "call$4", "call$6", "call$7", "get$button", 0, 18, 1167, 32, 32, 32, 32, 32, 32, 32, 32, 32, 6, [], 7, [], 231, [], 272, [], 273, [], 274, [], 275, [], 276, [], 253, [], "button"],
     graphics$3: [function(x, y, group) {
       if (group == null)
         group = this.world;
       return J.add$1$ax(group, R.Graphics$(this.game, x, y));
     }, function(x, y) {
       return this.graphics$3(x, y, null);
-    }, "graphics$2", function() {
-      return this.graphics$3(0, 0, null);
-    }, "graphics$0", function(x) {
+    }, "graphics$2", function(x) {
       return this.graphics$3(x, 0, null);
-    }, "graphics$1", "call$3", "call$2", "call$0", "call$1", "get$graphics", 0, 6, 1168, 5, 5, 32, 6, [], 7, [], 253, [], "graphics"],
+    }, "graphics$1", function() {
+      return this.graphics$3(0, 0, null);
+    }, "graphics$0", "call$3", "call$2", "call$1", "call$0", "get$graphics", 0, 6, 1168, 5, 5, 32, 6, [], 7, [], 253, [], "graphics"],
     emitter$3: [function(x, y, maxParticles) {
       return J.add$1$ax(this.game.get$particles(), R.Emitter$(this.game, x, y, maxParticles));
-    }, function() {
-      return this.emitter$3(null, null, 50);
-    }, "emitter$0", function(x) {
+    }, function(x) {
       return this.emitter$3(x, null, 50);
     }, "emitter$1", function(x, y) {
       return this.emitter$3(x, y, 50);
-    }, "emitter$2", "call$3", "call$0", "call$1", "call$2", "get$emitter", 0, 6, 1169, 32, 32, 361, 6, [], 7, [], 415, [], "emitter"],
+    }, "emitter$2", function() {
+      return this.emitter$3(null, null, 50);
+    }, "emitter$0", "call$3", "call$1", "call$2", "call$0", "get$emitter", 0, 6, 1169, 32, 32, 361, 6, [], 7, [], 415, [], "emitter"],
     retroFont$9: [function(font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset) {
       return R.RetroFont$(this.game, font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset);
     }, function(font, characterWidth, characterHeight, chars, charsPerRow, xSpacing) {
@@ -21502,15 +21502,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return R.Tilemap$(this.game, key, tileWidth, tileHeight, width, height);
     }, function(key, tileWidth, tileHeight, width) {
       return this.tilemap$5(key, tileWidth, tileHeight, width, 10);
-    }, "tilemap$4", function() {
-      return this.tilemap$5(null, 32, 32, 10, 10);
-    }, "tilemap$0", function(key) {
+    }, "tilemap$4", function(key) {
       return this.tilemap$5(key, 32, 32, 10, 10);
     }, "tilemap$1", function(key, tileWidth) {
       return this.tilemap$5(key, tileWidth, 32, 10, 10);
-    }, "tilemap$2", function(key, tileWidth, tileHeight) {
+    }, "tilemap$2", function() {
+      return this.tilemap$5(null, 32, 32, 10, 10);
+    }, "tilemap$0", function(key, tileWidth, tileHeight) {
       return this.tilemap$5(key, tileWidth, tileHeight, 10, 10);
-    }, "tilemap$3", "call$5", "call$4", "call$0", "call$1", "call$2", "call$3", "get$tilemap", 0, 10, 1172, 32, 269, 269, 348, 348, 231, [], 455, [], 456, [], 10, [], 11, [], "tilemap"],
+    }, "tilemap$3", "call$5", "call$4", "call$1", "call$2", "call$0", "call$3", "get$tilemap", 0, 10, 1172, 32, 269, 269, 348, 348, 231, [], 455, [], 456, [], 10, [], 11, [], "tilemap"],
     renderTexture$4: [function(width, height, key, addToCache) {
       var texture;
       if (key == null)
@@ -21519,15 +21519,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (addToCache === true)
         this.game.get$cache().addRenderTexture$2(key, texture);
       return texture;
-    }, function() {
-      return this.renderTexture$4(null, null, null, false);
-    }, "renderTexture$0", function(width) {
+    }, function(width) {
       return this.renderTexture$4(width, null, null, false);
     }, "renderTexture$1", function(width, height) {
       return this.renderTexture$4(width, height, null, false);
-    }, "renderTexture$2", function(width, height, key) {
+    }, "renderTexture$2", function() {
+      return this.renderTexture$4(null, null, null, false);
+    }, "renderTexture$0", function(width, height, key) {
       return this.renderTexture$4(width, height, key, false);
-    }, "renderTexture$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$renderTexture", 0, 8, 1154, 32, 32, 32, 95, 10, [], 11, [], 231, [], 1155, [], "renderTexture"],
+    }, "renderTexture$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$renderTexture", 0, 8, 1154, 32, 32, 32, 95, 10, [], 11, [], 231, [], 1155, [], "renderTexture"],
     bitmapData$4: [function(width, height, key, addToCache) {
       var texture;
       if (key == null)
@@ -21536,15 +21536,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (addToCache === true)
         this.game.get$cache().addBitmapData$2(key, texture);
       return texture;
-    }, function() {
-      return this.bitmapData$4(null, null, null, false);
-    }, "bitmapData$0", function(width) {
+    }, function(width) {
       return this.bitmapData$4(width, null, null, false);
     }, "bitmapData$1", function(width, height) {
       return this.bitmapData$4(width, height, null, false);
-    }, "bitmapData$2", function(width, height, key) {
+    }, "bitmapData$2", function() {
+      return this.bitmapData$4(null, null, null, false);
+    }, "bitmapData$0", function(width, height, key) {
       return this.bitmapData$4(width, height, key, false);
-    }, "bitmapData$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$bitmapData", 0, 8, 1156, 32, 32, 32, 95, 10, [], 11, [], 231, [], 1155, [], "bitmapData"],
+    }, "bitmapData$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$bitmapData", 0, 8, 1156, 32, 32, 32, 95, 10, [], 11, [], 231, [], 1155, [], "bitmapData"],
     filter$2: [function(_, filterType, args) {
       var filter;
       J.insert$2$ax(args, 0, this.game);
@@ -23274,8 +23274,8 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       }, null, null, 8, 0, 295, 214, [], 45, [], 44, [], 254, [], "new SpriteBatch"]}
   },
   "+SpriteBatch": [1074],
-  TextStyle0: {
-    "^": "TextStyle;shadowOffsetX*-601,shadowOffsetY*-601,shadowColor*-639,shadowBlur*-601,fill-639,font-639,align-639,stroke-639,strokeThickness-601,wordWrap-602,wordWrapWidth-601,dropShadow-602,dropShadowAngle-601,dropShadowDistance-601,dropShadowColor-639,tint-601",
+  TextStyle: {
+    "^": "TextStyle0;shadowOffsetX*-601,shadowOffsetY*-601,shadowColor*-639,shadowBlur*-601,fill-639,font-639,align-639,stroke-639,strokeThickness-601,wordWrap-602,wordWrapWidth-601,dropShadow-602,dropShadowAngle-601,dropShadowDistance-601,dropShadowColor-639,tint-601",
     TextStyle$6$align$fill$font$stroke$strokeThickness$tint: function(align, fill, font, stroke, strokeThickness, tint) {
       this.fill = fill;
       this.font = font;
@@ -23285,7 +23285,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.tint = tint;
     },
     static: {TextStyle$: [function(align, fill, font, stroke, strokeThickness, tint) {
-        var t1 = new R.TextStyle0(0, 0, "rgba(0,0,0,0)", 0, "black", "bold 20pt Arial", "left", "black", 0, false, 100, false, 0.5235987755982988, 4, "black", 16777215);
+        var t1 = new R.TextStyle(0, 0, "rgba(0,0,0,0)", 0, "black", "bold 20pt Arial", "left", "black", 0, false, 100, false, 0.5235987755982988, 4, "black", 16777215);
         t1.TextStyle$6$align$fill$font$stroke$strokeThickness$tint("left", "black", "bold 20pt Arial", "black", 0, 16777215);
         t1.TextStyle$6$align$fill$font$stroke$strokeThickness$tint(align, fill, font, stroke, strokeThickness, tint);
         return t1;
@@ -23404,15 +23404,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       J.set$shadowColor$x(this.style, color);
       J.set$shadowBlur$x(this.style, $blur);
       this._Phaser$_dirty = true;
-    }, function() {
-      return this.setShadow$4(0, 0, "rgba(0,0,0,0)", 0);
-    }, "setShadow$0", function(x) {
+    }, function(x) {
       return this.setShadow$4(x, 0, "rgba(0,0,0,0)", 0);
     }, "setShadow$1", function(x, y) {
       return this.setShadow$4(x, y, "rgba(0,0,0,0)", 0);
-    }, "setShadow$2", function(x, y, color) {
+    }, "setShadow$2", function() {
+      return this.setShadow$4(0, 0, "rgba(0,0,0,0)", 0);
+    }, "setShadow$0", function(x, y, color) {
       return this.setShadow$4(x, y, color, 0);
-    }, "setShadow$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$setShadow", 0, 8, 1211, 5, 5, 1212, 5, 6, [], 7, [], 114, [], 1213, [], "setShadow"],
+    }, "setShadow$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$setShadow", 0, 8, 1211, 5, 5, 1212, 5, 6, [], 7, [], 114, [], 1213, [], "setShadow"],
     setStyle$1: [function(style) {
       this.style = style;
       this._Phaser$_dirty = true;
@@ -24629,11 +24629,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.setTo$4(x1, y1, 0, 0);
     }, "setTo$2", function(x1, y1, x2) {
       return this.setTo$4(x1, y1, x2, 0);
-    }, "setTo$3", function() {
-      return this.setTo$4(0, 0, 0, 0);
-    }, "setTo$0", function(x1) {
+    }, "setTo$3", function(x1) {
       return this.setTo$4(x1, 0, 0, 0);
-    }, "setTo$1", "call$4", "call$2", "call$3", "call$0", "call$1", "get$setTo", 0, 8, 1078, 5, 5, 5, 5, 307, [], 308, [], 309, [], 310, [], "setTo"],
+    }, "setTo$1", function() {
+      return this.setTo$4(0, 0, 0, 0);
+    }, "setTo$0", "call$4", "call$2", "call$3", "call$1", "call$0", "get$setTo", 0, 8, 1078, 5, 5, 5, 5, 307, [], 308, [], 309, [], 310, [], "setTo"],
     fromSprite$3: [function(startSprite, endSprite, useCenter) {
       var t1, t2, t3, t4;
       if (useCenter === true) {
@@ -24849,11 +24849,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.x = x;
       this.y = y == null ? x : y;
       return this;
-    }, function() {
-      return this.setTo$2(0, null);
-    }, "setTo$0", function(x) {
+    }, function(x) {
       return this.setTo$2(x, null);
-    }, "setTo$1", "call$2", "call$0", "call$1", "get$setTo", 0, 4, 1245, 5, 32, 6, [], 7, [], "setTo"],
+    }, "setTo$1", function() {
+      return this.setTo$2(0, null);
+    }, "setTo$0", "call$2", "call$1", "call$0", "get$setTo", 0, 4, 1245, 5, 32, 6, [], 7, [], "setTo"],
     set$2: [function(x, y) {
       this.x = x;
       this.y = y == null ? x : y;
@@ -26545,19 +26545,19 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.boundsRect = boundsRect;
       if (boundsSprite != null)
         this.boundsSprite = boundsSprite;
-    }, function() {
-      return this.enableDrag$6(false, false, false, 255, null, null);
-    }, "enableDrag$0", function(lockCenter) {
+    }, function(lockCenter) {
       return this.enableDrag$6(lockCenter, false, false, 255, null, null);
     }, "enableDrag$1", function(lockCenter, bringToTop) {
       return this.enableDrag$6(lockCenter, bringToTop, false, 255, null, null);
-    }, "enableDrag$2", function(lockCenter, bringToTop, pixelPerfect) {
+    }, "enableDrag$2", function() {
+      return this.enableDrag$6(false, false, false, 255, null, null);
+    }, "enableDrag$0", function(lockCenter, bringToTop, pixelPerfect) {
       return this.enableDrag$6(lockCenter, bringToTop, pixelPerfect, 255, null, null);
     }, "enableDrag$3", function(lockCenter, bringToTop, pixelPerfect, alphaThreshold) {
       return this.enableDrag$6(lockCenter, bringToTop, pixelPerfect, alphaThreshold, null, null);
     }, "enableDrag$4", function(lockCenter, bringToTop, pixelPerfect, alphaThreshold, boundsRect) {
       return this.enableDrag$6(lockCenter, bringToTop, pixelPerfect, alphaThreshold, boundsRect, null);
-    }, "enableDrag$5", "call$6", "call$0", "call$1", "call$2", "call$3", "call$4", "call$5", "get$enableDrag", 0, 12, 1307, 95, 95, 95, 508, 32, 32, 1308, [], 1309, [], 1310, [], 1311, [], 1312, [], 1313, [], "enableDrag"],
+    }, "enableDrag$5", "call$6", "call$1", "call$2", "call$0", "call$3", "call$4", "call$5", "get$enableDrag", 0, 12, 1307, 95, 95, 95, 508, 32, 32, 1308, [], 1309, [], 1310, [], 1311, [], 1312, [], 1313, [], "enableDrag"],
     disableDrag$0: [function() {
       if (this._pointerData != null)
         for (var i = 0; i < 10; ++i)
@@ -26643,11 +26643,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     setDragLock$2: [function(allowHorizontal, allowVertical) {
       this.allowHorizontalDrag = allowHorizontal;
       this.allowVerticalDrag = allowVertical;
-    }, function() {
-      return this.setDragLock$2(true, true);
-    }, "setDragLock$0", function(allowHorizontal) {
+    }, function(allowHorizontal) {
       return this.setDragLock$2(allowHorizontal, true);
-    }, "setDragLock$1", "call$2", "call$0", "call$1", "get$setDragLock", 0, 4, 945, 39, 39, 1314, [], 1315, [], "setDragLock"],
+    }, "setDragLock$1", function() {
+      return this.setDragLock$2(true, true);
+    }, "setDragLock$0", "call$2", "call$1", "call$0", "get$setDragLock", 0, 4, 945, 39, 39, 1314, [], 1315, [], "setDragLock"],
     enableSnap$6: [function(snapX, snapY, onDrag, onRelease, snapOffsetX, snapOffsetY) {
       this.snapX = snapX;
       this.snapY = snapY;
@@ -30503,11 +30503,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$1", "get$weightedPick", 2, 0, 14, 1420, [], "weightedPick"],
     timestamp$2: [function(min, max) {
       return J.$add$ns(J.$mul$ns(this.frac$0(), J.$sub$n(max, min)), min);
-    }, function() {
-      return this.timestamp$2(946684800000, 1577862000000);
-    }, "timestamp$0", function(min) {
+    }, function(min) {
       return this.timestamp$2(min, 1577862000000);
-    }, "timestamp$1", "call$2", "call$0", "call$1", "get$timestamp", 0, 4, 1421, 1422, 1423, 364, [], 365, [], "timestamp"],
+    }, "timestamp$1", function() {
+      return this.timestamp$2(946684800000, 1577862000000);
+    }, "timestamp$0", "call$2", "call$1", "call$0", "get$timestamp", 0, 4, 1421, 1422, 1423, 364, [], 365, [], "timestamp"],
     angle$0: [function() {
       return this.integerInRange$2(-180, 180);
     }, "call$0", "get$angle", 0, 0, 604, "angle"],
@@ -30726,20 +30726,20 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$revive", 0, 0, 13, "revive"],
     explode$2: [function(lifespan, quantity) {
       this.start$5(0, true, lifespan, 0, quantity, false);
-    }, function() {
-      return this.explode$2(0, 0);
-    }, "explode$0", function(lifespan) {
+    }, function(lifespan) {
       return this.explode$2(lifespan, 0);
-    }, "explode$1", "call$2", "call$0", "call$1", "get$explode", 0, 4, 16, 5, 5, 1432, [], 949, [], "explode"],
+    }, "explode$1", function() {
+      return this.explode$2(0, 0);
+    }, "explode$0", "call$2", "call$1", "call$0", "get$explode", 0, 4, 16, 5, 5, 1432, [], 949, [], "explode"],
     flow$3: [function(lifespan, frequency, quantity) {
       this.start$5(0, false, lifespan, frequency, quantity, true);
-    }, function() {
-      return this.flow$3(0, 0, 0);
-    }, "flow$0", function(lifespan) {
+    }, function(lifespan) {
       return this.flow$3(lifespan, 0, 0);
     }, "flow$1", function(lifespan, frequency) {
       return this.flow$3(lifespan, frequency, 0);
-    }, "flow$2", "call$3", "call$0", "call$1", "call$2", "get$flow", 0, 6, 4, 5, 5, 5, 1432, [], 393, [], 949, [], "flow"],
+    }, "flow$2", function() {
+      return this.flow$3(0, 0, 0);
+    }, "flow$0", "call$3", "call$1", "call$2", "call$0", "get$flow", 0, 6, 4, 5, 5, 5, 1432, [], 393, [], 949, [], "flow"],
     start$5: [function(_, explode, lifespan, frequency, quantity, forceQuantity) {
       if (explode == null)
         explode = true;
@@ -30830,27 +30830,27 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     setXSpeed$2: [function(min, max) {
       J.set$x$x(this.minParticleSpeed, min);
       J.set$x$x(this.maxParticleSpeed, max);
-    }, function() {
-      return this.setXSpeed$2(0, 0);
-    }, "setXSpeed$0", function(min) {
+    }, function(min) {
       return this.setXSpeed$2(min, 0);
-    }, "setXSpeed$1", "call$2", "call$0", "call$1", "get$setXSpeed", 0, 4, 16, 5, 5, 364, [], 365, [], "setXSpeed"],
+    }, "setXSpeed$1", function() {
+      return this.setXSpeed$2(0, 0);
+    }, "setXSpeed$0", "call$2", "call$1", "call$0", "get$setXSpeed", 0, 4, 16, 5, 5, 364, [], 365, [], "setXSpeed"],
     setYSpeed$2: [function(min, max) {
       J.set$y$x(this.minParticleSpeed, min);
       J.set$y$x(this.maxParticleSpeed, max);
-    }, function() {
-      return this.setYSpeed$2(0, 0);
-    }, "setYSpeed$0", function(min) {
+    }, function(min) {
       return this.setYSpeed$2(min, 0);
-    }, "setYSpeed$1", "call$2", "call$0", "call$1", "get$setYSpeed", 0, 4, 16, 5, 5, 364, [], 365, [], "setYSpeed"],
+    }, "setYSpeed$1", function() {
+      return this.setYSpeed$2(0, 0);
+    }, "setYSpeed$0", "call$2", "call$1", "call$0", "get$setYSpeed", 0, 4, 16, 5, 5, 364, [], 365, [], "setYSpeed"],
     setRotation$2: [function(min, max) {
       this.minRotation = min;
       this.maxRotation = max;
-    }, function() {
-      return this.setRotation$2(0, 0);
-    }, "setRotation$0", function(min) {
+    }, function(min) {
       return this.setRotation$2(min, 0);
-    }, "setRotation$1", "call$2", "call$0", "call$1", "get$setRotation", 0, 4, 16, 5, 5, 364, [], 365, [], "setRotation"],
+    }, "setRotation$1", function() {
+      return this.setRotation$2(0, 0);
+    }, "setRotation$0", "call$2", "call$1", "call$0", "get$setRotation", 0, 4, 16, 5, 5, 364, [], 365, [], "setRotation"],
     setAlpha$5: [function(min, max, rate, ease, yoyo) {
       var tweenData, tween, t1;
       if (min == null)
@@ -30877,17 +30877,17 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.alphaData = J.toList$0$ax(J.get$reversed$ax(t1));
         this.autoAlpha = true;
       }
-    }, function() {
-      return this.setAlpha$5(1, 1, 0, null, false);
-    }, "setAlpha$0", function(min) {
+    }, function(min) {
       return this.setAlpha$5(min, 1, 0, null, false);
     }, "setAlpha$1", function(min, max) {
       return this.setAlpha$5(min, max, 0, null, false);
-    }, "setAlpha$2", function(min, max, rate) {
+    }, "setAlpha$2", function() {
+      return this.setAlpha$5(1, 1, 0, null, false);
+    }, "setAlpha$0", function(min, max, rate) {
       return this.setAlpha$5(min, max, rate, null, false);
     }, "setAlpha$3", function(min, max, rate, ease) {
       return this.setAlpha$5(min, max, rate, ease, false);
-    }, "setAlpha$4", "call$5", "call$0", "call$1", "call$2", "call$3", "call$4", "get$setAlpha", 0, 10, 1437, 390, 390, 5, 32, 95, 364, [], 365, [], 1438, [], 1439, [], 1440, [], "setAlpha"],
+    }, "setAlpha$4", "call$5", "call$1", "call$2", "call$0", "call$3", "call$4", "get$setAlpha", 0, 10, 1437, 390, 390, 5, 32, 95, 364, [], 365, [], 1438, [], 1439, [], 1440, [], "setAlpha"],
     setScale$7: [function(minX, maxX, minY, maxY, rate, ease, yoyo) {
       var tweenData, tween, t1;
       if (minX == null)
@@ -30920,13 +30920,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         this.scaleData = J.toList$0$ax(J.get$reversed$ax(t1));
         this.autoScale = true;
       }
-    }, function() {
-      return this.setScale$7(1, 1, 1, 1, 0, null, false);
-    }, "setScale$0", function(minX) {
+    }, function(minX) {
       return this.setScale$7(minX, 1, 1, 1, 0, null, false);
     }, "setScale$1", function(minX, maxX) {
       return this.setScale$7(minX, maxX, 1, 1, 0, null, false);
-    }, "setScale$2", function(minX, maxX, minY) {
+    }, "setScale$2", function() {
+      return this.setScale$7(1, 1, 1, 1, 0, null, false);
+    }, "setScale$0", function(minX, maxX, minY) {
       return this.setScale$7(minX, maxX, minY, 1, 0, null, false);
     }, "setScale$3", function(minX, maxX, minY, maxY) {
       return this.setScale$7(minX, maxX, minY, maxY, 0, null, false);
@@ -30934,7 +30934,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return this.setScale$7(minX, maxX, minY, maxY, rate, ease, false);
     }, "setScale$6", function(minX, maxX, minY, maxY, rate) {
       return this.setScale$7(minX, maxX, minY, maxY, rate, null, false);
-    }, "setScale$5", "call$7", "call$0", "call$1", "call$2", "call$3", "call$4", "call$6", "call$5", "get$setScale", 0, 14, 1441, 390, 390, 390, 390, 5, 32, 95, 1442, [], 1443, [], 1444, [], 1445, [], 1438, [], 1439, [], 1440, [], "setScale"],
+    }, "setScale$5", "call$7", "call$1", "call$2", "call$0", "call$3", "call$4", "call$6", "call$5", "get$setScale", 0, 14, 1441, 390, 390, 390, 390, 5, 32, 95, 1442, [], 1443, [], 1444, [], 1445, [], 1438, [], 1439, [], 1440, [], "setScale"],
     at$1: [function(object) {
       object.get$center();
       this.emitX = object.get$center().x;
@@ -33423,15 +33423,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         t1.set$height(canvas, J.toInt$0$n(height));
         J.set$display$x(canvas.style, "block");
         return canvas;
-      }, function() {
-        return R.Canvas_create(256, 256, null, false);
-      }, null, function(width) {
+      }, function(width) {
         return R.Canvas_create(width, 256, null, false);
       }, null, function(width, height) {
         return R.Canvas_create(width, height, null, false);
+      }, null, function() {
+        return R.Canvas_create(256, 256, null, false);
       }, null, function(width, height, id) {
         return R.Canvas_create(width, height, id, false);
-      }, null, "call$4", "call$0", "call$1", "call$2", "call$3", "Canvas_create$closure", 0, 8, 429, 298, 298, 32, 95, 10, [], 11, [], 183, [], 430, [], "create"], Canvas_getOffset: [function(element, point) {
+      }, null, "call$4", "call$1", "call$2", "call$0", "call$3", "Canvas_create$closure", 0, 8, 429, 298, 298, 32, 95, 10, [], 11, [], 183, [], 430, [], "create"], Canvas_getOffset: [function(element, point) {
         var box, clientTop, clientLeft, scrollTop, scrollLeft, point0, t1, exception;
         if (point == null) {
           point0 = new R.Point(null, null);
@@ -34755,15 +34755,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       }
       J.$index$asx(this.layers, layer).set$dirty(true);
       this.calculateFaces$1(layer);
-    }, function() {
-      return this.paste$4(null, null, null, null);
-    }, "paste$0", function(x) {
+    }, function(x) {
       return this.paste$4(x, null, null, null);
     }, "paste$1", function(x, y) {
       return this.paste$4(x, y, null, null);
-    }, "paste$2", function(x, y, tileblock) {
+    }, "paste$2", function() {
+      return this.paste$4(null, null, null, null);
+    }, "paste$0", function(x, y, tileblock) {
       return this.paste$4(x, y, tileblock, null);
-    }, "paste$3", "call$4", "call$0", "call$1", "call$2", "call$3", "get$paste", 0, 8, 1580, 32, 32, 32, 32, 6, [], 7, [], 1581, [], 452, [], "paste"],
+    }, "paste$3", "call$4", "call$1", "call$2", "call$0", "call$3", "get$paste", 0, 8, 1580, 32, 32, 32, 32, 6, [], 7, [], 1581, [], 452, [], "paste"],
     swap$7: [function(tileA, tileB, x, y, width, height, layer) {
       layer = this.getLayer$1(layer);
       this.copy$5(x, y, width, height, layer);
@@ -35532,15 +35532,15 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         map.tilesets = [];
         map.tiles = [];
         return map;
-      }, function() {
-        return R.TilemapParser_getEmptyData(null, null, null, null);
-      }, null, function(tileWidth) {
+      }, function(tileWidth) {
         return R.TilemapParser_getEmptyData(tileWidth, null, null, null);
       }, null, function(tileWidth, tileHeight) {
         return R.TilemapParser_getEmptyData(tileWidth, tileHeight, null, null);
+      }, null, function() {
+        return R.TilemapParser_getEmptyData(null, null, null, null);
       }, null, function(tileWidth, tileHeight, width) {
         return R.TilemapParser_getEmptyData(tileWidth, tileHeight, width, null);
-      }, null, "call$4", "call$0", "call$1", "call$2", "call$3", "TilemapParser_getEmptyData$closure", 0, 8, 465, 32, 32, 32, 32, 455, [], 456, [], 10, [], 11, [], "getEmptyData"], TilemapParser_parseTiledJSON: [function(json) {
+      }, null, "call$4", "call$1", "call$2", "call$0", "call$3", "TilemapParser_getEmptyData$closure", 0, 8, 465, 32, 32, 32, 32, 455, [], 456, [], 10, [], 11, [], "getEmptyData"], TilemapParser_parseTiledJSON: [function(json) {
         var t1, map, t2, t3, t4, t5, layers, i, layer, row, output, len, x, t, images, image, tilesets, set, newSet, objects, collision, v, object, p, y, count, countX, countY;
         t1 = J.getInterceptor$asx(json);
         if (!J.$eq(t1.$index(json, "orientation"), "orthogonal")) {
@@ -35854,11 +35854,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.tileMargin = margin;
       this.tileSpacing = spacing;
       this.setImage$1(this.image);
-    }, function() {
-      return this.setSpacing$2(0, 0);
-    }, "setSpacing$0", function(margin) {
+    }, function(margin) {
       return this.setSpacing$2(margin, 0);
-    }, "setSpacing$1", "call$2", "call$0", "call$1", "get$setSpacing", 0, 4, 16, 5, 5, 235, [], 236, [], "setSpacing"],
+    }, "setSpacing$1", function() {
+      return this.setSpacing$2(0, 0);
+    }, "setSpacing$0", "call$2", "call$1", "call$0", "get$setSpacing", 0, 4, 16, 5, 5, 235, [], 236, [], "setSpacing"],
     Tileset$7: function($name, firstgid, width, height, margin, spacing, properties) {
       if (width == null || J.$le$n(width, 0))
         width = 32;
@@ -36541,19 +36541,19 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         return this.start$0(0);
       else
         return this;
-    }, function(properties, duration, ease) {
+    }, function(properties, duration, ease, autoStart) {
+      return this.to$7(properties, duration, ease, autoStart, 0, 0, false);
+    }, "to$4", function(properties, duration, ease) {
       return this.to$7(properties, duration, ease, false, 0, 0, false);
     }, "to$3", function(properties) {
       return this.to$7(properties, 1000, null, false, 0, 0, false);
     }, "to$1", function(properties, duration) {
       return this.to$7(properties, duration, null, false, 0, 0, false);
-    }, "to$2", function(properties, duration, ease, autoStart) {
-      return this.to$7(properties, duration, ease, autoStart, 0, 0, false);
-    }, "to$4", function(properties, duration, ease, autoStart, delay, repeat) {
+    }, "to$2", function(properties, duration, ease, autoStart, delay, repeat) {
       return this.to$7(properties, duration, ease, autoStart, delay, repeat, false);
     }, "to$6", function(properties, duration, ease, autoStart, delay) {
       return this.to$7(properties, duration, ease, autoStart, delay, 0, false);
-    }, "to$5", "call$7", "call$3", "call$1", "call$2", "call$4", "call$6", "call$5", "get$to", 2, 12, 1632, 1498, 32, 95, 5, 5, 95, 469, [], 55, [], 1439, [], 1064, [], 473, [], 1633, [], 1440, [], "to"],
+    }, "to$5", "call$7", "call$4", "call$3", "call$1", "call$2", "call$6", "call$5", "get$to", 2, 12, 1632, 1498, 32, 95, 5, 5, 95, 469, [], 55, [], 1439, [], 1064, [], 473, [], 1633, [], 1440, [], "to"],
     from$7: [function(properties, duration, ease, autoStart, delay, repeat, yoyo) {
       var _cache, instance, t1, t2, prop, t3, t4;
       _cache = P.LinkedHashMap_LinkedHashMap$_empty(null, null);
@@ -37285,12 +37285,12 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         out.v = v;
         out.rgba = C.JSString_methods.$add(C.JSString_methods.$add(C.JSString_methods.$add(C.JSString_methods.$add("rgba(", J.toString$0(r)) + ",", J.toString$0(g)) + ",", J.toString$0(b)) + ",", J.toString$0(a)) + ")";
         return out;
-      }, function() {
-        return R.Color_createColor(0, 0, 0, 255, 0, 0, 0, 0);
-      }, null, function(r) {
+      }, function(r) {
         return R.Color_createColor(r, 0, 0, 255, 0, 0, 0, 0);
       }, null, function(r, g) {
         return R.Color_createColor(r, g, 0, 255, 0, 0, 0, 0);
+      }, null, function() {
+        return R.Color_createColor(0, 0, 0, 255, 0, 0, 0, 0);
       }, null, function(r, g, b) {
         return R.Color_createColor(r, g, b, 255, 0, 0, 0, 0);
       }, null, function(r, g, b, a) {
@@ -37301,7 +37301,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         return R.Color_createColor(r, g, b, a, h, 0, 0, 0);
       }, null, function(r, g, b, a, h, s, l) {
         return R.Color_createColor(r, g, b, a, h, s, l, 0);
-      }, null, "call$8", "call$0", "call$1", "call$2", "call$3", "call$4", "call$6", "call$5", "call$7", "Color_createColor$closure", 0, 16, 507, 5, 5, 5, 508, 5, 5, 5, 5, 302, [], 493, [], 305, [], 304, [], 501, [], 502, [], 503, [], 376, [], "createColor"], Color_updateColor: [function(out) {
+      }, null, "call$8", "call$1", "call$2", "call$0", "call$3", "call$4", "call$6", "call$5", "call$7", "Color_createColor$closure", 0, 16, 507, 5, 5, 5, 508, 5, 5, 5, 5, 302, [], 493, [], 305, [], 304, [], 501, [], 502, [], 503, [], 376, [], "createColor"], Color_updateColor: [function(out) {
         var t1 = J.getInterceptor$x(out);
         out.set$rgba(C.JSString_methods.$add(C.JSString_methods.$add(C.JSString_methods.$add(C.JSString_methods.$add("rgba(", J.toString$0(t1.get$r(out))) + ",", J.toString$0(out.get$g())) + ",", J.toString$0(out.get$b())) + ",", J.toString$0(t1.get$a(out))) + ")");
         return out;
@@ -37406,21 +37406,21 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
           colors.push(out);
         }
         return colors;
-      }, function() {
-        return R.Color_HSVColorWheel(1, 1);
-      }, null, function(s) {
+      }, function(s) {
         return R.Color_HSVColorWheel(s, 1);
-      }, null, "call$2", "call$0", "call$1", "Color_HSVColorWheel$closure", 0, 4, 517, 390, 390, 502, [], 376, [], "HSVColorWheel"], Color_HSLColorWheel: [function(s, l) {
+      }, null, function() {
+        return R.Color_HSVColorWheel(1, 1);
+      }, null, "call$2", "call$1", "call$0", "Color_HSVColorWheel$closure", 0, 4, 517, 390, 390, 502, [], 376, [], "HSVColorWheel"], Color_HSLColorWheel: [function(s, l) {
         var colors, c;
         colors = [];
         for (c = 0; c <= 359; ++c)
           colors.push(R.Color_HSLtoRGB(c / 359, s, l, null));
         return colors;
-      }, function() {
-        return R.Color_HSLColorWheel(0.5, 0.5);
-      }, null, function(s) {
+      }, function(s) {
         return R.Color_HSLColorWheel(s, 0.5);
-      }, null, "call$2", "call$0", "call$1", "Color_HSLColorWheel$closure", 0, 4, 517, 518, 518, 502, [], 503, [], "HSLColorWheel"], Color_interpolateColor: [function(color1, color2, steps, currentStep, alpha) {
+      }, null, function() {
+        return R.Color_HSLColorWheel(0.5, 0.5);
+      }, null, "call$2", "call$1", "call$0", "Color_HSLColorWheel$closure", 0, 4, 517, 518, 518, 502, [], 503, [], "HSLColorWheel"], Color_interpolateColor: [function(color1, color2, steps, currentStep, alpha) {
         var src1, src2;
         src1 = R.Color_getRGB(color1);
         src2 = R.Color_getRGB(color2);
@@ -37456,13 +37456,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         t2 = $.get$Math_random();
         t3 = J.getInterceptor$ns(min);
         return R.Color_getColor32(alpha, t3.$add(min, J.round$0$n(J.$mul$ns(t2.call$0(), t1.$sub(max, min)))), t3.$add(min, J.round$0$n(J.$mul$ns(t2.call$0(), t1.$sub(max, min)))), t3.$add(min, J.round$0$n(J.$mul$ns(t2.call$0(), t1.$sub(max, min)))));
-      }, function() {
-        return R.Color_getRandomColor(0, 255, 255);
-      }, null, function(min) {
+      }, function(min) {
         return R.Color_getRandomColor(min, 255, 255);
       }, null, function(min, max) {
         return R.Color_getRandomColor(min, max, 255);
-      }, null, "call$3", "call$0", "call$1", "call$2", "Color_getRandomColor$closure", 0, 6, 531, 5, 508, 508, 364, [], 365, [], 524, [], "getRandomColor"], Color_getRGB: [function(color) {
+      }, null, function() {
+        return R.Color_getRandomColor(0, 255, 255);
+      }, null, "call$3", "call$1", "call$2", "call$0", "Color_getRandomColor$closure", 0, 6, 531, 5, 508, 508, 364, [], 365, [], 524, [], "getRandomColor"], Color_getRGB: [function(color) {
         var c, t1, t2, t3, t4;
         c = new R.Color(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         t1 = J.getInterceptor$n(color);
@@ -38047,50 +38047,50 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       }, "call$1", "Utils_shuffle$closure", 2, 0, 396, 15, [], "shuffle"]}
   },
   "+Utils": [632],
-  "^": "POINTER<-599,RETROFONT<-599,SPRITEBATCH<-599,ELLIPSE<-599,WEBGL_FILTER<-599,CANVAS_FILTER<-599,BITMAPDATA<-599,POLYGON<-599,EMITTER<-599,TILEMAPLAYER<-599,TILEMAP<-599,RENDERTEXTURE<-599,GROUP<-599,BITMAPTEXT<-599,TILESPRITE<-599,TEXT<-599,GRAPHICS<-599,IMAGE<-599,BUTTON<-599,SPRITE<-599,DOWN<-599,UP<-599,RIGHT<-599,LEFT<-599,NONE<-599,HEADLESS<-599,WEBGL<-599,CANVAS<-599,AUTO<-599,GAMES<-1714,VERSION0<-639",
+  "^": "POINTER<-599,RETROFONT<-599,SPRITEBATCH<-599,ELLIPSE<-599,WEBGL_FILTER<-599,CANVAS_FILTER<-599,BITMAPDATA<-599,POLYGON<-599,EMITTER<-599,TILEMAPLAYER<-599,TILEMAP<-599,RENDERTEXTURE<-599,GROUP<-599,BITMAPTEXT<-599,TILESPRITE<-599,TEXT<-599,GRAPHICS<-599,IMAGE<-599,BUTTON<-599,SPRITE<-599,DOWN<-599,UP<-599,RIGHT<-599,LEFT<-599,NONE<-599,HEADLESS<-599,WEBGL<-599,CANVAS<-599,AUTO<-599,GAMES<-1717,VERSION0<-639",
   Creator: {"^": ":281;"},
   "+Creator": "",
   SelectWhere: {"^": ":979;"},
   "+SelectWhere": "",
-  ScreenFunc: {"^": ":1715;"},
+  ScreenFunc: {"^": ":1718;"},
   "+ScreenFunc": "",
   ResizeFunc: {"^": ":570;"},
   "+ResizeFunc": "",
   GameFunc: {"^": ":550;"},
   "+GameFunc": "",
-  GameObjectFunc: {"^": ":1716;"},
+  GameObjectFunc: {"^": ":1719;"},
   "+GameObjectFunc": "",
-  InputFunc: {"^": ":1717;"},
+  InputFunc: {"^": ":1720;"},
   "+InputFunc": "",
-  InputUpFunc: {"^": ":1718;"},
+  InputUpFunc: {"^": ":1721;"},
   "+InputUpFunc": "",
-  GroupFunc: {"^": ":1719;"},
+  GroupFunc: {"^": ":1722;"},
   "+GroupFunc": "",
-  AnimationFunc: {"^": ":1720;"},
+  AnimationFunc: {"^": ":1723;"},
   "+AnimationFunc": "",
-  PointerFunc: {"^": ":1721;"},
+  PointerFunc: {"^": ":1724;"},
   "+PointerFunc": "",
-  KeyFunc: {"^": ":1722;"},
+  KeyFunc: {"^": ":1725;"},
   "+KeyFunc": "",
   LoaderStartFunc: {"^": ":583;"},
   "+LoaderStartFunc": "",
-  FileStartFunc: {"^": ":1723;"},
+  FileStartFunc: {"^": ":1726;"},
   "+FileStartFunc": "",
-  FileCompleteFunc: {"^": ":1724;"},
+  FileCompleteFunc: {"^": ":1727;"},
   "+FileCompleteFunc": "",
-  FileError0: {"^": ":1725;"},
+  FileError0: {"^": ":1728;"},
   "+FileError": "",
-  PackCompleteFunc: {"^": ":1726;"},
+  PackCompleteFunc: {"^": ":1729;"},
   "+PackCompleteFunc": "",
   doubleFunc: {"^": ":1337;"},
   "+doubleFunc": "",
-  CollideFunc: {"^": ":1727;"},
+  CollideFunc: {"^": ":1730;"},
   "+CollideFunc": "",
-  ProcessFunc: {"^": ":1728;"},
+  ProcessFunc: {"^": ":1731;"},
   "+ProcessFunc": "",
-  SoundFunc: {"^": ":1729;"},
+  SoundFunc: {"^": ":1732;"},
   "+SoundFunc": "",
-  TimerFunc: {"^": ":1730;"},
+  TimerFunc: {"^": ":1733;"},
   "+TimerFunc": "",
   EasingFunction: {"^": ":1629;"},
   "+EasingFunction": ""
@@ -42316,17 +42316,29 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
 ["alienzed", "main.dart", , Z, {
   "^": "",
   main: [function() {
+    var t1, t2, t3;
+    if (J.$index$asx($.get$context(), "cordova") != null) {
+      t1 = $.device;
+      t1 = t1 == null ? O.Device__enableDevice() : P._Future$immediate(t1, null);
+      t1 = t1.then$1(new Z.main_closure());
+      t2 = $.Zone__current;
+      t3 = P._registerErrorHandler(new Z.main_closure0(), t2);
+      $.Zone__current.toString;
+      t1._addListener$1(H.setRuntimeTypeInfo(new P._Future(0, t2, null, null, null, null, t3, null), [null]));
+    } else
+      Z.startGame(null);
+  }, "call$0", "main$closure", 0, 0, 550],
+  startGame: function(device) {
+    var game;
     J.set$display$x(document.querySelector("#logo").style, "none");
     J.set$backgroundColor$x(document.querySelector("body").style, "black");
-    P.print("create new game.0");
-    var game = new Z.Alienzed(null, null, null, null, "", null, null, null, null, null, null, 0, false, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    game = new Z.Alienzed(device, null, null, null, "", null, null, null, null, null, null, 0, false, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     game.Game$8(320, 480, 1, "", null, null, null, null);
-    game.Alienzed$0();
-    P.print("create new game.1");
-  }, "call$0", "main$closure", 0, 0, 550],
+    game.Alienzed$1(device);
+  },
   Alienzed: {
-    "^": "Game;game@,width-601,height-601,renderer-809,parent-639,state-995,transparent-602,antialias-602,physicsConfig-754,id-599,config-754,renderType-599,isBooted-602,isRunning-602,raf-996,add-997,make-998,world-983,cache-999,input-1000,load-1001,net-1002,scale-1003,sound-1004,plugins-1005,stage-1006,time-1007,physics-1008,tweens-1009,rnd-1010,device-1011,camera-1012,canvas-808,context-850,debug-1013,particles-1014,stepping-602,pendingStep-602,stepCount-601,onPause-1015,onResume-1015,onBlur-1015,onFocus-1015,_paused-602,_codePaused-602,preserveDrawingBuffer-602,_onBoot-0",
-    Alienzed$0: function() {
+    "^": "Game;device:alienzed$Alienzed$device@-1681,width-601,height-601,renderer-809,parent-639,state-995,transparent-602,antialias-602,physicsConfig-754,id-599,config-754,renderType-599,isBooted-602,isRunning-602,raf-996,add-997,make-998,world-983,cache-999,input-1000,load-1001,net-1002,scale-1003,sound-1004,plugins-1005,stage-1006,time-1007,physics-1008,tweens-1009,rnd-1010,device-1011,camera-1012,canvas-808,context-850,debug-1013,particles-1014,stepping-602,pendingStep-602,stepCount-601,onPause-1015,onResume-1015,onBlur-1015,onFocus-1015,_paused-602,_codePaused-602,preserveDrawingBuffer-602,_onBoot-0",
+    Alienzed$1: function(device) {
       var t1, t2, t3;
       P.print("Class Alienzed initialized");
       t1 = this.state;
@@ -42390,7 +42402,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$create", 0, 0, 13, "create"],
     startGame$3: [function(source, input, flag) {
       J.start$3$x(this.state, "Level1", true, false);
-    }, "call$3", "get$startGame", 6, 0, 117, 170, [], 342, [], 1681, []]
+    }, "call$3", "get$startGame", 6, 0, 117, 170, [], 342, [], 1682, []]
   },
   Gem: {
     "^": "MatchObject;x*,y*,sprite@,level@,type",
@@ -42418,7 +42430,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       point = P.LinkedHashMap_LinkedHashMap$_literal(["x", t1, "y", 96 + t2], null, null);
       t2 = this.level.add.tween$1(this.sprite);
       $.get$Easing_Bounce().toString;
-      J.add$1$ax(t2.to$7(point, 500, $.get$Bounce_OUT().compute, true, 0, 0, false).onComplete, next);
+      J.add$1$ax(t2.to$7(point, 750, $.get$Bounce_OUT().compute, true, 0, 0, false).onComplete, next);
     },
     Gem$4: function(level, type, x, y) {
       this.sprite = this.level.add.sprite$3(0, 0, "gem_" + type);
@@ -42483,7 +42495,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (t1)
         this.x = 4;
       this.updatePositions$0();
-    }, "call$1", "get$rotate", 2, 0, 1682, 538, []],
+    }, "call$1", "get$rotate", 2, 0, 1683, 538, []],
     GemGroup$1: function(level) {
       var t1, t2, t3, t4, t5, t6;
       this.x = 0;
@@ -42567,10 +42579,10 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$create", 0, 0, 13, "create"],
     startGame$3: [function(source, input, flag) {
       J.start$3$x(this.state, "Levels", true, false);
-    }, "call$3", "get$startGame", 6, 0, 117, 170, [], 342, [], 1681, []]
+    }, "call$3", "get$startGame", 6, 0, 117, 170, [], 342, [], 1682, []]
   },
   Levels: {
-    "^": "State;rnd:alienzed$Levels$rnd@-1683,background,board,grid,startButton,text*,discoveredGems,gemGroup,score,game-598,add-997,make-998,camera-1012,cache-999,input-1000,math-1060,load-1001,sound-1004,scale-1003,stage-1006,time-1007,tweens-1009,world-983,particles-1014,physics-1008,rnd-1010,state-995",
+    "^": "State;rnd:alienzed$Levels$rnd@-1684,background,board,grid,startButton,text*,discoveredGems,gemGroup,score,game-598,add-997,make-998,camera-1012,cache-999,input-1000,math-1060,load-1001,sound-1004,scale-1003,stage-1006,time-1007,tweens-1009,world-983,particles-1014,physics-1008,rnd-1010,state-995",
     rnd$0: function() {
       return this.alienzed$Levels$rnd.call$0();
     },
@@ -42606,20 +42618,20 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$create", 0, 0, 13, "create"],
     leftButton$3: [function(source, input, flag) {
       this.gemGroup.move$1(-1);
-    }, "call$3", "get$leftButton", 6, 0, 117, 170, [], 342, [], 1681, []],
+    }, "call$3", "get$leftButton", 6, 0, 117, 170, [], 342, [], 1682, []],
     rightButton$3: [function(source, input, flag) {
       this.gemGroup.move$1(1);
-    }, "call$3", "get$rightButton", 6, 0, 117, 170, [], 342, [], 1681, []],
+    }, "call$3", "get$rightButton", 6, 0, 117, 170, [], 342, [], 1682, []],
     lrotButton$3: [function(source, input, flag) {
       this.gemGroup.rotate$1(0, -1);
-    }, "call$3", "get$lrotButton", 6, 0, 117, 170, [], 342, [], 1681, []],
+    }, "call$3", "get$lrotButton", 6, 0, 117, 170, [], 342, [], 1682, []],
     rrotButton$3: [function(source, input, flag) {
       this.gemGroup.rotate$1(0, 1);
-    }, "call$3", "get$rrotButton", 6, 0, 117, 170, [], 342, [], 1681, []],
+    }, "call$3", "get$rrotButton", 6, 0, 117, 170, [], 342, [], 1682, []],
     dropButton$3: [function(source, input, flag) {
       this.gemGroup.drop$0();
       this.gemGroup = null;
-    }, "call$3", "get$dropButton", 6, 0, 117, 170, [], 342, [], 1681, []],
+    }, "call$3", "get$dropButton", 6, 0, 117, 170, [], 342, [], 1682, []],
     handleMatches$0: function() {
       var t1 = {};
       t1.piecesToUpgrade_0 = null;
@@ -42654,22 +42666,37 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (i >>> 0 !== i || i >= t1.length)
         return H.ioore(t1, i);
       return t1[i];
+    },
+    addToScore$4: function(points, color, x, y) {
+      var scoreStyle, t1, popup, t2, t3, t4;
+      scoreStyle = R.TextStyle$("center", color, "bold 40px Courier New, Courier", "black", 0, 16777215);
+      t1 = this.score;
+      if (typeof points !== "number")
+        return H.iae(points);
+      t1 += points;
+      this.score = t1;
+      J.set$text$x(this.text, "Score: " + H.S(t1));
+      this.text.updateText$0();
+      popup = J.text$4$x(this.add, 150, 300, H.S(points), scoreStyle);
+      t1 = this.add.tween$1(popup);
+      t2 = P.LinkedHashMap_LinkedHashMap$_literal(["alpha", 1], null, null);
+      t3 = $.get$Easing_Linear();
+      t3.toString;
+      t4 = $.get$Linear_INOUT();
+      t2 = t1.to$4(t2, 750, t4.compute, true);
+      t1 = P.LinkedHashMap_LinkedHashMap$_literal(["alpha", 0], null, null);
+      t3.toString;
+      t2.to$4(t1, 250, t4.compute, true);
+      P.Timer_Timer(C.Duration_1000000, new Z.Levels_addToScore_closure(this, popup));
     }
   },
   Levels_handleMatches_closure: {
     "^": "Closure:935;box_0,this_1",
     call$2: function(matchingPieces, type) {
-      var t1, t2, t3, t4;
+      var t1, t2;
       t1 = this.this_1;
       t2 = J.getInterceptor$asx(matchingPieces);
-      t3 = J.$mul$ns(J.$add$ns(H.Lists_indexOf($.get$Alienzed_GEMTYPES(), type, 0, 8), 1), t2.get$length(matchingPieces));
-      t4 = t1.score;
-      if (typeof t3 !== "number")
-        return H.iae(t3);
-      t3 = t4 + t3;
-      t1.score = t3;
-      J.set$text$x(t1.text, "Score: " + H.S(t3));
-      t1.text.updateText$0();
+      t1.addToScore$4(J.$mul$ns(J.$add$ns(H.Lists_indexOf($.get$Alienzed_GEMTYPES(), type, 0, 8), 1), t2.get$length(matchingPieces)), "#ff0", J.get$x$x(t2.$index(matchingPieces, 0)), J.get$y$x(t2.$index(matchingPieces, 0)));
       this.box_0.piecesToUpgrade_0.push(P.LinkedHashMap_LinkedHashMap$_literal(["piece", t2.$index(matchingPieces, 0), "type", type], null, null));
       t2.forEach$1(matchingPieces, new Z.Levels_handleMatches__closure(t1));
     },
@@ -42682,8 +42709,8 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1 = J.repeat$1$x(this.this_2.add.tween$1(matchingPiece.get$object().get$sprite()), 6);
       t2 = P.LinkedHashMap_LinkedHashMap$_literal(["alpha", 0], null, null);
       $.get$Easing_Linear().toString;
-      J.add$1$ax(t1.to$7(t2, 75, $.get$Linear_INOUT().compute, true, 0, 0, true).onComplete, new Z.Levels_handleMatches___closure());
-    }, "call$1", null, 2, 0, null, 1684, [], "call"],
+      J.add$1$ax(t1.to$7(t2, 150, $.get$Linear_INOUT().compute, true, 0, 0, true).onComplete, new Z.Levels_handleMatches___closure());
+    }, "call$1", null, 2, 0, null, 1685, [], "call"],
     $isFunction: true
   },
   Levels_handleMatches___closure: {
@@ -42729,6 +42756,13 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t2 = t1.discoveredGems;
       if (J.$eq(H.Lists_indexOf(t2, upgradedType, 0, t2.length), -1))
         t1.discoveredGems.push(upgradedType);
+    },
+    $isFunction: true
+  },
+  Levels_addToScore_closure: {
+    "^": "Closure:13;this_0,popup_1",
+    call$0: function() {
+      return J.remove$1$ax(this.this_0.world, this.popup_1);
     },
     $isFunction: true
   },
@@ -42781,6 +42815,21 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this.orientated = true;
       J.set$display$x(document.querySelector("#orientation").style, "none");
     }, "call$0", "get$leaveIncorrectOrientation", 0, 0, 13]
+  },
+  main_closure: {
+    "^": "Closure:63;",
+    call$1: [function(device) {
+      return Z.startGame(device);
+    }, "call$1", null, 2, 0, null, 1686, [], "call"],
+    $isFunction: true
+  },
+  main_closure0: {
+    "^": "Closure:935;",
+    call$2: [function(ex, st) {
+      P.print(ex);
+      P.print(st);
+    }, "call$2", null, 4, 0, null, 1687, [], 1688, [], "call"],
+    $isFunction: true
   }
 },
 1],
@@ -44231,7 +44280,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isJsInstanceMirror: true
   },
   JsInstanceMirror__invokeMethodWithNamedArguments_closure: {
-    "^": "Closure:1685;defaultArguments_0",
+    "^": "Closure:1689;defaultArguments_0",
     call$2: function(symbol, value) {
       var parameter, t1;
       parameter = symbol.get$_name();
@@ -44843,7 +44892,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isTypeMirror: true
   },
   typeMirrorFromRuntimeTypeRepresentation_getTypeArgument: {
-    "^": "Closure:1686;box_0",
+    "^": "Closure:1690;box_0",
     call$1: function(index) {
       var typeVariable, t1, variableIndex;
       typeVariable = init.metadata[index];
@@ -45178,11 +45227,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       f = t1.storedCallback_0;
       t1.storedCallback_0 = null;
       f.call$0();
-    }, "call$1", null, 2, 0, null, 1687, [], "call"],
+    }, "call$1", null, 2, 0, null, 1691, [], "call"],
     $isFunction: true
   },
   _AsyncRun__initializeScheduleImmediate_closure: {
-    "^": "Closure:1688;box_0,div_1,span_2",
+    "^": "Closure:1692;box_0,div_1,span_2",
     call$1: function(callback) {
       var t1, t2;
       ++init.globalState.topEventLoop._activeJsAsyncCount;
@@ -45355,7 +45404,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this._sendError$2(error, stackTrace);
     }, function(error) {
       return this.addError$2(error, null);
-    }, "addError$1", "call$2", "call$1", "get$addError", 2, 2, 1689, 32, 556, [], 557, []],
+    }, "addError$1", "call$2", "call$1", "get$addError", 2, 2, 1693, 32, 556, [], 557, []],
     close$0: function(_) {
       var t1, doneFuture;
       t1 = this._state;
@@ -45498,7 +45547,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1._asyncComplete$1(value);
     }, function($receiver) {
       return this.complete$1($receiver, null);
-    }, "complete$0", "call$1", "call$0", "get$complete", 0, 2, 1690, 32],
+    }, "complete$0", "call$1", "call$0", "get$complete", 0, 2, 1694, 32],
     completeError$2: function(error, stackTrace) {
       var t1;
       if (error == null)
@@ -45661,10 +45710,17 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1.toString;
       P._rootScheduleMicrotask(null, null, t1, new P._Future__asyncCompleteError_closure(this, error, stackTrace));
     },
+    _async$_Future$immediate$1: function(value, $T) {
+      this._asyncComplete$1(value);
+    },
     $is_Future: true,
     $isFuture: true,
     static: {"^": "_Future__INCOMPLETE,_Future__PENDING_COMPLETE,_Future__CHAINED,_Future__VALUE,_Future__ERROR", _Future$: function($T) {
         return H.setRuntimeTypeInfo(new P._Future(0, $.Zone__current, null, null, null, null, null, null), [$T]);
+      }, _Future$immediate: function(value, $T) {
+        var t1 = H.setRuntimeTypeInfo(new P._Future(0, $.Zone__current, null, null, null, null, null, null), [$T]);
+        t1._async$_Future$immediate$1(value, $T);
+        return t1;
       }, _Future__chainForeignFuture: function(source, target) {
         target.set$_isChained(true);
         source.then$2$onError(new P._Future__chainForeignFuture_closure(target), new P._Future__chainForeignFuture_closure0(target));
@@ -45946,7 +46002,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_2,listener_11",
     call$1: [function(ignored) {
       P._Future__propagateToListeners(this.box_2.source_4, this.listener_11);
-    }, "call$1", null, 2, 0, null, 1691, [], "call"],
+    }, "call$1", null, 2, 0, null, 1695, [], "call"],
     $isFunction: true
   },
   _Future__propagateToListeners_handleWhenCompleteCallback_closure0: {
@@ -46021,7 +46077,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       t1.subscription_0 = null;
       t1.subscription_0 = this.listen$4$cancelOnError$onDone$onError(new P.Stream_contains_closure(t1, this, needle, future), true, new P.Stream_contains_closure0(future), future.get$_completeError());
       return future;
-    }, "call$1", "get$contains", 2, 0, 1692],
+    }, "call$1", "get$contains", 2, 0, 1696],
     forEach$1: function(_, action) {
       var t1, future;
       t1 = {};
@@ -46118,7 +46174,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:935;result_6",
     call$2: [function(e, st) {
       this.result_6._completeError$2(e, st);
-    }, "call$2", null, 4, 0, null, 312, [], 1693, [], "call"],
+    }, "call$2", null, 4, 0, null, 312, [], 1688, [], "call"],
     $isFunction: true
   },
   Stream_fold_closure0: {
@@ -46277,7 +46333,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_0",
     call$1: [function(_) {
       ++this.box_0.count_0;
-    }, "call$1", null, 2, 0, null, 1687, [], "call"],
+    }, "call$1", null, 2, 0, null, 1691, [], "call"],
     $isFunction: true
   },
   Stream_length_closure0: {
@@ -46291,7 +46347,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;box_0,future_1",
     call$1: [function(_) {
       P._cancelAndValue(this.box_0.subscription_0, this.future_1, false);
-    }, "call$1", null, 2, 0, null, 1687, [], "call"],
+    }, "call$1", null, 2, 0, null, 1691, [], "call"],
     $isFunction: true
   },
   Stream_isEmpty_closure0: {
@@ -46424,7 +46480,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (handleError == null)
         handleError = P._nullErrorHandler$closure();
       this._onError = P._registerErrorHandler(handleError, this._zone);
-    }, "call$1", "get$onError", 2, 0, 1694],
+    }, "call$1", "get$onError", 2, 0, 1697],
     pause$1: function(_, resumeSignal) {
       var t1 = this._state;
       if ((t1 & 8) !== 0)
@@ -46769,7 +46825,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
         t1.set$next($event);
         this.lastPendingEvent = $event;
       }
-    }, "call$1", "get$add", 2, 0, 1695, 815, []],
+    }, "call$1", "get$add", 2, 0, 1698, 815, []],
     handleNext$1: function(dispatch) {
       var $event, t1;
       $event = this.firstPendingEvent;
@@ -46802,7 +46858,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       this._state = (this._state | 2) >>> 0;
     },
     onError$1: [function(_, handleError) {
-    }, "call$1", "get$onError", 2, 0, 1694],
+    }, "call$1", "get$onError", 2, 0, 1697],
     pause$1: function(_, resumeSignal) {
       this._state += 4;
     },
@@ -46842,7 +46898,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   _cancelAndErrorClosure_closure: {
-    "^": "Closure:1696;subscription_0,future_1",
+    "^": "Closure:1699;subscription_0,future_1",
     call$2: function(error, stackTrace) {
       return P._cancelAndError(this.subscription_0, this.future_1, error, stackTrace);
     },
@@ -46923,7 +46979,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, 48, []],
     _handleError$2: [function(error, stackTrace) {
       this._addError$2(error, stackTrace);
-    }, "call$2", "get$_handleError", 4, 0, 1697, 556, [], 557, []],
+    }, "call$2", "get$_handleError", 4, 0, 1700, 556, [], 557, []],
     _handleDone$0: [function() {
       this._close$0();
     }, "call$0", "get$_handleDone", 0, 0, 550],
@@ -47109,14 +47165,14 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0,f_1",
     call$1: [function(arg) {
       return this.this_0.runUnaryGuarded$2(this.f_1, arg);
-    }, "call$1", null, 2, 0, null, 1698, [], "call"],
+    }, "call$1", null, 2, 0, null, 1701, [], "call"],
     $isFunction: true
   },
   _RootZone_bindUnaryCallback_closure0: {
     "^": "Closure:63;this_2,f_3",
     call$1: [function(arg) {
       return this.this_2.runUnary$2(this.f_3, arg);
-    }, "call$1", null, 2, 0, null, 1698, [], "call"],
+    }, "call$1", null, 2, 0, null, 1701, [], "call"],
     $isFunction: true
   }
 }],
@@ -47536,7 +47592,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1699, [], "call"],
+    }, "call$1", null, 2, 0, null, 1702, [], "call"],
     $isFunction: true
   },
   _HashMap_addAll_closure: {
@@ -47835,7 +47891,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1699, [], "call"],
+    }, "call$1", null, 2, 0, null, 1702, [], "call"],
     $isFunction: true
   },
   _LinkedHashMap_addAll_closure: {
@@ -49447,7 +49503,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": "Closure:63;this_0",
     call$1: [function(each) {
       return this.this_0.$index(0, each);
-    }, "call$1", null, 2, 0, null, 1699, [], "call"],
+    }, "call$1", null, 2, 0, null, 1702, [], "call"],
     $isFunction: true
   },
   _JsonMap_addAll_closure: {
@@ -49715,7 +49771,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     static: {"^": "_Utf8Decoder__LIMITS"}
   },
   _Utf8Decoder_convert_scanOneByteCharacters: {
-    "^": "Closure:1700;endIndex_0",
+    "^": "Closure:1703;endIndex_0",
     call$2: function(units, from) {
       var to, t1, i, unit;
       to = this.endIndex_0;
@@ -49729,7 +49785,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   _Utf8Decoder_convert_addSingleBytes: {
-    "^": "Closure:1701;this_1,codeUnits_2,startIndex_3,endIndex_4",
+    "^": "Closure:1704;this_1,codeUnits_2,startIndex_3,endIndex_4",
     call$2: function(from, to) {
       var t1, t2, t3;
       t1 = from === 0 && to === J.get$length$asx(this.codeUnits_2);
@@ -49827,7 +49883,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   NoSuchMethodError_toString_closure: {
-    "^": "Closure:1685;box_0",
+    "^": "Closure:1689;box_0",
     call$2: function(key, value) {
       var t1 = this.box_0;
       if (t1.i_1 > 0)
@@ -49888,7 +49944,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     },
     add$1: [function(_, duration) {
       return P.DateTime$fromMillisecondsSinceEpoch(this.millisecondsSinceEpoch + duration.get$inMilliseconds(), this.isUtc);
-    }, "call$1", "get$add", 2, 0, 1702, 55, []],
+    }, "call$1", "get$add", 2, 0, 1705, 55, []],
     difference$1: function(other) {
       return P.Duration$(0, 0, 0, this.millisecondsSinceEpoch - other.get$millisecondsSinceEpoch(), 0, 0);
     },
@@ -50368,7 +50424,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     "^": ";",
     $eq: [function(_, other) {
       return this === other;
-    }, "call$1", "get$==", 2, 0, 979, 1703, [], "=="],
+    }, "call$1", "get$==", 2, 0, 979, 1706, [], "=="],
     get$hashCode: [function(_) {
       return H.Primitives_objectHashCode(this);
     }, null, null, 1, 0, 367, "hashCode"],
@@ -50377,7 +50433,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     }, "call$0", "get$toString", 0, 0, 782, "toString"],
     noSuchMethod$1: [function(_, invocation) {
       throw H.wrapException(P.NoSuchMethodError$(this, invocation.get$memberName(), invocation.get$positionalArguments(), invocation.get$namedArguments(), null));
-    }, "call$1", "get$noSuchMethod", 2, 0, 1704, 1676, [], "noSuchMethod"],
+    }, "call$1", "get$noSuchMethod", 2, 0, 1707, 1676, [], "noSuchMethod"],
     get$runtimeType: [function(_) {
       return new H.TypeImpl(H.getRuntimeTypeString(this), null);
     }, null, null, 1, 0, 12, "runtimeType"],
@@ -51329,7 +51385,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     $isFunction: true
   },
   Uri_parseIPv4Address_error: {
-    "^": "Closure:1705;",
+    "^": "Closure:1708;",
     call$1: function(msg) {
       throw H.wrapException(P.FormatException$("Illegal IPv4 address, " + msg, null, null));
     },
@@ -51344,11 +51400,11 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (t1.$lt($byte, 0) || t1.$gt($byte, 255))
         this.error_0.call$1("each part must be in the range of `0..255`");
       return $byte;
-    }, "call$1", null, 2, 0, null, 1706, [], "call"],
+    }, "call$1", null, 2, 0, null, 1709, [], "call"],
     $isFunction: true
   },
   Uri_parseIPv6Address_error: {
-    "^": "Closure:1707;host_0",
+    "^": "Closure:1710;host_0",
     call$2: function(msg, position) {
       throw H.wrapException(P.FormatException$("Illegal IPv6 address, " + msg, this.host_0, position));
     },
@@ -53492,7 +53548,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     add$1: [function(_, value) {
       this._element.appendChild(value);
       return value;
-    }, "call$1", "get$add", 2, 0, 1708, 100, []],
+    }, "call$1", "get$add", 2, 0, 1711, 100, []],
     get$iterator: function(_) {
       var t1 = this.toList$0(this);
       return H.setRuntimeTypeInfo(new H.ListIterator(t1, t1.length, 0, null), [H.getTypeArgumentByIndex(t1, 0)]);
@@ -53753,7 +53809,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       if (t1._state !== 0)
         H.throwExpression(P.StateError$("Future already completed"));
       t1._asyncComplete$1(stream);
-    }, "call$1", null, 2, 0, null, 1709, [], "call"],
+    }, "call$1", null, 2, 0, null, 1712, [], "call"],
     $isFunction: true
   },
   Navigator_getUserMedia_closure0: {
@@ -53773,7 +53829,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
     },
     add$1: [function(_, value) {
       this._this.appendChild(value);
-    }, "call$1", "get$add", 2, 0, 1710, 100, []],
+    }, "call$1", "get$add", 2, 0, 1713, 100, []],
     addAll$1: function(_, iterable) {
       var t1, t2, len, i;
       t1 = J.getInterceptor(iterable);
@@ -54266,7 +54322,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return;
     },
     onError$1: [function(_, handleError) {
-    }, "call$1", "get$onError", 2, 0, 1694],
+    }, "call$1", "get$onError", 2, 0, 1697],
     pause$1: function(_, resumeSignal) {
       if (this._target == null)
         return;
@@ -54309,7 +54365,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
       return H.computeSignature(function(T) {
         return {func: "void__Stream", void: true, args: [[P.Stream, T]]};
       }, this.$receiver, "_StreamPool");
-    }, 1709, []],
+    }, 1712, []],
     remove$1: function(_, stream) {
       var subscription = this._subscriptions.remove$1(0, stream);
       if (subscription != null)
@@ -56754,7 +56810,7 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
           if (piece.get$object().type !== $.get$Grid_emptyObject().type)
             this.matches_3.push(match);
       }
-    }, "call$1", null, 2, 0, null, 1711, [], "call"],
+    }, "call$1", null, 2, 0, null, 1714, [], "call"],
     $isFunction: true
   },
   Grid_getMatches___closure: {
@@ -56924,6 +56980,56 @@ init.mangledGlobalNames = {AUTO: "AUTO", AUTO_PREVENT_DEFAULT: "AUTO_PREVENT_DEF
   Unstable: {
     "^": "Object;"
   }
+}],
+["rikulo_device", "package:rikulo_gap/device.dart", , O, {
+  "^": "",
+  Device0: {
+    "^": "Object;_device",
+    get$version: function(_) {
+      return J.$index$asx(this._device, "version");
+    },
+    get$uuid: function() {
+      return J.$index$asx(this._device, "uuid");
+    },
+    uuid$0: function() {
+      return this.get$uuid().call$0();
+    },
+    Device$_$0: function() {
+      var t1 = J.$index$asx($.get$context(), "device");
+      this._device = t1;
+      if (t1 == null)
+        throw H.wrapException(P.StateError$("Device not ready."));
+    },
+    static: {Device__enableDevice: function() {
+        var cmpl = H.setRuntimeTypeInfo(new P._AsyncCompleter(P._Future$(null)), [null]);
+        C.HtmlDocument_methods.addEventListener$2(document, "deviceready", new O.Device__enableDevice_doWhenDeviceReady(cmpl));
+        return cmpl.future;
+      }}
+  },
+  "+Device": 0,
+  Device__enableDevice_doWhenDeviceReady: {
+    "^": "Closure:554;cmpl_0",
+    call$1: [function(_) {
+      var ex, st, t1, t2, exception;
+      try {
+        t1 = new O.Device0(null);
+        t1.Device$_$0();
+        $.device = t1;
+        t2 = this.cmpl_0.future;
+        if (t2._state !== 0)
+          H.throwExpression(P.StateError$("Future already completed"));
+        t2._asyncComplete$1(t1);
+      } catch (exception) {
+        t1 = H.unwrapException(exception);
+        ex = t1;
+        st = new H._StackTrace(exception, null);
+        this.cmpl_0.completeError$2(ex, st);
+      }
+
+    }, "call$1", null, 2, 0, null, 1691, [], "call"],
+    $isFunction: true
+  },
+  "^": "device@"
 }],
 ["tweenengine", "package:alienzed/tween/tweenengine.dart", , B, {
   "^": "",
@@ -57532,8 +57638,8 @@ $$ = null;
   _.$isSprite = TRUE;
   _.$isDisplayObjectContainer = TRUE;
   _.$isObject = TRUE;
-  _ = R.TextStyle0;
-  _.$isTextStyle0 = TRUE;
+  _ = R.TextStyle;
+  _.$isTextStyle = TRUE;
   _.$isObject = TRUE;
   _ = R.TimerEvent;
   _.$isTimerEvent = TRUE;
@@ -58895,6 +59001,7 @@ C.C__JSRandom = new P._JSRandom();
 C.C__RootZone = new P._RootZone();
 C.Duration_0 = new P.Duration(0);
 C.Duration_10000 = new P.Duration(10000);
+C.Duration_1000000 = new P.Duration(1000000);
 C.EventStreamProvider_blur = H.setRuntimeTypeInfo(new W.EventStreamProvider("blur"), [W.Event]);
 C.EventStreamProvider_canplaythrough = H.setRuntimeTypeInfo(new W.EventStreamProvider("canplaythrough"), [W.Event]);
 C.EventStreamProvider_complete = H.setRuntimeTypeInfo(new W.EventStreamProvider("complete"), [W.Event]);
@@ -59180,6 +59287,7 @@ $.Device__isIE = null;
 $.Device__isFirefox = null;
 $.Device__isWebKit = null;
 $.Device__cachedCssPrefix = null;
+$.device = null;
 $.Back__param_s = 1.70158;
 $.interceptedNames = ["$add", "$and", "$div", "$eq", "$ge", "$gt", "$index", "$indexSet", "$le", "$lt", "$mod", "$mul", "$negate", "$not", "$or", "$shl", "$shr", "$sub", "$tdiv", "$xor", "_checkIndex$2", "_checkSublistArguments$3", "_clearChildren$0", "_decodeAudioData$3", "_ensureRequestAnimationFrame$0", "_getPropertyValueHelper$1", "_getUserMedia$3", "_invalidIndex$2", "_js$_checkIndex$1", "_rangeCheck$2", "_replaceChild$2", "_requestAnimationFrame$1", "_setPropertyHelper$3", "_setRangeFast$4", "_shlPositive$1", "_shrOtherPositive$1", "_shrReceiverPositive$1", "_tdivFast$1", "a$1", "abs$0", "activeTexture$1", "add$1", "add$2", "add$3", "add$4", "add$5", "addAll$1", "addEventListener$2", "addEventListener$3", "addKey$1", "allMatches$1", "allMatches$2", "any$1", "append$1", "arc$5", "arc$6", "arcTo$5", "attachShader$2", "audio$1", "audio$2", "audio$3", "audio$4", "beginPath$0", "bezierCurveTo$6", "bindBuffer$2", "bindFramebuffer$2", "bindRenderbuffer$2", "bindTexture$2", "blendFunc$2", "blur$0", "body$1", "body$2", "body$3", "bufferData$3", "bufferSubData$3", "button$0", "button$1", "button$2", "button$3", "button$4", "button$5", "button$6", "button$7", "button$8", "button$9", "ceil$0", "clamp$2", "clear$0", "clear$1", "clearColor$4", "clearRect$4", "click$0", "clip$0", "clip$1", "clone$0", "clone$1", "close$0", "closePath$0", "codeUnitAt$1", "colorMask$4", "compareTo$1", "compileShader$1", "complete$0", "complete$1", "connectNode$1", "connectNode$3", "contains$1", "contains$2", "containsKey$1", "containsPoint$2", "createBuffer$0", "createBuffer$3", "createBufferSource$0", "createFramebuffer$0", "createGain$0", "createPattern$2", "createPatternFromImage$2", "createProgram$0", "createRenderbuffer$0", "createShader$1", "createTexture$0", "decodeAudioData$1", "defaultValue$1", "deleteBuffer$1", "deleteFramebuffer$1", "deleteProgram$1", "deleteTexture$1", "deltaX$0", "deltaY$0", "deltaZ$0", "disable$1", "disableVertexAttribArray$1", "dispatchEvent$1", "drawElements$4", "drawImage$3", "drawImageScaledFromSource$9", "elementAt$1", "enable$1", "enable$2", "enable$3", "enable$4", "enable$5", "enableVertexAttribArray$1", "endsWith$1", "fill$0", "fill$1", "fill$3", "fill$4", "fill$5", "fill$6", "fillRect$4", "fillText$3", "fillText$4", "filter$1", "filter$2", "firstWhere$2$orElse", "floor$0", "flush$0", "fold$2", "forEach$1", "forEach$2", "forEach$5", "forEach$6", "framebufferRenderbuffer$4", "framebufferTexture2D$5", "get$LINEAR", "get$NEAREST", "get$NONE", "get$ONE", "get$TEXTURE", "get$VERSION", "get$ZERO", "get$_created", "get$_key", "get$a", "get$acceleration", "get$add", "get$alpha", "get$altKey", "get$animation", "get$any", "get$aspectRatio", "get$attributes", "get$autoplay", "get$backgroundColor", "get$blur", "get$body", "get$border", "get$bottom", "get$bottomRight", "get$buffer", "get$button", "get$canvas", "get$changedTouches", "get$charCode", "get$children", "get$clear", "get$click", "get$client", "get$clientLeft", "get$clientTop", "get$clip", "get$color", "get$columnWidth", "get$columns", "get$complete", "get$content", "get$context", "get$crossOrigin", "get$ctrlKey", "get$currentTime", "get$cursor", "get$data", "get$dataset", "get$defaultValue", "get$deltaX", "get$deltaY", "get$deltaZ", "get$destination", "get$disabled", "get$draggable", "get$duration", "get$dx", "get$dy", "get$enable", "get$error", "get$fill", "get$fillStyle", "get$filter", "get$font", "get$fontSize", "get$fontWeight", "get$fonts", "get$format", "get$gain", "get$getUserMedia", "get$globalAlpha", "get$globalCompositeOperation", "get$hashCode", "get$height", "get$host", "get$id", "get$identifier", "get$imageSmoothingEnabled", "get$index", "get$isEmpty", "get$isNaN", "get$isNegative", "get$isNotEmpty", "get$iterator", "get$key", "get$keyCode", "get$keys", "get$last", "get$layer", "get$left", "get$length", "get$lineCap", "get$lineHeight", "get$lineJoin", "get$lineWidth", "get$load", "get$loaded", "get$localStorage", "get$loop", "get$map", "get$margin", "get$mask", "get$maskPosition", "get$maxHeight", "get$maxWidth", "get$minHeight", "get$minWidth", "get$mode", "get$movement", "get$muted", "get$name", "get$nodes", "get$offset", "get$on", "get$onAnimationStart", "get$onBlur", "get$onComplete", "get$onDragStart", "get$onError", "get$onFocus", "get$onLoad", "get$onLoadStart", "get$onMouseDown", "get$onMouseMove", "get$onMouseOut", "get$onMouseOver", "get$onMouseUp", "get$onMouseWheel", "get$onPause", "get$onPlay", "get$onProgress", "get$onReadyStateChange", "get$onTouchCancel", "get$onTouchEnd", "get$onTouchEnter", "get$onTouchLeave", "get$onTouchMove", "get$onTouchStart", "get$onWebGlContextLost", "get$onWebGlContextRestored", "get$options", "get$order", "get$orientation", "get$padding", "get$page", "get$parent", "get$parentNode", "get$paused", "get$points", "get$port", "get$position", "get$preload", "get$preventDefault", "get$r", "get$readyState", "get$requestFullscreen", "get$resize", "get$response", "get$responseText", "get$responseType", "get$responseXml", "get$reversed", "get$right", "get$rotate", "get$rows", "get$runtimeType", "get$scale", "get$screen", "get$screenX", "get$screenY", "get$scrollX", "get$scrollY", "get$shadowBlur", "get$shadowColor", "get$shadowOffsetX", "get$shadowOffsetY", "get$shiftKey", "get$sign", "get$size", "get$source", "get$src", "get$start", "get$state", "get$status", "get$step", "get$stop", "get$stroke", "get$strokeStyle", "get$style", "get$target", "get$text", "get$textBaseline", "get$th", "get$top", "get$topLeft", "get$total", "get$transform", "get$trim", "get$type", "get$url", "get$value", "get$values", "get$version", "get$view", "get$volume", "get$width", "get$wordWrap", "get$wrap", "get$x", "get$x1", "get$x2", "get$y", "get$y1", "get$y2", "get$z", "getAttribLocation$2", "getAttribute$1", "getBoundingClientRect$0", "getContext$1", "getContext$2", "getContext3d$0", "getContext3d$6$alpha$antialias$depth$premultipliedAlpha$preserveDrawingBuffer$stencil", "getElementsByTagName$1", "getImageData$4", "getProgramParameter$2", "getPropertyValue$1", "getRange$2", "getShaderInfoLog$1", "getShaderParameter$2", "getUniformLocation$2", "getUserMedia$0", "getUserMedia$2$audio$video", "hash$1", "indexOf$1", "indexOf$2", "insert$1", "insert$2", "intersection$1", "intersection$2", "intersects$1", "intersects$2", "intersects$3", "intersects$4", "join$1", "key$3", "key$4", "lineTo$2", "lineWidth$1", "linkProgram$1", "load$0", "load$1", "loop$0", "loop$3", "map$1", "matchAsPrefix$2", "measureText$1", "moveTo$2", "noSuchMethod$1", "noteGrainOn$3", "noteOff$1", "noteOn$1", "offset$2", "onError$0", "onError$1", "onMouseDown$1", "onMouseMove$1", "onMouseOut$1", "onMouseOver$1", "onMouseUp$1", "onMouseWheel$1", "onTouchCancel$1", "onTouchEnd$1", "onTouchEnter$1", "onTouchLeave$1", "onTouchMove$1", "onTouchStart$1", "open$3$async", "open$5$async$password$user", "order$0", "overrideMimeType$1", "padLeft$2", "parseFromString$2", "pause$0", "pause$1", "paused$0", "pixelStorei$2", "play$0", "play$1", "play$2", "play$3", "play$4", "play$5", "preload$0", "preventDefault$0", "putIfAbsent$2", "putImageData$3", "putImageData$7", "quadraticCurveTo$4", "rect$4", "rect$5", "remainder$1", "remove$0", "remove$1", "remove$2", "remove$3", "removeAt$1", "removeEventListener$2", "removeEventListener$3", "removeLast$0", "removeRange$2", "renderbufferStorage$4", "repeat$1", "repeat$4", "replace$2", "replace$6", "replace$7", "replaceAll$2", "replaceFirst$2", "replaceWith$1", "requestAnimationFrame$1", "requestFullscreen$0", "requestPointerLock$0", "reset$0", "reset$1", "reset$2", "reset$3", "reset$4", "reset$5", "reset$6", "reset$7", "resize$2", "resize$3", "restore$0", "rotate$1", "rotate$3", "rotate$4", "rotate$5", "round$0", "roundToDouble$0", "save$0", "scale$2", "scrollTo$2", "scrollTo$3", "send$0", "send$1", "send$2", "set$LINEAR", "set$NEAREST", "set$NONE", "set$ONE", "set$TEXTURE", "set$VERSION", "set$ZERO", "set$_created", "set$_key", "set$a", "set$acceleration", "set$add", "set$alpha", "set$altKey", "set$animation", "set$any", "set$aspectRatio", "set$attributes", "set$autoplay", "set$backgroundColor", "set$blur", "set$body", "set$bottom", "set$bottomRight", "set$buffer", "set$button", "set$canvas", "set$changedTouches", "set$charCode", "set$children", "set$click", "set$color", "set$columnWidth", "set$columns", "set$complete", "set$content", "set$context", "set$crossOrigin", "set$ctrlKey", "set$currentTime", "set$cursor", "set$data", "set$defaultValue", "set$deltaZ", "set$destination", "set$disabled", "set$display", "set$draggable", "set$duration", "set$dx", "set$dy", "set$enable", "set$error", "set$fill", "set$fillStyle", "set$font", "set$fontSize", "set$fontWeight", "set$fonts", "set$format", "set$gain", "set$getUserMedia", "set$globalAlpha", "set$globalCompositeOperation", "set$height", "set$id", "set$identifier", "set$imageRendering", "set$imageSmoothingEnabled", "set$index", "set$key", "set$keyCode", "set$last", "set$layer", "set$left", "set$length", "set$lineCap", "set$lineHeight", "set$lineJoin", "set$lineWidth", "set$load", "set$loaded", "set$localStorage", "set$loop", "set$map", "set$margin", "set$marginLeft", "set$marginTop", "set$mask", "set$maskPosition", "set$maxHeight", "set$maxWidth", "set$minHeight", "set$minWidth", "set$mode", "set$muted", "set$name", "set$nodes", "set$offset", "set$on", "set$onAnimationStart", "set$onBlur", "set$onComplete", "set$onDragStart", "set$onFocus", "set$onLoadStart", "set$onPause", "set$onPlay", "set$onProgress", "set$options", "set$orientation", "set$overflow", "set$padding", "set$page", "set$parent", "set$parentNode", "set$paused", "set$points", "set$position", "set$preload", "set$preventDefault", "set$r", "set$readyState", "set$requestFullscreen", "set$responseText", "set$responseType", "set$responseXml", "set$reversed", "set$right", "set$rotate", "set$rows", "set$scale", "set$screen", "set$screenX", "set$screenY", "set$scrollX", "set$scrollY", "set$shadowBlur", "set$shadowColor", "set$shadowOffsetX", "set$shadowOffsetY", "set$shiftKey", "set$size", "set$source", "set$src", "set$start", "set$state", "set$status", "set$step", "set$stop", "set$stroke", "set$strokeStyle", "set$style", "set$tapHighlightColor", "set$target", "set$text", "set$textBaseline", "set$th", "set$top", "set$topLeft", "set$total", "set$trim", "set$type", "set$url", "set$userSelect", "set$value", "set$values", "set$version", "set$view", "set$volume", "set$width", "set$wordWrap", "set$wrap", "set$x", "set$x1", "set$x2", "set$y", "set$y1", "set$y2", "set$z", "setProperty$3", "setRange$4", "setTransform$6", "shaderSource$2", "shuffle$4", "shuffle$5", "size$0", "size$1", "sort$0", "sort$1", "sort$2", "split$0", "split$1", "start$0", "start$1", "start$2", "start$3", "start$4", "start$5", "startsWith$1", "startsWith$2", "stencilFunc$3", "stencilOp$3", "step$0", "stop$0", "stop$1", "stop$2", "stroke$0", "strokeRect$4", "strokeText$3", "strokeText$4", "sublist$2", "substring$1", "substring$2", "take$1", "texImage2D$6", "texImage2D$9", "texImage2DTyped$9", "texParameteri$3", "text$2", "text$3", "text$4", "text$5", "toDataUrl$0", "toDataUrl$2", "toDouble$0", "toInt$0", "toList$0", "toList$1$growable", "toLowerCase$0", "toRadixString$1", "toString$0", "toStringAsFixed$1", "toUpperCase$0", "transform$6", "translate$2", "trim$0", "trim$1", "uniform1f$2", "uniform1i$2", "uniform2f$3", "uniform2fv$2", "uniform2i$3", "uniform3f$4", "uniform3fv$2", "uniform3i$4", "uniform4f$5", "uniform4fv$2", "uniform4i$5", "uniformMatrix2fv$3", "uniformMatrix3fv$3", "uniformMatrix4fv$3", "upload$0", "useProgram$1", "vertexAttribPointer$6", "viewport$4", "where$1", "wordWrap$1", "wrap$1", "wrap$2", "wrap$3", "wrap$4", "wrap$5"];
 Isolate.$lazy($, "IdentityMatrix", "IdentityMatrix", "get$IdentityMatrix", function() {
@@ -59422,6 +59530,9 @@ Isolate.$lazy($, "_toStringVisiting", "IterableBase__toStringVisiting", "get$Ite
 });
 Isolate.$lazy($, "webkitEvents", "ElementEvents_webkitEvents", "get$ElementEvents_webkitEvents", function() {
   return P.LinkedHashMap_LinkedHashMap$_literal(["animationend", "webkitAnimationEnd", "animationiteration", "webkitAnimationIteration", "animationstart", "webkitAnimationStart", "fullscreenchange", "webkitfullscreenchange", "fullscreenerror", "webkitfullscreenerror", "keyadded", "webkitkeyadded", "keyerror", "webkitkeyerror", "keymessage", "webkitkeymessage", "needkey", "webkitneedkey", "pointerlockchange", "webkitpointerlockchange", "pointerlockerror", "webkitpointerlockerror", "resourcetimingbufferfull", "webkitresourcetimingbufferfull", "transitionend", "webkitTransitionEnd", "speechchange", "webkitSpeechChange"], null, null);
+});
+Isolate.$lazy($, "context", "context", "get$context", function() {
+  return P._wrapToDart(self);
 });
 Isolate.$lazy($, "_DART_OBJECT_PROPERTY_NAME", "_DART_OBJECT_PROPERTY_NAME", "get$_DART_OBJECT_PROPERTY_NAME", function() {
   return init.getIsolateTag("_$dart_dartObject");
@@ -59762,7 +59873,7 @@ C.scaleModes_0,
 {func: "dynamic__BaseTexture_RenderingContext", args: [M.BaseTexture, P.RenderingContext]},
 {func: "ChartData_", ret: M.ChartData},
 {func: "Char_", ret: M.Char},
-{func: "dynamic__String__TextStyle", args: [P.String], opt: [M.TextStyle]},
+{func: "dynamic__String__TextStyle", args: [P.String], opt: [M.TextStyle0]},
 "style",
 {func: "dynamic___String_String_String_String_num_num", named: {align: P.String, fill: P.String, font: P.String, stroke: P.String, strokeThickness: P.num, tint: P.num}},
 "black",
@@ -59775,7 +59886,7 @@ C.scaleModes_0,
 "stroke",
 "strokeThickness",
 "tint",
-{func: "dynamic__String_TextStyle", args: [P.String, M.TextStyle]},
+{func: "dynamic__String_TextStyle", args: [P.String, M.TextStyle0]},
 {func: "dynamic___dynamic_scaleModes", opt: [null, M.scaleModes]},
 "source",
 {func: "BaseTexture__String_bool_scaleModes", ret: M.BaseTexture, args: [P.String, P.bool, M.scaleModes]},
@@ -59903,7 +60014,7 @@ C.scaleModes_0,
 "xOffset",
 "yOffset",
 {func: "dynamic__Game_dynamic_dynamic_dynamic", args: [R.Game, null, null, null]},
-{func: "dynamic__Game__num_num_String_TextStyle", args: [R.Game], opt: [P.num, P.num, P.String, R.TextStyle0]},
+{func: "dynamic__Game__num_num_String_TextStyle", args: [R.Game], opt: [P.num, P.num, P.String, R.TextStyle]},
 {func: "dynamic__Game__num_num_num_num_dynamic_dynamic", args: [R.Game], opt: [P.num, P.num, P.num, P.num, null, null]},
 256,
 "_diameter",
@@ -60517,9 +60628,9 @@ M.StripShader,
 {func: "dynamic__DisplayInterface__Point_dynamic", args: [M.DisplayInterface], opt: [M.Point0, null]},
 "projection",
 {func: "dynamic__int_int", args: [P.$int, P.$int]},
-M.TextStyle,
-{func: "TextStyle_", ret: M.TextStyle},
-{func: "dynamic__TextStyle", args: [M.TextStyle]},
+M.TextStyle0,
+{func: "TextStyle_", ret: M.TextStyle0},
+{func: "dynamic__TextStyle", args: [M.TextStyle0]},
 {func: "CanvasElement_", ret: W.CanvasElement},
 {func: "CanvasRenderingContext2D_", ret: W.CanvasRenderingContext2D},
 {func: "dynamic__Object", args: [P.Object]},
@@ -60719,7 +60830,7 @@ P.Uint32List,
 {func: "dynamic__int_int_num__String", args: [P.$int, P.$int, P.num], opt: [P.String]},
 "pixel",
 R.InputHandler,
-{func: "dynamic___TextStyle", opt: [M.TextStyle]},
+{func: "dynamic___TextStyle", opt: [M.TextStyle0]},
 M.BitmapText,
 R.Sound,
 [R.Signal, {func: "void__GameObject_Pointer", void: true, args: [R.GameObject, R.Pointer]}],
@@ -60754,7 +60865,7 @@ R.SpriteInterface,
 {func: "Group__Group__String_bool", ret: R.Group, args: [R.Group], opt: [P.String, P.bool]},
 {func: "Sound__String__num_bool_bool", ret: R.Sound, args: [P.String], opt: [P.num, P.bool, P.bool]},
 {func: "TileSprite__num_num_num_num_dynamic_dynamic", ret: R.TileSprite, args: [P.num, P.num, P.num, P.num, null, null]},
-{func: "Text__num_num_String_TextStyle", ret: R.Text0, args: [P.num, P.num, P.String, R.TextStyle0]},
+{func: "Text__num_num_String_TextStyle", ret: R.Text0, args: [P.num, P.num, P.String, R.TextStyle]},
 {func: "Button___num_num_String_Function_dynamic_dynamic_dynamic_dynamic", ret: R.Button, opt: [P.num, P.num, P.String, P.Function, null, null, null, null]},
 {func: "Graphics___num_num0", ret: R.Graphics, opt: [P.num, P.num]},
 {func: "Emitter___num_num_num", ret: R.Emitter, opt: [P.num, P.num, P.num]},
@@ -60773,7 +60884,7 @@ R.SpriteInterface,
 {func: "Group___Group_String_bool", ret: R.Group, opt: [R.Group, P.String, P.bool]},
 {func: "Sound__String__double_bool_bool", ret: R.Sound, args: [P.String], opt: [P.$double, P.bool, P.bool]},
 {func: "TileSprite__int_int_int_int_String__dynamic_Group", ret: R.TileSprite, args: [P.$int, P.$int, P.$int, P.$int, P.String], opt: [null, R.Group]},
-{func: "Text__int_int_String_TextStyle__Group", ret: R.Text0, args: [P.$int, P.$int, P.String, R.TextStyle0], opt: [R.Group]},
+{func: "Text__int_int_String_TextStyle__Group", ret: R.Text0, args: [P.$int, P.$int, P.String, R.TextStyle], opt: [R.Group]},
 {func: "Button___num_num_String_Function_dynamic_dynamic_dynamic_dynamic_Group", ret: R.Button, opt: [P.num, P.num, P.String, P.Function, null, null, null, null, R.Group]},
 {func: "Graphics___int_int_Group", ret: R.Graphics, opt: [P.$int, P.$int, R.Group]},
 {func: "Emitter___int_int_int", ret: R.Emitter, opt: [P.$int, P.$int, P.$int]},
@@ -60817,11 +60928,11 @@ R.RenderTexture,
 {func: "Sprite__num_num__num", ret: R.Sprite0, args: [P.num, P.num], opt: [P.num]},
 {func: "dynamic__String__num_bool_bool", args: [P.String], opt: [P.num, P.bool, P.bool]},
 {func: "bool__GameObject", ret: P.bool, args: [R.GameObject]},
-R.TextStyle0,
+R.TextStyle,
 {func: "dynamic___num_num_String_num", opt: [P.num, P.num, P.String, P.num]},
 "rgba(0,0,0,0)",
 "blur",
-{func: "dynamic__TextStyle0", args: [R.TextStyle0]},
+{func: "dynamic__TextStyle0", args: [R.TextStyle]},
 M.Text,
 {func: "Animation__String_num__bool_bool", ret: R.Animation, args: [P.String, P.num], opt: [P.bool, P.bool]},
 M.TilingSprite,
@@ -61288,10 +61399,14 @@ R.Tween,
 {func: "bool__Pattern__int", ret: P.bool, args: [P.Pattern], opt: [P.$int]},
 H.TearOffClosure,
 {func: "dynamic__dynamic_String", args: [null, P.String]},
+O.Device0,
 "flag",
 {func: "void__Locus", void: true, args: [M.Locus]},
 P.Random,
 "matchingPiece",
+"device",
+"ex",
+"st",
 {func: "dynamic__Symbol_dynamic", args: [P.Symbol0, null]},
 {func: "TypeMirror__int", ret: P.TypeMirror, args: [P.$int]},
 "_",
@@ -61300,7 +61415,6 @@ P.Random,
 {func: "void___dynamic", void: true, opt: [null]},
 "ignored",
 {func: "Future__Object", ret: [P.Future, P.bool], args: [P.Object]},
-"st",
 {func: "void__Function", void: true, args: [P.Function]},
 {func: "void___DelayedEvent", void: true, args: [P._DelayedEvent]},
 {func: "dynamic__dynamic_StackTrace", args: [null, P.StackTrace]},

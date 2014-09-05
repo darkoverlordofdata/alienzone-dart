@@ -1,8 +1,17 @@
-/.idea
-/node_modules
-/gh-pages
-/build
-web/main.dart.js
-web/main.dart.js.deps
-web/main.dart.js.map
-web/main.dart.precompiled.js
+# Created by .gitignore support plugin (hsz.mobi)
+### Dart template
+# Don’t commit the following directories created by pub.
+build/
+packages/
+
+# Or the files created by dart2js.
+*.dart.js
+*.dart.precompiled.js
+*.js_
+*.js.deps
+*.js.map
+
+# Include when developing application packages.
+pubspec.lock
+old/
+#.idea/

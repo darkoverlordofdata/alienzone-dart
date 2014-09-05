@@ -18,23 +18,23 @@
 library alienzed;
 
 
-import "dart:async";
-import "dart:html";
+import 'dart:html';
 import 'dart:math';
 import 'dart:js';
+import 'dart:async' as async;
 
-import "package:alienzed/phaser.dart";
+import 'package:play_phaser/phaser.dart';
 import 'package:rikulo_gap/device.dart' as cordova;
+import 'package:match3/match3.dart';
 
-import 'match3/match3.dart';
-part "alienzed/Alienzed.dart";
-part "alienzed/Gem.dart";
-part "alienzed/GemGroup.dart";
-part "alienzed/Start.dart";
-part "alienzed/Intro.dart";
-part "alienzed/Assets.dart";
-part "alienzed/Levels.dart";
-part "alienzed/GameOver.dart";
+part 'alienzed/Alienzed.dart';
+part 'alienzed/Gem.dart';
+part 'alienzed/GemGroup.dart';
+part 'alienzed/Start.dart';
+part 'alienzed/Intro.dart';
+part 'alienzed/Assets.dart';
+part 'alienzed/Levels.dart';
+part 'alienzed/GameOver.dart';
 
 
 

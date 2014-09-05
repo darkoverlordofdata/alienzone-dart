@@ -6,9 +6,12 @@ author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
   browser: ">=0.10.0+2 <0.11.0"
+  play_phaser: any
   play_pixi: any
   rikulo_gap:
     git: git://github.com/rikulo/gap.git
+  match3:
+    git: git://github.com/darkoverlordofdata/match3.git
 
 transformers:
 - $dart2js:

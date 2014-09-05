@@ -119,7 +119,7 @@ class Levels extends State {
       // For each match found
       grid.forEachMatch((matchingPieces, type) {
         // Add to score
-        addToScore((Alienzed.GEMTYPES.indexOf(type) + 1) * matchingPieces.length);
+        addToScore((Alienzed.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
         // For each match take the first piece to upgrade it
         piecesToUpgrade.add({
           'piece'   : matchingPieces[0],
@@ -129,7 +129,7 @@ class Levels extends State {
           // Destroy each piece
           add.tween(matchingPiece.object.sprite)
           .repeat(6)
-          .to({'alpha':0}, 75, Easing.Linear.None, true, 0, 0, true)
+          .to({'alpha':0}, 150, Easing.Linear.None, true, 0, 0, true)
           .onComplete.add((Sprite s) => s.destroy());
         });
       });
@@ -206,10 +206,23 @@ class Levels extends State {
    *
    * return none
    */
-  addToScore(points) {
+  addToScore(int points, String color, int x, int y) {
+
+    int speed = 1000;
+    var dur = const Duration(milliseconds: 1000);
+    var scoreStyle = new TextStyle(font: "bold 40px Courier New, Courier",fill: color, align: "center");
+
+
     score += points;
     text.text = "Score: $score";
     text.updateText();
+
+    Text popup = add.text(150, 300, "$points", scoreStyle);
+    add.tween(popup)
+    .to({'alpha': 1}, speed*0.75, Easing.Linear.None, true)
+    .to({'alpha': 0}, speed*0.25, Easing.Linear.None, true);
+
+    new async.Timer(dur, ()=> world.remove(popup));
   }
 
   /**

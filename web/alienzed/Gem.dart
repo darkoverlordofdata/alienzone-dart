@@ -96,7 +96,7 @@ class Gem extends MatchObject {
     };
 
     level.add.tween(sprite)
-    .to(point, 500, Easing.Bounce.Out, true, 0, 0, false)
+    .to(point, 750, Easing.Bounce.Out, true, 0, 0, false)
     .onComplete.add(next);
   }
 }

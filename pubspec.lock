@@ -5,6 +5,17 @@ packages:
     description: browser
     source: hosted
     version: "0.10.0+2"
+  match3:
+    description:
+      ref: null
+      resolved-ref: "1333b1b9cfa49fef42b67793382e4bdea89e1d83"
+      url: "git://github.com/darkoverlordofdata/match3.git"
+    source: git
+    version: "0.0.1"
+  play_phaser:
+    description: play_phaser
+    source: hosted
+    version: "0.10.2"
   play_pixi:
     description: play_pixi
     source: hosted

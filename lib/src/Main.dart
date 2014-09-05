@@ -21,8 +21,23 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import "package:alienzed/alienzed.dart" as alienzed show start;
+part of alienzed;
 
-void main() {
-  alienzed.start();
+void start() {
+  if (context['cordova'] != null) {
+    cordova.Device.init()
+    .then((device)=> startGame(device))
+    .catchError((ex, st) {
+      print(ex);
+      print(st);
+    });
+  }
+  else startGame(null);
+}
+
+
+void startGame(device) {
+  querySelector('#logo').style.display = 'none';
+  querySelector('body').style.backgroundColor = 'black';
+  Game game = new Alienzed(device);
 }

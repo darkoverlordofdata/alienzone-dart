@@ -21,8 +21,23 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import "package:alienzed/alienzed.dart" as alienzed show start;
+library alienzed;
 
-void main() {
-  alienzed.start();
-}
+import 'dart:html';
+import 'dart:math';
+import 'dart:js';
+import 'dart:async' as async;
+
+import 'package:rikulo_gap/device.dart' as cordova;
+import 'package:play_phaser/phaser.dart';
+import 'package:match3/match3.dart';
+
+part 'src/Alienzed.dart';
+part 'src/Gem.dart';
+part 'src/GemGroup.dart';
+part 'src/Start.dart';
+part 'src/Intro.dart';
+part 'src/Assets.dart';
+part 'src/Levels.dart';
+part 'src/GameOver.dart';
+part 'src/Main.dart';

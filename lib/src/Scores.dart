@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| Levels.dart
+#| Scores.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -17,33 +17,35 @@
 */
 part of alienzed;
 
-class Intro extends State {
+class Scores extends State {
+
+  String text = "High Scores";
+
+  var style = new TextStyle(font: "bold 20px Acme", fill: "#000");
+  Sprite label;
 
   /**
-   * Levels
+   * Phaser.State::create
+   *
+   * return	Nothing
    */
-  var level = 1;
-
   create() {
-    add // ui components
-      ..sprite(0, 0, 'splashScreen')
-      ..button(140, 200, 'playButton', startGame, this)
-      ..button(140, 240, 'creditsButton', showCredits, this)
-      ..button(140, 280, 'scoreButton', showScores, this);
+    
+    add
+      ..sprite(0, 0, 'background')
+      ..sprite(10, 10, 'icon');
 
-  }
+    label = add.sprite(15, 125, 'scores');
 
+    add
+      ..text(120, 130, text, style)
+      ..button(game.width / 2 - 38, game.height-45, 'backButton', goBack, this);
 
-  startGame(source, input, flag) {
-    state.start("Levels", true, false);
-  }
+    label.alpha = 0.5;
+}
 
-  showCredits(source, input, flag) {
-    state.start("Credits", true, false);
-  }
-
-  showScores(source, input, flag) {
-    state.start("Scores", true, false);
+  goBack(source, input, flag) {
+    state.start('Intro', true, false);
   }
 
 

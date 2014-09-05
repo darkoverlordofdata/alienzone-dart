@@ -32,8 +32,15 @@ class Assets extends State {
       //  and then the remaining resources
       ..image('background',   'images/background.png')
       ..image('board',        'images/board.png')
+      ..image('icon',         'images/d16a.png')
+      ..image('label',        'images/label.png')
+      ..image('scores',       'images/scores.png')
       //  ui buttons
-      ..image('startButton',  'images/start_button.png')
+      //..image('startButton',  'images/start_button.png')8fc9fb - da70f6
+      ..image('playButton',   'images/buttons/play1.png')
+      ..image('scoreButton',  'images/buttons/score1.png')
+      ..image('creditsButton','images/buttons/credits1.png')
+      ..image('backButton',   'images/buttons/back1.png')
       ..image('arrow_right',  'images/arrows/right.png')
       ..image('arrow_left',   'images/arrows/left.png')
       ..image('arrow_down',   'images/arrows/down.png')

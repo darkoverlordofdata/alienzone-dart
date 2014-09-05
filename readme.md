@@ -14,6 +14,9 @@
     * dart language version
     * cordova based apk
     
+    
+Game inspired by the demo at:
+(http://hugeen.com/2013/05/16/introduction-a-la-creation-dun-jeu-html5-avec-createjs/#more-245)
 
 # MIT License
 

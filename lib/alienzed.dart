@@ -37,6 +37,8 @@ part 'src/Gem.dart';
 part 'src/GemGroup.dart';
 part 'src/Start.dart';
 part 'src/Intro.dart';
+part 'src/Credits.dart';
+part 'src/Scores.dart';
 part 'src/Assets.dart';
 part 'src/Levels.dart';
 part 'src/GameOver.dart';

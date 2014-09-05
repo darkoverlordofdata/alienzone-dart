@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| alienzed.coffee
+#| alienzed.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -50,6 +50,8 @@ class Alienzed extends Game {
       ..add('Assets',     new Assets())
       ..add('Intro',      new Intro())
       ..add('Levels',     new Levels())
+      ..add('Credits',    new Credits())
+      ..add('Scores',     new Scores())
       ..add('GameOver',   new GameOver())
       ..start('Start');
   }

@@ -1,5 +1,5 @@
 /*+--------------------------------------------------------------------+
-#| Level1.coffee
+#| Level1.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -57,11 +57,12 @@ class Levels extends State {
 
     newGemGroup();
     add // ui components
-      ..button(  0, 420, 'arrow_left',   leftButton,  this)
-      ..button( 50, 420, 'arrow_down',   dropButton,  this)
-      ..button(100, 420, 'arrow_right',  rightButton, this)
-      ..button(210, 420, 'arrow_lrot',   lrotButton,  this)
-      ..button(260, 420, 'arrow_rrot',   rrotButton,  this);
+      ..button(260,  20, 'backButton',  goBack,       this)
+      ..button(  0, 420, 'arrow_left',  leftButton,   this)
+      ..button( 50, 420, 'arrow_down',  dropButton,   this)
+      ..button(100, 420, 'arrow_right', rightButton,  this)
+      ..button(210, 420, 'arrow_lrot',  lrotButton,   this)
+      ..button(260, 420, 'arrow_rrot',  rrotButton,   this);
   }
   
   /**
@@ -91,6 +92,9 @@ class Levels extends State {
     gemGroup = null;
   }
 
+  goBack(source, input, flag) {
+    state.start('Intro', true, false);
+  }
 
   /**
    * New Gem Group

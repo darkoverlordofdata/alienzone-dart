@@ -19,13 +19,29 @@ part of alienzed;
 
 class Scores extends State {
 
+  /**
+   * == Scores ==
+   *   * Show the splash screen
+   *   * Show the scores
+   */
+
   String text = "High Scores";
 
   var style = new TextStyle(font: "bold 20px Acme", fill: "#000");
   Sprite label;
+  Config config;
 
   /**
-   * Phaser.State::create
+   * State::init
+   *
+   * return	Nothing
+   */
+  init(options) {
+    config = options['config'];
+  }
+
+  /**
+   * State::create
    *
    * return	Nothing
    */
@@ -44,8 +60,13 @@ class Scores extends State {
     label.alpha = 0.5;
 }
 
+  /**
+   * Back
+   *
+   * return	Nothing
+   */
   goBack(source, input, flag) {
-    state.start('Intro', true, false);
+    state.start('Menu', true, false, {'config': config});
   }
 
 

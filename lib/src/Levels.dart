@@ -35,6 +35,16 @@ class Levels extends State {
   GemGroup gemGroup;
   int score = 0;
 
+  Config config;
+
+  /*
+   * State::init
+   *
+   * return	Nothing
+   */
+  init(options) {
+    config = options['config'];
+  }
   /**
    * == Create the game level
    *   * set the background and game board
@@ -93,7 +103,7 @@ class Levels extends State {
   }
 
   goBack(source, input, flag) {
-    state.start('Intro', true, false);
+    state.start('Menu', true, false, {'config': config});
   }
 
   /**
@@ -235,7 +245,7 @@ class Levels extends State {
    * return none
    */
   gameOver() {
-    state.start("GameOver", false, false);
+    state.start("GameOver", false, false, {'config': config});
   }
 
 }

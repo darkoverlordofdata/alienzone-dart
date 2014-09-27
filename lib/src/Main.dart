@@ -23,6 +23,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 part of alienzed;
 
+/**
+ * == Start ==
+ *
+ *   * Check if running with cordova
+ *   * Start a game
+ */
 void start() {
   if (context['cordova'] != null) {
     cordova.Device.init()
@@ -30,14 +36,25 @@ void start() {
     .catchError((ex, st) {
       print(ex);
       print(st);
+      startGame(null);
     });
   }
   else startGame(null);
 }
 
 
+/**
+ * == start game ==
+ *
+ *   * Hide the logo
+ *   * Load game configuration
+ *   * Start a game instance
+ */
 void startGame(device) {
-  querySelector('#logo').style.display = 'none';
-  querySelector('body').style.backgroundColor = 'black';
-  Game game = new Alienzed(device);
+
+  HttpRequest.getString("assets/config.yaml").then((String config) {
+    querySelector('#logo').style.display = 'none';
+    querySelector('body').style.backgroundColor = 'black';
+    Game game = new Alienzed(config, device);
+  });
 }

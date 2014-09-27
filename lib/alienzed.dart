@@ -28,15 +28,17 @@ import 'dart:math';
 import 'dart:js';
 import 'dart:async' as async;
 
+import 'package:yaml/yaml.dart';
 import 'package:rikulo_gap/device.dart' as cordova;
 import 'package:play_phaser/phaser.dart';
 import 'package:match3/match3.dart';
 
+part 'src/Config.dart';
 part 'src/Alienzed.dart';
 part 'src/Gem.dart';
 part 'src/GemGroup.dart';
-part 'src/Start.dart';
-part 'src/Intro.dart';
+part 'src/Boot.dart';
+part 'src/Menu.dart';
 part 'src/Credits.dart';
 part 'src/Scores.dart';
 part 'src/Assets.dart';

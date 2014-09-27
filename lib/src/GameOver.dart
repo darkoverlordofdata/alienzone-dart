@@ -20,12 +20,25 @@ part of alienzed;
 class GameOver extends State {
 
   /**
-   * Game Over
+   * == Game Over ==
+   *   * Show the splash screen
+   *   * Play again?
    */
+
   Button startButton;
+  Config config;
 
   /**
-   * Phaser.State::create
+   * State::init
+   *
+   * return	Nothing
+   */
+  init(options) {
+    config = options['config'];
+  }
+
+  /**
+   * State::create
    *
    * @return	Nothing
    */
@@ -52,6 +65,6 @@ class GameOver extends State {
    * @return	Nothing
    */
   startGame(source, input, flag) {
-    state.start("Level1", true, false);
+    state.start("Level1", true, false, {'config': config});
   }
 }

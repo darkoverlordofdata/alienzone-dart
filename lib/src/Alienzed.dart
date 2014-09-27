@@ -32,8 +32,7 @@ class Alienzed extends Game {
     "yellow"
   ];
 
-  cordova.Device device;
- 
+
   /**
    * == New Game ==
    *   * Set the screen dimensions
@@ -42,17 +41,19 @@ class Alienzed extends Game {
    *
    * returns this
    */
-  Alienzed(cordova.Device this.device): super(320, 480, CANVAS) {
+  Alienzed(String config, cordova.Device device): super(320, 480, CANVAS) {
 
     print("Class Alienzed initialized");
+
     state
-      ..add('Start',      new Start())
-      ..add('Assets',     new Assets())
-      ..add('Intro',      new Intro())
+      ..add('Boot',       new Boot())     //  Template
+      ..add('Assets',     new Assets())   //  Template
+      ..add('Menu',       new Menu())
       ..add('Levels',     new Levels())
       ..add('Credits',    new Credits())
       ..add('Scores',     new Scores())
       ..add('GameOver',   new GameOver())
-      ..start('Start');
+      ..start('Boot', true, false, {'config': new Config(config, device)});
+
   }
 }

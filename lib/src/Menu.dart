@@ -1,0 +1,82 @@
+/*+--------------------------------------------------------------------+
+#| Menu.dart
+#+--------------------------------------------------------------------+
+#| Copyright DarkOverlordOfData (c) 2014
+#+--------------------------------------------------------------------+
+#|
+#| This file is a part of alienzed
+#|
+#| alienzed is free software; you can copy, modify, and distribute
+#| it under the terms of the MIT License
+#|
+#+--------------------------------------------------------------------+
+#
+# Alien Zed
+#
+#   Match 3 Style Game
+*/
+part of alienzed;
+
+class Menu extends State {
+
+  /**
+   * == Menu ==
+   *   * Show the splash screen
+   *   * Show the main menu selections
+   */
+
+  Config config;
+
+  /**
+   * State::init
+   *
+   * return	Nothing
+   */
+  init(options) {
+    config = options['config'];
+  }
+
+  /**
+   * State::create
+   *
+   * return	Nothing
+   */
+  create() {
+    add // ui components
+      ..sprite(0, 0, config.splashKey)
+      ..button(140, 200, 'playButton', startGame, this)
+      ..button(140, 240, 'creditsButton', showCredits, this)
+      ..button(140, 280, 'scoreButton', showScores, this);
+
+  }
+
+
+  /**
+   * Start Game
+   *
+   * return	Nothing
+   */
+  startGame(source, input, flag) {
+    state.start("Levels", true, false, {'config': config});
+  }
+
+  /**
+   * Show Credits
+   *
+   * return	Nothing
+   */
+  showCredits(source, input, flag) {
+    state.start("Credits", true, false, {'config': config});
+  }
+
+  /**
+   * Show Scores
+   *
+   * return	Nothing
+   */
+  showScores(source, input, flag) {
+    state.start("Scores", true, false, {'config': config});
+  }
+
+
+}

@@ -15,3 +15,7 @@ packages/
 pubspec.lock
 old/
 .idea/
+# http://darkoverlordofdata.github.io/alienzed
+gh-pages
+# apk keystore
+platforms/android/ant.properties

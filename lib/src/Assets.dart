@@ -22,44 +22,79 @@ class Assets extends State {
    *   * Show the splash screen
    *   * Load the game assets
    */
+
+  Sprite preloadBar;
+  Sprite preloadBgd;
+  Config config;
+
+  /**
+   * State::init
+   *
+   * return	Nothing
+   */
+  init(options) {
+    config = options['config'];
+  }
+
+  /**
+   * State::preload
+   *
+   * return	Nothing
+   */
   preload() {
 
     print("Class Assets initialized");
 
-    load // the assets
-      //  start loading the Splash...
-      ..setPreloadSprite(add.sprite(0, 0, 'splashScreen'))
-      //  and then the remaining resources
-      ..image('background',   'images/background.png')
-      ..image('board',        'images/board.png')
-      ..image('icon',         'images/d16a.png')
-      ..image('label',        'images/label.png')
-      ..image('scores',       'images/scores.png')
-      //  ui buttons
-      //..image('startButton',  'images/start_button.png')8fc9fb - da70f6
-      ..image('playButton',   'images/buttons/play1.png')
-      ..image('scoreButton',  'images/buttons/score1.png')
-      ..image('creditsButton','images/buttons/credits1.png')
-      ..image('backButton',   'images/buttons/back1.png')
-      ..image('arrow_right',  'images/arrows/right.png')
-      ..image('arrow_left',   'images/arrows/left.png')
-      ..image('arrow_down',   'images/arrows/down.png')
-      ..image('arrow_lrot',   'images/arrows/lrot.png')
-      ..image('arrow_rrot',   'images/arrows/rrot.png')
-      // game pieces
-      ..image('gem_blue',     'images/gems/blue.png')
-      ..image('gem_cyan',     'images/gems/cyan.png')
-      ..image('gem_green',    'images/gems/green.png')
-      ..image('gem_magenta',  'images/gems/magenta.png')
-      ..image('gem_orange',   'images/gems/orange.png')
-      ..image('gem_pink',     'images/gems/pink.png')
-      ..image('gem_red',      'images/gems/red.png')
-      ..image('gem_yellow',   'images/gems/yellow.png');
+    //  Splash...
+    load.setPreloadSprite(add.sprite(0, 0, config.splashKey));
 
+    //  Progress bar?
+    if (config.showPreloadBar) {
+      preloadBgd = add.sprite(game.width / 2 - 250, game.height - 100, config.preloadBgdKey);
+      preloadBar = add.sprite(game.width / 2 - 250, game.height - 100, config.preloadBarKey);
+      load.setPreloadSprite(preloadBar);
+
+    }
+
+    //  load images
+    if (config.images != null) {
+      config.images.forEach((k, v) => load.image(k,v));
+    }
+
+    // load level tilesets
+    if (config.levels != null) {
+      config.levels.forEach((key, level) {
+        var levelName = level['options']['map'];
+        load.tilemap(levelName, "assets/levels/$levelName.json", null, Tilemap.TILED_JSON);
+      });
+    }
+
+    // load sprite images
+    if (config.sprites != null) {
+      config.sprites.forEach((key, sprite) {
+        if (sprite['file'] is String) {
+          load.spritesheet(key, sprite['file'], sprite['width'], sprite['height']);
+        } else {
+          if (sprite['selected'] == true) {
+            load.spritesheet(key, sprite['file'][['sprite.selected']], sprite['width'], sprite['height']);
+          }
+          var ix = 0;
+          sprite['file'].forEach((file) {
+            load.spritesheet("$key[$ix]", file, sprite['width'], sprite['height']);
+            ix++;
+          });
+        }
+      });
+    }
   }
 
+  /**
+   * State::create
+   *
+   * return	Nothing
+   */
   create() {
-    state.start('Intro', true, false);
+    state.start('Menu', true, false, {'config': config});
     
   }
 

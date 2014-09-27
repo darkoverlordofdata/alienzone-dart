@@ -19,3 +19,5 @@ old/
 gh-pages
 # apk keystore
 platforms/android/ant.properties
+platforms/android/bin/alienzed-release.apk
+platforms/android/ant-build/alienzed-debug.apk

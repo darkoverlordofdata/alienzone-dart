@@ -24435,9 +24435,9 @@ cX:[function(){var z,y
 z=this.ht
 z.Rq(0,0,this.ic.gaH())
 y=J.RE(z)
-y.du(z,140,200,"playButton",this.gEX(),this)
-y.du(z,140,240,"creditsButton",this.gK9(),this)
-y.du(z,140,280,"scoreButton",this.ge2(),this)},"$0","gkT",0,0,13,"create"],
+y.du(z,100,160,"playButton",this.gEX(),this)
+y.du(z,100,200,"creditsButton",this.gK9(),this)
+y.du(z,100,240,"scoreButton",this.ge2(),this)},"$0","gkT",0,0,13,"create"],
 HV6:[function(a,b,c){J.vQ(this.ZQ,"Levels",!0,!1,P.EF(["config",this.ic],null,null))},"$3","gEX",6,0,117,170,[],342,[],1686,[]],
 Faj:[function(a,b,c){J.vQ(this.ZQ,"Credits",!0,!1,P.EF(["config",this.ic],null,null))},"$3","gK9",6,0,117,170,[],342,[],1686,[]],
 mRY:[function(a,b,c){J.vQ(this.ZQ,"Scores",!0,!1,P.EF(["config",this.ic],null,null))},"$3","ge2",6,0,117,170,[],342,[],1686,[]]},

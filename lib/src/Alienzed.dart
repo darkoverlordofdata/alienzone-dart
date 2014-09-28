@@ -1,12 +1,12 @@
 /*+--------------------------------------------------------------------+
-#| alienzed.dart
+#| alienzone.dart
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
 #|
-#| This file is a part of alienzed
+#| This file is a part of alienzone
 #|
-#| alienzed is free software; you can copy, modify, and distribute
+#| alienzone is free software; you can copy, modify, and distribute
 #| it under the terms of the MIT License
 #|
 #+--------------------------------------------------------------------+

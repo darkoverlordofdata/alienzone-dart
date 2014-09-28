@@ -1,5 +1,5 @@
 
-==< Alien Zed >==
+==< Alien Zone >==
 
     * Match 3 game writtem using Phaser.io
     * Match Engine based on https://github.com/hugeen/jmatch3

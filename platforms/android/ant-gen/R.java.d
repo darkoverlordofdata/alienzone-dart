@@ -1,4 +1,4 @@
-/home/bruce/Git/alienzed/platforms/android/ant-gen/com/darkoverlordofdata/alienzed/R.java \
+/home/bruce/Git/alienzed/platforms/android/ant-gen/com/darkoverlordofdata/alienzone/R.java \
  : /home/bruce/Git/alienzed/platforms/android/res/values/strings.xml \
 /home/bruce/Git/alienzed/platforms/android/res/drawable/icon.png \
 /home/bruce/Git/alienzed/platforms/android/res/xml/config.xml \

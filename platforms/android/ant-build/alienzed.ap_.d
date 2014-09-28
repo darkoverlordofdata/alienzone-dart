@@ -15,6 +15,7 @@
 /home/bruce/Git/alienzed/platforms/android/assets/www \
 /home/bruce/Git/alienzed/platforms/android/assets/www/favicon.png \
 /home/bruce/Git/alienzed/platforms/android/assets/www/background.js \
+/home/bruce/Git/alienzed/platforms/android/assets/www/task \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins \
 /home/bruce/Git/alienzed/platforms/android/assets/www/cordova_plugins.js \
 /home/bruce/Git/alienzed/platforms/android/assets/www/icon128.png \
@@ -25,9 +26,13 @@
 /home/bruce/Git/alienzed/platforms/android/assets/www/cordova.js \
 /home/bruce/Git/alienzed/platforms/android/assets/www/packages \
 /home/bruce/Git/alienzed/platforms/android/assets/www/assets \
+/home/bruce/Git/alienzed/platforms/android/assets/www/task/AppPreferences.js \
+/home/bruce/Git/alienzed/platforms/android/assets/www/plugins/me.apla.cordova.app-preferences \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.dialogs \
+/home/bruce/Git/alienzed/platforms/android/assets/www/plugins/me.apla.cordova.app-preferences/www \
+/home/bruce/Git/alienzed/platforms/android/assets/www/plugins/me.apla.cordova.app-preferences/www/apppreferences.js \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www/splashscreen.js \
 /home/bruce/Git/alienzed/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www \

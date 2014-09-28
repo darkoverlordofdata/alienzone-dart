@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppPreferences\"><param name=\"android-package\" value=\"me.apla.cordova.AppPreferences\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -47,6 +51,9 @@
             "PACKAGE_NAME": "com.darkoverlordofdata.alienzed"
         },
         "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.darkoverlordofdata.alienzed"
+        },
+        "me.apla.cordova.app-preferences": {
             "PACKAGE_NAME": "com.darkoverlordofdata.alienzed"
         }
     },

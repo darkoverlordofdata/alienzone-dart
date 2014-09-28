@@ -4,9 +4,9 @@
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
 #|
-#| This file is a part of alienzed
+#| This file is a part of alienzone
 #|
-#| alienzed is free software; you can copy, modify, and distribute
+#| alienzone is free software; you can copy, modify, and distribute
 #| it under the terms of the MIT License
 #|
 #+--------------------------------------------------------------------+
@@ -44,9 +44,9 @@ class Menu extends State {
   create() {
     add // ui components
       ..sprite(0, 0, config.splashKey)
-      ..button(140, 200, 'playButton', startGame, this)
-      ..button(140, 240, 'creditsButton', showCredits, this)
-      ..button(140, 280, 'scoreButton', showScores, this);
+      ..button(100, 160, 'playButton', startGame, this)
+      ..button(100, 200, 'creditsButton', showCredits, this)
+      ..button(100, 240, 'scoreButton', showScores, this);
 
   }
 

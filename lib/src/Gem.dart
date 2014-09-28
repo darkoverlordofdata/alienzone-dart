@@ -15,7 +15,7 @@
 #
 #   Match 3 Style Game
 */
-part of alienzed;
+part of alienzone;
 
 class Gem extends MatchObject {
 
@@ -53,8 +53,8 @@ class Gem extends MatchObject {
   void move(int x, int y) {
     this.x = x;
     this.y = y;
-    sprite.x = x * Alienzed.GEMSIZE;
-    sprite.y = y * Alienzed.GEMSIZE;
+    sprite.x = x * Alienzone.GEMSIZE;
+    sprite.y = y * Alienzone.GEMSIZE;
   }
   /**
    * Drop method
@@ -91,8 +91,8 @@ class Gem extends MatchObject {
    // next = next or ()->
     // Create a tween animation
     var point = {
-        'x': x * Alienzed.GEMSIZE,
-        'y': Alienzed.MARGINTOP * Alienzed.GEMSIZE + y * Alienzed.GEMSIZE
+        'x': x * Alienzone.GEMSIZE,
+        'y': Alienzone.MARGINTOP * Alienzone.GEMSIZE + y * Alienzone.GEMSIZE
     };
 
     level.add.tween(sprite)

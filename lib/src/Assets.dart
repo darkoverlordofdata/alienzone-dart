@@ -13,7 +13,7 @@
 #
 # Load the game assets
 */
-part of alienzed;
+part of alienzone;
 
 class Assets extends State {
 

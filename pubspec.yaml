@@ -1,4 +1,4 @@
-name: alienzed
+name: alienzone
 version: 0.0.1
 description:
   Match 3 game
@@ -11,6 +11,8 @@ dependencies:
   play_pixi: any
   rikulo_gap: any
   match3: any
+  dilithium:
+    path: ../dilithium
 
 transformers:
 - $dart2js:

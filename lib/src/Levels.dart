@@ -18,7 +18,7 @@
 #
 # Game Level One
 */
-part of alienzed;
+part of alienzone;
 
 class Levels extends State {
 
@@ -63,7 +63,7 @@ class Levels extends State {
 
     text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
-    discoveredGems = [Alienzed.GEMTYPES[0], Alienzed.GEMTYPES[1], Alienzed.GEMTYPES[2]];
+    discoveredGems = [Alienzone.GEMTYPES[0], Alienzone.GEMTYPES[1], Alienzone.GEMTYPES[2]];
 
     newGemGroup();
     add // ui components
@@ -133,7 +133,7 @@ class Levels extends State {
       // For each match found
       grid.forEachMatch((matchingPieces, type) {
         // Add to score
-        addToScore((Alienzed.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
+        addToScore((Alienzone.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
         // For each match take the first piece to upgrade it
         piecesToUpgrade.add({
           'piece'   : matchingPieces[0],
@@ -193,7 +193,7 @@ class Levels extends State {
     // For each piece to upgrade
     piecesToUpgrade.forEach((pieceToUpgrade) {
       // Get the upgraded type
-      var upgradedType = Alienzed.GEMTYPES[Alienzed.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
+      var upgradedType = Alienzone.GEMTYPES[Alienzone.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
       // If the type is defined
       if (upgradedType != null) {
         // And if the type is not already discovered

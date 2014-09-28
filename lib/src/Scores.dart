@@ -15,7 +15,7 @@
 #
 #   Match 3 Style Game
 */
-part of alienzed;
+part of alienzone;
 
 class Scores extends State {
 

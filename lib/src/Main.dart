@@ -21,7 +21,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-part of alienzed;
+part of alienzone;
 
 /**
  * == Start ==
@@ -55,6 +55,6 @@ void startGame(device) {
   HttpRequest.getString("assets/config.yaml").then((String config) {
     querySelector('#logo').style.display = 'none';
     querySelector('body').style.backgroundColor = 'black';
-    Game game = new Alienzed(config, device);
+    Game game = new Alienzone(config, device);
   });
 }

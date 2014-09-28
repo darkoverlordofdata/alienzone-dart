@@ -11,13 +11,13 @@
 #|
 #+--------------------------------------------------------------------+
 #
-# Alien Zed
+# Alien Zone
 #
 #   Match 3 Style Game
 */
-part of alienzed;
+part of alienzone;
 
-class Alienzed extends Game {
+class Alienzone  extends Game {
 
   static const GEMSIZE    = 48;     // Gem size constant in pixels
   static const MARGINTOP  = 2;      // Margin top equal to 2 gems height
@@ -41,9 +41,9 @@ class Alienzed extends Game {
    *
    * returns this
    */
-  Alienzed(String config, cordova.Device device): super(320, 480, CANVAS) {
+  Alienzone(String config, cordova.Device device): super(320, 480, CANVAS) {
 
-    print("Class Alienzed initialized");
+    print("Class Alienzone initialized");
 
     state
       ..add('Boot',       new Boot())     //  Template

@@ -21,7 +21,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-library alienzed;
+library alienzone;
 
 import 'dart:html';
 import 'dart:math';
@@ -31,10 +31,11 @@ import 'dart:async' as async;
 import 'package:yaml/yaml.dart';
 import 'package:rikulo_gap/device.dart' as cordova;
 import 'package:play_phaser/phaser.dart';
+import "package:dilithium/dilithium.dart";
 import 'package:match3/match3.dart';
 
 part 'src/Config.dart';
-part 'src/Alienzed.dart';
+part 'src/Alienzone.dart';
 part 'src/Gem.dart';
 part 'src/GemGroup.dart';
 part 'src/Boot.dart';

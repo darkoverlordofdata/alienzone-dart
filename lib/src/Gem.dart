@@ -1,20 +1,21 @@
-/*+--------------------------------------------------------------------+
-#| Gem.dart
-#+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2013
-#+--------------------------------------------------------------------+
-#|
-#| This file is a part of alienzone
-#|
-#| alienzone is free software; you can copy, modify, and distribute
-#| it under the terms of the MIT License
-#|
-#+--------------------------------------------------------------------+
-#
-# Alien Zed
-#
-#   Match 3 Style Game
-*/
+/**
+ +--------------------------------------------------------------------+
+ | Gem.dart
+ +--------------------------------------------------------------------+
+ | Copyright DarkOverlordOfData (c) 2013
+ +--------------------------------------------------------------------+
+ |
+ | This file is a part of alienzone
+ |
+ | alienzone is free software; you can copy, modify, and distribute
+ | it under the terms of the MIT License
+ |
+ +--------------------------------------------------------------------+
+ 
+  Alien Zone
+ 
+    Match 3 Style Game
+ */
 part of alienzone;
 
 class Gem extends MatchObject {

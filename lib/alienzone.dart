@@ -1,4 +1,14 @@
 /*
+
+
+       _____  .__  .__                __________
+      /  _  \ |  | |__| ____   ____   \____    /____   ____   ____
+     /  /_\  \|  | |  |/ __ \ /    \    /     //  _ \ /    \_/ __ \
+    /    |    \  |_|  \  ___/|   |  \  /     /(  <_> )   |  \  ___/
+    \____|__  /____/__|\___  >___|  / /_______ \____/|___|  /\___  >
+            \/             \/     \/          \/          \/     \/
+
+
 Copyright (c) 2014 Bruce Davidson <darkoverlordofdata@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -34,15 +44,12 @@ import 'package:play_phaser/phaser.dart';
 import "package:dilithium/dilithium.dart";
 import 'package:match3/match3.dart';
 
-part 'src/Config.dart';
 part 'src/Alienzone.dart';
 part 'src/Gem.dart';
 part 'src/GemGroup.dart';
-part 'src/Boot.dart';
 part 'src/Menu.dart';
 part 'src/Credits.dart';
 part 'src/Scores.dart';
-part 'src/Assets.dart';
 part 'src/Levels.dart';
 part 'src/GameOver.dart';
 part 'src/Main.dart';

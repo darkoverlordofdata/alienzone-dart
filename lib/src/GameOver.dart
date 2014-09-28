@@ -1,20 +1,21 @@
-/*+--------------------------------------------------------------------+
-#| Levels.dart
-#+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2014
-#+--------------------------------------------------------------------+
-#|
-#| This file is a part of alienzone
-#|
-#| alienzone is free software; you can copy, modify, and distribute
-#| it under the terms of the MIT License
-#|
-#+--------------------------------------------------------------------+
-#
-# Alien Zed
-#
-#   Match 3 Style Game
-*/
+/**
+ +--------------------------------------------------------------------+
+ | Levels.dart
+ +--------------------------------------------------------------------+
+ | Copyright DarkOverlordOfData (c) 2014
+ +--------------------------------------------------------------------+
+ |
+ | This file is a part of alienzone
+ |
+ | alienzone is free software; you can copy, modify, and distribute
+ | it under the terms of the MIT License
+ |
+ +--------------------------------------------------------------------+
+ 
+  Alien Zone
+ 
+    Match 3 Style Game
+ */
 part of alienzone;
 
 class GameOver extends State {
@@ -28,14 +29,7 @@ class GameOver extends State {
   Button startButton;
   Config config;
 
-  /**
-   * State::init
-   *
-   * return	Nothing
-   */
-  init(options) {
-    config = options['config'];
-  }
+  GameOver(Config this.config);
 
   /**
    * State::create
@@ -65,6 +59,6 @@ class GameOver extends State {
    * @return	Nothing
    */
   startGame(source, input, flag) {
-    state.start("Level1", true, false, {'config': config});
+    state.start("Level1");
   }
 }

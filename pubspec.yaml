@@ -12,7 +12,7 @@ dependencies:
   rikulo_gap: any
   match3: any
   dilithium:
-    path: ../dilithium
+    git: git@github.com:darkoverlordofdata/dilithium.git
 
 transformers:
 - $dart2js:

@@ -1,20 +1,21 @@
-/*+--------------------------------------------------------------------+
-#| Menu.dart
-#+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2014
-#+--------------------------------------------------------------------+
-#|
-#| This file is a part of alienzone
-#|
-#| alienzone is free software; you can copy, modify, and distribute
-#| it under the terms of the MIT License
-#|
-#+--------------------------------------------------------------------+
-#
-# Alien Zed
-#
-#   Match 3 Style Game
-*/
+/**
+ +--------------------------------------------------------------------+
+ | Menu.dart
+ +--------------------------------------------------------------------+
+ | Copyright DarkOverlordOfData (c) 2014
+ +--------------------------------------------------------------------+
+ |
+ | This file is a part of alienzone
+ |
+ | alienzone is free software; you can copy, modify, and distribute
+ | it under the terms of the MIT License
+ |
+ +--------------------------------------------------------------------+
+ 
+  Alien Zone
+ 
+    Match 3 Style Game
+ */
 part of alienzone;
 
 class Menu extends State {
@@ -27,14 +28,7 @@ class Menu extends State {
 
   Config config;
 
-  /**
-   * State::init
-   *
-   * return	Nothing
-   */
-  init(options) {
-    config = options['config'];
-  }
+  Menu(Config this.config);
 
   /**
    * State::create

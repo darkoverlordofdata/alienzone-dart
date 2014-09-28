@@ -1,20 +1,21 @@
-/*+--------------------------------------------------------------------+
-#| Scores.dart
-#+--------------------------------------------------------------------+
-#| Copyright DarkOverlordOfData (c) 2014
-#+--------------------------------------------------------------------+
-#|
-#| This file is a part of alienzone
-#|
-#| alienzone is free software; you can copy, modify, and distribute
-#| it under the terms of the MIT License
-#|
-#+--------------------------------------------------------------------+
-#
-# Alien Zed
-#
-#   Match 3 Style Game
-*/
+/**
+ +--------------------------------------------------------------------+
+ | Scores.dart
+ +--------------------------------------------------------------------+
+ | Copyright DarkOverlordOfData (c) 2014
+ +--------------------------------------------------------------------+
+ |
+ | This file is a part of alienzone
+ |
+ | alienzone is free software; you can copy, modify, and distribute
+ | it under the terms of the MIT License
+ |
+ +--------------------------------------------------------------------+
+ 
+  Alien Zone
+ 
+    Match 3 Style Game
+ */
 part of alienzone;
 
 class Scores extends State {
@@ -31,14 +32,7 @@ class Scores extends State {
   Sprite label;
   Config config;
 
-  /**
-   * State::init
-   *
-   * return	Nothing
-   */
-  init(options) {
-    config = options['config'];
-  }
+  Scores(Config this.config);
 
   /**
    * State::create
@@ -66,7 +60,7 @@ class Scores extends State {
    * return	Nothing
    */
   goBack(source, input, flag) {
-    state.start('Menu', true, false, {'config': config});
+    state.start(config.menu);
   }
 
 

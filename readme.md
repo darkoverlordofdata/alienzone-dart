@@ -7,7 +7,7 @@
             \/             \/     \/          \/          \/     \/ 
 
 
-[![Get it on Google Play](assets/en_generic_rgb_wo_45.png)] (https://play.google.com/store/apps/details?id=com.darkoverlordofdata.alienzed)
+[![Get it on Google Play](assets/en_generic_rgb_wo_45.png)] (https://play.google.com/store/apps/details?id=com.darkoverlordofdata.alienzone)
 
 # MIT License
 

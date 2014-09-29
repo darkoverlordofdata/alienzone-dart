@@ -27,7 +27,7 @@ part of alienzone;
 void start() {
   if (context['cordova'] != null) {
     cordova.Device.init()
-    .then((device)=> startGame(device))
+    .then((device) => startGame(device))
     .catchError((ex, st) {
       print(ex);
       print(st);
@@ -42,14 +42,15 @@ void start() {
  * == start game ==
  *
  *   * Hide the logo
- *   * Load game configuration
+ *   * Using game configuration
  *   * Start a game instance
  */
 void startGame(device) {
 
-  HttpRequest.getString("assets/config.yaml").then((String config) {
+  Dilithium.using("packages/alienzone").then((config) {
     querySelector('#logo').style.display = 'none';
     querySelector('body').style.backgroundColor = 'black';
-    Game game = new Alienzone(new Config(config), device);
+    Game game = new Alienzone(config, device);
   });
+
 }

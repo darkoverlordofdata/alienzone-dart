@@ -18,7 +18,7 @@
 */
 part of alienzone;
 
-class Alienzone  extends BaseGame {
+class Alienzone  extends Dilithium {
 
   static const GEMSIZE    = 48;     // Gem size constant in pixels
   static const MARGINTOP  = 2;      // Margin top equal to 2 gems height

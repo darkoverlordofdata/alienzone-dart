@@ -1,5 +1,5 @@
 #+--------------------------------------------------------------------+
-#| config.li2
+#| config.yaml
 #+--------------------------------------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
 #+--------------------------------------------------------------------+
@@ -15,6 +15,11 @@
 #
 #
 name: Alien Zone
+lang: en
+paths:
+  preferences: preferences.yaml
+  arrays: values/arrays.yaml
+  strings: values/strings.yaml
 
 minWidth: 320
 minHeight: 480
@@ -59,13 +64,6 @@ images:
       gem_red:        images/gems/red.png
       gem_yellow:     images/gems/yellow.png
 
-copyrightText: Copyright 2014 Dark Overlord of Data
-creditsText: |
-  Program by darkoverlordofdata
-  Background Graphics - http://www.nasa.gov
-  Gems: http://opengameart.org/content/gem-tiles
-  Based on: https://github.com/hugeen/createjs_match3
 
 sprite:
 levels:
-dilithium: Li2

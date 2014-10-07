@@ -47,7 +47,7 @@ void start() {
  */
 void startGame(device) {
 
-  Dilithium.using("packages/alienzone").then((config) {
+  Dilithium.using("packages/alienzone/res").then((config) {
     querySelector('#logo').style.display = 'none';
     querySelector('body').style.backgroundColor = 'black';
     Game game = new Alienzone(config, device);

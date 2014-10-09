@@ -1,24 +1,21 @@
 /**
- +--------------------------------------------------------------------+
- | Levels.dart
- +--------------------------------------------------------------------+
- | Copyright DarkOverlordOfData (c) 2014
- +--------------------------------------------------------------------+
- |
- | This file is a part of alienzone
- |
- | alienzone is free software; you can copy, modify, and distribute
- | it under the terms of the MIT License
- |
- +--------------------------------------------------------------------+
- 
-  Alien Zone
- 
-    Match 3 Style Game
+ *--------------------------------------------------------------------+
+ * GameOver.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
  */
 part of alienzone;
 
-class GameOver extends State {
+class GameOver extends Li2State {
 
   /**
    * == Game Over ==
@@ -27,9 +24,9 @@ class GameOver extends State {
    */
 
   Button startButton;
-  Config config;
+  Li2Config config;
 
-  GameOver(Config this.config);
+  GameOver(Li2Config this.config);
 
   /**
    * State::create

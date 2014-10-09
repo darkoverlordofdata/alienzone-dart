@@ -1,24 +1,21 @@
 /**
- +--------------------------------------------------------------------+
- | Credits.dart
- +--------------------------------------------------------------------+
- | Copyright DarkOverlordOfData (c) 2014
- +--------------------------------------------------------------------+
- |
- | This file is a part of alienzone
- |
- | alienzone is free software; you can copy, modify, and distribute
- | it under the terms of the MIT License
- |
- +--------------------------------------------------------------------+
- 
-  Alien Zone
- 
-    Match 3 Style Game
+ *--------------------------------------------------------------------+
+ * Credits.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
  */
 part of alienzone;
 
-class Credits extends State {
+class Credits extends Li2State {
 
   /**
    * == Credits ==
@@ -31,9 +28,9 @@ class Credits extends State {
   var cstyle = new TextStyle(font: "14px Arial", fill: "#fff");
   Sprite label;
 
-  Config config;
+  Li2Config config;
 
-  Credits(Config this.config);
+  Credits(Li2Config this.config);
 
   /**
    * State::create
@@ -49,9 +46,9 @@ class Credits extends State {
     label = add.sprite(10, 320, 'label');
 
     add
-      ..text(20, 335, config.creditsText, style)
+      ..text(20, 335, config.strings['creditsText'], style)
       ..button(game.width / 2 - 38, game.height-75, 'backButton', goBack, this)
-      ..text(50, game.height-30, config.copyrightText, cstyle);
+      ..text(50, game.height-30, config.strings['copyrightText'], cstyle);
 
     label.alpha = 0.5;
 }

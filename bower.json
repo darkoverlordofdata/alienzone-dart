@@ -5,16 +5,8 @@
   "authors": [
     "darkoverlordofdata <darkoverlordofdata@gmail.com>"
   ],
-  "license": "GPLv3",
+  "license": "gpl3",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "web/js",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "liquid.coffee": "*"
   }

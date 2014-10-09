@@ -1,27 +1,21 @@
 /**
- +--------------------------------------------------------------------+
- | Levels.dart
- +--------------------------------------------------------------------+
- | Copyright DarkOverlordOfData (c) 2014
- +--------------------------------------------------------------------+
- |
- | This file is a part of alienzone
- |
- | alienzone is free software; you can copy, modify, and distribute
- | it under the terms of the MIT License
- |
- +--------------------------------------------------------------------+
- 
-  Alien Zone
- 
-    Match 3 Style Game
- 
- 
-  Game Levels
+ *--------------------------------------------------------------------+
+ * Levels.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
  */
 part of alienzone;
 
-class Levels extends State {
+class Levels extends Li2State {
 
   /**
    * Members
@@ -36,9 +30,9 @@ class Levels extends State {
   GemGroup gemGroup;
   int score = 0;
 
-  Config config;
+  Li2Config config;
 
-  Levels(Config this.config);
+  Levels(Li2Config this.config);
 
   /**
    * == Create the game level
@@ -58,7 +52,7 @@ class Levels extends State {
 
     text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
-    discoveredGems = [Alienzone.GEMTYPES[0], Alienzone.GEMTYPES[1], Alienzone.GEMTYPES[2]];
+    discoveredGems = [Game.GEMTYPES[0], Game.GEMTYPES[1], Game.GEMTYPES[2]];
 
     newGemGroup();
     add // ui components
@@ -128,7 +122,7 @@ class Levels extends State {
       // For each match found
       grid.forEachMatch((matchingPieces, type) {
         // Add to score
-        addToScore((Alienzone.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
+        addToScore((Game.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
         // For each match take the first piece to upgrade it
         piecesToUpgrade.add({
           'piece'   : matchingPieces[0],
@@ -188,7 +182,7 @@ class Levels extends State {
     // For each piece to upgrade
     piecesToUpgrade.forEach((pieceToUpgrade) {
       // Get the upgraded type
-      var upgradedType = Alienzone.GEMTYPES[Alienzone.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
+      var upgradedType = Game.GEMTYPES[Game.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
       // If the type is defined
       if (upgradedType != null) {
         // And if the type is not already discovered

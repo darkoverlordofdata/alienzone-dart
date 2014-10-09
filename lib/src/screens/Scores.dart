@@ -1,24 +1,21 @@
 /**
- +--------------------------------------------------------------------+
- | Scores.dart
- +--------------------------------------------------------------------+
- | Copyright DarkOverlordOfData (c) 2014
- +--------------------------------------------------------------------+
- |
- | This file is a part of alienzone
- |
- | alienzone is free software; you can copy, modify, and distribute
- | it under the terms of the MIT License
- |
- +--------------------------------------------------------------------+
- 
-  Alien Zone
- 
-    Match 3 Style Game
+ *--------------------------------------------------------------------+
+ * Scores.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
  */
 part of alienzone;
 
-class Scores extends State {
+class Scores extends Li2State {
 
   /**
    * == Scores ==
@@ -30,9 +27,9 @@ class Scores extends State {
 
   var style = new TextStyle(font: "bold 20px Acme", fill: "#000");
   Sprite label;
-  Config config;
+  Li2Config config;
 
-  Scores(Config this.config);
+  Scores(Li2Config this.config);
 
   /**
    * State::create

@@ -1,20 +1,17 @@
 /**
- +--------------------------------------------------------------------+
- | Gem.dart
- +--------------------------------------------------------------------+
- | Copyright DarkOverlordOfData (c) 2013
- +--------------------------------------------------------------------+
- |
- | This file is a part of alienzone
- |
- | alienzone is free software; you can copy, modify, and distribute
- | it under the terms of the MIT License
- |
- +--------------------------------------------------------------------+
- 
-  Alien Zone
- 
-    Match 3 Style Game
+ *--------------------------------------------------------------------+
+ * Gem.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
  */
 part of alienzone;
 
@@ -54,8 +51,8 @@ class Gem extends MatchObject {
   void move(int x, int y) {
     this.x = x;
     this.y = y;
-    sprite.x = x * Alienzone.GEMSIZE;
-    sprite.y = y * Alienzone.GEMSIZE;
+    sprite.x = x * Game.GEMSIZE;
+    sprite.y = y * Game.GEMSIZE;
   }
   /**
    * Drop method
@@ -92,8 +89,8 @@ class Gem extends MatchObject {
    // next = next or ()->
     // Create a tween animation
     var point = {
-        'x': x * Alienzone.GEMSIZE,
-        'y': Alienzone.MARGINTOP * Alienzone.GEMSIZE + y * Alienzone.GEMSIZE
+        'x': x * Game.GEMSIZE,
+        'y': Game.MARGINTOP * Game.GEMSIZE + y * Game.GEMSIZE
     };
 
     level.add.tween(sprite)

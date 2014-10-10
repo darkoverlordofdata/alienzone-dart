@@ -38,3 +38,18 @@ body {
     height: 128px;
     width: 128px;
 }
+
+select.holo-spinner { float: right; }
+.holo-help { font: 12px sans-serif, 'Roboto'; }
+h1.icon:before {
+    /*display:inline-block;*/
+    text-align: center;
+    height: 36px;
+    width: 36px;
+    content: url(packages/alienzone/res/images/icon.png)
+}
+#preferences {
+    display:none;
+    position: absolute;
+}
+

@@ -7,13 +7,13 @@ homepage: http://darkoverlordofdata.com
 dependencies:
   browser: ">=0.10.0+2 <0.11.0"
   yaml: ">=2.0.1+1 <3.0.0"
-  play_phaser: any
-  play_pixi: any
-  rikulo_gap: any
-  match3: any
-  dilithium:
+  play_phaser: ">=0.10.3+1 <0.11.0"
+  play_pixi: ">=0.10.3 <0.11.0"
+  rikulo_gap: ">=0.6.0+1 <0.7.0"
+  match3: "0.0.4"
+  dilithium: ">=0.1.0 <0.2.0"
 #    path: ../dilithium
-    git: git@github.com:darkoverlordofdata/dilithium.git
+#    git: git@github.com:darkoverlordofdata/dilithium.git
 
 transformers:
 - $dart2js:

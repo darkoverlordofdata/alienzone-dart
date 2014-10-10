@@ -48,6 +48,7 @@ images:
       playButton:     images/buttons/play1.png
       scoreButton:    images/buttons/score1.png
       creditsButton:  images/buttons/credits1.png
+      optionsButton:  images/buttons/options.png
       backButton:     images/buttons/back1.png
       arrow_right:    images/arrows/right.png
       arrow_left:     images/arrows/left.png

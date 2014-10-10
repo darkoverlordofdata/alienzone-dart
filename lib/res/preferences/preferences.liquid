@@ -16,8 +16,12 @@
                         <ul class="holo-list">
                             <li>
                                 <div class="holo-switch">
-                                    <input type="checkbox" id="{{ preference.title }}"/>
-                                    <label class="holo-label" for="{{ preference.title }}">
+                                    {% if preference.value == true %}
+                                    <input type="checkbox" id="{{ preference.key }}" checked/>
+                                    {% else %}
+                                    <input type="checkbox" id="{{ preference.key }}"/>
+                                    {% endif %}
+                                    <label class="holo-label" for="{{ preference.key }}">
                                         {{ preference.title }}
                                     </label>
                                     <div class="holo-content holo-help"><p>{{ preference.summary }}</p></div>
@@ -30,12 +34,16 @@
                         <ul class="holo-list">
                             <li>
                                 <div>
-                                    <select class="holo-spinner" id="{{ preference.title }}">
+                                    <select class="holo-spinner" id="{{ preference.key }}">
                                         {% for value in preference.entryValues %}
+                                            {% if value == preference.value %}
+                                        <option selected>{{ value }}</option>
+                                            {% else %}
                                         <option>{{ value }}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
-                                    <label class="holo-label" for="{{ preference.title }}">
+                                    <label class="holo-label" for="{{ preference.key }}">
                                         {{ preference.title }}
                                     </label>
                                     <div class="holo-content holo-help"><p>{{ preference.summary }}</p></div>
@@ -44,7 +52,7 @@
                         </ul>
 
                 {% endcase %}
-            {% endfor %}
+           {% endfor %}
         {% endfor %}
     </div>
 </div>

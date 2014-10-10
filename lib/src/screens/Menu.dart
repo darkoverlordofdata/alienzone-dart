@@ -35,9 +35,10 @@ class Menu extends Li2State {
   create() {
     add // ui components
       ..sprite(0, 0, config.splashKey)
-      ..button(100, 160, 'playButton', startGame, this)
-      ..button(100, 200, 'creditsButton', showCredits, this)
-      ..button(100, 240, 'scoreButton', showScores, this);
+      ..button(100, 130, 'playButton', startGame, this)
+      ..button(100, 170, 'creditsButton', showCredits, this)
+      ..button(100, 210, 'optionsButton', showOptions, this)
+      ..button(100, 250, 'scoreButton', showScores, this);
 
   }
 
@@ -69,5 +70,13 @@ class Menu extends Li2State {
     state.start("Scores", true, false);
   }
 
+  /**
+   * Show Scores
+   *
+   * return	Nothing
+   */
+  showOptions(source, input, flag) {
+    state.start("Preferences", true, false);
+  }
 
 }

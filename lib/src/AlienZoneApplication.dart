@@ -48,16 +48,10 @@ class AlienZoneApplication {
 
     Dilithium.using("packages/alienzone/res")
     .then((config) {
-
-
       config.preferences = translatePreferences(config);
       HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
-      .then((String template) {
-
-        querySelector('#logo').style.display = 'none';
-        querySelector('body').style.backgroundColor = 'black';
-        new Game(config, new Li2Template(template), device);
-      });
+      .then((template) =>
+        new Game(config, new Li2Template(template), device));
     });
 
   }
@@ -86,6 +80,8 @@ class AlienZoneApplication {
       categories.add({'title': config.xlate(c['title']), 'preferences': preferences});
     }
     return {
+        'id':           config.preferences['id'],
+        'icon':         config.preferences['icon'],
         'template':     config.preferences['template'],
         'title':        config.xlate(config.preferences['title']),
         'categories':   categories

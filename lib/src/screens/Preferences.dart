@@ -24,6 +24,8 @@ class Preferences extends Li2State {
 
   /**
    * Preferences use HTML ui
+   * Persist preferences using the cordova plugin
+   * If not available, fallback to browser localStorage
    */
   Preferences(this.config, this.template) {
     print('Preferences Class initialized');
@@ -61,12 +63,17 @@ class Preferences extends Li2State {
   }
 
   /**
-   * Start
+   * Modify preferences via the ui
+   * Persist changes
    */
   create() {
 
+    var game = querySelector('canvas');
     querySelector(config.preferences['id'])
       ..setInnerHtml(template.render(config.preferences))
+      ..style.height = game.style.height
+      ..style.width = game.style.width
+      ..style.marginLeft = game.style.marginLeft
       ..style.display = 'inline';
 
     querySelector('.holo-action-bar').on['click'].listen((event){

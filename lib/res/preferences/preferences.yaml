@@ -7,7 +7,7 @@ categories:
       preferences:
         -   type: CheckBoxPreference
             title: Fullscreen
-            defaultValue: false
+            defaultValue: true
             summary: Displays the game in fullscreen mode.
             key: fullscreen
         -   type: CheckBoxPreference

@@ -2,9 +2,10 @@
     <div id="accent" class="holo-accent-blue">
 
         <div class="holo-action-bar">
-            <h1 class="icon">{{ title }}</h1>
+            <h1><a href="#" class="holo-up">{{ title }}</a></h1>
         </div>
 
+        <div id="console"></div>
         {% for category in categories %}
             <h2 class="holo-divider">{{ category.title }}</h2>
            {% for preference in category.preferences %}
@@ -15,17 +16,17 @@
 
                         <ul class="holo-list">
                             <li>
-                                <div class="holo-switch">
-                                    {% if preference.value == true %}
-                                    <input type="checkbox" id="{{ preference.key }}" checked/>
+                                <div class="holo-switch" id="{{ preference.key }}">
+                                    {% if preference.value != true %}
+                                    <div>OFF</div>
                                     {% else %}
-                                    <input type="checkbox" id="{{ preference.key }}"/>
+                                    <div></div>
                                     {% endif %}
                                     <label class="holo-label" for="{{ preference.key }}">
                                         {{ preference.title }}
                                     </label>
-                                    <div class="holo-content holo-help"><p>{{ preference.summary }}</p></div>
                                 </div>
+                                <div class="holo-content holo-help"><p>{{ preference.summary }}</p></div>
                             </li>
                         </ul>
 

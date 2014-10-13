@@ -24,3 +24,6 @@ platforms/android/ant-build/alienzed-debug.apk
 platforms/android/bin/alienzone-release.apk
 platforms/android/ant-build/alienzone-debug.apk
 web/js/liquid.coffee
+AlienZone-release.apk
+
+coocoonjs

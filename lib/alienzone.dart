@@ -34,6 +34,7 @@ import 'dart:math';
 import 'dart:js';
 import 'dart:async' as async;
 
+import 'package:toastd/toastd.dart';
 import 'package:yaml/yaml.dart';
 import 'package:rikulo_gap/device.dart' as cordova;
 import 'package:play_phaser/phaser.dart';
@@ -50,3 +51,4 @@ part 'src/screens/Credits.dart';
 part 'src/screens/Scores.dart';
 part 'src/screens/Levels.dart';
 part 'src/screens/GameOver.dart';
+

@@ -17,10 +17,12 @@ part of alienzone;
 
 class Preferences extends Li2State {
 
+  Game alienZone;
   Li2Config config;
   Li2Template template;
   JsObject _prefs = null;
   var preferences = {};
+  List subcriptions = [];
 
   /**
    * Preferences use HTML ui
@@ -29,38 +31,120 @@ class Preferences extends Li2State {
    */
   Preferences(this.config, this.template) {
     print('Preferences Class initialized');
+    //  Initialize holo css
+    var holo = document.createElement('link');
+    holo.setAttribute('rel', 'stylesheet');
+    holo.setAttribute('href', 'packages/alienzone/res/preferences/holo.css');
+    querySelector('head').append(holo);
 
-    /**
-     * make sure that booleans are type bool
-     */
-    xform(value) {
-      switch(value) {
-        case 'true':  return true;
-        case 'false': return false;
-        default:      return value;
-      }
-    }
-    if (context['plugins'] != null)_prefs = context['plugins']['appPreferences'];
+    //  Initialize holo extra css
+    var extra = document.createElement('link');
+    extra.setAttribute('rel', 'stylesheet');
+    extra.setAttribute('href', 'packages/alienzone/res/preferences/extra.css');
+    querySelector('head').append(extra);
 
-    // get the saved preferences
-    for (var category in config.preferences['categories']) {
-      category['preferences'].forEach((preference) {
-        String key = preference['key'];
-        preferences[key] = preference;
 
-        if (_prefs == null) {
-          preference['value'] = window.localStorage[key] != null
-          ? xform(window.localStorage[key])
-          : preference['defaultValue'];
-        } else {
-          _prefs.callMethod('fetch', [
-                  (value) => (preference['value'] = xform(value)),
-                  (error) => (preference['value'] = preference['defaultValue']),
-              key]);
+    try {
+
+      /**
+       * make sure that booleans are type bool
+       */
+      xform(value) {
+        switch(value) {
+          case 'true':  return true;
+          case 'false': return false;
+          default:      return value;
         }
-      });
+      }
+      if (context['plugins'] != null)_prefs = context['plugins']['appPreferences'];
+
+      /**
+       *  Load the preferences:
+       *  1. First check cordova preferences plugin
+       *  2. TODO: Next check for chrome storage.
+       *  3. Fallback to localStorage when there is nothing else
+       */
+      for (var category in config.preferences['categories']) {
+        category['preferences'].forEach((preference) {
+          String key = preference['key'];
+          preferences[key] = preference;
+
+          if (_prefs == null) {
+            preference['value'] = window.localStorage[key] != null
+                    ? xform(window.localStorage[key])
+                    : preference['defaultValue'];
+          } else {
+            _prefs.callMethod('fetch', [
+                    (value) => (preference['value'] = xform(value)),
+                    (error) => (preference['value'] = preference['defaultValue']),
+                    key]);
+          }
+        });
+      }
+    } catch (e) {
+      new Toast.error(e, 'Error');
     }
   }
+
+  /**
+   * Save preference in local collection
+   */
+  setPreference(key, value, type) {
+
+    preferences[key] = value;
+    return value;
+  }
+
+  /**
+   * Tear down and return to menu
+   */
+  cancelScreen(event) {
+    querySelector(config.preferences['id'])
+      ..style.display = 'none';
+    subcriptions.forEach((subcription){
+      subcription.cancel();
+    });
+    game.paused = false;
+    state.start(config.menu);
+  }
+
+  /**
+   * Click an on/off switch
+   */
+  onOffSwitch(event) {
+    try {
+
+      event.preventDefault();
+      String id = event.target.getAttribute('for');
+      var s = querySelector("#$id div");
+      bool onOff = (s.innerHtml.length > 0);
+
+      if (onOff) {
+        //        s.setInnerHtml("");
+        // force rendering in chrome webview
+        var p = s.parent;
+        s.remove();
+        p.insertAdjacentHtml('afterBegin', '<div></div>');
+      } else {
+        //        s.setInnerHtml("OFF");
+        // force rendering in chrome webview
+        var p = s.parent;
+        s.remove();
+        p.insertAdjacentHtml('afterBegin', '<div>OFF</div>');
+      }
+      if (_prefs == null) {
+        window.localStorage[id] = setPreference(id, "$onOff", "localStorage");
+      } else {
+        _prefs.callMethod('store', [
+            (value) => (setPreference(id, "$onOff", "appPreferences")),
+            (error) => (new Toast.error("Unable to save $id", "Error")),
+            id, "$onOff"]);
+      }
+    } catch (e) {
+      new Toast.error(e, "Error");
+    }
+  }
+
 
   /**
    * Modify preferences via the ui
@@ -68,49 +152,17 @@ class Preferences extends Li2State {
    */
   create() {
 
-    var game = querySelector('canvas');
+    game.paused = true;
     querySelector(config.preferences['id'])
       ..setInnerHtml(template.render(config.preferences))
-      ..style.height = game.style.height
-      ..style.width = game.style.width
-      ..style.marginLeft = game.style.marginLeft
-      ..style.display = 'inline';
+      ..style.display = 'block';
 
-    querySelector('.holo-action-bar').on['click'].listen((event){
-      querySelector(config.preferences['id'])
-        ..style.display = 'none';
-      state.start(config.menu);
-    });
-
-    querySelector('.holo-action-bar').on['touchstart'].listen((event){
-      querySelector(config.preferences['id'])
-        ..style.display = 'none';
-      state.start(config.menu);
-    });
-
+    subcriptions = [];
+    subcriptions.add(querySelector('.holo-action-bar').onClick.listen(cancelScreen));
+    subcriptions.add(querySelector('.holo-action-bar').onTouchStart.listen(cancelScreen));
     preferences.forEach((key, preference) {
-      querySelector("#$key").on['change'].listen((event) {
-        var value;
-        String key = event.target.id;
-        switch(event.target.type) {
-          case 'checkbox':
-            value = event.target.checked;
-            break;
-          case 'select-one':
-            value = event.target.value;
-            break;
-          default:
-            value = "";
-        }
-        if (_prefs == null) {
-          window.localStorage[event.target.id] = "$value";
-        } else {
-          _prefs.callMethod('store', [
-                  (value) => (preference['value'] = value),
-                  (error) => (print("Unable to save $key")),
-              key, value]);
-        }
-      });
+      subcriptions.add(querySelector("#$key").onClick.listen(onOffSwitch));
+      subcriptions.add(querySelector("#$key").onTouchStart.listen(onOffSwitch));
     });
   }
 }

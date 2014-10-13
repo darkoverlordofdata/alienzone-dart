@@ -30,6 +30,7 @@ class Game  extends Dilithium {
       "yellow"
   ];
 
+  AlienZoneApplication app;
   cordova.Device device;
   Li2Template template;
 
@@ -43,7 +44,7 @@ class Game  extends Dilithium {
    */
   Game(config, this.template, this.device): super(config) {
 
-    print("Class Alienzone initialized");
+    print("Class Game initialized");
   }
 
   /**
@@ -51,12 +52,11 @@ class Game  extends Dilithium {
    */
   State levels() {
 
-    game.state
-      ..add('Levels',       new Levels(config))
-      ..add('Credits',      new Credits(config))
-      ..add('Scores',       new Scores(config))
-      ..add('Preferences',  new Preferences(config, template))
-      ..add('GameOver',     new GameOver(config));
+    game.state.add('Levels',       new Levels(config));
+    game.state.add('Credits',      new Credits(config));
+    game.state.add('Scores',       new Scores(config));
+    game.state.add('Preferences',  new Preferences(config, template));
+    game.state.add('GameOver',     new GameOver(config));
 
     return new Menu(config);
 

@@ -29,8 +29,9 @@ public class alienzed extends CordovaActivity
     {
         super.onCreate(savedInstanceState);
         super.init();
+        super.setIntegerProperty("splashscreen", R.drawable.splash);
         // Set by <content src="index.html" /> in config.xml
-        super.loadUrl(Config.getStartUrl());
+        super.loadUrl(Config.getStartUrl(), 4000);
         //super.loadUrl("file:///android_asset/www/index.html");
     }
 }

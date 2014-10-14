@@ -1,5 +1,6 @@
 /home/bruce/Git/alienzone/platforms/android/ant-gen/com/darkoverlordofdata/alienzone/R.java \
  : /home/bruce/Git/alienzone/platforms/android/res/values/strings.xml \
+/home/bruce/Git/alienzone/platforms/android/res/drawable/splash.png \
 /home/bruce/Git/alienzone/platforms/android/res/drawable/icon.png \
 /home/bruce/Git/alienzone/platforms/android/res/drawable-land-mdpi/screen.png \
 /home/bruce/Git/alienzone/platforms/android/res/drawable-port-ldpi/screen.png \
@@ -14,6 +15,7 @@
 /home/bruce/Git/alienzone/platforms/android/res/drawable-port-xhdpi/screen.png \
 /home/bruce/Git/alienzone/platforms/android/res/drawable-port-hdpi/screen.png \
 /home/bruce/Git/alienzone/platforms/android/res/drawable-ldpi/icon.png \
+/home/bruce/Git/alienzone/platforms/android/ant-build/res/drawable/splash.png \
 /home/bruce/Git/alienzone/platforms/android/ant-build/res/drawable/icon.png \
 /home/bruce/Git/alienzone/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
 /home/bruce/Git/alienzone/platforms/android/ant-build/res/drawable-port-ldpi/screen.png \

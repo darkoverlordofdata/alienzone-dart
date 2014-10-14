@@ -25,12 +25,6 @@ class AlienZoneApplication {
    */
   AlienZoneApplication() {
 
-    //  Initialize Toast css
-    var toast = document.createElement('link');
-    toast.setAttribute('rel', 'stylesheet');
-    toast.setAttribute('href', 'packages/toastd/resource/css/toastd.css');
-    querySelector('head').append(toast);
-
     startGame();
   }
 
@@ -62,7 +56,9 @@ class AlienZoneApplication {
     .then((config) {
       config.preferences = translatePreferences(config);
       HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
-      .then((template) => new Game(config, new Li2Template(template), device));
+      .then((template) {
+        new Game(config, new Li2Template(template), device);
+      });
     });
 
   }

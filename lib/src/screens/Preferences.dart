@@ -82,7 +82,7 @@ class Preferences extends Li2State {
         });
       }
     } catch (e) {
-      new Toast.error(e, 'Error');
+      print(e);
     }
   }
 
@@ -137,11 +137,11 @@ class Preferences extends Li2State {
       } else {
         _prefs.callMethod('store', [
             (value) => (setPreference(id, "$onOff", "appPreferences")),
-            (error) => (new Toast.error("Unable to save $id", "Error")),
+            (error) => (print("Unable to save $id")),
             id, "$onOff"]);
       }
     } catch (e) {
-      new Toast.error(e, "Error");
+      print(e);
     }
   }
 

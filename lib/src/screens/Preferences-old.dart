@@ -73,7 +73,7 @@ class Preferences extends Li2State {
         });
       }
     } catch (e) {
-      new Toast.error(e, 'Error');
+      print(e);
     }
   }
 

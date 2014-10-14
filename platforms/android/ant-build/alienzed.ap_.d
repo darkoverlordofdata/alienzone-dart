@@ -39,6 +39,7 @@
 /home/bruce/Git/alienzone/platforms/android/assets/www/icon128.png \
 /home/bruce/Git/alienzone/platforms/android/assets/www/window.html \
 /home/bruce/Git/alienzone/platforms/android/assets/www/main.dart.js \
+/home/bruce/Git/alienzone/platforms/android/assets/www/splash1.png \
 /home/bruce/Git/alienzone/platforms/android/assets/www/splash.png \
 /home/bruce/Git/alienzone/platforms/android/assets/www/manifest.json \
 /home/bruce/Git/alienzone/platforms/android/assets/www/index.html \

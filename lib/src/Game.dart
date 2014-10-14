@@ -70,7 +70,9 @@ class Game  extends Dilithium {
 
     }
 
-    querySelector('body').style.backgroundColor = 'black';
+    querySelector('body')
+      ..setAttribute('class', '')
+      ..style.backgroundColor = 'black';
 
     return new Menu(config);
 

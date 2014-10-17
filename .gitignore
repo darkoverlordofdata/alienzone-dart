@@ -1,7 +1,7 @@
 # Created by .gitignore support plugin (hsz.mobi)
 ### Dart template
 # Don’t commit the following directories created by pub.
-#build/
+build/
 packages/
 
 # Or the files created by dart2js.

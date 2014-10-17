@@ -5,8 +5,8 @@
         <group>
             <file>file:/home/bruce/Git/alienzone/www/index.html</file>
             <file>file:/home/bruce/Git/alienzone/platforms/android/res/xml/config.xml</file>
-            <file>file:/home/bruce/Git/alienzone/platforms/android/src/com/darkoverlordofdata/alienzone/alienzed.java</file>
             <file>file:/home/bruce/Git/alienzone/platforms/android/AndroidManifest.xml</file>
+            <file>file:/home/bruce/Git/alienzone/platforms/android/src/com/darkoverlordofdata/alienzone/alienzed.java</file>
         </group>
     </open-files>
 </project-private>

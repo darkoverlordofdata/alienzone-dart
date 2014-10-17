@@ -1,20 +1,17 @@
 name: alienzone
-version: 0.0.1
+version: 0.0.3
 description:
   Match 3 game
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
-  browser: ">=0.10.0+2 <0.11.0"
-#  unittest: ">=0.11.0+5 <0.12.0"
-#  toastd: #">=1.0.0 <2.0.0"
-#    git: https://github.com/darkoverlordofdata/toastd
-  yaml: ">=2.0.1+1 <3.0.0"
-  play_phaser: ">=0.10.3+1 <0.11.0"
-  play_pixi: ">=0.10.3 <0.11.0"
-  rikulo_gap: ">=0.6.0+1 <0.7.0"
-  match3: "0.0.4"
-  dilithium: ">=0.1.0 <0.2.0"
+  browser: any
+  yaml: any
+  play_phaser: any
+  play_pixi: any
+  rikulo_gap: any
+  match3: any
+  dilithium: any
 #    path: ../dilithium
 #    git: git@github.com:darkoverlordofdata/dilithium.git
 

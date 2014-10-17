@@ -1,7 +1,7 @@
 # Created by .gitignore support plugin (hsz.mobi)
 ### Dart template
 # Don’t commit the following directories created by pub.
-build/
+#build/
 packages/
 
 # Or the files created by dart2js.
@@ -12,7 +12,6 @@ packages/
 *.js.map
 
 # Include when developing application packages.
-pubspec.lock
 old/
 .idea/
 # http://darkoverlordofdata.github.io/alienzed
@@ -23,8 +22,6 @@ platforms/android/bin/alienzed-release.apk
 platforms/android/ant-build/alienzed-debug.apk
 platforms/android/bin/alienzone-release.apk
 platforms/android/ant-build/alienzone-debug.apk
-web/js/liquid.coffee
 AlienZone-release.apk
 
-coocoonjs
 cocoonjs

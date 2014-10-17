@@ -45,6 +45,7 @@ class Game  extends Dilithium {
   Game(config, this.template, this.device): super(config) {
 
     print("Class Game initialized");
+    game.scale.fullScreenScaleMode = ScaleManager.EXACT_FIT;
   }
 
   /**

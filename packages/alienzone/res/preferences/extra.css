@@ -1,0 +1,60 @@
+/**
+ *--------------------------------------------------------------------+
+ * preferences/extra.css
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ *  Extra css for holo
+ *
+ *  Simulates:
+ *      input[type='checkbox']
+ *
+ *  Due to some combination of phaser+dart+cordova+android+ART
+ *  the standard input tag doesn't raise an event; to workaround
+ *  this styles a div to work like a checkbox
+ *
+ */
+
+.holo-switch div { display:none; }
+.holo-switch :empty + label:after { content:""; }
+.holo-switch :empty + label:before { content:"ON"; }
+.holo-dark .holo-switch :empty + label:before { background:#888; }
+
+.holo-light .holo-switch :empty + label:before { background:#BBB; }
+.holo-light .holo-switch :empty + label:before { background:#888; }
+
+.holo-accent-red .holo-switch :empty + label:before
+{
+    background-color:rgba(255,68,68,.5);
+}
+
+.holo-accent-green .holo-switch :empty + label:before
+{
+    background-color:rgba(153,204,0,.5);
+}
+
+.holo-accent-blue .holo-switch :empty + label:before
+{
+    background-color:rgba(51,181,229,.67);
+}
+
+.holo-accent-purple .holo-switch :empty + label:before
+{
+    background-color:rgba(170,102,204,.5);
+}
+
+.holo-accent-orange .holo-switch :empty + label:before
+{
+    background-color:rgba(255,187,51,.5);
+}
+
+select.holo-spinner { float: right; }
+.holo-help { font: 12px sans-serif, 'Roboto'; }

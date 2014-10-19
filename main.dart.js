@@ -24230,7 +24230,7 @@ this.Oe=z
 J.qn(z,0.7)
 z=$.cM()
 if(J.UQ(z,"cordova")==null){this.yr=J.jL(this.ht,"score")
-J.DG(this.Vt.gHP(),0.1)}else this.b1=P.uw(J.UQ(z,"Media"),["/android_asset/www/packages/alienzone/res/audio/sfx/Powerup4.ogg",new S.zw(this),new S.dm()])
+J.DG(this.Vt.gHP(),0.075)}else this.b1=P.uw(J.UQ(z,"Media"),["/android_asset/www/packages/alienzone/res/audio/sfx/Powerup4.ogg",new S.zw(this),new S.dm()])
 this.a4=J.BD(this.ht,100,20,"Score: 0",R.pt("left","#e0e0e0","bold 30px Acme","black",0,16777215))
 this.Gn=M.dw("down",7,6)
 z=$.WO()

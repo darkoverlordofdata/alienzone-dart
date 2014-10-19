@@ -28,6 +28,7 @@ class Levels extends Li2State {
   Text text;
   List discoveredGems;
   GemGroup gemGroup;
+  Sound powerup;
   int score = 0;
 
   Li2Config config;
@@ -49,6 +50,9 @@ class Levels extends Li2State {
     background = add.sprite(0, 0, 'background');
     board = add.sprite(0, 0, 'board');
     board.alpha = 0.7;
+
+    powerup = add.audio('score');
+    game.sound.volume = .05;
 
     text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
@@ -213,14 +217,15 @@ class Levels extends Li2State {
 
     int speed = 1000;
     var dur = const Duration(milliseconds: 1000);
-    var scoreStyle = new TextStyle(font: "bold 40px Courier New, Courier",fill: color, align: "center");
+    var scoreStyle = new TextStyle(font: "bold 120px Courier New, Courier",fill: color, align: "center");
 
 
     score += points;
     text.text = "Score: $score";
     text.updateText();
 
-    Text popup = add.text(150, 300, "$points", scoreStyle);
+    Text popup = add.text(90, 300, "$points", scoreStyle);
+    powerup.play();
     add.tween(popup)
     .to({'alpha': 1}, speed*0.75, Easing.Linear.None, true)
     .to({'alpha': 0}, speed*0.25, Easing.Linear.None, true);

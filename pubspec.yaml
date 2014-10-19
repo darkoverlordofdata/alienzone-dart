@@ -1,13 +1,13 @@
 name: alienzone
 version: 0.0.3
 description:
-  Match 3 game
+  Match 3 Puzzle Game
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
   browser: any
   yaml: any
-  play_phaser: any
+  play_phaser: ">=0.10.0 <0.11.0"
   play_pixi: any
   rikulo_gap: any
   match3: any

@@ -44,7 +44,8 @@ module.exports.metadata =
     "org.apache.cordova.console": "0.2.11-dev",
     "org.apache.cordova.splashscreen": "0.3.3-dev",
     "org.apache.cordova.dialogs": "0.2.10-dev",
-    "me.apla.cordova.app-preferences": "0.4.2"
+    "me.apla.cordova.app-preferences": "0.4.2",
+    "com.ludei.webview.plus": "2.3.0"
 }
 // BOTTOM OF METADATA
 });

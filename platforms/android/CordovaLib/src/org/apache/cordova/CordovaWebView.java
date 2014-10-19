@@ -65,7 +65,8 @@ import android.widget.FrameLayout;
  * @see <a href="http://developer.android.com/guide/webapps/webview.html">WebView guide</a>
  * @see <a href="http://developer.android.com/reference/android/webkit/WebView.html">WebView</a>
  */
-public class CordovaWebView extends WebView {
+import com.ludei.chromium.LudeiWebView;
+ public class CordovaWebView extends LudeiWebView {
 
     public static final String TAG = "CordovaWebView";
     public static final String CORDOVA_VERSION = "3.5.0";

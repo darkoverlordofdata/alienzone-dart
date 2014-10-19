@@ -36,7 +36,16 @@
                         }
                     ],
                     "/*": [],
-                    "/manifest/application": []
+                    "/manifest/application": [
+                        {
+                            "xml": "<service android:exported=\"false\" android:isolatedProcess=\"true\" android:name=\"org.chromium.content.app.SandboxedProcessService0\" android:permission=\"org.chromium.content_shell.permission.SANDBOX\" android:process=\":sandboxed_process0\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:exported=\"false\" android:isolatedProcess=\"true\" android:name=\"org.chromium.content.app.SandboxedProcessService1\" android:permission=\"org.chromium.content_shell.permission.SANDBOX\" android:process=\":sandboxed_process1\" />",
+                            "count": 1
+                        }
+                    ]
                 }
             }
         }
@@ -56,6 +65,9 @@
         },
         "me.apla.cordova.app-preferences": {
             "PACKAGE_NAME": "com.darkoverlordofdata.alienzed"
+        },
+        "com.ludei.webview.plus": {
+            "PACKAGE_NAME": "com.darkoverlordofdata.alienzone"
         }
     },
     "dependent_plugins": {}

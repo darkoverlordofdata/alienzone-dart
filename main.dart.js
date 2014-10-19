@@ -24229,7 +24229,7 @@ z=this.ht.Rq(0,0,"board")
 this.Oe=z
 J.qn(z,0.7)
 this.yr=J.jL(this.ht,"score")
-J.DG(this.Vt.gHP(),0.065)
+J.DG(this.Vt.gHP(),0.055)
 this.a4=J.BD(this.ht,100,20,"Score: 0",R.pt("left","#e0e0e0","bold 30px Acme","black",0,16777215))
 this.Gn=M.dw("down",7,6)
 z=$.WO()

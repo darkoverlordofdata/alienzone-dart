@@ -24230,7 +24230,7 @@ this.Oe=z
 J.qn(z,0.7)
 z=$.cM()
 if(J.UQ(z,"cordova")==null){this.yr=J.jL(this.ht,"score")
-J.DG(this.Vt.gHP(),0.33)}else this.b1=P.uw(J.UQ(z,"Media"),["file:///android_asset/www/res/audio/sfx/Powerup4.ogg",new S.zw(this),new S.dm()])
+J.DG(this.Vt.gHP(),0.01)}else this.b1=P.uw(J.UQ(z,"Media"),["/android_asset/www/packages/alienzone/res/audio/sfx/Powerup4.ogg",new S.zw(this),new S.dm()])
 this.a4=J.BD(this.ht,100,20,"Score: 0",R.pt("left","#e0e0e0","bold 30px Acme","black",0,16777215))
 this.Gn=M.dw("down",7,6)
 z=$.WO()
@@ -24294,11 +24294,13 @@ w.o0(y,250,u.ij,!0)
 P.rT(C.vM,new S.ab(this,x))}},
 zw:{
 "^":"Li:13;a",
-$0:[function(){return this.a.b1.V7("setVolume",["0.33"])},"$0",null,0,0,null,"call"],
+$0:[function(){P.JS("Set Volume")
+this.a.b1.V7("setVolume",["0.2"])},"$0",null,0,0,null,"call"],
 $isEH:true},
 dm:{
 "^":"Li:63;",
 $1:[function(a){P.JS("Error loading media:")
+P.JS(a)
 window
 if(typeof console!="undefined")console.log(a)},"$1",null,2,0,null,312,[],"call"],
 $isEH:true},

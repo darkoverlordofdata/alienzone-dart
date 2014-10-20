@@ -10,8 +10,8 @@ dependencies:
   play_phaser: ">=0.10.0 <0.11.0"
   play_pixi: any
   match3:  any
-  dilithium: #any
-    path: ../dilithium
+  dilithium: any
+#    path: ../dilithium
 
 transformers:
 - $dart2js:

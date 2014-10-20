@@ -23,6 +23,7 @@ class Credits extends Li2State {
    *   * Shoe Credits
    */
 
+  Game parent;
   var quoteStyle = new TextStyle(font: "italic 12px Arial", fill: "#000");
   var style = new TextStyle(font: "12px Arial", fill: "#000");
   var cstyle = new TextStyle(font: "14px Arial", fill: "#fff");
@@ -30,7 +31,7 @@ class Credits extends Li2State {
 
   Li2Config config;
 
-  Credits(Li2Config this.config);
+  Credits(this.parent, this.config);
 
   /**
    * State::create

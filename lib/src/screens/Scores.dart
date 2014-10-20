@@ -23,13 +23,14 @@ class Scores extends Li2State {
    *   * Show the scores
    */
 
+  Game parent;
   String text = "High Scores";
 
   var style = new TextStyle(font: "bold 20px Acme", fill: "#000");
   Sprite label;
   Li2Config config;
 
-  Scores(Li2Config this.config);
+  Scores(this.parent, this.config);
 
   /**
    * State::create

@@ -15,3 +15,6 @@ packages/
 .idea/
 sign.sh
 alienzone.zip
+Alien_Zone_debug_signed.apk
+Alien_Zone_release_unsigned.apk
+AlienZone_release.apk

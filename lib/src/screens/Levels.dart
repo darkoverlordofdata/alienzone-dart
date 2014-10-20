@@ -20,7 +20,7 @@ class Levels extends Li2State {
   /**
    * Members
    */
-  //Random _rnd = new Random();
+  Game parent;
   Sprite background;
   Sprite board;
   Grid grid;
@@ -33,7 +33,7 @@ class Levels extends Li2State {
 
   Li2Config config;
 
-  Levels(Li2Config this.config);
+  Levels(this.parent, this.config);
 
   /**
    * == Create the game level
@@ -55,7 +55,7 @@ class Levels extends Li2State {
       bonus.add(add.audio("bonus$i"));
     }
 
-    game.sound.volume = .05;
+    game.sound.volume = parent.soundfx;
 
     text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
@@ -228,7 +228,7 @@ class Levels extends Li2State {
     text.updateText();
 
     Text popup = add.text(90, 300, "$points", scoreStyle);
-    bonus[points].play();
+    bonus[points % 19].play();
     add.tween(popup)
     .to({'alpha': 1}, (speed*0.75), Easing.Linear.None, true)
     .to({'alpha': 0}, (speed*0.25), Easing.Linear.None, true);

@@ -17,7 +17,7 @@ part of alienzone;
 
 class Preferences extends Li2State {
 
-  Game alienZone;
+  Game parent;
   Li2Config config;
   Li2Template template;
   var preferences = {};
@@ -27,7 +27,7 @@ class Preferences extends Li2State {
    * Preferences use HTML ui
    * If not available, fallback to browser localStorage
    */
-  Preferences(this.config, this.template) {
+  Preferences(this.parent, this.config, this.template) {
     print('Preferences Class initialized');
     //  Initialize holo css
     var holo = document.createElement('link');
@@ -41,7 +41,12 @@ class Preferences extends Li2State {
     extra.setAttribute('href', 'packages/alienzone/res/preferences/extra.css');
     querySelector('head').append(extra);
 
+  }
 
+  /**
+   * Load saved preferences
+   */
+  loadPreferences() {
     try {
 
       /**
@@ -65,15 +70,16 @@ class Preferences extends Li2State {
           String key = preference['key'];
           preferences[key] = preference;
           preference['value'] = window.localStorage[key] != null
-                  ? xform(window.localStorage[key])
-                  : preference['defaultValue'];
+            ? xform(window.localStorage[key])
+            : preference['defaultValue'];
+          parent.setPreference(key, preference['value']);
         });
       }
     } catch (e) {
       print(e);
     }
-  }
 
+  }
   /**
    * Save preference in local collection
    */
@@ -121,6 +127,7 @@ class Preferences extends Li2State {
         p.insertAdjacentHtml('afterBegin', '<div>OFF</div>');
       }
       window.localStorage[id] = setPreference(id, "$onOff", "localStorage");
+      parent.setPreference(id, onOff);
     } catch (e) {
       print(e);
     }
@@ -134,6 +141,7 @@ class Preferences extends Li2State {
   create() {
 
     game.paused = true;
+    loadPreferences();
     querySelector(config.preferences['id'])
       ..setInnerHtml(template.render(config.preferences))
       ..style.display = 'block';

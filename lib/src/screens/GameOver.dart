@@ -23,10 +23,11 @@ class GameOver extends Li2State {
    *   * Play again?
    */
 
+  Game parent;
   Button startButton;
   Li2Config config;
 
-  GameOver(Li2Config this.config);
+  GameOver(this.parent, this.config);
 
   /**
    * State::create

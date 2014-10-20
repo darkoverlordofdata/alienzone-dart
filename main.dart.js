@@ -31915,7 +31915,7 @@ z0:{
 "^":"Tp:52;a,b,c",
 $1:[function(a){var z,y,x,w,v
 z=this.b
-y=new D.VD(z,"name","Li2Boot","Li2Assets","Li2Menu",!1,1,320,480,320,480,640,960,!0,!0,!1,"splashScreen","",!1,"preloadBar","","preloadBgd","",P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),[],a)
+y=new D.VD(z,"name","Li2Boot","Li2Assets","Li2Menu",!1,1,320,480,320,480,640,960,!0,!0,!1,"splashScreen","",!1,"preloadBar","","preloadBgd","",P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),a)
 y.bW(a,z)
 x=J.UQ(y.Rj,"arrays")
 w=J.UQ(y.Rj,"strings")
@@ -32064,7 +32064,6 @@ Yz:function(a,b){return this.lB.$1(b)},
 Cz:function(a,b,c){return this.lB.$2(b,c)},
 u0t:function(a,b,c,d){return this.lB.$3(b,c,d)},
 QKo:function(a,b,c,d,e){return this.lB.$4(b,c,d,e)},
-WT:function(){return this.K5.$0()},
 TU:function(a){var z
 try{this.AU=J.Vm(O.NK(a,null))}catch(z){H.Ru(z)}},
 yP:function(a){var z

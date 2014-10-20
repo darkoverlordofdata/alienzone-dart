@@ -39,7 +39,7 @@ class Piece extends Locus {
   }
 
 
-  List neighbours() {
+  Map neighbours() {
     return grid.neighboursOf(this);
   }
 

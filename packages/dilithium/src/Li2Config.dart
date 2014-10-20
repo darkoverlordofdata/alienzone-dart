@@ -27,7 +27,7 @@ class Li2Config {
   String menu = "Li2Menu";
   bool debug = false;
 
-  int renderer = CANVAS; // Force Canvas for Mobile
+  int renderer = Phaser.CANVAS; // Force Canvas for Mobile
   int width = 320;
   int height = 480;
   int minWidth = 320;
@@ -54,7 +54,7 @@ class Li2Config {
   var levels = {};
   var strings = {};
   var arrays = {};
-  List preferences = [];
+  var preferences = {};
 
   String source;
 //  var device;

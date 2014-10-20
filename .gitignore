@@ -13,14 +13,5 @@ packages/
 
 # Include when developing application packages.
 .idea/
-# apk keystore
-platforms/android/ant.properties
-platforms/android/ant-build/AlienZone-debug-unaligned.apk
-platforms/android/ant-build/AlienZone-debug.apk
-platforms/android/ant-build/AlienZone-release-unaligned.apk
-platforms/android/ant-build/AlienZone-release.apk
-platforms/android/ant-build/AlienZone-release-unsigned.apk
-platforms/android/ant-build/AlienZone-debug-unaligned.apk.d
-platforms/android/ant-build/AlienZone-release-unsigned.apk.d
-cocoonjs
 sign.sh
+alienzone.zip

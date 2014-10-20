@@ -17,6 +17,7 @@ part of alienzone;
 
 class AlienZoneApplication {
 
+  var device;
   /**
    * == Start ==
    *
@@ -25,7 +26,17 @@ class AlienZoneApplication {
    */
   AlienZoneApplication() {
 
-    startGame();
+    // Initialize Cordova?
+    if (context['cordova'] != null) {
+      cordova.Device.init()
+      .then((device) => startGame(device))
+      .catchError((ex, st) {
+        print(ex);
+        print(st);
+        startGame(null);
+      });
+    }
+    else startGame(null);
   }
 
   /**
@@ -35,8 +46,9 @@ class AlienZoneApplication {
    *   * Using game configuration
    *   * Start a game instance
    */
-  startGame() {
+  startGame(device) {
 
+    this.device = device;
     Dilithium.using("packages/alienzone/res")
     .then((config) {
       config.preferences = translatePreferences(config);

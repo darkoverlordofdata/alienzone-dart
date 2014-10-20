@@ -24,7 +24,7 @@ class Gem extends MatchObject {
   int x;
   int y;
   Sprite sprite;
-  State level;
+  Levels level;
 
   /**
    * == New Gem ==

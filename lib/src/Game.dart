@@ -58,17 +58,6 @@ class Game  extends Dilithium {
     game.state.add('Preferences',  new Preferences(config, template));
     game.state.add('GameOver',     new GameOver(config));
 
-    if (context['cordova'] != null) {
-      JsObject _splashscreen = context['navigator']['splashscreen'];
-      if (_splashscreen == null) {
-        print("Splashscreen plugin not ready yet.");
-//        throw new StateError('Splashscreen plugin not ready yet.');
-      } else {
-        _splashscreen.callMethod('hide', []);
-
-      }
-
-    }
 
     querySelector('body')
       ..setAttribute('class', '')

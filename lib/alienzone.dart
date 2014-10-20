@@ -30,12 +30,8 @@ along with AlienZone.  If not, see <http://www.gnu.org/licenses/>.
 library alienzone;
 
 import 'dart:html';
-import 'dart:math';
-import 'dart:js';
 import 'dart:async' as async;
 
-import 'package:yaml/yaml.dart';
-import 'package:rikulo_gap/device.dart' as cordova;
 import 'package:play_phaser/phaser.dart';
 import "package:dilithium/dilithium.dart";
 import 'package:match3/match3.dart';

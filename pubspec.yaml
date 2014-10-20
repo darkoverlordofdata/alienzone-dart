@@ -9,7 +9,6 @@ dependencies:
   yaml: any
   play_phaser: ">=0.10.0 <0.11.0"
   play_pixi: any
-  rikulo_gap: any
   match3:  any
   dilithium: #any
     path: ../dilithium

@@ -25,7 +25,6 @@ class Preferences extends Li2State {
 
   /**
    * Preferences use HTML ui
-   * Persist preferences using the cordova plugin
    * If not available, fallback to browser localStorage
    */
   Preferences(this.config, this.template) {
@@ -58,9 +57,8 @@ class Preferences extends Li2State {
 
       /**
        *  Load the preferences:
-       *  1. First check cordova preferences plugin
-       *  2. TODO: Next check for chrome storage.
-       *  3. Fallback to localStorage when there is nothing else
+       *  1. TODO: Check for chrome storage.
+       *  2. Fallback to localStorage when there is nothing else
        */
       for (var category in config.preferences['categories']) {
         category['preferences'].forEach((preference) {

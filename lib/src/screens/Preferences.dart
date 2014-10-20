@@ -20,7 +20,6 @@ class Preferences extends Li2State {
   Game alienZone;
   Li2Config config;
   Li2Template template;
-  JsObject _prefs = null;
   var preferences = {};
   List subcriptions = [];
 
@@ -56,7 +55,6 @@ class Preferences extends Li2State {
           default:      return value;
         }
       }
-      if (context['plugins'] != null)_prefs = context['plugins']['appPreferences'];
 
       /**
        *  Load the preferences:
@@ -68,17 +66,9 @@ class Preferences extends Li2State {
         category['preferences'].forEach((preference) {
           String key = preference['key'];
           preferences[key] = preference;
-
-          if (_prefs == null) {
-            preference['value'] = window.localStorage[key] != null
-                    ? xform(window.localStorage[key])
-                    : preference['defaultValue'];
-          } else {
-            _prefs.callMethod('fetch', [
-                    (value) => (preference['value'] = xform(value)),
-                    (error) => (preference['value'] = preference['defaultValue']),
-                    key]);
-          }
+          preference['value'] = window.localStorage[key] != null
+                  ? xform(window.localStorage[key])
+                  : preference['defaultValue'];
         });
       }
     } catch (e) {
@@ -132,14 +122,7 @@ class Preferences extends Li2State {
         s.remove();
         p.insertAdjacentHtml('afterBegin', '<div>OFF</div>');
       }
-      if (_prefs == null) {
-        window.localStorage[id] = setPreference(id, "$onOff", "localStorage");
-      } else {
-        _prefs.callMethod('store', [
-            (value) => (setPreference(id, "$onOff", "appPreferences")),
-            (error) => (print("Unable to save $id")),
-            id, "$onOff"]);
-      }
+      window.localStorage[id] = setPreference(id, "$onOff", "localStorage");
     } catch (e) {
       print(e);
     }

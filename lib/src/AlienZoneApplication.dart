@@ -37,27 +37,12 @@ class AlienZoneApplication {
    */
   startGame() {
 
-    // Initialize Cordova
-    if (context['cordova'] != null) {
-      cordova.Device.init()
-      .then((device) => createGame(this, device))
-      .catchError((ex, st) {
-        print(ex);
-        print(st);
-        createGame(this, null);
-      });
-    }
-    else createGame(this, null);
-  }
-
-  void createGame(listener, device) {
-
     Dilithium.using("packages/alienzone/res")
     .then((config) {
       config.preferences = translatePreferences(config);
       HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
       .then((template) {
-        new Game(config, new Li2Template(template), device);
+        new Game(config, new Li2Template(template));
       });
     });
 

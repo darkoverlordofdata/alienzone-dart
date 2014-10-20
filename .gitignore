@@ -12,16 +12,15 @@ packages/
 *.js.map
 
 # Include when developing application packages.
-old/
 .idea/
-# http://darkoverlordofdata.github.io/alienzed
-gh-pages
 # apk keystore
 platforms/android/ant.properties
-platforms/android/bin/alienzed-release.apk
-platforms/android/ant-build/alienzed-debug.apk
-platforms/android/bin/alienzone-release.apk
-platforms/android/ant-build/alienzone-debug.apk
-AlienZone-release.apk
-
+platforms/android/ant-build/AlienZone-debug-unaligned.apk
+platforms/android/ant-build/AlienZone-debug.apk
+platforms/android/ant-build/AlienZone-release-unaligned.apk
+platforms/android/ant-build/AlienZone-release.apk
+platforms/android/ant-build/AlienZone-release-unsigned.apk
+platforms/android/ant-build/AlienZone-debug-unaligned.apk.d
+platforms/android/ant-build/AlienZone-release-unsigned.apk.d
 cocoonjs
+sign.sh

@@ -110,7 +110,7 @@ class GemGroup {
    * param  [Number]  direction {LEFT: -1, RIGHT: 1}
    * returns none
    */
-  void rotate(Locus direction) {
+  void rotate(int direction) {
 
     // Update the current pattern
     currentPattern = currentPattern + direction;

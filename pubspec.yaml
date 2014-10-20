@@ -11,8 +11,8 @@ dependencies:
   play_pixi: any
   rikulo_gap: any
   match3: any
-  dilithium: any
-#    path: ../dilithium
+  dilithium:  #any
+    path: ../dilithium
 #    git: git@github.com:darkoverlordofdata/dilithium.git
 
 transformers:

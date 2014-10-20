@@ -31,7 +31,6 @@ class Game  extends Dilithium {
   ];
 
   AlienZoneApplication app;
-  cordova.Device device;
   Li2Template template;
 
   /**
@@ -42,7 +41,7 @@ class Game  extends Dilithium {
    *
    * returns this
    */
-  Game(config, this.template, this.device): super(config) {
+  Game(config, this.template): super(config) {
 
     print("Class Game initialized");
     game.scale.fullScreenScaleMode = ScaleManager.EXACT_FIT;

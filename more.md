@@ -4,7 +4,7 @@
     * Match 3 game writtem using Phaser.io
     * Match Engine based on https://github.com/hugeen/jmatch3
     * dart language version
-    * cordova based apk
+    * cordova/cocoonjs based apk
     
     
 Game inspired by the demo at:

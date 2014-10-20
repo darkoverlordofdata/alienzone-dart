@@ -20,7 +20,7 @@ class Levels extends Li2State {
   /**
    * Members
    */
-  Random rnd = new Random();
+  //Random _rnd = new Random();
   Sprite background;
   Sprite board;
   Grid grid;
@@ -28,7 +28,7 @@ class Levels extends Li2State {
   Text text;
   List discoveredGems;
   GemGroup gemGroup;
-  Sound powerup;
+  List<Sound> bonus = [];
   int score = 0;
 
   Li2Config config;
@@ -51,7 +51,10 @@ class Levels extends Li2State {
     board = add.sprite(0, 0, 'board');
     board.alpha = 0.7;
 
-    powerup = add.audio('score');
+    for (var i=1; i<=20; i++) {
+      bonus.add(add.audio("bonus$i"));
+    }
+
     game.sound.volume = .05;
 
     text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
@@ -225,10 +228,10 @@ class Levels extends Li2State {
     text.updateText();
 
     Text popup = add.text(90, 300, "$points", scoreStyle);
-    powerup.play();
+    bonus[points].play();
     add.tween(popup)
-    .to({'alpha': 1}, speed*0.75, Easing.Linear.None, true)
-    .to({'alpha': 0}, speed*0.25, Easing.Linear.None, true);
+    .to({'alpha': 1}, (speed*0.75), Easing.Linear.None, true)
+    .to({'alpha': 0}, (speed*0.25), Easing.Linear.None, true);
 
     new async.Timer(dur, ()=> world.remove(popup));
   }

@@ -5,23 +5,143 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" href="favicon.png" />
+
     <style>
+        /* latin */
+        @font-face {
+            font-family: 'Special Elite';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Special Elite'), local('SpecialElite-Regular'), url(specialelite.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Walter Turncoat';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Walter Turncoat'), local('WalterTurncoat'), url(walterturncoat.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
         body {
-            background-color: #ccc;
+            background-color: #000;
             margin: 0;
             padding: 0;
         }
 
         .logo {
-            background-image: url(splash1.png);
-            background-repeat: no-repeat;
-            background-size: cover;
+            text-align: center;
+            /*font-family: Poiret One;*/
+            font-family: Walter Turncoat;
+            height: 100%;
+            background: -webkit-linear-gradient(315deg, #111, #333);
+            background: linear-gradient(135deg, #111, #333);
+            overflow: hidden;
+            color: #ccc;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
         }
 
+        .logo div {
+            position: absolute;
+            top:200px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+
+        }
+
+        .letter {
+            font-size: 80px;
+            position: relative;
+            top: -webkit-calc(50% - 60px);
+            top: calc(50% - 60px);
+            text-shadow: 0px 0px 3px white;
+        }
+        .letter:nth-child(1) {
+            -webkit-animation: fade 4s infinite 200ms;
+            animation: fade 4s infinite 200ms;
+        }
+        .letter:nth-child(2) {
+            -webkit-animation: fade 4s infinite 400ms;
+            animation: fade 4s infinite 400ms;
+        }
+        .letter:nth-child(3) {
+            -webkit-animation: fade 4s infinite 600ms;
+            animation: fade 4s infinite 600ms;
+        }
+        .letter:nth-child(4) {
+            -webkit-animation: fade 4s infinite 800ms;
+            animation: fade 4s infinite 800ms;
+        }
+        .letter:nth-child(5) {
+            -webkit-animation: fade 4s infinite 1000ms;
+            animation: fade 4s infinite 1000ms;
+        }
+        .letter:nth-child(6) {
+            -webkit-animation: fade 4s infinite 1200ms;
+            animation: fade 4s infinite 1200ms;
+        }
+        .letter:nth-child(7) {
+            -webkit-animation: fade 4s infinite 1400ms;
+            animation: fade 4s infinite 1400ms;
+        }
+        .letter:nth-child(8) {
+            -webkit-animation: fade 4s infinite 1600ms;
+            animation: fade 4s infinite 1600ms;
+        }
+        .letter:nth-child(9) {
+            -webkit-animation: fade 4s infinite 1800ms;
+            animation: fade 4s infinite 1800ms;
+        }
+        .letter:nth-child(10) {
+            -webkit-animation: fade 4s infinite 2000ms;
+            animation: fade 4s infinite 2000ms;
+        }
+
+        @-webkit-keyframes fade {
+            50% {
+                opacity: 0.02;
+            }
+        }
+
+        @keyframes fade {
+            50% {
+                opacity: 0.02;
+            }
+        }
+
+        .copy {
+            font-size: 20px;
+        }
 
     </style>
 </head>
-<body class="logo">
+<body>
+<div class="logo">
+    <div>
+        <span class='letter'>A</span>
+        <span class='letter'>L</span>
+        <span class='letter'>I</span>
+        <span class='letter'>E</span>
+        <span class='letter'>N</span>
+        <br>
+        <span class='letter'>Z</span>
+        <span class='letter'>O</span>
+        <span class='letter'>N</span>
+        <span class='letter'>E</span>
+        <br>
+        <p class="copy">&copy; 2014 Dark Overlord Of Data</p>
+    </div>
+</div>
 <div id="preferences"></div>
 <script type="application/dart" src="main.dart"></script>
 <script type="text/javascript"  src="packages/browser/dart.js"></script>

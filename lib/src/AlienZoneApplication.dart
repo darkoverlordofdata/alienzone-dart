@@ -18,23 +18,13 @@ part of alienzone;
 class AlienZoneApplication {
 
   /**
-   * == Start ==
-   *
-   *   * Start a game
-   */
-  AlienZoneApplication() {
-
-    startGame();
-  }
-
-  /**
    * == start game ==
    *
    *   * Hide the logo
    *   * Using game configuration
    *   * Start a game instance
    */
-  startGame() {
+  AlienZoneApplication() {
 
     Dilithium.using("packages/alienzone/res")
     .then((config) {

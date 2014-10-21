@@ -1,7 +1,7 @@
 name: alienzone
 version: 0.0.3
 description:
-  Match 3 Puzzle Game
+  Space Crystal Matching Puzzle Game
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:

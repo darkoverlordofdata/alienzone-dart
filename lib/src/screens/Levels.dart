@@ -237,6 +237,14 @@ class Levels extends Li2State {
   }
 
   /**
+   * Level Over
+   *
+   * return none
+   */
+  levelOver() {
+
+  }
+  /**
    * Game Over
    *
    * return none

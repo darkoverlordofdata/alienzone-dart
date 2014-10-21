@@ -74,7 +74,7 @@ class Gem extends MatchObject {
     }
     else {
       // Game Over
-      level.gameOver();
+      level.levelOver();
     }
   }
   /**

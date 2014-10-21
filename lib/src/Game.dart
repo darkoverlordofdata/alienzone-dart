@@ -75,7 +75,7 @@ class Game  extends Dilithium {
   }
 
   /**
-   * Set gamewide preferences
+   * Set game preferences
    */
   setPreference(id, value) {
 

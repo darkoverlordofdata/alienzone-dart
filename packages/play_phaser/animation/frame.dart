@@ -36,7 +36,20 @@ class Frame extends Rectangle {
     sourceSizeW = width;
     sourceSizeH = height;
 
+    /**
+      * @property {number} distance - The distance from the top left to the bottom-right of this Frame.
+      */
+    this.distance = Math.distance(0, 0, width, height);
 
+//    /**
+//      * @property {number} right - The right of the Frame (x + width).
+//      */
+//    this.right = this.x + this.width;
+//
+//    /**
+//      * @property {number} bottom - The bottom of the frame (y + height).
+//      */
+//    this.bottom = this.y + this.height;
   }
 
 
@@ -44,8 +57,8 @@ class Frame extends Rectangle {
     this.trimmed = trimmed;
 
     if (trimmed) {
-      this.width = actualWidth;
-      this.height = actualHeight;
+      //this.width = actualWidth;
+      //this.height = actualHeight;
       this.sourceSizeW = actualWidth;
       this.sourceSizeH = actualHeight;
       this.centerX = Math.floor(actualWidth / 2);
@@ -69,6 +82,10 @@ class Frame extends Rectangle {
     return out;
   }
 
+  /**
+   * Clones this Frame into a new Phaser.Frame object and returns it.
+   * Note that all properties are cloned, including the name, index and UUID.
+   */
   Frame clone([Frame output]) {
     if (output != null) {
       output
@@ -82,5 +99,19 @@ class Frame extends Rectangle {
       return output;
     }
     return new Frame(this.index, this.x, this.y, this.width, this.height, this.name, this.uuid);
+//
+//    Frame output = new Frame(this.index, this.x, this.y, this.width, this.height, this.name, this.uuid);
+
+//      output
+//          ..index = this.index
+//          ..x = x
+//          ..y = y
+//          ..width = width
+//          ..height = height
+//          ..name = name
+//          ..uuid = uuid;
+
+//    return output;
+
   }
 }

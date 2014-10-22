@@ -32,7 +32,7 @@ class BitmapData {
      * @property {HTMLCanvasElement} canvas - The canvas to which this BitmapData draws.
      * @default
      */
-    this.canvas = Canvas.create(width, height, '', true);
+    this.canvas = Canvas.create(width, height, '');
 
     /**
      * @property {CanvasRenderingContext2D} context - The 2d context of the canvas.
@@ -786,7 +786,7 @@ class BitmapData {
     int sx = 0;
     int sy = 0;
 
-    if (source is Image || source is Sprite) {
+    if (source is SpriteInterface) {
       src = source.texture.baseTexture.source;
       Frame frame = source.texture.frame;
       sx = frame.x;
@@ -834,7 +834,7 @@ class BitmapData {
     var sw = 0;
     var sh = 0;
 
-    if (source is Image || source is Sprite) {
+    if (source is SpriteInterface) {
       src = source.texture.baseTexture.source;
       PIXI.Rectangle frame = source.texture.frame;
       sx = frame.x;

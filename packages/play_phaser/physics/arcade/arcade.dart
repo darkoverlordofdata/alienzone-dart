@@ -1,19 +1,19 @@
-part of Phaser;
+part of Arcade;
 
 class Arcade {
-  Game game;
+  Phaser.Game game;
 
 
-  Point gravity;
-  Rectangle bounds;
-  CollisionInfo checkCollision;
+  Phaser.Point gravity;
+  Phaser.Rectangle bounds;
+  Phaser.CollisionInfo checkCollision;
   int maxObjects;
   int maxLevels;
   int OVERLAP_BIAS;
   int TILE_BIAS;
   bool forceX;
 
-  QuadTree quadTree;
+  Phaser.QuadTree quadTree;
   num _overlap;
   num _maxOverlap;
   num _velocity1;
@@ -35,28 +35,30 @@ class Arcade {
 
   List _potentials;
 
+  bool skipQuadTree = false;
+
   Arcade(this.game) {
 
     /**
      * @property {Phaser.Point} gravity - The World gravity setting. Defaults to x: 0, y: 0, or no gravity.
      */
-    this.gravity = new Point();
+    this.gravity = new Phaser.Point();
 
     /**
      * @property {Phaser.Rectangle} bounds - The bounds inside of which the physics world exists. Defaults to match the world bounds.
      */
-    this.bounds = new Rectangle(0, 0, game.world.width, game.world.height);
+    this.bounds = new Phaser.Rectangle(0, 0, game.world.width, game.world.height);
 
     /**
      * Set the checkCollision properties to control for which bounds collision is processed.
      * For example checkCollision.down = false means Bodies cannot collide with the World.bounds.bottom.
      * @property {object} checkCollision - An object containing allowed collision flags.
      */
-    this.checkCollision = new CollisionInfo()
-      ..up = true
-      ..down = true
-      .. left = true
-      .. right = true;
+    this.checkCollision = new Phaser.CollisionInfo()
+        ..up = true
+        ..down = true
+        ..left = true
+        ..right = true;
 
     /**
      * @property {number} maxObjects - Used by the QuadTree to set the maximum number of objects per quad.
@@ -86,7 +88,7 @@ class Arcade {
     /**
      * @property {Phaser.QuadTree} quadTree - The world QuadTree.
      */
-    this.quadTree = new QuadTree(this.game.world.bounds.x, this.game.world.bounds.y, this.game.world.bounds.width, this.game.world.bounds.height, this.maxObjects, this.maxLevels);
+    this.quadTree = new Phaser.QuadTree(this.game.world.bounds.x, this.game.world.bounds.y, this.game.world.bounds.width, this.game.world.bounds.height, this.maxObjects, this.maxLevels);
 
     //  Avoid gc spikes by caching these values for re-use
 
@@ -168,6 +170,8 @@ class Arcade {
      */
     this._dy = 0;
 
+    this.setBoundsToWorld();
+
   }
 
 //  updateMotion(Body body){
@@ -208,7 +212,7 @@ class Arcade {
    * @param {boolean} [children=true] - Should a body be created on all children of this object? If true it will recurse down the display list as far as it can go.
    */
 
-  enable(object, [bool children=true]) {
+  enable(object, [bool children = true]) {
 
 //    if ( children == null) { children = true; }
 
@@ -217,12 +221,11 @@ class Arcade {
     if (object is List) {
       i = object.length;
 
-      while (i-- >=0) {
-        if (object[i] is Group) {
+      while (i-- >= 0) {
+        if (object[i] is Phaser.Group) {
           //  If it's a Group then we do it on the children regardless
           this.enable(object[i].children, children);
-        }
-        else {
+        } else {
           this.enableBody(object[i]);
 
           if (children && object[i].children.length > 0) {
@@ -230,13 +233,11 @@ class Arcade {
           }
         }
       }
-    }
-    else {
-      if (object is Group) {
+    } else {
+      if (object is Phaser.Group) {
         //  If it's a Group then we do it on the children regardless
         this.enable(object.children, children);
-      }
-      else {
+      } else {
         this.enableBody(object);
 
         if (children && object.children.length > 0) {
@@ -255,10 +256,10 @@ class Arcade {
    * @param {object} object - The game object to create the physics body on. A body will only be created if this object has a null `body` property.
    */
 
-  enableBody(Sprite object) {
+  enableBody(Phaser.Sprite object) {
 
     if (object.body == null) {
-      object.body = new arcade.Body(object);
+      object.body = new Body(object);
     }
 
   }
@@ -270,7 +271,7 @@ class Arcade {
    * @param {Phaser.Physics.Arcade.Body} The Body object to be updated.
    */
 
-  updateMotion(arcade.Body body) {
+  updateMotion(Body body) {
 
     this._velocityDelta = this.computeVelocity(0, body, body.angularVelocity, body.angularAcceleration, body.angularDrag, body.maxAngular) - body.angularVelocity;
     body.angularVelocity += this._velocityDelta;
@@ -295,38 +296,33 @@ class Arcade {
    * @return {number} The altered Velocity value.
    */
 
-  num computeVelocity(int axis, arcade.Body body, num velocity, num acceleration, num drag, [num max=10000]) {
+  num computeVelocity(int axis, Body body, num velocity, num acceleration, num drag, [num max = 10000]) {
 
     //max = max || 10000;
 
     if (axis == 1 && body.allowGravity) {
       velocity += (this.gravity.x + body.gravity.x) * this.game.time.physicsElapsed;
-    }
-    else if (axis == 2 && body.allowGravity) {
+    } else if (axis == 2 && body.allowGravity) {
       velocity += (this.gravity.y + body.gravity.y) * this.game.time.physicsElapsed;
     }
 
-    if (acceleration !=0) {
+    if (acceleration != 0) {
       velocity += acceleration * this.game.time.physicsElapsed;
-    }
-    else if (drag != 0) {
+    } else if (drag != 0) {
       this._drag = drag * this.game.time.physicsElapsed;
 
       if (velocity - this._drag > 0) {
         velocity -= this._drag;
-      }
-      else if (velocity + this._drag < 0) {
+      } else if (velocity + this._drag < 0) {
         velocity += this._drag;
-      }
-      else {
+      } else {
         velocity = 0;
       }
     }
 
     if (velocity > max) {
       velocity = max;
-    }
-    else if (velocity < -max) {
+    } else if (velocity < -max) {
       velocity = -max;
     }
 
@@ -350,7 +346,7 @@ class Arcade {
    * @return {boolean} True if an overlap occured otherwise false.
    */
 
-  bool overlap(GameObject object1, object2, [CollideFunc overlapCallback, ProcessFunc processCallback]) {
+  bool overlap(object1, object2, [Phaser.CollideFunc overlapCallback, Phaser.ProcessFunc processCallback]) {
 
     //overlapCallback = overlapCallback || null;
     //processCallback = processCallback || null;
@@ -359,12 +355,25 @@ class Arcade {
     this._result = false;
     this._total = 0;
 
-    if (object2 is List) {
-      for (var i = 0, len = object2.length; i < len; i++) {
+    if (object1 is! List && object2 is List) {
+      for (var i = 0,
+          len = object2.length; i < len; i++) {
         this.collideHandler(object1, object2[i], overlapCallback, processCallback, true);
       }
-    }
-    else {
+    } else if (object1 is List && object2 is! List) {
+      for (var i = 0,
+          len = object1.length; i < len; i++) {
+        this.collideHandler(object1[i], object2, overlapCallback, processCallback, true);
+      }
+    } else if (object1 is List && object2 is List) {
+      for (var i = 0,
+          len = object1.length; i < len; i++) {
+        for (var j = 0,
+            len2 = object2.length; j < len2; j++) {
+          this.collideHandler(object1[i], object2[j], overlapCallback, processCallback, true);
+        }
+      }
+    } else {
       this.collideHandler(object1, object2, overlapCallback, processCallback, true);
     }
 
@@ -390,7 +399,7 @@ class Arcade {
    * @return {boolean} True if a collision occured otherwise false.
    */
 
-  bool collide(GameObject object1, object2, [CollideFunc collideCallback, ProcessFunc processCallback]) {
+  bool collide(object1, object2, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback]) {
 
     //collideCallback = collideCallback || null;
     //processCallback = processCallback || null;
@@ -399,12 +408,25 @@ class Arcade {
     this._result = false;
     this._total = 0;
 
-    if (object2 is List) {
-      for (var i = 0, len = object2.length; i < len; i++) {
+    if (object1 is! List && object2 is List) {
+      for (var i = 0,
+          len = object2.length; i < len; i++) {
         this.collideHandler(object1, object2[i], collideCallback, processCallback, false);
       }
-    }
-    else {
+    } else if (object1 is List && object2 is! List) {
+      for (var i = 0,
+          len = object1.length; i < len; i++) {
+        this.collideHandler(object1[i], object2, collideCallback, processCallback, false);
+      }
+    } else if (object1 is List && object2 is List) {
+      for (var i = 0,
+          len1 = object1.length; i < len1; i++) {
+        for (var j = 0,
+            len2 = object2.length; j < len2; j++) {
+          this.collideHandler(object1[i], object2[j], collideCallback, processCallback, false);
+        }
+      }
+    } else {
       this.collideHandler(object1, object2, collideCallback, processCallback, false);
     }
 
@@ -425,60 +447,50 @@ class Arcade {
    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
    */
 
-  collideHandler(GameObject object1, object2, [CollideFunc collideCallback, ProcessFunc processCallback, bool overlapOnly=false]) {
+  collideHandler(Phaser.GameObject object1, object2, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     //  Only collide valid objects
-    if (object2 == null && (object1.type == GROUP || object1.type == EMITTER)) {
+    if (object2 == null && (object1.type == Phaser.GROUP || object1.type == Phaser.EMITTER)) {
       this.collideGroupVsSelf(object1, collideCallback, processCallback, overlapOnly);
       return;
     }
 
     if (object1 != null && object2 != null && object1.exists && object2.exists) {
       //  SPRITES
-      if (object1.type == SPRITE || object1.type == TILESPRITE) {
-        if (object2.type == SPRITE || object2.type == TILESPRITE) {
+      if (object1.type == Phaser.SPRITE || object1.type == Phaser.TILESPRITE) {
+        if (object2.type == Phaser.SPRITE || object2.type == Phaser.TILESPRITE) {
           this.collideSpriteVsSprite(object1, object2, collideCallback, processCallback, overlapOnly);
-        }
-        else if (object2.type == GROUP || object2.type == EMITTER) {
+        } else if (object2.type == Phaser.GROUP || object2.type == Phaser.EMITTER) {
           this.collideSpriteVsGroup(object1, object2, collideCallback, processCallback, overlapOnly);
+        } else if (object2.type == Phaser.TILEMAPLAYER) {
+          this.collideSpriteVsTilemapLayer(object1, object2, collideCallback, processCallback);
         }
-        else if (object2.type == TILEMAPLAYER) {
-            this.collideSpriteVsTilemapLayer(object1, object2, collideCallback, processCallback);
-          }
-      }
-      //  GROUPS
-      else if (object1.type == GROUP) {
-        if (object2.type == SPRITE || object2.type == TILESPRITE) {
+      } //  GROUPS
+      else if (object1.type == Phaser.GROUP) {
+        if (object2.type == Phaser.SPRITE || object2.type == Phaser.TILESPRITE) {
           this.collideSpriteVsGroup(object2, object1, collideCallback, processCallback, overlapOnly);
-        }
-        else if (object2.type == GROUP || object2.type == EMITTER) {
+        } else if (object2.type == Phaser.GROUP || object2.type == Phaser.EMITTER) {
           this.collideGroupVsGroup(object1, object2, collideCallback, processCallback, overlapOnly);
+        } else if (object2.type == Phaser.TILEMAPLAYER) {
+          this.collideGroupVsTilemapLayer(object1, object2, collideCallback, processCallback);
         }
-        else if (object2.type == TILEMAPLAYER) {
-            this.collideGroupVsTilemapLayer(object1, object2, collideCallback, processCallback);
-          }
+      } //  TILEMAP LAYERS
+      else if (object1.type == Phaser.TILEMAPLAYER) {
+        if (object2.type == Phaser.SPRITE || object2.type == Phaser.TILESPRITE) {
+          this.collideSpriteVsTilemapLayer(object2, object1, collideCallback, processCallback);
+        } else if (object2.type == Phaser.GROUP || object2.type == Phaser.EMITTER) {
+          this.collideGroupVsTilemapLayer(object2, object1, collideCallback, processCallback);
+        }
+      } //  EMITTER
+      else if (object1.type == Phaser.EMITTER) {
+        if (object2.type == Phaser.SPRITE || object2.type == Phaser.TILESPRITE) {
+          this.collideSpriteVsGroup(object2, object1, collideCallback, processCallback, overlapOnly);
+        } else if (object2.type == Phaser.GROUP || object2.type == Phaser.EMITTER) {
+          this.collideGroupVsGroup(object1, object2, collideCallback, processCallback, overlapOnly);
+        } else if (object2.type == Phaser.TILEMAPLAYER) {
+          this.collideGroupVsTilemapLayer(object1, object2, collideCallback);
+        }
       }
-      //  TILEMAP LAYERS
-      else if (object1.type == TILEMAPLAYER) {
-          if (object2.type == SPRITE || object2.type == TILESPRITE) {
-            this.collideSpriteVsTilemapLayer(object2, object1, collideCallback, processCallback);
-          }
-          else if (object2.type == GROUP || object2.type == EMITTER) {
-            this.collideGroupVsTilemapLayer(object2, object1, collideCallback, processCallback);
-          }
-        }
-        //  EMITTER
-        else if (object1.type == EMITTER) {
-            if (object2.type == SPRITE || object2.type == TILESPRITE) {
-              this.collideSpriteVsGroup(object2, object1, collideCallback, processCallback, overlapOnly);
-            }
-            else if (object2.type == GROUP || object2.type == EMITTER) {
-              this.collideGroupVsGroup(object1, object2, collideCallback, processCallback, overlapOnly);
-            }
-            else if (object2.type == TILEMAPLAYER) {
-                this.collideGroupVsTilemapLayer(object1, object2, collideCallback);
-              }
-          }
     }
 
   }
@@ -497,7 +509,7 @@ class Arcade {
    * @return {boolean} True if there was a collision, otherwise false.
    */
 
-  bool collideSpriteVsSprite(Sprite sprite1, Sprite sprite2, [CollideFunc collideCallback, ProcessFunc processCallback, bool overlapOnly=false]) {
+  bool collideSpriteVsSprite(Phaser.Sprite sprite1, Phaser.Sprite sprite2, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     if (sprite1.body == null || sprite2.body == null) {
       return false;
@@ -528,29 +540,42 @@ class Arcade {
    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
    */
 
-  collideSpriteVsGroup(Sprite sprite, Group group, [CollideFunc collideCallback, ProcessFunc processCallback, bool overlapOnly=false]) {
+  collideSpriteVsGroup(Phaser.Sprite sprite, Phaser.Group group, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     if (group.length == 0 || sprite.body == null) {
       return;
     }
 
     //  What is the sprite colliding with in the quadtree?
-    this.quadTree.clear();
-
-    this.quadTree.reset(this.game.world.bounds.x, this.game.world.bounds.y, this.game.world.bounds.width, this.game.world.bounds.height, this.maxObjects, this.maxLevels);
-
-    this.quadTree.populate(group);
-
-    this._potentials = this.quadTree.retrieve(sprite);
-
-    for (var i = 0, len = this._potentials.length; i < len; i++) {
-      //  We have our potential suspects, are they in this group?
-      if (this.separate(sprite.body, this._potentials[i], processCallback, overlapOnly)) {
-        if (collideCallback != null) {
-          collideCallback(sprite, this._potentials[i].sprite);
+    //this.quadTree.clear();
+    if (sprite.body.skipQuadTree || this.skipQuadTree) {
+      for (var i = 0,
+          len = group.children.length; i < len; i++) {
+        if (group.children[i] && group.children[i].exists) {
+          this.collideSpriteVsSprite(sprite, group.children[i], collideCallback, processCallback, overlapOnly);
         }
+      }
+    } else {
+      //  What is the sprite colliding with in the quadtree?
+      this.quadTree.clear();
 
-        this._total++;
+
+      this.quadTree.reset(this.game.world.bounds.x, this.game.world.bounds.y, this.game.world.bounds.width, this.game.world.bounds.height, this.maxObjects, this.maxLevels);
+
+      this.quadTree.populate(group);
+
+      this._potentials = this.quadTree.retrieve(sprite);
+
+      for (var i = 0,
+          len = this._potentials.length; i < len; i++) {
+        //  We have our potential suspects, are they in this group?
+        if (this.separate(sprite.body, this._potentials[i], processCallback, overlapOnly)) {
+          if (collideCallback != null) {
+            collideCallback(sprite, this._potentials[i].sprite);
+          }
+
+          this._total++;
+        }
       }
     }
 
@@ -569,7 +594,7 @@ class Arcade {
    * @return {boolean} True if there was a collision, otherwise false.
    */
 
-  bool collideGroupVsSelf(Group group, [CollideFunc collideCallback, ProcessFunc processCallback, bool overlapOnly=false]) {
+  bool collideGroupVsSelf(Phaser.Group group, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     if (group.length == 0) {
       return false;
@@ -601,15 +626,21 @@ class Arcade {
    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
    */
 
-  bool collideGroupVsGroup(Group group1, Group group2, [CollideFunc collideCallback, ProcessFunc processCallback, bool overlapOnly=false]) {
+  bool collideGroupVsGroup(Phaser.Group group1, Phaser.Group group2, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     if (group1.length == 0 || group2.length == 0) {
       return false;
     }
 
-    for (var i = 0, len = group1.children.length; i < len; i++) {
+    for (var i = 0,
+        len = group1.children.length; i < len; i++) {
       if (group1.children[i].exists) {
-        this.collideSpriteVsGroup(group1.children[i], group2, collideCallback, processCallback, overlapOnly);
+        //this.collideSpriteVsGroup(group1.children[i], group2, collideCallback, processCallback, overlapOnly);
+        if (group1.children[i].type == Phaser.GROUP) {
+          this.collideGroupVsGroup(group1.children[i], group2, collideCallback, processCallback, overlapOnly);
+        } else {
+          this.collideSpriteVsGroup(group1.children[i], group2, collideCallback, processCallback, overlapOnly);
+        }
       }
     }
 
@@ -629,18 +660,13 @@ class Arcade {
    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
    */
 
-  bool collideSpriteVsTilemapLayer(Sprite sprite, TilemapLayer tilemapLayer, [CollideFunc collideCallback, ProcessFunc processCallback]) {
+  bool collideSpriteVsTilemapLayer(Phaser.Sprite sprite, Phaser.TilemapLayer tilemapLayer, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback]) {
 
     if (sprite.body == null) {
       return false;
     }
 
-    this._mapData = tilemapLayer.getTiles(
-        sprite.body.position.x - sprite.body.tilePadding.x,
-        sprite.body.position.y - sprite.body.tilePadding.y,
-        sprite.body.width + sprite.body.tilePadding.x,
-        sprite.body.height + sprite.body.tilePadding.y,
-        false, false);
+    this._mapData = tilemapLayer.getTiles(sprite.body.position.x - sprite.body.tilePadding.x, sprite.body.position.y - sprite.body.tilePadding.y, sprite.body.width + sprite.body.tilePadding.x, sprite.body.height + sprite.body.tilePadding.y, false, false);
 
     if (this._mapData.length == 0) {
       return false;
@@ -657,8 +683,7 @@ class Arcade {
             }
           }
         }
-      }
-      else {
+      } else {
         if (this.separateTile(i, sprite.body, this._mapData[i])) {
           this._total++;
 
@@ -668,7 +693,7 @@ class Arcade {
         }
       }
     }
-    
+
     return true;
 
   }
@@ -686,18 +711,19 @@ class Arcade {
    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
    */
 
-  bool collideGroupVsTilemapLayer(Group group, TilemapLayer tilemapLayer, [CollideFunc collideCallback, ProcessFunc processCallback]) {
+  bool collideGroupVsTilemapLayer(Phaser.Group group, Phaser.TilemapLayer tilemapLayer, [Phaser.CollideFunc collideCallback, Phaser.ProcessFunc processCallback]) {
 
     if (group.length == 0) {
       return false;
     }
 
-    for (var i = 0, len = group.children.length; i < len; i++) {
+    for (var i = 0,
+        len = group.children.length; i < len; i++) {
       if (group.children[i].exists) {
         this.collideSpriteVsTilemapLayer(group.children[i], tilemapLayer, collideCallback, processCallback);
       }
     }
-    
+
     return true;
 
   }
@@ -715,7 +741,7 @@ class Arcade {
    * @return {boolean} Returns true if the bodies collided, otherwise false.
    */
 
-  separate(arcade.Body body1, arcade.Body body2, [ProcessFunc processCallback, bool overlapOnly=false]) {
+  separate(Body body1, Body body2, [Phaser.ProcessFunc processCallback, bool overlapOnly = false]) {
 
     if (!body1.enable || !body2.enable || !this.intersects(body1, body2)) {
       return false;
@@ -726,22 +752,26 @@ class Arcade {
       return false;
     }
 
-    if (overlapOnly) {
-      //  We already know they intersect from the check above, and we don't need separation, so ...
-      return true;
-    }
+//    if (overlapOnly) {
+//      //  We already know they intersect from the check above, and we don't need separation, so ...
+//      return true;
+//    }
 
     //  Do we separate on x or y first?
     //  If we weren't having to carry around so much legacy baggage with us, we could do this properly. But alas ...
-    if (this.forceX || Math.abs(this.gravity.y + body1.gravity.y) < Math.abs(this.gravity.x + body1.gravity.x)) {
+    if (this.forceX || Phaser.Math.abs(this.gravity.y + body1.gravity.y) < Phaser.Math.abs(this.gravity.x + body1.gravity.x)) {
       this._result = (this.separateX(body1, body2, overlapOnly) || this.separateY(body1, body2, overlapOnly));
-    }
-    else {
+    } else {
       this._result = (this.separateY(body1, body2, overlapOnly) || this.separateX(body1, body2, overlapOnly));
     }
 
-    return this._result;
-
+    //return this._result;
+    if (overlapOnly) {
+      //  We already know they intersect from the check above, but by this point we know they've now had their overlapX/Y values populated
+      return true;
+    } else {
+      return this._result;
+    }
   }
 
   /**
@@ -753,7 +783,7 @@ class Arcade {
    * @return {boolean} True if they intersect, otherwise false.
    */
 
-  bool intersects(arcade.Body body1, arcade.Body body2) {
+  bool intersects(Body body1, Body body2) {
 
     if (body1.right <= body2.position.x) {
       return false;
@@ -786,7 +816,7 @@ class Arcade {
    * @return {boolean} Returns true if the bodies were separated, otherwise false.
    */
 
-  bool separateX(arcade.Body body1, arcade.Body body2, bool overlapOnly) {
+  bool separateX(Body body1, Body body2, bool overlapOnly) {
 
     //  Can't separate two immovable bodies
     if (body1.immovable && body2.immovable) {
@@ -803,40 +833,37 @@ class Arcade {
 //  They overlap but neither of them are moving
         body1.embedded = true;
         body2.embedded = true;
-      }
-      else if (body1.deltaX() > body2.deltaX()) {
+      } else if (body1.deltaX() > body2.deltaX()) {
 //  Body1 is moving right and/or Body2 is moving left
         this._overlap = body1.right - body2.x;
 
         if ((this._overlap > this._maxOverlap) || body1.checkCollision.right == false || body2.checkCollision.left == false) {
           this._overlap = 0;
-        }
-        else {
+        } else {
           body1.touching.none = false;
           body1.touching.right = true;
           body2.touching.none = false;
           body2.touching.left = true;
         }
-      }
-      else if (body1.deltaX() < body2.deltaX()) {
+      } else if (body1.deltaX() < body2.deltaX()) {
 //  Body1 is moving left and/or Body2 is moving right
-          this._overlap = body1.x - body2.width - body2.x;
+        this._overlap = body1.x - body2.width - body2.x;
 
-          if ((-this._overlap > this._maxOverlap) || body1.checkCollision.left == false || body2.checkCollision.right == false) {
-            this._overlap = 0;
-          }
-          else {
-            body1.touching.none = false;
-            body1.touching.left = true;
-            body2.touching.none = false;
-            body2.touching.right = true;
-          }
+        if ((-this._overlap > this._maxOverlap) || body1.checkCollision.left == false || body2.checkCollision.right == false) {
+          this._overlap = 0;
+        } else {
+          body1.touching.none = false;
+          body1.touching.left = true;
+          body2.touching.none = false;
+          body2.touching.right = true;
         }
+      }
 
+      body1.overlapX = this._overlap;
+      body2.overlapX = this._overlap;
 //  Then adjust their positions and velocities accordingly (if there was any overlap)
       if (this._overlap != 0) {
-        body1.overlapX = this._overlap;
-        body2.overlapX = this._overlap;
+
 
         if (overlapOnly || body1.customSeparateX || body2.customSeparateX) {
           return true;
@@ -851,23 +878,21 @@ class Arcade {
           body1.x = body1.x - this._overlap;
           body2.x += this._overlap;
 
-          this._newVelocity1 = Math.sqrt((this._velocity2 * this._velocity2 * body2.mass) / body1.mass) * ((this._velocity2 > 0) ? 1 : -1);
-          this._newVelocity2 = Math.sqrt((this._velocity1 * this._velocity1 * body1.mass) / body2.mass) * ((this._velocity1 > 0) ? 1 : -1);
+          this._newVelocity1 = Phaser.Math.sqrt((this._velocity2 * this._velocity2 * body2.mass) / body1.mass) * ((this._velocity2 > 0) ? 1 : -1);
+          this._newVelocity2 = Phaser.Math.sqrt((this._velocity1 * this._velocity1 * body1.mass) / body2.mass) * ((this._velocity1 > 0) ? 1 : -1);
           this._average = (this._newVelocity1 + this._newVelocity2) * 0.5;
           this._newVelocity1 -= this._average;
           this._newVelocity2 -= this._average;
 
           body1.velocity.x = this._average + this._newVelocity1 * body1.bounce.x;
           body2.velocity.x = this._average + this._newVelocity2 * body2.bounce.x;
-        }
-        else if (!body1.immovable) {
+        } else if (!body1.immovable) {
           body1.x = body1.x - this._overlap;
           body1.velocity.x = this._velocity2 - this._velocity1 * body1.bounce.x;
+        } else if (!body2.immovable) {
+          body2.x += this._overlap;
+          body2.velocity.x = this._velocity1 - this._velocity2 * body2.bounce.x;
         }
-        else if (!body2.immovable) {
-            body2.x += this._overlap;
-            body2.velocity.x = this._velocity1 - this._velocity2 * body2.bounce.x;
-          }
 
         return true;
       }
@@ -888,7 +913,7 @@ class Arcade {
    * @return {boolean} Returns true if the bodies were separated, otherwise false.
    */
 
-  bool separateY(arcade.Body body1, arcade.Body body2, bool overlapOnly) {
+  bool separateY(Body body1, Body body2, bool overlapOnly) {
 
     //  Can't separate two immovable or non-existing bodys
     if (body1.immovable && body2.immovable) {
@@ -905,40 +930,37 @@ class Arcade {
 //  They overlap but neither of them are moving
         body1.embedded = true;
         body2.embedded = true;
-      }
-      else if (body1.deltaY() > body2.deltaY()) {
+      } else if (body1.deltaY() > body2.deltaY()) {
 //  Body1 is moving down and/or Body2 is moving up
         this._overlap = body1.bottom - body2.y;
 
         if ((this._overlap > this._maxOverlap) || body1.checkCollision.down == false || body2.checkCollision.up == false) {
           this._overlap = 0;
-        }
-        else {
+        } else {
           body1.touching.none = false;
           body1.touching.down = true;
           body2.touching.none = false;
           body2.touching.up = true;
         }
-      }
-      else if (body1.deltaY() < body2.deltaY()) {
+      } else if (body1.deltaY() < body2.deltaY()) {
 //  Body1 is moving up and/or Body2 is moving down
-          this._overlap = body1.y - body2.bottom;
+        this._overlap = body1.y - body2.bottom;
 
-          if ((-this._overlap > this._maxOverlap) || body1.checkCollision.up == false || body2.checkCollision.down == false) {
-            this._overlap = 0;
-          }
-          else {
-            body1.touching.none = false;
-            body1.touching.up = true;
-            body2.touching.none = false;
-            body2.touching.down = true;
-          }
+        if ((-this._overlap > this._maxOverlap) || body1.checkCollision.up == false || body2.checkCollision.down == false) {
+          this._overlap = 0;
+        } else {
+          body1.touching.none = false;
+          body1.touching.up = true;
+          body2.touching.none = false;
+          body2.touching.down = true;
         }
+      }
 
+      body1.overlapY = this._overlap;
+      body2.overlapY = this._overlap;
 //  Then adjust their positions and velocities accordingly (if there was any overlap)
       if (this._overlap != 0) {
-        body1.overlapY = this._overlap;
-        body2.overlapY = this._overlap;
+
 
         if (overlapOnly || body1.customSeparateY || body2.customSeparateY) {
           return true;
@@ -953,16 +975,15 @@ class Arcade {
           body1.y = body1.y - this._overlap;
           body2.y += this._overlap;
 
-          this._newVelocity1 = Math.sqrt((this._velocity2 * this._velocity2 * body2.mass) / body1.mass) * ((this._velocity2 > 0) ? 1 : -1);
-          this._newVelocity2 = Math.sqrt((this._velocity1 * this._velocity1 * body1.mass) / body2.mass) * ((this._velocity1 > 0) ? 1 : -1);
+          this._newVelocity1 = Phaser.Math.sqrt((this._velocity2 * this._velocity2 * body2.mass) / body1.mass) * ((this._velocity2 > 0) ? 1 : -1);
+          this._newVelocity2 = Phaser.Math.sqrt((this._velocity1 * this._velocity1 * body1.mass) / body2.mass) * ((this._velocity1 > 0) ? 1 : -1);
           this._average = (this._newVelocity1 + this._newVelocity2) * 0.5;
           this._newVelocity1 -= this._average;
           this._newVelocity2 -= this._average;
 
           body1.velocity.y = this._average + this._newVelocity1 * body1.bounce.y;
           body2.velocity.y = this._average + this._newVelocity2 * body2.bounce.y;
-        }
-        else if (!body1.immovable) {
+        } else if (!body1.immovable) {
           body1.y = body1.y - this._overlap;
           body1.velocity.y = this._velocity2 - this._velocity1 * body1.bounce.y;
 
@@ -970,16 +991,15 @@ class Arcade {
           if (body2.moves) {
             body1.x += body2.x - body2.prev.x;
           }
-        }
-        else if (!body2.immovable) {
-            body2.y += this._overlap;
-            body2.velocity.y = this._velocity1 - this._velocity2 * body2.bounce.y;
+        } else if (!body2.immovable) {
+          body2.y += this._overlap;
+          body2.velocity.y = this._velocity1 - this._velocity2 * body2.bounce.y;
 
 //  This is special case code that handles things like horizontal moving platforms you can ride
-            if (body1.moves) {
-              body2.x += body1.x - body1.prev.x;
-            }
+          if (body1.moves) {
+            body2.x += body1.x - body1.prev.x;
           }
+        }
 
         return true;
       }
@@ -1000,7 +1020,7 @@ class Arcade {
    * @return {boolean} Returns true if the body was separated, otherwise false.
    */
 
-  bool separateTile(int i, arcade.Body body, Tile tile) {
+  bool separateTile(int i, Body body, Phaser.Tile tile) {
 
     //  We re-check for collision in case body was separated in a previous step
     if (!body.enable || !tile.intersects(body.position.x, body.position.y, body.right, body.bottom)) {
@@ -1014,8 +1034,7 @@ class Arcade {
     if (tile.collisionCallback != null && !tile.collisionCallback(tile, body.sprite, tile)) {
       //  If it returns true then we can carry on, otherwise we should abort.
       return false;
-    }
-    else if (tile.index>=0 && tile.layer.callbacks.length >tile.index && !tile.layer.callbacks[tile.index](body.sprite, tile)) {
+    } else if (tile.index >= 0 && tile.layer.callbacks.length > tile.index && !tile.layer.callbacks[tile.index](body.sprite, tile)) {
       //  If it returns true then we can carry on, otherwise we should abort.
       return false;
     }
@@ -1034,16 +1053,15 @@ class Arcade {
     if (body.deltaAbsX() > body.deltaAbsY()) {
       //  Moving faster horizontally, check X axis first
       minX = -1;
-    }
-    else if (body.deltaAbsX() < body.deltaAbsY()) {
+    } else if (body.deltaAbsX() < body.deltaAbsY()) {
       //  Moving faster vertically, check Y axis first
       minY = -1;
     }
 
     if (body.deltaX() != 0 && body.deltaY() != 0 && (tile.faceLeft || tile.faceRight) && (tile.faceTop || tile.faceBottom)) {
 //  We only need do this if both axis have checking faces AND we're moving in both directions
-      minX = Math.min(Math.abs(body.position.x - tile.right), Math.abs(body.right - tile.left));
-      minY = Math.min(Math.abs(body.position.y - tile.bottom), Math.abs(body.bottom - tile.top));
+      minX = Phaser.Math.min(Phaser.Math.abs(body.position.x - tile.right), Phaser.Math.abs(body.right - tile.left));
+      minY = Phaser.Math.min(Phaser.Math.abs(body.position.y - tile.bottom), Phaser.Math.abs(body.bottom - tile.top));
     }
 
     if (minX < minY) {
@@ -1059,8 +1077,7 @@ class Arcade {
       if (tile.faceTop || tile.faceBottom) {
         oy = this.tileCheckY(body, tile);
       }
-    }
-    else {
+    } else {
       if (tile.faceTop || tile.faceBottom) {
         oy = this.tileCheckY(body, tile);
 
@@ -1089,7 +1106,7 @@ class Arcade {
    * @return {number} The amount of separation that occured.
    */
 
-  num tileCheckX(arcade.Body body, Tile tile) {
+  num tileCheckX(Body body, Phaser.Tile tile) {
 
     num ox = 0;
 
@@ -1102,8 +1119,7 @@ class Arcade {
           ox = 0;
         }
       }
-    }
-    else if (body.deltaX() > 0 && !body.blocked.right && tile.collideLeft && body.checkCollision.right) {
+    } else if (body.deltaX() > 0 && !body.blocked.right && tile.collideLeft && body.checkCollision.right) {
       //  Body is moving RIGHT
       if (tile.faceLeft && body.right > tile.left) {
         ox = body.right - tile.left;
@@ -1132,7 +1148,7 @@ class Arcade {
    * @return {number} The amount of separation that occured.
    */
 
-  num tileCheckY(arcade.Body body, Tile tile) {
+  num tileCheckY(Body body, Phaser.Tile tile) {
 
     num oy = 0;
 
@@ -1145,8 +1161,7 @@ class Arcade {
           oy = 0;
         }
       }
-    }
-    else if (body.deltaY() > 0 && !body.blocked.down && tile.collideUp && body.checkCollision.down) {
+    } else if (body.deltaY() > 0 && !body.blocked.down && tile.collideUp && body.checkCollision.down) {
       //  Body is moving DOWN
       if (tile.faceTop && body.bottom > tile.top) {
         oy = body.bottom - tile.top;
@@ -1175,12 +1190,11 @@ class Arcade {
    * @return {boolean} Returns true as a pass-thru to the separateTile method.
    */
 
-  bool processTileSeparationX(arcade.Body body, num x) {
+  bool processTileSeparationX(Body body, num x) {
 
     if (x < 0) {
       body.blocked.left = true;
-    }
-    else if (x > 0) {
+    } else if (x > 0) {
       body.blocked.right = true;
     }
 
@@ -1188,8 +1202,7 @@ class Arcade {
 
     if (body.bounce.x == 0) {
       body.velocity.x = 0;
-    }
-    else {
+    } else {
       body.velocity.x = -body.velocity.x * body.bounce.x;
     }
 
@@ -1205,12 +1218,11 @@ class Arcade {
    * @param {number} y - The y separation amount.
    */
 
-  bool processTileSeparationY(arcade.Body body, num y) {
+  bool processTileSeparationY(Body body, num y) {
 
     if (y < 0) {
       body.blocked.up = true;
-    }
-    else if (y > 0) {
+    } else if (y > 0) {
       body.blocked.down = true;
     }
 
@@ -1218,8 +1230,7 @@ class Arcade {
 
     if (body.bounce.y == 0) {
       body.velocity.y = 0;
-    }
-    else {
+    } else {
       body.velocity.y = -body.velocity.y * body.bounce.y;
     }
 
@@ -1239,7 +1250,7 @@ class Arcade {
    * @return {array} An array of the Sprites from the Group that overlapped the Pointer coordinates.
    */
 
-  List<Sprite> getObjectsUnderPointer(Pointer pointer, Group group, Function callback) {
+  List<Phaser.Sprite> getObjectsUnderPointer(Phaser.Pointer pointer, Phaser.Group group, Function callback) {
 
     if (group.length == 0 || !pointer.exists) {
       return [];
@@ -1251,12 +1262,13 @@ class Arcade {
 
     this.quadTree.populate(group);
 
-    var rect = new Rectangle(pointer.x, pointer.y, 1, 1);
+    var rect = new Phaser.Rectangle(pointer.x, pointer.y, 1, 1);
     List output = [];
 
     this._potentials = this.quadTree.retrieve(rect);
 
-    for (int i = 0, len = this._potentials.length; i < len; i++) {
+    for (int i = 0,
+        len = this._potentials.length; i < len; i++) {
       if (this._potentials[i].hitTest(pointer.x, pointer.y)) {
         if (callback != null) {
           callback(pointer, this._potentials[i].sprite);
@@ -1286,7 +1298,7 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new velocity.
    */
 
-  moveToObject(Sprite displayObject, GameObject destination, [num speed, int maxTime=0]) {
+  moveToObject(Phaser.Sprite displayObject, Phaser.GameObject destination, [num speed, int maxTime = 0]) {
 
     if (speed == null) {
       speed = 60;
@@ -1295,15 +1307,15 @@ class Arcade {
       maxTime = 0;
     }
 
-    this._angle = Math.atan2(destination.y - displayObject.y, destination.x - displayObject.x);
+    this._angle = Phaser.Math.atan2(destination.y - displayObject.y, destination.x - displayObject.x);
 
     if (maxTime > 0) {
       //  We know how many pixels we need to move, but how fast?
       speed = this.distanceBetween(displayObject, destination) / (maxTime / 1000);
     }
 
-    displayObject.body.velocity.x = Math.cos(this._angle) * speed;
-    displayObject.body.velocity.y = Math.sin(this._angle) * speed;
+    displayObject.body.velocity.x = Phaser.Math.cos(this._angle) * speed;
+    displayObject.body.velocity.y = Phaser.Math.sin(this._angle) * speed;
 
     return this._angle;
 
@@ -1324,7 +1336,7 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new velocity.
    */
 
-  num moveToPointer(Sprite displayObject, [num speed = 60, Pointer pointer, int maxTime=0]) {
+  num moveToPointer(Phaser.Sprite displayObject, [num speed = 60, Phaser.Pointer pointer, int maxTime = 0]) {
 
     if (speed == null) {
       speed = 60;
@@ -1341,8 +1353,8 @@ class Arcade {
       speed = this.distanceToPointer(displayObject, pointer) / (maxTime / 1000);
     }
 
-    displayObject.body.velocity.x = Math.cos(this._angle) * speed;
-    displayObject.body.velocity.y = Math.sin(this._angle) * speed;
+    displayObject.body.velocity.x = Phaser.Math.cos(this._angle) * speed;
+    displayObject.body.velocity.y = Phaser.Math.sin(this._angle) * speed;
 
     return this._angle;
 
@@ -1365,20 +1377,20 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new velocity.
    */
 
-  num moveToXY(Sprite displayObject, num x, num y, [num speed=60, int maxTime=0]) {
+  num moveToXY(Phaser.Sprite displayObject, num x, num y, [num speed = 60, int maxTime = 0]) {
 
 //  if (typeof speed === 'undefined') { speed = 60; }
 //  if (typeof maxTime === 'undefined') { maxTime = 0; }
 
-    this._angle = Math.atan2(y - displayObject.y, x - displayObject.x);
+    this._angle = Phaser.Math.atan2(y - displayObject.y, x - displayObject.x);
 
     if (maxTime > 0) {
       //  We know how many pixels we need to move, but how fast?
       speed = this.distanceToXY(displayObject, x, y) / (maxTime / 1000);
     }
 
-    displayObject.body.velocity.x = Math.cos(this._angle) * speed;
-    displayObject.body.velocity.y = Math.sin(this._angle) * speed;
+    displayObject.body.velocity.x = Phaser.Math.cos(this._angle) * speed;
+    displayObject.body.velocity.y = Phaser.Math.sin(this._angle) * speed;
 
     return this._angle;
 
@@ -1395,12 +1407,12 @@ class Arcade {
    * @return {Phaser.Point} - A Point where point.x contains the velocity x value and point.y contains the velocity y value.
    */
 
-  Point velocityFromAngle(num angle, [num speed=60, Point point]) {
+  Phaser.Point velocityFromAngle(num angle, [num speed = 60, Phaser.Point point]) {
 
 //  if (typeof speed == 'undefined') { speed = 60; }
-    if (point == null) point = new Point();
+    if (point == null) point = new Phaser.Point();
 
-    return point.setTo((Math.cos(Math.degToRad(angle)) * speed), (Math.sin(Math.degToRad(angle)) * speed));
+    return point.setTo((Phaser.Math.cos(Phaser.Math.degToRad(angle)) * speed), (Phaser.Math.sin(Phaser.Math.degToRad(angle)) * speed));
 
   }
 
@@ -1415,12 +1427,12 @@ class Arcade {
    * @return {Phaser.Point} - A Point where point.x contains the velocity x value and point.y contains the velocity y value.
    */
 
-  Point velocityFromRotation(num rotation, [num speed = 60, Point point]) {
+  Phaser.Point velocityFromRotation(num rotation, [num speed = 60, Phaser.Point point]) {
 
     //if (typeof speed === 'undefined') { speed = 60; }
-    if (point == null) point = new Point();
+    if (point == null) point = new Phaser.Point();
 
-    return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+    return point.setTo((Phaser.Math.cos(rotation) * speed), (Phaser.Math.sin(rotation) * speed));
 
   }
 
@@ -1435,12 +1447,12 @@ class Arcade {
    * @return {Phaser.Point} - A Point where point.x contains the acceleration x value and point.y contains the acceleration y value.
    */
 
-  Point accelerationFromRotation(num rotation, [num speed=60, Point point]) {
+  Phaser.Point accelerationFromRotation(num rotation, [num speed = 60, Phaser.Point point]) {
 
     //if (typeof speed === 'undefined') { speed = 60; }
-    if (point == null) point = new Point();
+    if (point == null) point = new Phaser.Point();
 
-    return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+    return point.setTo((Phaser.Math.cos(rotation) * speed), (Phaser.Math.sin(rotation) * speed));
 
   }
 
@@ -1459,7 +1471,7 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new trajectory.
    */
 
-  num accelerateToObject(Sprite displayObject, GameObject destination, [num speed=60, num xSpeedMax=500, num ySpeedMax=500]) {
+  num accelerateToObject(Phaser.Sprite displayObject, Phaser.GameObject destination, [num speed = 60, num xSpeedMax = 500, num ySpeedMax = 500]) {
 
 //  if (typeof speed === 'undefined') { speed = 60; }
 //  if (typeof xSpeedMax === 'undefined') { xSpeedMax = 1000; }
@@ -1467,7 +1479,7 @@ class Arcade {
 
     this._angle = this.angleBetween(displayObject, destination);
 
-    displayObject.body.acceleration.setTo(Math.cos(this._angle) * speed, Math.sin(this._angle) * speed);
+    displayObject.body.acceleration.setTo(Phaser.Math.cos(this._angle) * speed, Phaser.Math.sin(this._angle) * speed);
     displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
     return this._angle;
@@ -1489,7 +1501,7 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new trajectory.
    */
 
-  num accelerateToPointer(Sprite displayObject, [Pointer pointer, num speed=60, num xSpeedMax=500, num ySpeedMax=500]) {
+  num accelerateToPointer(Phaser.Sprite displayObject, [Phaser.Pointer pointer, num speed = 60, num xSpeedMax = 500, num ySpeedMax = 500]) {
 
     //if (typeof speed === 'undefined') { speed = 60; }
     if (pointer == null) {
@@ -1500,7 +1512,7 @@ class Arcade {
 
     this._angle = this.angleToPointer(displayObject, pointer);
 
-    displayObject.body.acceleration.setTo(Math.cos(this._angle) * speed, Math.sin(this._angle) * speed);
+    displayObject.body.acceleration.setTo(Phaser.Math.cos(this._angle) * speed, Phaser.Math.sin(this._angle) * speed);
     displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
     return this._angle;
@@ -1523,7 +1535,7 @@ class Arcade {
    * @return {number} The angle (in radians) that the object should be visually set to in order to match its new trajectory.
    */
 
-  num accelerateToXY(Sprite displayObject, num x, num y, [num speed=60, num xSpeedMax=1000, num ySpeedMax=1000]) {
+  num accelerateToXY(Phaser.Sprite displayObject, num x, num y, [num speed = 60, num xSpeedMax = 1000, num ySpeedMax = 1000]) {
 
 //  if (typeof speed === 'undefined') { speed = 60; }
 //  if (typeof xSpeedMax === 'undefined') { xSpeedMax = 1000; }
@@ -1531,7 +1543,7 @@ class Arcade {
 
     this._angle = this.angleToXY(displayObject, x, y);
 
-    displayObject.body.acceleration.setTo(Math.cos(this._angle) * speed, Math.sin(this._angle) * speed);
+    displayObject.body.acceleration.setTo(Phaser.Math.cos(this._angle) * speed, Phaser.Math.sin(this._angle) * speed);
     displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
     return this._angle;
@@ -1547,10 +1559,10 @@ class Arcade {
    * @return {number} The distance between the source and target objects.
    */
 
-  num distanceBetween(GameObject source, GameObject target) {
+  num distanceBetween(Phaser.GameObject source, Phaser.GameObject target) {
     this._dx = source.x - target.x;
     this._dy = source.y - target.y;
-    return Math.sqrt(this._dx * this._dx + this._dy * this._dy);
+    return Phaser.Math.sqrt(this._dx * this._dx + this._dy * this._dy);
   }
 
   /**
@@ -1565,10 +1577,10 @@ class Arcade {
    * @return {number} The distance between the object and the x/y coordinates.
    */
 
-  num distanceToXY(GameObject displayObject, num x, num y) {
+  num distanceToXY(Phaser.GameObject displayObject, num x, num y) {
     this._dx = displayObject.x - x;
     this._dy = displayObject.y - y;
-    return Math.sqrt(this._dx * this._dx + this._dy * this._dy);
+    return Phaser.Math.sqrt(this._dx * this._dx + this._dy * this._dy);
   }
 
   /**
@@ -1582,11 +1594,11 @@ class Arcade {
    * @return {number} The distance between the object and the Pointer.
    */
 
-  num distanceToPointer(GameObject displayObject, [Pointer pointer]) {
+  num distanceToPointer(Phaser.GameObject displayObject, [Phaser.Pointer pointer]) {
     if (pointer == null) pointer = this.game.input.activePointer;
     this._dx = displayObject.x - pointer.x;
     this._dy = displayObject.y - pointer.y;
-    return Math.sqrt(this._dx * this._dx + this._dy * this._dy);
+    return Phaser.Math.sqrt(this._dx * this._dx + this._dy * this._dy);
   }
 
   /**
@@ -1598,10 +1610,10 @@ class Arcade {
    * @return {number} The angle in radians between the source and target display objects.
    */
 
-  num angleBetween(GameObject source, GameObject target) {
+  num angleBetween(Phaser.GameObject source, Phaser.GameObject target) {
     this._dx = target.x - source.x;
     this._dy = target.y - source.y;
-    return Math.atan2(this._dy, this._dx);
+    return Phaser.Math.atan2(this._dy, this._dx);
   }
 
   /**
@@ -1614,10 +1626,10 @@ class Arcade {
    * @return {number} The angle in radians between displayObject.x/y to Pointer.x/y
    */
 
-  num angleToXY(GameObject displayObject, num x, num y) {
+  num angleToXY(Phaser.GameObject displayObject, num x, num y) {
     this._dx = x - displayObject.x;
     this._dy = y - displayObject.y;
-    return Math.atan2(this._dy, this._dx);
+    return Phaser.Math.atan2(this._dy, this._dx);
   }
 
   /**
@@ -1629,11 +1641,11 @@ class Arcade {
    * @return {number} The angle in radians between displayObject.x/y to Pointer.x/y
    */
 
-  num angleToPointer(GameObject displayObject, [Pointer pointer]) {
+  num angleToPointer(Phaser.GameObject displayObject, [Phaser.Pointer pointer]) {
     if (pointer == null) pointer = this.game.input.activePointer;
     this._dx = pointer.worldX - displayObject.x;
     this._dy = pointer.worldY - displayObject.y;
-    return Math.atan2(this._dy, this._dx);
+    return Phaser.Math.atan2(this._dy, this._dx);
   }
 
 

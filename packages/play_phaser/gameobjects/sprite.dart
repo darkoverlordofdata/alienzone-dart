@@ -1,6 +1,6 @@
 part of Phaser;
 
-class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
+class Sprite<T extends Body> extends PIXI.Sprite implements GameObject, SpriteInterface, AnimationInterface {
 
 
   Game game;
@@ -19,7 +19,7 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
   Point world;
   bool autoCull;
   InputHandler input;
-  Body body = null;
+  T body = null;
   bool alive;
   num health;
   bool checkWorldBounds = false;
@@ -206,7 +206,7 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
   bool get destroyPhase {
     return this._cache[8] == 1;
   }
-  
+
   bool get fresh => _cache[4] == 1;
 
   bool _outOfBoundsFired = false;
@@ -325,6 +325,7 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
      */
     this._bounds = new Rectangle();
 
+    this.loadTexture(key, frame);
   }
 
   preUpdate() {
@@ -483,6 +484,11 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
       this.setTexture(key);
     } else if (key is BitmapData) {
       this.setTexture(key.texture);
+      if (this.game.cache.getFrameData(key.key, Cache.BITMAPDATA)!= null)
+      {
+        setFrame = !this.animations.loadFrameData(this.game.cache.getFrameData(key.key, Cache.BITMAPDATA), frame);
+      }
+
     } else if (key is PIXI.Texture) {
       this.setTexture(key);
     } else {
@@ -546,6 +552,12 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
       this.texture.height = frame.sourceSizeH;
       this.texture.frame.width = frame.sourceSizeW;
       this.texture.frame.height = frame.sourceSizeH;
+    } else if (!frame.trimmed && this.texture.trim != null) {
+      this.texture.trim = null;
+    }
+    else if (!frame.trimmed && this.texture.trim != null)
+    {
+      this.texture.trim = null;
     }
 
     if (this.cropRect != null) {
@@ -723,6 +735,10 @@ class Sprite extends PIXI.Sprite implements GameObject, AnimationInterface {
     }
 
     this._cache[8] = 1;
+
+    if (this.events != null) {
+      this.events.onDestroy.dispatch(this);
+    }
 
 
     if (this.parent != null) {

@@ -1,12 +1,5 @@
-library Arcade;
+part of Arcade;
 
-import "../../phaser.dart" as Phaser;
-
-//part "body.dart";
-
-//class Collision {
-//  bool none, any, up, down, left, right;
-//}
 
 class Body extends Phaser.Body {
   //TODO extract interface
@@ -66,6 +59,7 @@ class Body extends Phaser.Body {
   Phaser.Point tilePadding;
 
   bool safeRemove;
+  bool skipQuadTree = false;
 
   /**
    * @property {number} phaser - Is this Body in a preUpdate (1) or postUpdate (2) state?
@@ -661,7 +655,7 @@ class Body extends Phaser.Body {
    * @method Phaser.Physics.Arcade.Body#destroy
    */
   destroy() {
-
+    this.sprite.body = null;
     this.sprite = null;
 
   }

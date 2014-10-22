@@ -18,7 +18,7 @@ class Rectangle extends PIXI.Rectangle {
     if (value <= this.y) {
       this.height = 0;
     } else {
-      this.height = (this.y - value);
+      this.height = (value - this.y);
     }
   }
 
@@ -103,7 +103,34 @@ class Rectangle extends PIXI.Rectangle {
     }
   }
 
-  Rectangle([this.x=0, this.y=0, this.width=0, this.height=0]) {
+  /**
+   * The location of the Rectangles top right corner as a Point object.
+   * @name Phaser.Rectangle#topRight
+   * @property {Phaser.Point} topRight - The location of the Rectangles top left corner as a Point object.
+   */
+  //Object.defineProperty(Phaser.Rectangle.prototype, "topRight", {
+
+  Point get topRight {
+    return new Point(this.x + this.width, this.y);
+  }
+
+  set topRight(value) {
+    this.right = value.x;
+    this.y = value.y;
+  }
+
+  Point get bottomLeft {
+    return new Point(this.x, this.y + this.height);
+  }
+
+  set bottomLeft(Point value) {
+    this.x = value.x;
+    this.bottom = value.y;
+  }
+
+  //});
+
+  Rectangle([this.x = 0, this.y = 0, this.width = 0, this.height = 0]) {
   }
 
   /**
@@ -227,8 +254,7 @@ class Rectangle extends PIXI.Rectangle {
   Point size([Point output]) {
     if (output == null) {
       output = new Point(width, height);
-    }
-    else {
+    } else {
       output.setTo(width, height);
     }
     return output;
@@ -244,8 +270,7 @@ class Rectangle extends PIXI.Rectangle {
   Rectangle clone([Rectangle output]) {
     if (output == null) {
       output = new Rectangle(x, y, width, height);
-    }
-    else {
+    } else {
       output.setTo(x, y, width, height);
     }
     return output;
@@ -268,6 +293,23 @@ class Rectangle extends PIXI.Rectangle {
     return (x >= this.x && x <= this.right && y >= this.y && y <= this.bottom);
   }
 
+  /**
+   * Centers this Rectangle so that the center coordinates match the given x and y values.
+   *
+   * @method Phaser.Rectangle#centerOn
+   * @param {number} x - The x coordinate to place the center of the Rectangle at.
+   * @param {number} y - The y coordinate to place the center of the Rectangle at.
+   * @return {Phaser.Rectangle} This Rectangle object
+   */
+
+  centerOn(num x, num y) {
+
+    this.centerX = x;
+    this.centerY = y;
+
+    return this;
+
+  }
 
   /**
    * Determines whether the first Rectangle object is fully contained within the second Rectangle object.
@@ -331,7 +373,7 @@ class Rectangle extends PIXI.Rectangle {
    * @return {boolean} A value of true if the specified object intersects with this Rectangle object; otherwise false.
    */
 
-  bool intersects(Rectangle b, [num tolerance=0]) {
+  bool intersects(Rectangle b, [num tolerance = 0]) {
     if (width <= 0 || height <= 0 || b.width <= 0 || b.height <= 0) {
       return false;
     }
@@ -351,7 +393,7 @@ class Rectangle extends PIXI.Rectangle {
    * @return {boolean} A value of true if the specified object intersects with the Rectangle; otherwise false.
    */
 
-  bool intersectsRaw(num left, num right, num top, num bottom, [num tolerance=0]) {
+  bool intersectsRaw(num left, num right, num top, num bottom, [num tolerance = 0]) {
 
     return !(left > right + tolerance || right < left - tolerance || top > bottom + tolerance || bottom < top - tolerance);
 
@@ -380,8 +422,54 @@ class Rectangle extends PIXI.Rectangle {
    * @return {string} A string representation of the instance.
    */
 
-  toString() {
-    return "[{Rectangle (x=${this.x} y=${this.y} width=${this.width} height=${this.height} empty=${this.empty})}]";
+//  toString() {
+//    return "[{Rectangle (x=${this.x} y=${this.y} width=${this.width} height=${this.height} empty=${this.empty})}]";
+//  }
+
+  factory Rectangle.fromRect(source) {
+    return new Rectangle(source.x, source.y, source.width, source.height);
+  }
+
+  /**
+   * Calculates the Axis Aligned Bounding Box (or aabb) from an array of points.
+   *
+   * @method Phaser.Rectangle#aabb
+   * @param {Phaser.Point[]} points - The array of one or more points.
+   * @param {Phaser.Rectangle} [out] - Optional Rectangle to store the value in, if not supplied a new Rectangle object will be created.
+   * @return {Phaser.Rectangle} The new Rectangle object.
+   * @static
+   */
+
+  Rectangle AABB(List<Point> points, Rectangle out) {
+
+    if (out == null) {
+      out = new Rectangle();
+    }
+
+    num xMax = double.MIN_POSITIVE,
+    xMin = double.MAX_FINITE,
+    yMax = double.MIN_POSITIVE,
+    yMin = double.MAX_FINITE;
+
+    points.forEach((Point point) {
+      if (point.x > xMax) {
+        xMax = point.x;
+      }
+      if (point.x < xMin) {
+        xMin = point.x;
+      }
+
+      if (point.y > yMax) {
+        yMax = point.y;
+      }
+      if (point.y < yMin) {
+        yMin = point.y;
+      }
+    });
+
+    out.setTo(xMin, yMin, xMax - xMin, yMax - yMin);
+
+    return out;
   }
 
 }

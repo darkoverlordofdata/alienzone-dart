@@ -8,7 +8,7 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
   String name;
   num type;
   Events events;
-  bool alive;
+  bool alive = true;
 
   GameObject get parent => super.parent;
 
@@ -179,7 +179,7 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
 
       if (this.body != null && this.body.type == Physics.P2JS) {
         //TODO
-        (this.body as p2.Body).addToWorld();
+        (this.body as P2.Body).addToWorld();
       }
 
       this.visible = true;
@@ -630,6 +630,7 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
       }
     }
 
+
     if (setFrame) {
       this._frame = new Rectangle().copyFrom(this.texture.frame);
     }
@@ -678,6 +679,10 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
       this.texture.frame.width = frame.sourceSizeW;
       this.texture.frame.height = frame.sourceSizeH;
     }
+    else if (!frame.trimmed && this.texture.trim != null)
+    {
+      this.texture.trim = null;
+    }
 
     if (this.game.renderType == WEBGL) {
       PIXI.WebGLRenderer.updateTextureFrame(this.texture);
@@ -705,6 +710,10 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
     }
 
     this._cache[8] = 1;
+    
+    if (this.events != null) {
+      this.events.onDestroy.dispatch(this);
+    }
 
     if (this.filters != null) {
       this.filters = null;
@@ -736,6 +745,7 @@ class TileSprite extends PIXI.TilingSprite implements GameObject, AnimationInter
 
     this.exists = false;
     this.visible = false;
+    this.alive = false;
 
     this.filters = null;
     this.mask = null;

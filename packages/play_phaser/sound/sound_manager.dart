@@ -34,8 +34,7 @@ class SoundManager {
 
       this._codeMuted = true;
       this.setMute();
-    }
-    else {
+    } else {
       if (!this._muted) {
         return;
       }
@@ -48,8 +47,7 @@ class SoundManager {
   double get volume {
     if (this.usingWebAudio && this.masterGain != null) {
       return this.masterGain.gain.value;
-    }
-    else {
+    } else {
       return this._volume;
     }
   }
@@ -58,8 +56,7 @@ class SoundManager {
     this._volume = value;
     if (this.usingWebAudio && this.masterGain != null) {
       this.masterGain.gain.value = value;
-    }
-    else {
+    } else {
       //  Loop through the sound cache and change the volume of all html audio tags
       for (var i = 0; i < this._sounds.length; i++) {
         if (this._sounds[i].usingAudioTag) {
@@ -141,8 +138,7 @@ class SoundManager {
       //this.game.input.mouse.callbackContext = this;
       this.game.input.mouse.mouseDownCallback = this.unlock;
       this.touchLocked = true;
-    }
-    else {
+    } else {
       this.touchLocked = false;
     }
 
@@ -254,14 +250,13 @@ class SoundManager {
       this.game.input.touch.touchStartCallback = null;
       //this.game.input.mouse.callbackContext = null;
       this.game.input.mouse.mouseDownCallback = null;
-    }
-    else {
+    } else {
       // Create empty buffer and play it
       var buffer = this.context.createBuffer(1, 1, 22050);
       this._unlockSource = this.context.createBufferSource();
       this._unlockSource.buffer = buffer;
       this._unlockSource.connectNode(this.context.destination);
-      this._unlockSource.noteOn(0);
+      this._unlockSource.start(0);//.noteOn(0);
     }
 
   }
@@ -383,7 +378,7 @@ class SoundManager {
    * @return {Phaser.Sound} The new sound instance.
    */
 
-  add(String key, [num volume=1.0, bool loop=false, connect]) {
+  add(String key, [num volume = 1.0, bool loop = false, connect]) {
 
     if (connect == null) {
       connect = this.connectToMaster;
@@ -396,6 +391,20 @@ class SoundManager {
     return sound;
 
   }
+
+
+  /**
+   * Adds a new AudioSprite into the SoundManager.
+   *
+   * @method Phaser.SoundManager#addSprite
+   * @param {string} key - Asset key for the sound.
+   * @return {Phaser.AudioSprite} The new AudioSprite instance.
+   */
+  addSprite(String key) {
+    AudioSprite audioSprite = new AudioSprite(this.game, key);
+    return audioSprite;
+  }
+
 
   /**
    * Removes a Sound from the SoundManager. The removed Sound is destroyed before removal.
@@ -457,7 +466,7 @@ class SoundManager {
    * @return {Phaser.Sound} The new sound instance.
    */
 
-  Sound play(String key, [num volume =1, bool loop=false]) {
+  Sound play(String key, [num volume = 1, bool loop = false]) {
 
     var sound = this.add(key, volume, loop);
 
@@ -526,5 +535,24 @@ class SoundManager {
 
   }
 
+  /**
+      * Stops all the sounds in the game, then destroys them and finally clears up any callbacks.
+      *
+      * @method Phaser.SoundManager#destroy
+      */
+  destroy() {
+
+    this.stopAll();
+
+    for (var i = 0; i < this._sounds.length; i++) {
+      if (this._sounds[i] != null) {
+        this._sounds[i].destroy();
+      }
+    }
+
+    this._sounds = [];
+    this.onSoundDecode.dispose();
+
+  }
 
 }

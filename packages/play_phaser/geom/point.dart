@@ -13,7 +13,7 @@ class Point extends PIXI.Point {
 //      }
 //      return null;
 //    }
-// 
+//
 //    void setTweenableValue(String tweenType, num newValue) {
 //      dynamic me=this as dynamic;
 //      switch (tweenType) {
@@ -23,12 +23,13 @@ class Point extends PIXI.Point {
 //      }
 //    }
 
-  Point([num x=0, num y=0])
-  :super(x, y) {
+
+  Point([num x = 0, num y = 0])
+      : super(x, y) {
 
   }
 
-  Point copyFrom(Point source) {
+  Point copyFrom(source) {
     return this.setTo(source.x, source.y);
   }
 
@@ -54,9 +55,9 @@ class Point extends PIXI.Point {
    * @return {Phaser.Point} This Point object. Useful for chaining method calls.
    */
 
-  Point setTo([num x =0, num y]) {
+  Point setTo([num x = 0, num y]) {
     this.x = x;
-    this.y = y == null ? this.x : y ;
+    this.y = y == null ? this.x : y;
     return this;
   }
 
@@ -71,8 +72,8 @@ class Point extends PIXI.Point {
    * @return {Phaser.Point} This Point object. Useful for chaining method calls.
    */
 
-  Point set([num x=0, num y]) {
-    this.x = x ;
+  Point set([num x = 0, num y]) {
+    this.x = x;
     this.y = y == null ? this.x : y;
     return this;
   }
@@ -192,8 +193,7 @@ class Point extends PIXI.Point {
 
     if (output == null) {
       output = new Point(this.x, this.y);
-    }
-    else {
+    } else {
       output.setTo(this.x, this.y);
     }
     return output;
@@ -222,11 +222,10 @@ class Point extends PIXI.Point {
    * @return {number} The distance between this Point object and the destination Point object.
    */
 
-  num distance(Point b, [bool round=false]) {
+  num distance(Point b, [bool round = false]) {
     if (round) {
       return Math.distanceRounded(x, y, b.x, b.y);
-    }
-    else {
+    } else {
       return Math.distance(x, y, b.x, b.y);
     }
   }
@@ -254,11 +253,10 @@ class Point extends PIXI.Point {
    * @return {number} The angle between the two objects.
    */
 
-  num angle(Point a, [asDegrees =false]) {
+  num angle(Point a, [asDegrees = false]) {
     if (asDegrees) {
       return Math.radToDeg(Math.atan2(a.y - this.y, a.x - this.x));
-    }
-    else {
+    } else {
       return Math.atan2(a.y - this.y, a.x - this.x);
     }
   }
@@ -287,7 +285,7 @@ class Point extends PIXI.Point {
    * @return {Phaser.Point} The modified point object.
    */
 
-  Point rotate(num x, num y, num angle, [bool asDegrees =false, num distance]) {
+  Point rotate(num x, num y, num angle, [bool asDegrees = false, num distance]) {
 
     if (asDegrees) {
       angle = Math.degToRad(angle);
@@ -299,8 +297,10 @@ class Point extends PIXI.Point {
       //.sqrt(((x - this.x) * (x - this.x)) + ((y - this.y) * (y - this.y)));
     }
 
-    return this.setTo(x + distance * Math.cos(angle), y + distance * Math.sin(angle));
+    //return this.setTo(x + distance * Math.cos(angle), y + distance * Math.sin(angle));
+    num requiredAngle = angle + Math.atan2(this.y - y, this.x - x);
 
+    return this.setTo(x + distance * Math.cos(requiredAngle), y + distance * Math.sin(requiredAngle));
   }
 
   /**
@@ -381,10 +381,8 @@ class Point extends PIXI.Point {
    * @return {number} The result.
    */
 
-  dot(Point a) {
-
+  num dot(Point a) {
     return ((this.x * a.x) + (this.y * a.y));
-
   }
 
   /**
@@ -396,9 +394,7 @@ class Point extends PIXI.Point {
    */
 
   num cross(Point a) {
-
     return ((this.x * a.y) - (this.y * a.x));
-
   }
 
   /**
@@ -453,7 +449,7 @@ class Point extends PIXI.Point {
 
   }
 
-  Point operator + (b) {
+  Point operator +(b) {
     Point out = new Point();
     if (b is Point) {
       out.x = x + b.x;
@@ -465,7 +461,7 @@ class Point extends PIXI.Point {
     return out;
   }
 
-  Point operator - (b) {
+  Point operator -(b) {
     Point out = new Point();
     if (b is Point) {
       out.x = x - b.x;
@@ -477,7 +473,7 @@ class Point extends PIXI.Point {
     return out;
   }
 
-  Point operator * (b) {
+  Point operator *(b) {
     Point out = new Point();
     if (b is Point) {
       out.x = x * b.x;
@@ -489,7 +485,7 @@ class Point extends PIXI.Point {
     return out;
   }
 
-  Point operator / (b) {
+  Point operator /(b) {
     Point out = new Point();
     if (b is Point) {
       out.x = x / b.x;
@@ -501,7 +497,7 @@ class Point extends PIXI.Point {
     return out;
   }
 
-  bool operator == (Point b) {
+  bool operator ==(Point b) {
     return (x == b.x && y == b.y);
   }
 
@@ -589,6 +585,38 @@ class Point extends PIXI.Point {
     out.divide(pointslength, pointslength);
 
     return out;
+
+  }
+
+  /**
+   * Parses an object for x and/or y properties and returns a new Phaser.Point with matching values.
+   * If the object doesn't contain those properties a Point with x/y of zero will be returned.
+   *
+   * @method Phaser.Point.parse
+   * @static
+   * @param {Object} obj - The object to parse.
+   * @param {string} [xProp='x'] - The property used to set the Point.x value.
+   * @param {string} [yProp='y'] - The property used to set the Point.y value.
+   * @return {Phaser.Point} The new Point object.
+   */
+  Point parse(obj, [String xProp='x', String yProp='y']) {
+
+    //xProp = xProp || 'x';
+    //yProp = yProp || 'y';
+
+    Point point = new Point();
+
+    if (obj[xProp])
+    {
+      point.x = int.parse(obj[xProp]);
+    }
+
+    if (obj[yProp])
+    {
+      point.y = int.parse(obj[yProp]);
+    }
+
+    return point;
 
   }
 }

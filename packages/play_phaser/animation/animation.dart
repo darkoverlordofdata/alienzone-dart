@@ -1,5 +1,7 @@
 part of Phaser;
 
+typedef AnimationUpdateFunc(Animation anim, Frame frame);
+
 class Animation {
   /// A reference to the currently running [Game].
   Game game;
@@ -55,8 +57,11 @@ class Animation {
   /// This event is dispatched when this Animation loops.
   Signal<AnimationFunc> onLoop;
 
-  double _timeLastFrame;
-  double _timeNextFrame;
+  /// This event is dispatched when the Animation changes frame. By default this event is disabled due to its intensive nature. Enable it with: `Animation.enableUpdate = true`.
+  Signal<AnimationUpdateFunc> onUpdate;
+
+  num _timeLastFrame;
+  num _timeNextFrame;
 
   /// Gets and sets the paused state of this [Animation].
 
@@ -67,8 +72,7 @@ class Animation {
     if (value) {
       //  Paused
       this._pauseStartTime = this.game.time.now;
-    }
-    else {
+    } else {
       //  Un-paused
       if (this.isPlaying) {
         this._timeNextFrame = this.game.time.now + this.delay;
@@ -85,8 +89,7 @@ class Animation {
   int get frame {
     if (this.currentFrame != null) {
       return this.currentFrame.index;
-    }
-    else {
+    } else {
       return this._frameIndex;
     }
   }
@@ -95,9 +98,33 @@ class Animation {
     this.currentFrame = this._frameData.getFrame(this._frames[value]);
     if (this.currentFrame != null) {
       this._frameIndex = value;
-      this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+      this._parent.setFrame(this.currentFrame);
+
+      if (this.onUpdate != null) {
+        this.onUpdate.dispatch([this, this.currentFrame]);
+      }
     }
   }
+
+  /// Gets or sets if this animation will dispatch the onUpdate events upon changing frame.
+  bool get enableUpdate {
+
+    return (this.onUpdate != null);
+
+  }
+
+  set enableUpdate(bool value) {
+
+    if (value && this.onUpdate == null) {
+      this.onUpdate = new Signal();
+    } else if (!value && this.onUpdate != null) {
+      this.onUpdate.dispose();
+      this.onUpdate = null;
+    }
+
+  }
+
+  //});
 
   /// Gets or sets the current speed of the animation, the time between each frame of the animation, given in ms. Takes effect from the NEXT frame. Minimum value is 1.
 
@@ -116,7 +143,7 @@ class Animation {
    * It is created by the [AnimationManager], consists of [Frame] objects and belongs to a single [GameObject] such as a [Sprite].
    */
 
-  Animation(this.game, this._parent, this.name, this._frameData, [this._frames, num frameRate=60, this.loop=false]) {
+  Animation(this.game, this._parent, this.name, this._frameData, [this._frames, num frameRate = 60, this.loop = false]) {
     currentFrame = _frameData.getFrame(this._frames[this._frameIndex]);
     onStart = new Signal();
     onComplete = new Signal();
@@ -137,7 +164,7 @@ class Animation {
 
   /// Plays this animation.
 
-  play([num frameRate, bool loop, bool killOnComplete=false]) {
+  play([num frameRate, bool loop, bool killOnComplete = false]) {
 
     if (frameRate is num) {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
@@ -165,7 +192,7 @@ class Animation {
     this._frameIndex = 0;
 
     this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
-    this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+    //this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
 
     //  TODO: Double check if required
     if (this._parent.__tilePattern != null) {
@@ -201,7 +228,7 @@ class Animation {
 
   /// Sets this animations playback to a given frame with the given ID.
 
-  setFrame(frameId, [bool useLocalFrameIndex=false]) {
+  setFrame(frameId, [bool useLocalFrameIndex = false]) {
 
     int frameIndex;
 
@@ -212,12 +239,10 @@ class Animation {
           frameIndex = i;
         }
       }
-    }
-    else if (frameId == num) {
+    } else if (frameId == num) {
       if (useLocalFrameIndex) {
         frameIndex = frameId;
-      }
-      else {
+      } else {
         for (int i = 0; i < this._frames.length; i++) {
           //TODO report bug
           if (this._frames[i] == frameIndex) {
@@ -246,7 +271,7 @@ class Animation {
    * If `dispatchComplete` is true it will dispatch the complete events, otherwise they'll be ignored.
    */
 
-  stop([bool resetFrame =false, bool dispatchComplete=false]) {
+  stop([bool resetFrame = false, bool dispatchComplete = false]) {
 
     this.isPlaying = false;
     this.isFinished = true;
@@ -311,36 +336,32 @@ class Animation {
         if (this.loop) {
           this._frameIndex %= this._frames.length;
           this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
-
-          if (this.currentFrame != null) {
-            this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
-
-            if (this._parent.__tilePattern != null) {
-              this._parent.__tilePattern = null;
-              this._parent.tilingTexture = null;
-            }
-          }
-
+          
           this.loopCount++;
           this._parent.events.onAnimationLoop.dispatch([this._parent, this]);
           this.onLoop.dispatch([this._parent, this]);
-        }
-        else {
+        } else {
           this.complete();
+          return false;
         }
       }
-      else {
-        this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
 
-        if (this.currentFrame != null) {
-          this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+      this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
 
-          if (this._parent.__tilePattern != null) {
-            this._parent.__tilePattern = null;
-            this._parent.tilingTexture = null;
-          }
+      if (this.currentFrame != null) {
+        this._parent.setFrame(this.currentFrame);
+        //this._parent.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+
+        if (this._parent.__tilePattern != null) {
+          this._parent.__tilePattern = null;
+          this._parent.tilingTexture = null;
+        }
+
+        if (this.onUpdate != null) {
+          this.onUpdate.dispatch([this, this.currentFrame]);
         }
       }
+
 
       return true;
     }
@@ -351,15 +372,14 @@ class Animation {
 
   /// Advances by the given number of frames in the [Animation], taking the loop value into consideration.
 
-  next([int quantity =1]) {
+  next([int quantity = 1]) {
     //if (typeof quantity == 'undefined') { quantity = 1; }
     var frame = this._frameIndex + quantity;
 
     if (frame >= this._frames.length) {
       if (this.loop) {
         frame %= this._frames.length;
-      }
-      else {
+      } else {
         frame = this._frames.length - 1;
       }
     }
@@ -377,20 +397,23 @@ class Animation {
           this._parent.tilingTexture = null;
         }
       }
+
+      if (this.onUpdate != null) {
+        this.onUpdate.dispatch([this, this.currentFrame]);
+      }
     }
   }
 
   /// Moves backwards the given number of frames in the [Animation], taking the loop value into consideration.
 
-  previous([int quantity=1]) {
+  previous([int quantity = 1]) {
 
     var frame = this._frameIndex - quantity;
 
     if (frame < 0) {
       if (this.loop) {
         frame = this._frames.length + frame;
-      }
-      else {
+      } else {
         frame++;
       }
     }
@@ -408,6 +431,11 @@ class Animation {
           this._parent.tilingTexture = null;
         }
       }
+
+      if (this.onUpdate != null) {
+        this.onUpdate.dispatch([this, this.currentFrame]);
+      }
+
     }
 
   }
@@ -437,6 +465,11 @@ class Animation {
     this.onStart.dispose();
     this.onLoop.dispose();
     this.onComplete.dispose();
+
+    if (this.onUpdate != null) {
+      this.onUpdate.dispose();
+    }
+
   }
 
   /**
@@ -466,7 +499,7 @@ class Animation {
    * You could use this function to generate those by doing: Phaser.Animation.generateFrameNames('explosion_', 1, 30, '-large', 4);
    */
 
-  static List<String> generateFrameNames([String prefix='', int start, int stop, String suffix, zeroPad]) {
+  static List<String> generateFrameNames([String prefix = '', int start, int stop, String suffix, zeroPad]) {
 
     List<String> output = [];
     String frame = '';
@@ -477,8 +510,7 @@ class Animation {
           //  str, len, pad, dir
           //frame = Utils.pad(i.toString(), zeroPad, '0', 1);
           frame = i.toString().padLeft(zeroPad, '0');
-        }
-        else {
+        } else {
           frame = i.toString();
         }
 
@@ -486,15 +518,13 @@ class Animation {
 
         output.add(frame);
       }
-    }
-    else {
+    } else {
       for (var i = start; i >= stop; i--) {
         if (zeroPad is num) {
           //  str, len, pad, dir
           //frame = Utils.pad(i.toString(), zeroPad, '0', 1);
           frame = i.toString().padLeft(zeroPad, '0');
-        }
-        else {
+        } else {
           frame = i.toString();
         }
 

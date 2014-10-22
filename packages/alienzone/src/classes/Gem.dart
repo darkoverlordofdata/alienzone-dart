@@ -38,7 +38,8 @@ class Gem extends MatchObject {
    * returns this
    */
   Gem(State this.level, String type, int this.x, int this.y) : super(type) {
-    sprite = level.add.sprite(0, 0, "gem_$type");
+
+    sprite = level.add.sprite(0, 0, 'gems', Game.GEMTYPES.indexOf(type));
     move(x, y);
   }
   /**
@@ -74,7 +75,7 @@ class Gem extends MatchObject {
     }
     else {
       // Game Over
-      level.gameOver();
+      level.noRoom();
     }
   }
   /**

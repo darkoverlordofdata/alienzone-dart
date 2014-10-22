@@ -28,8 +28,7 @@ class AnimationManager {
   FrameData get frameData => _frameData;
 
   /// An internal object that stores all of the [Animation] instances.
-  Map<String, Animation> _anims = {
-  };
+  Map<String, Animation> _anims = {};
 
   /// An internal object to help avoid gc.
   List _outputFrames = [];
@@ -41,7 +40,7 @@ class AnimationManager {
   bool tilingTexture;
 
   /// The total number of frames in the currently loaded [FrameData], or -1 if no [FrameData] is loaded.
-  int get frameTotal => frameData.total;
+  int get frameTotal => _frameData.total;
 
   /// Gets and sets the paused state of the current animation.
   bool get paused => currentAnim._isPaused;
@@ -59,12 +58,12 @@ class AnimationManager {
   }
 
   set frame(int value) {
-    if (value is num && this.frameData != null && this.frameData.getFrame(value) != null) {
+    if (value is num && this.frameData.getFrame(value) != null) {
       this.currentFrame = this.frameData.getFrame(value);
 
       if (this.currentFrame != null) {
         this._frameIndex = value;
-        this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+        this.sprite.setFrame(this.currentFrame);
 
         if (this.sprite.__tilePattern != null) {
           this.__tilePattern = false;
@@ -82,7 +81,7 @@ class AnimationManager {
   }
 
   set frameName(String value) {
-    if (value is String && this.frameData != null && this.frameData.getFrameByName(value) != null) {
+    if (value is String && this.frameData.getFrameByName(value) != null) {
       this.currentFrame = this.frameData.getFrameByName(value);
       if (this.currentFrame != null) {
         this._frameIndex = this.currentFrame.index;
@@ -98,6 +97,15 @@ class AnimationManager {
     }
   }
 
+
+  String get name {
+    if (this.currentAnim != null)
+    {
+      return this.currentAnim.name;
+    }
+    return null;
+  }
+
   //FrameData get frameData=>_frameData;
 
   AnimationManager(this.sprite) {
@@ -110,7 +118,11 @@ class AnimationManager {
    * This is called automatically when a new Sprite is created.
    */
 
-  bool loadFrameData(FrameData frameData, [frame = 0]) {
+  bool loadFrameData([FrameData frameData, frame = 0]) {
+    if (frameData == null) {
+      return false;
+    }
+
     if (this.isLoaded) {
       //   We need to update the frameData that the animations are using
       for (var anim in this._anims.keys) {
@@ -132,13 +144,47 @@ class AnimationManager {
 
     this.isLoaded = true;
 
-    if (this._frameData != null) {
-      return true;
-    } else {
-      return false;
-    }
+    return true;
+
+//    if (this._frameData != null) {
+//      return true;
+//    } else {
+//      return false;
+//    }
 
   }
+
+  /**
+    * Loads FrameData into the internal temporary vars and resets the frame index to zero.
+    * This is called automatically when a new Sprite is created.
+    */
+  copyFrameData(FrameData frameData, frame) {
+
+    this._frameData = frameData.clone();
+
+    if (this.isLoaded) {
+      //   We need to update the frameData that the animations are using
+      for (var anim in this._anims) {
+        this._anims[anim].updateFrameData(this._frameData);
+      }
+    }
+
+    if (frame == null) {
+      this.frame = 0;
+    } else {
+      if (frame is String) {
+        this.frameName = frame;
+      } else {
+        this.frame = frame;
+      }
+    }
+
+    this.isLoaded = true;
+
+    return true;
+  }
+
+
 
   /**
    * Adds a new animation under the given key. Optionally set the frames, frame rate and loop.
@@ -151,10 +197,10 @@ class AnimationManager {
       useNumericIndex = true;
     }
 
-    if (this.frameData == null) {
-      window.console.warn('No FrameData available for Phaser.Animation ' + name);
-      return null;
-    }
+//    if (this.frameData == null) {
+//      window.console.warn('No FrameData available for Phaser.Animation ' + name);
+//      return null;
+//    }
 
     //frameRate = frameRate || 60;
 
@@ -182,7 +228,7 @@ class AnimationManager {
     this._anims[name] = new Animation(this.game, this.sprite, name, this.frameData, this._outputFrames, frameRate, loop);
     this.currentAnim = this._anims[name];
     this.currentFrame = this.currentAnim.currentFrame;
-    this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+    //this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
 
     if (this.sprite.__tilePattern != null) {
       this.__tilePattern = false;
@@ -271,18 +317,16 @@ class AnimationManager {
   }
 
   /// Advances by the given number of frames in the current animation, taking the loop value into consideration.
-  next (int quantity) {
-    if (this.currentAnim != null)
-    {
+  next(int quantity) {
+    if (this.currentAnim != null) {
       this.currentAnim.next(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
     }
   }
 
   /// Moves backwards the given number of frames in the current animation, taking the loop value into consideration.
-  previous (int quantity) {
-    if (this.currentAnim != null)
-    {
+  previous(int quantity) {
+    if (this.currentAnim != null) {
       this.currentAnim.previous(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
     }
@@ -315,8 +359,7 @@ class AnimationManager {
     for (String anim in this._anims.keys) {
       this._anims[anim].destroy();
     }
-    this._anims = {
-    };
+    this._anims = {};
     this._frameData = null;
     this._frameIndex = 0;
     this.currentAnim = null;

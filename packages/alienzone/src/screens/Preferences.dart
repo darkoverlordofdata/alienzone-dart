@@ -17,7 +17,7 @@ part of alienzone;
 
 class Preferences extends Li2State {
 
-  Game alienZone;
+  Game parent;
   Li2Config config;
   Li2Template template;
   var preferences = {};
@@ -25,10 +25,9 @@ class Preferences extends Li2State {
 
   /**
    * Preferences use HTML ui
-   * Persist preferences using the cordova plugin
    * If not available, fallback to browser localStorage
    */
-  Preferences(this.config, this.template) {
+  Preferences(this.parent, this.config, this.template) {
     print('Preferences Class initialized');
     //  Initialize holo css
     var holo = document.createElement('link');
@@ -41,8 +40,14 @@ class Preferences extends Li2State {
     extra.setAttribute('rel', 'stylesheet');
     extra.setAttribute('href', 'packages/alienzone/res/preferences/extra.css');
     querySelector('head').append(extra);
+    loadPreferences();
 
+  }
 
+  /**
+   * Load saved preferences
+   */
+  loadPreferences() {
     try {
 
       /**
@@ -58,24 +63,24 @@ class Preferences extends Li2State {
 
       /**
        *  Load the preferences:
-       *  1. First check cordova preferences plugin
-       *  2. TODO: Next check for chrome storage.
-       *  3. Fallback to localStorage when there is nothing else
+       *  1. TODO: Check for chrome storage.
+       *  2. Fallback to localStorage when there is nothing else
        */
       for (var category in config.preferences['categories']) {
         category['preferences'].forEach((preference) {
           String key = preference['key'];
           preferences[key] = preference;
           preference['value'] = window.localStorage[key] != null
-                  ? xform(window.localStorage[key])
-                  : preference['defaultValue'];
+            ? xform(window.localStorage[key])
+            : preference['defaultValue'];
+          parent.setPreference(key, preference['value']);
         });
       }
     } catch (e) {
       print(e);
     }
-  }
 
+  }
   /**
    * Save preference in local collection
    */
@@ -123,6 +128,7 @@ class Preferences extends Li2State {
         p.insertAdjacentHtml('afterBegin', '<div>OFF</div>');
       }
       window.localStorage[id] = setPreference(id, "$onOff", "localStorage");
+      parent.setPreference(id, onOff);
     } catch (e) {
       print(e);
     }
@@ -136,6 +142,7 @@ class Preferences extends Li2State {
   create() {
 
     game.paused = true;
+    loadPreferences();
     querySelector(config.preferences['id'])
       ..setInnerHtml(template.render(config.preferences))
       ..style.display = 'block';

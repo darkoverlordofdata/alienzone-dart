@@ -1,7 +1,7 @@
 template: preferences/preferences.liquid
 id: "#preferences"
 icon: images/icon.png
-title: Alien Zone
+title: Return to Game
 categories:
   -   title: Preferences
       preferences:

@@ -40,6 +40,7 @@ class Preferences extends Li2State {
     extra.setAttribute('rel', 'stylesheet');
     extra.setAttribute('href', 'packages/alienzone/res/preferences/extra.css');
     querySelector('head').append(extra);
+    loadPreferences();
 
   }
 

@@ -9,14 +9,6 @@
     <style>
         /* latin */
         @font-face {
-            font-family: 'Special Elite';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Special Elite'), local('SpecialElite-Regular'), url(specialelite.woff2) format('woff2');
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-        }
-        /* latin */
-        @font-face {
             font-family: 'Walter Turncoat';
             font-style: normal;
             font-weight: 400;
@@ -32,7 +24,6 @@
 
         .logo {
             text-align: center;
-            /*font-family: Poiret One;*/
             font-family: Walter Turncoat;
             height: 100%;
             background: -webkit-linear-gradient(315deg, #111, #333);
@@ -50,7 +41,7 @@
 
         .logo div {
             position: absolute;
-            top:200px;
+            top:100px;
             bottom: 0;
             left: 0;
             right: 0;
@@ -123,6 +114,9 @@
             font-size: 20px;
         }
 
+        .build {
+            font-size: 40px;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +134,8 @@
         <span class='letter'>E</span>
         <br>
         <p class="copy">&copy; 2014 Dark Overlord Of Data</p>
+        <br>
+        <p class="build">build: 9</p>
     </div>
 </div>
 <div id="preferences"></div>

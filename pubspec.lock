@@ -14,13 +14,19 @@ packages:
     source: hosted
     version: "1.0.0"
   dilithium:
-    description: dilithium
-    source: hosted
-    version: "0.1.11"
+    description:
+      path: "../dilithium"
+      relative: true
+    source: path
+    version: "0.1.13"
   match3:
     description: match3
     source: hosted
     version: "0.0.5"
+  p2:
+    description: p2
+    source: hosted
+    version: "0.5.5"
   path:
     description: path
     source: hosted
@@ -28,7 +34,7 @@ packages:
   play_phaser:
     description: play_phaser
     source: hosted
-    version: "0.10.3+1"
+    version: "0.12.0"
   play_pixi:
     description: play_pixi
     source: hosted

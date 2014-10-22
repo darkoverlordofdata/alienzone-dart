@@ -65,12 +65,7 @@ class Game  extends Dilithium {
     game.state.add('Preferences',  new Preferences(this, config, template));
     game.state.add('GameOver',     new GameOver(this, config));
 
-
     querySelector('.logo').hidden = true;
-    querySelector('body')
-      ..setAttribute('class', '')
-      ..style.backgroundColor = 'black';
-
     return new Menu(config);
 
   }

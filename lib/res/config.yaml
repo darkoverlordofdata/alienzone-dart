@@ -55,15 +55,6 @@ images:
   arrow_down:     images/arrows/down.png
   arrow_lrot:     images/arrows/lrot.png
   arrow_rrot:     images/arrows/rrot.png
-  # game pieces
-  gem_blue:       images/gems/blue.png
-  gem_cyan:       images/gems/cyan.png
-  gem_green:      images/gems/green.png
-  gem_magenta:    images/gems/magenta.png
-  gem_orange:     images/gems/orange.png
-  gem_pink:       images/gems/pink.png
-  gem_red:        images/gems/red.png
-  gem_yellow:     images/gems/yellow.png
 
 audio:
   bonus1:   audio/sfx/Powerup.ogg
@@ -87,5 +78,16 @@ audio:
   bonus19:  audio/sfx/Powerup19.ogg
   bonus20:  audio/sfx/Powerup20.ogg
 
-sprite:
+sprites:
+
+    gems:
+      file      : images/gems.png
+      width     : 48
+      height    : 48
+
+    legend:
+      file      : images/legend.png
+      width     : 24
+      height    : 24
+
 levels:

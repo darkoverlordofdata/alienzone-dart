@@ -17,9 +17,11 @@ part of alienzone;
 
 class Levels extends Li2State {
 
+  static const SFX_COUNT = 19;
   /**
    * Members
    */
+
   Game parent;
   Sprite background;
   Sprite board;
@@ -29,11 +31,31 @@ class Levels extends Li2State {
   List discoveredGems;
   GemGroup gemGroup;
   List<Sound> bonus = [];
-  int score = 0;
-
+  List<Sprite> legend = [];
   Li2Config config;
+  int score = 0;
+  int level = 0;
 
   Levels(this.parent, this.config);
+
+  /**
+   * Init -
+   *
+   * receive arguments from prior level
+   */
+  init([args]) {
+
+    if (args == null) {
+      level = 0;
+      score = 0;
+    } else {
+      level = args[0];
+      score = args[1];
+    }
+
+    print("New Level: $level, $score");
+
+  }
 
   /**
    * == Create the game level
@@ -46,20 +68,29 @@ class Levels extends Li2State {
   create() {
 
     time.advancedTiming = true;
-    score = 0;
     background = add.sprite(0, 0, 'background');
     board = add.sprite(0, 0, 'board');
     board.alpha = 0.7;
 
-    for (var i=1; i<=20; i++) {
+    for (var i=1; i<=SFX_COUNT+1; i++) {
       bonus.add(add.audio("bonus$i"));
     }
 
     game.sound.volume = parent.soundfx;
 
-    text = add.text(100, 20, "Score: 0", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
+    discoveredGems = [];
+    for (var i=0; i<Game.GEMTYPES.length; i++) {
+      Sprite s = add.sprite(290, 100+(i*32), "legend", i);
+      if (i <= (level+2)) {
+        discoveredGems.add(Game.GEMTYPES[i]);
+      } else {
+        s.alpha = 0.2;
+      }
+      legend.add(s);
+    }
+
+    text = add.text(100, 20, "Score: $score", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
-    discoveredGems = [Game.GEMTYPES[0], Game.GEMTYPES[1], Game.GEMTYPES[2]];
 
     newGemGroup();
     add // ui components
@@ -129,7 +160,7 @@ class Levels extends Li2State {
       // For each match found
       grid.forEachMatch((matchingPieces, type) {
         // Add to score
-        addToScore((Game.GEMTYPES.indexOf(type) + 1) * matchingPieces.length, "#ff0", matchingPieces[0].x, matchingPieces[0].y);
+        updateScore(matchingPieces, type, "#ff0");
         // For each match take the first piece to upgrade it
         piecesToUpgrade.add({
           'piece'   : matchingPieces[0],
@@ -186,10 +217,24 @@ class Levels extends Li2State {
   */
   handleUpgrade(piecesToUpgrade) {
 
+    bool levelUp = false;
+
     // For each piece to upgrade
     piecesToUpgrade.forEach((pieceToUpgrade) {
       // Get the upgraded type
-      var upgradedType = Game.GEMTYPES[Game.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1];
+      var upgradeIndex = Game.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1;
+      if (upgradeIndex >= Game.GEMTYPES.length-1) {
+        /**
+         * Level Up...
+         */
+        state.start("Levels", true, false, [0, score]);
+
+      }
+      if (legend[upgradeIndex].alpha < 1.0) {
+        levelUp = true;
+      }
+      legend[upgradeIndex].alpha = 1.0;
+      var upgradedType = Game.GEMTYPES[upgradeIndex];
       // If the type is defined
       if (upgradedType != null) {
         // And if the type is not already discovered
@@ -198,6 +243,9 @@ class Levels extends Li2State {
           discoveredGems.add(upgradedType);
       }
     });
+    if (levelUp) {
+      level += 1;
+    }
   }
 
   /**
@@ -212,37 +260,39 @@ class Levels extends Li2State {
   }
 
   /**
-   * Add to Score
+   * Update Score
    *
    * return none
    */
-  addToScore(int points, String color, int x, int y) {
+  updateScore(List matches, String type, String color) {
 
     int speed = 1000;
     var dur = const Duration(milliseconds: 1000);
     var scoreStyle = new TextStyle(font: "bold 120px Courier New, Courier",fill: color, align: "center");
-
+    var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (level+1);
 
     score += points;
     text.text = "Score: $score";
     text.updateText();
 
     Text popup = add.text(90, 300, "$points", scoreStyle);
-    bonus[points % 19].play();
+    bonus[points % SFX_COUNT].play();
+
     add.tween(popup)
-    .to({'alpha': 1}, (speed*0.75), Easing.Linear.None, true)
-    .to({'alpha': 0}, (speed*0.25), Easing.Linear.None, true);
+    .to({'alpha': 1}, (speed*0.75).toInt(), Easing.Linear.None, true)
+    .to({'alpha': 0}, (speed*0.25).toInt(), Easing.Linear.None, true);
 
     new async.Timer(dur, ()=> world.remove(popup));
+
   }
 
   /**
-   * Level Over
+   * No more room
    *
    * return none
    */
-  levelOver() {
-
+  noRoom() {
+    gameOver();
   }
   /**
    * Game Over

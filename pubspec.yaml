@@ -1,17 +1,17 @@
 name: alienzone
 version: 0.0.3
 description:
-  Space Crystal Matching Puzzle Game
+  Space Crystal Matching Puzzle
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
   browser: any
   yaml: any
-  play_phaser: ">=0.10.0 <0.11.0"
+  play_phaser: any #">=0.10.0 <0.11.0"
   play_pixi: any
   match3:  any
-  dilithium: any
-#    path: ../dilithium
+  dilithium: #any
+    path: ../dilithium
 
 transformers:
 - $dart2js:

@@ -39,6 +39,11 @@ preloadBgdKey: preloadBgd
 preloadBgdImg: 
 
 images:
+  sky: assets/sky.png
+  ground: assets/platform.png
+  star: assets/star.png
+
+
   background:     images/background.png
   board:          images/board.png
   icon:           images/d16a.png
@@ -80,6 +85,11 @@ audio:
 
 sprites:
 
+    dude:
+      file: assets/dude.png
+      width: 32
+      height: 48
+
     gems:
       file      : images/gems.png
       width     : 48
@@ -91,3 +101,38 @@ sprites:
       height    : 24
 
 levels:
+
+extra: # world data
+  demo:
+    - background: [0, 0, sky]
+    - platform: [0, 416, ground, 2]
+    - platform: [400, 400, ground, 1]
+    - platform: [-150, 250, ground, 1]
+    - player:
+      - 32
+      - 330
+      - dude
+      - left:
+          frames: [0,1,2,3]
+          frameRate: 10
+          loop: true
+          useNumericIndex: true
+        right:
+          frames: [4,5,6,7]
+          frameRate: 10
+          loop: true
+          useNumericIndex: true
+    - star: [0, 0, star]
+    - star: [1, 0, star]
+    - star: [2, 0, star]
+    - star: [3, 0, star]
+    - star: [4, 0, star]
+    - star: [5, 0, star]
+    - star: [6, 0, star]
+    - star: [7, 0, star]
+    - star: [8, 0, star]
+    - star: [9, 0, star]
+    - star: [10, 0, star]
+    - star: [11, 0, star]
+    - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
+

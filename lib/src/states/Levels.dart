@@ -23,15 +23,15 @@ class Levels extends Li2State {
    */
 
   Game parent;
-  Sprite background;
-  Sprite board;
+  Phaser.Sprite background;
+  Phaser.Sprite board;
   Grid grid;
-  Sprite startButton;
-  Text text;
+  Phaser.Sprite startButton;
+  Phaser.Text text;
   List discoveredGems;
   GemGroup gemGroup;
-  List<Sound> bonus = [];
-  List<Sprite> legend = [];
+  List<Phaser.Sound> bonus = [];
+  List<Phaser.Sprite> legend = [];
   Li2Config config;
   int score = 0;
   int level = 0;
@@ -80,7 +80,7 @@ class Levels extends Li2State {
 
     discoveredGems = [];
     for (var i=0; i<Game.GEMTYPES.length; i++) {
-      Sprite s = add.sprite(290, 100+(i*32), "legend", i);
+      Phaser.Sprite s = add.sprite(290, 100+(i*32), "legend", i);
       if (i <= (level+2)) {
         discoveredGems.add(Game.GEMTYPES[i]);
       } else {
@@ -89,7 +89,7 @@ class Levels extends Li2State {
       legend.add(s);
     }
 
-    text = add.text(100, 20, "Score: $score", new TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
+    text = add.text(100, 20, "Score: $score", new Phaser.TextStyle(font: "bold 30px Acme",fill: "#e0e0e0"));
     grid = new Grid(width: 6, height: 7, gravity: 'down');
 
     newGemGroup();
@@ -170,8 +170,8 @@ class Levels extends Li2State {
           // Destroy each piece
           add.tween(matchingPiece.object.sprite)
           .repeat(6)
-          .to({'alpha':0}, 150, Easing.Linear.None, true, 0, 0, true)
-          .onComplete.add((Sprite s) => s.destroy());
+          .to({'alpha':0}, 150, Phaser.Easing.Linear.None, true, 0, 0, true)
+          .onComplete.add((Phaser.Sprite s) => s.destroy());
         });
       });
 
@@ -268,19 +268,19 @@ class Levels extends Li2State {
 
     int speed = 1000;
     var dur = const Duration(milliseconds: 1000);
-    var scoreStyle = new TextStyle(font: "bold 120px Courier New, Courier",fill: color, align: "center");
+    var scoreStyle = new Phaser.TextStyle(font: "bold 120px Courier New, Courier",fill: color, align: "center");
     var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (level+1);
 
     score += points;
     text.text = "Score: $score";
     text.updateText();
 
-    Text popup = add.text(90, 300, "$points", scoreStyle);
+    Phaser.Text popup = add.text(90, 300, "$points", scoreStyle);
     bonus[points % SFX_COUNT].play();
 
     add.tween(popup)
-    .to({'alpha': 1}, (speed*0.75).toInt(), Easing.Linear.None, true)
-    .to({'alpha': 0}, (speed*0.25).toInt(), Easing.Linear.None, true);
+    .to({'alpha': 1}, (speed*0.75).toInt(), Phaser.Easing.Linear.None, true)
+    .to({'alpha': 0}, (speed*0.25).toInt(), Phaser.Easing.Linear.None, true);
 
     new async.Timer(dur, ()=> world.remove(popup));
 

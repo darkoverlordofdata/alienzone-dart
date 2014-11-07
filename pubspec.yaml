@@ -7,11 +7,12 @@ homepage: http://darkoverlordofdata.com
 dependencies:
   browser: any
   yaml: any
-  play_phaser: any # ">=0.10.0 <0.11.0"
+  play_phaser: any
   play_pixi: any
+  dilithium: #any
+    path: ../dilithium
+  dartemis: any
   match3:  any
-  dilithium: any
-    #path: ../dilithium
 
 transformers:
 - $dart2js:

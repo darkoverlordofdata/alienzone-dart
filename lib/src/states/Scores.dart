@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * Credits.dart
+ * Scores.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -15,23 +15,22 @@
  */
 part of alienzone;
 
-class Credits extends Li2State {
+class Scores extends Li2State {
 
   /**
-   * == Credits ==
+   * == Scores ==
    *   * Show the splash screen
-   *   * Shoe Credits
+   *   * Show the scores
    */
 
   Game parent;
-  var quoteStyle = new TextStyle(font: "italic 12px Arial", fill: "#000");
-  var style = new TextStyle(font: "12px Arial", fill: "#000");
-  var cstyle = new TextStyle(font: "14px Arial", fill: "#fff");
-  Sprite label;
+  String text = "High Scores";
 
+  var style = new Phaser.TextStyle(font: "bold 20px Acme", fill: "#000");
+  Phaser.Sprite label;
   Li2Config config;
 
-  Credits(this.parent, this.config);
+  Scores(this.parent, this.config);
 
   /**
    * State::create
@@ -44,12 +43,11 @@ class Credits extends Li2State {
       ..sprite(0, 0, 'background')
       ..sprite(10, 10, 'icon');
 
-    label = add.sprite(10, 320, 'label');
+    label = add.sprite(15, 125, 'scores');
 
     add
-      ..text(20, 335, config.strings['creditsText'], style)
-      ..button(game.width / 2 - 38, game.height-75, 'backButton', goBack, this)
-      ..text(50, game.height-30, config.strings['copyrightText'], cstyle);
+      ..text(120, 130, text, style)
+      ..button(game.width / 2 - 38, game.height-45, 'backButton', goBack, this);
 
     label.alpha = 0.5;
 }

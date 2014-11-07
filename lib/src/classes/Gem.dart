@@ -23,7 +23,7 @@ class Gem extends MatchObject {
 
   int x;
   int y;
-  Sprite sprite;
+  Phaser.Sprite sprite;
   Levels level;
 
   /**
@@ -37,7 +37,7 @@ class Gem extends MatchObject {
    * param  [Number]  y coordinate
    * returns this
    */
-  Gem(State this.level, String type, int this.x, int this.y) : super(type) {
+  Gem(Phaser.State this.level, String type, int this.x, int this.y) : super(type) {
 
     sprite = level.add.sprite(0, 0, 'gems', Game.GEMTYPES.indexOf(type));
     move(x, y);
@@ -95,7 +95,7 @@ class Gem extends MatchObject {
     };
 
     level.add.tween(sprite)
-    .to(point, 750, Easing.Bounce.Out, true, 0, 0, false)
+    .to(point, 750, Phaser.Easing.Bounce.Out, true, 0, 0, false)
     .onComplete.add(next);
   }
 }

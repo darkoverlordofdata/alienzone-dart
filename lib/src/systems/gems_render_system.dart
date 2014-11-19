@@ -1,12 +1,12 @@
 part of alienzone;
 
 
-class StarsRenderSystem extends VoidEntitySystem {
+class GemsRenderSystem extends VoidEntitySystem {
 
   Phaser.Game game;
   Context orion;
 
-  StarsRenderSystem(this.game, this.orion);
+  GemsRenderSystem(this.game, this.orion);
 
 
   void initialize() {
@@ -18,18 +18,18 @@ class StarsRenderSystem extends VoidEntitySystem {
     ComponentMapper<Gravity> gravityMapper = new ComponentMapper<Gravity>(Gravity, world);
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    Phaser.Group stars = orion.registerStars(game.add.group());
+    Phaser.Group gems = orion.registerGems(game.add.group());
 
     //  We will enable physics for any object that is created in this group
-    stars.enableBody = true;
+    gems.enableBody = true;
 
-    groupManager.getEntities(GROUP_STARS).forEach((entity) {
+    groupManager.getEntities(GROUP_GEMS).forEach((entity) {
 
       Sprite sprite = spriteMapper.get(entity);
       Bounce bounce = bounceMapper.get(entity);
       Gravity gravity = gravityMapper.get(entity);
 
-      Phaser.Sprite s = stars.create(sprite.x, sprite.y, sprite.key);
+      Phaser.Sprite s = gems.create(sprite.x, sprite.y, sprite.key);
       s.body.bounce.y = bounce.y;
       s.body.gravity.y = gravity.y;
 

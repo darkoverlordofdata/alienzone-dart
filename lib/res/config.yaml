@@ -1,25 +1,21 @@
-#+--------------------------------------------------------------------+
+#+-----------------------------------------+
 #| config.yaml
-#+--------------------------------------------------------------------+
+#+-----------------------------------------+
 #| Copyright DarkOverlordOfData (c) 2014
-#+--------------------------------------------------------------------+
+#+-----------------------------------------+
 #|
 #| This file is a part of alienzone
 #|
 #| alienzone is free software; you can copy, modify, and distribute
 #| it under the terms of the MIT License
 #|
-#+--------------------------------------------------------------------+
+#+-----------------------------------------+
 #
 # Alien Zone Dilithium(Li2) Configuration
 #
 #
 name: Alien Zone
-lang: en
-paths:
-  preferences: preferences/preferences.yaml
-  arrays: values/arrays.yaml
-  strings: values/strings.yaml
+locale: false
 
 minWidth: 320
 minHeight: 480
@@ -29,110 +25,21 @@ pageAlignHorizontally: true
 pageAlignVertically: true
 forceOrientation: false
 
-splashKey: splashScreen
+splashKey: splash
 splashImg: images/splash.png
 
 showPreloadBar: false
-preloadBarKey: preloadBar
+preloadBarKey:
 preloadBarImg: 
-preloadBgdKey: preloadBgd
+preloadBgdKey:
 preloadBgdImg: 
 
-images:
-  sky: assets/sky.png
-  ground: assets/platform.png
-  star: assets/star.png
-
-
-  background:     images/background.png
-  board:          images/board.png
-  icon:           images/d16a.png
-  label:          images/label.png
-  scores:         images/scores.png
-  #  ui buttons
-  playButton:     images/buttons/play1.png
-  scoreButton:    images/buttons/score1.png
-  creditsButton:  images/buttons/credits1.png
-  optionsButton:  images/buttons/options.png
-  backButton:     images/buttons/back1.png
-  arrow_right:    images/arrows/right.png
-  arrow_left:     images/arrows/left.png
-  arrow_down:     images/arrows/down.png
-  arrow_lrot:     images/arrows/lrot.png
-  arrow_rrot:     images/arrows/rrot.png
-
-audio:
-  bonus1:   audio/sfx/Powerup.ogg
-  bonus2:   audio/sfx/Powerup2.ogg
-  bonus3:   audio/sfx/Powerup3.ogg
-  bonus4:   audio/sfx/Powerup4.ogg
-  bonus5:   audio/sfx/Powerup5.ogg
-  bonus6:   audio/sfx/Powerup6.ogg
-  bonus7:   audio/sfx/Powerup7.ogg
-  bonus8:   audio/sfx/Powerup8.ogg
-  bonus9:   audio/sfx/Powerup9.ogg
-  bonus10:  audio/sfx/Powerup10.ogg
-  bonus11:  audio/sfx/Powerup11.ogg
-  bonus12:  audio/sfx/Powerup12.ogg
-  bonus13:  audio/sfx/Powerup13.ogg
-  bonus14:  audio/sfx/Powerup14.ogg
-  bonus15:  audio/sfx/Powerup15.ogg
-  bonus16:  audio/sfx/Powerup16.ogg
-  bonus17:  audio/sfx/Powerup17.ogg
-  bonus18:  audio/sfx/Powerup18.ogg
-  bonus19:  audio/sfx/Powerup19.ogg
-  bonus20:  audio/sfx/Powerup20.ogg
-
-sprites:
-
-    dude:
-      file: assets/dude.png
-      width: 32
-      height: 48
-
-    gems:
-      file      : images/gems.png
-      width     : 48
-      height    : 48
-
-    legend:
-      file      : images/legend.png
-      width     : 24
-      height    : 24
-
-levels:
-
-extra: # world data
-  demo:
-    - background: [0, 0, sky]
-    - platform: [0, 416, ground, 2]
-    - platform: [400, 400, ground, 1]
-    - platform: [-150, 250, ground, 1]
-    - player:
-      - 32
-      - 330
-      - dude
-      - left:
-          frames: [0,1,2,3]
-          frameRate: 10
-          loop: true
-          useNumericIndex: true
-        right:
-          frames: [4,5,6,7]
-          frameRate: 10
-          loop: true
-          useNumericIndex: true
-    - star: [0, 0, star]
-    - star: [1, 0, star]
-    - star: [2, 0, star]
-    - star: [3, 0, star]
-    - star: [4, 0, star]
-    - star: [5, 0, star]
-    - star: [6, 0, star]
-    - star: [7, 0, star]
-    - star: [8, 0, star]
-    - star: [9, 0, star]
-    - star: [10, 0, star]
-    - star: [11, 0, star]
-    - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
+sections:
+  strings: values/strings.yaml
+  arrays: values/arrays.yaml
+  preferences: preferences/preferences.yaml
+  levels: values/levels.yaml
+  audio: values/audio.yaml
+  sprites: values/sprites.yaml
+  images: values/images.yaml
 

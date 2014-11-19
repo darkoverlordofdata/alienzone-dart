@@ -15,7 +15,7 @@
  */
 part of alienzone;
 
-class Game extends Dilithium {
+class Game  extends Dilithium {
 
   static const VOLUME_ON  = 0.05;
   static const VOLUME_OFF = 0;
@@ -39,6 +39,7 @@ class Game extends Dilithium {
   bool fullscreen = true;
   bool playmusic = true;
 
+
   /**
    * == New Game ==
    *   * Set the screen dimensions
@@ -47,7 +48,9 @@ class Game extends Dilithium {
    *
    * returns this
    */
-  Game(config, this.template): super(config) {
+  Game(Li2Config config, this.template): super(config) {
+
+    print(config);
 
     print("Class Game initialized");
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
@@ -59,7 +62,7 @@ class Game extends Dilithium {
   Phaser.State levels() {
 
     game.state.add('Levels',       new Levels(this, config));
-    game.state.add('Credits',      new Demo(this, config));
+    game.state.add('Credits',      new Credits(this, config));
     game.state.add('Scores',       new Scores(this, config));
     game.state.add('Preferences',  new Preferences(this, config, template));
     game.state.add('GameOver',     new GameOver(this, config));
@@ -90,4 +93,3 @@ class Game extends Dilithium {
   }
 
 }
-

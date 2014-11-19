@@ -38,21 +38,27 @@ import 'package:play_phaser/arcade.dart' as Arcade;
 import "package:dilithium/dilithium.dart";
 import 'package:match3/match3.dart';
 
-part 'src/alien_zone_application.dart';
-part 'src/game.dart';
-part 'src/classes/gem.dart';
-part 'src/classes/gem_group.dart';
+part 'src/AlienZoneApplication.dart';
+//part 'src/Game.dart';
+part 'src/classes/Gem.dart';
+part 'src/classes/GemGroup.dart';
 
 /**
  * Game States
  */
-part 'src/states/credits.dart';
-part 'src/states/game_over.dart';
-part 'src/states/levels.dart';
-part 'src/states/menu.dart';
-part 'src/states/preferences.dart';
-part 'src/states/scores.dart';
+part 'src/states/Preferences.dart';
+part 'src/states/Menu.dart';
+part 'src/states/Credits.dart';
+part 'src/states/Scores.dart';
+part 'src/states/Levels.dart';
+part 'src/states/GameOver.dart';
 
+part 'src/states/demo.dart';
+part 'src/context.dart';
+
+part 'src/abstract_entity.dart';
+part 'src/entity_factory.dart';
+part 'src/game.dart';
 /**
  * Components
  */
@@ -69,21 +75,19 @@ part 'src/components/velocity.dart';
 /**
  * Entities
  */
-part 'src/abstract_entity.dart';
-part 'src/entity_factory.dart';
 part 'src/entities/background_entity.dart';
-part 'src/entities/gem_entity.dart';
 part 'src/entities/platform_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
+part 'src/entities/star_entity.dart';
 /**
  * Systems
  */
 part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/background_render_system.dart';
-part 'src/systems/gems_render_system.dart';
 part 'src/systems/platform_render_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
+part 'src/systems/stars_render_system.dart';
 
 

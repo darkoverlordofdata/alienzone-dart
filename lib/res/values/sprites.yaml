@@ -1,0 +1,15 @@
+dude:
+  file: assets/dude.png
+  width: 32
+  height: 48
+
+gems:
+  file      : images/gems.png
+  width     : 48
+  height    : 48
+
+legend:
+  file      : images/legend.png
+  width     : 24
+  height    : 24
+

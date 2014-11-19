@@ -1,0 +1,102 @@
+#+--------------------------------------------------------------------+
+#| values/levels.yaml
+#+--------------------------------------------------------------------+
+#| Copyright DarkOverlordOfData (c) 2014
+#+--------------------------------------------------------------------+
+#|
+#| This file is a part of alienzone
+#|
+#| alienzone is free software; you can copy, modify, and distribute
+#| it under the terms of the GPL3 License
+#|
+#+--------------------------------------------------------------------+
+#
+# Alien Zone Dilithium(Li2) Level Configuration
+#
+#
+
+#
+# Main menu
+#
+main:
+  entities:
+    - background: [0, 0, splash]
+    - button: [100, 130, playButton, game]
+    - button: [100, 170, creditsButton, credits]
+    - button: [100, 210, optionsButton, preferences]
+  systems:
+    - backgroundRender:
+    - buttonRender:
+
+#
+# Preferences screen
+#
+preferences:
+  entities:
+    - background: [0, 0, background]
+    - button: [122, 405, backButton, main]
+  systems:
+    - backgroundRender:
+    - buttonRender:
+
+#
+# Credits screen
+#
+credits:
+  entities:
+    - background: [0, 0, background]
+    - image: [10, 10, icon]
+    - image: [10, 320, label, 0.5]
+    - string: [20, 335, creditsText, {fill: "#000", font: "12px Arial"}]
+    - button: [122, 405, backButton, main]
+    - string: [50, 450, copyrightText, {fill: "#000", font: "12px Arial"}]
+  systems:
+    - backgroundRender:
+    - imageRender:
+    - stringRender:
+    - buttonRender:
+
+#
+# Game
+#
+game:
+  entities:
+    - background: [0, 0, sky]
+    - platform: [0, 416, ground, 2]
+    - platform: [400, 400, ground, 1]
+    - platform: [-150, 250, ground, 1]
+    - player:
+      - 32
+      - 330
+      - dude
+      - left:
+          frames: [0,1,2,3]
+          frameRate: 10
+          loop: true
+          useNumericIndex: true
+        right:
+          frames: [4,5,6,7]
+          frameRate: 10
+          loop: true
+          useNumericIndex: true
+    - star: [0, 0, star]
+    - star: [1, 0, star]
+    - star: [2, 0, star]
+    - star: [3, 0, star]
+    - star: [4, 0, star]
+    - star: [5, 0, star]
+    - star: [6, 0, star]
+    - star: [7, 0, star]
+    - star: [8, 0, star]
+    - star: [9, 0, star]
+    - star: [10, 0, star]
+    - star: [11, 0, star]
+    - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
+  systems:
+    - arcadePhysics:
+    - backgroundRender:
+    - platformRender:
+    - playerControl: [100]
+    - starsRender:
+    - scoreRender:
+

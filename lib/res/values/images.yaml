@@ -1,0 +1,27 @@
+sky: assets/sky.png
+ground: assets/platform.png
+star: assets/star.png
+
+
+
+splash:         images/splash.png
+background:     images/background.png
+board:          images/board.png
+icon:           images/d16a.png
+label:          images/label.png
+scores:         images/scores.png
+#  ui buttons
+playButton:     images/buttons/play1.png
+scoreButton:    images/buttons/score1.png
+creditsButton:  images/buttons/credits1.png
+optionsButton:  images/buttons/options.png
+backButton:     images/buttons/back1.png
+arrow_right:    images/arrows/right.png
+arrow_left:     images/arrows/left.png
+arrow_down:     images/arrows/down.png
+arrow_lrot:     images/arrows/lrot.png
+arrow_rrot:     images/arrows/rrot.png
+
+
+
+

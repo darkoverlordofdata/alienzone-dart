@@ -1,6 +1,6 @@
 part of alienzone;
 
-class Animation extends Component {
+class Animation extends Artemis.Component {
 
   Map cells;
 

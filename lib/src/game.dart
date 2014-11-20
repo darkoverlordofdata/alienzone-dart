@@ -50,16 +50,24 @@ class Game  extends Dilithium {
    */
   Game(Li2Config config, this.template): super(config) {
 
-    print(config);
-
     print("Class Game initialized");
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 
+  Phaser.State levels() {
+
+    game.state.add('levels', new BaseLevel('levels', config));
+    game.state.add('credits', new BaseLevel('credits', config));
+    game.state.add('preferences', new BaseLevel('preferences', config));
+
+    querySelector('.logo').hidden = true;
+    return new BaseLevel('main', config);
+
+  }
   /**
    * Define each of the game states
    */
-  Phaser.State levels() {
+  Phaser.State levelsz() {
 
     game.state.add('Levels',       new Levels(this, config));
     game.state.add('Credits',      new Credits(this, config));

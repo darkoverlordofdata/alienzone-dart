@@ -1,22 +1,21 @@
 part of alienzone;
 
 
-class BackgroundRenderSystem extends VoidEntitySystem {
+class BackgroundRenderSystem extends Artemis.VoidEntitySystem {
 
-  Phaser.Game game;
-  Context orion;
+  BaseLevel level;
 
-  BackgroundRenderSystem(this.game, this.orion);
+  BackgroundRenderSystem(this.level);
 
 
   void initialize() {
     print("BackgroundRenderSystem::initialize");
-    GroupManager groupManager = world.getManager(new GroupManager().runtimeType);
-    ComponentMapper<Sprite> spriteMapper = new ComponentMapper<Sprite>(Sprite, world);
+    Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
+    Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
 
     groupManager.getEntities(GROUP_BACKGROUND).forEach((entity) {
       Sprite sprite = spriteMapper.get(entity);
-      game.add.sprite(sprite.x, sprite.y, sprite.key);
+      level.game.add.sprite(sprite.x, sprite.y, sprite.key);
     });
   }
 

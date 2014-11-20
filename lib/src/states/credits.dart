@@ -41,15 +41,15 @@ class Credits extends Li2State {
   create() {
     
     add
-      ..sprite(0, 0, 'background')
-      ..sprite(10, 10, 'icon');
+    ..sprite(0, 0, 'background')
+    ..sprite(10, 10, 'icon');
 
     label = add.sprite(10, 320, 'label');
 
     add
-      ..text(20, 335, config.strings['creditsText'], style)
-      ..button(game.width / 2 - 38, game.height-75, 'backButton', goBack, this)
-      ..text(50, game.height-30, config.strings['copyrightText'], cstyle);
+    ..text(20, 335, config.strings['creditsText'], style)
+    ..button(game.width / 2 - 38, game.height-75, 'backButton', goBack, this)
+    ..text(50, game.height-30, config.strings['copyrightText'], cstyle);
 
     label.alpha = 0.5;
 }

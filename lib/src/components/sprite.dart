@@ -1,6 +1,6 @@
 part of alienzone;
 
-class Sprite extends ComponentPoolable {
+class Sprite extends Artemis.ComponentPoolable {
 
   num x;
   num y;
@@ -9,7 +9,7 @@ class Sprite extends ComponentPoolable {
 
   Sprite._();
   factory Sprite(num x, num y, String key, [frame]) {
-    Sprite sprite = new Poolable.of(Sprite, _constructor);
+    Sprite sprite = new Artemis.Poolable.of(Sprite, _constructor);
     sprite.x = x;
     sprite.y = y;
     sprite.key = key;

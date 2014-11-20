@@ -32,7 +32,7 @@ library alienzone;
 import 'dart:html';
 import 'dart:async' as async;
 
-import 'package:dartemis/dartemis.dart';
+import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;
 import "package:dilithium/dilithium.dart";
@@ -53,6 +53,16 @@ part 'src/states/menu.dart';
 part 'src/states/preferences.dart';
 part 'src/states/scores.dart';
 
+
+/**
+ * Artemis:
+ */
+part 'src/orion/abstract_entity.dart';
+part 'src/orion/base_level.dart';
+part 'src/orion/context.dart';
+part 'src/orion/entity_factory.dart';
+part 'src/orion/invalid_factory_method.dart';
+part 'src/orion/system_factory.dart';
 /**
  * Components
  */
@@ -63,15 +73,15 @@ part 'src/components/gravity.dart';
 part 'src/components/immovable.dart';
 part 'src/components/position.dart';
 part 'src/components/scale.dart';
+part 'src/components/state.dart';
 part 'src/components/text.dart';
 part 'src/components/sprite.dart';
 part 'src/components/velocity.dart';
 /**
  * Entities
  */
-part 'src/abstract_entity.dart';
-part 'src/entity_factory.dart';
 part 'src/entities/background_entity.dart';
+part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
 part 'src/entities/platform_entity.dart';
 part 'src/entities/player_entity.dart';

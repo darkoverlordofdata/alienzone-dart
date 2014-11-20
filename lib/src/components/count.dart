@@ -1,11 +1,11 @@
 part of alienzone;
 
-class Count extends ComponentPoolable {
+class Count extends Artemis.ComponentPoolable {
   int value;
 
   Count._();
   factory Count([value = true]) {
-    Count count = new Poolable.of(Count, _constructor);
+    Count count = new Artemis.Poolable.of(Count, _constructor);
     count.value = value;
     return count;
   }

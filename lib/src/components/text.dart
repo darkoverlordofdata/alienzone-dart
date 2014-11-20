@@ -1,6 +1,6 @@
 part of alienzone;
 
-class Text extends ComponentPoolable {
+class Text extends Artemis.ComponentPoolable {
 
   String value;
   String font;
@@ -8,7 +8,7 @@ class Text extends ComponentPoolable {
 
   Text._();
   factory Text(String value, String font, String fill) {
-    Text text = new Poolable.of(Text, _constructor);
+    Text text = new Artemis.Poolable.of(Text, _constructor);
     text.value = value;
     text.font = font;
     text.fill = fill;

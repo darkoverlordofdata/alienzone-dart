@@ -1,24 +1,23 @@
 part of alienzone;
 
 
-class GemsRenderSystem extends VoidEntitySystem {
+class GemsRenderSystem extends Artemis.VoidEntitySystem {
 
-  Phaser.Game game;
-  Context orion;
+  BaseLevel level;
 
-  GemsRenderSystem(this.game, this.orion);
+  GemsRenderSystem(this.level);
 
 
   void initialize() {
     print("StarsRenderSystem::initialize");
-    GroupManager groupManager = world.getManager(new GroupManager().runtimeType);
+    Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
 
-    ComponentMapper<Sprite> spriteMapper = new ComponentMapper<Sprite>(Sprite, world);
-    ComponentMapper<Bounce> bounceMapper = new ComponentMapper<Bounce>(Bounce, world);
-    ComponentMapper<Gravity> gravityMapper = new ComponentMapper<Gravity>(Gravity, world);
+    Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
+    Artemis.ComponentMapper<Bounce> bounceMapper = new Artemis.ComponentMapper<Bounce>(Bounce, level.artemis);
+    Artemis.ComponentMapper<Gravity> gravityMapper = new Artemis.ComponentMapper<Gravity>(Gravity, level.artemis);
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    Phaser.Group gems = orion.registerGems(game.add.group());
+    Phaser.Group gems = level.context.registerGems(level.game.add.group());
 
     //  We will enable physics for any object that is created in this group
     gems.enableBody = true;

@@ -1,22 +1,19 @@
 part of alienzone;
 /**
- * The game
+ * Expose Phaser objects to Artemis
  */
 
 class Context {
 
   int _score = 0;
-  World world;
-  EntityFactory add;
+  AbstractLevel level;
   Phaser.Game game;
   Phaser.Sprite player = null;
   Phaser.Group platforms = null;
-  Phaser.Group stars = null;
+  Phaser.Group gems = null;
   ScoreRenderSystem scoreListener = null;
 
-  Context(this.game, this.world) {
-    add = new EntityFactory(game, world);
-  }
+  Context(this.level);
 
   /**
    * Game Score
@@ -53,11 +50,11 @@ class Context {
   }
 
   /**
-   * register the stars group
+   * register the gems group
    */
-  Phaser.Group registerStars(Phaser.Group stars) {
-    this.stars = stars;
-    return stars;
+  Phaser.Group registerGems(Phaser.Group gems) {
+    this.gems = gems;
+    return gems;
   }
 
 

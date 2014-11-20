@@ -1,24 +1,23 @@
 part of alienzone;
 
 
-class PlatformRenderSystem extends VoidEntitySystem {
+class PlatformRenderSystem extends Artemis.VoidEntitySystem {
 
-  Phaser.Game game;
-  Context orion;
+  BaseLevel level;
 
-  PlatformRenderSystem(this.game, this.orion);
+  PlatformRenderSystem(this.level);
 
 
   void initialize() {
     print("PlatformRenderSystem::initialize");
-    GroupManager groupManager = world.getManager(new GroupManager().runtimeType);
+    Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
 
-    ComponentMapper<Sprite> spriteMapper = new ComponentMapper<Sprite>(Sprite, world);
-    ComponentMapper<Scale> scaleMapper = new ComponentMapper<Scale>(Scale, world);
-    ComponentMapper<Immovable> immovableMapper = new ComponentMapper<Immovable>(Immovable, world);
+    Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
+    Artemis.ComponentMapper<Scale> scaleMapper = new Artemis.ComponentMapper<Scale>(Scale, level.artemis);
+    Artemis.ComponentMapper<Immovable> immovableMapper = new Artemis.ComponentMapper<Immovable>(Immovable, level.artemis);
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    Phaser.Group platforms = orion.registerPlatforms(game.add.group());
+    Phaser.Group platforms = level.context.registerPlatforms(level.game.add.group());
 
     //  We will enable physics for any object that is created in this group
     platforms.enableBody = true;

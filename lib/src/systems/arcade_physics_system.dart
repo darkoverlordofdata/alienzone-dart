@@ -1,15 +1,14 @@
 part of alienzone;
 
-class ArcadePhysicsSystem extends VoidEntitySystem {
+class ArcadePhysicsSystem extends Artemis.VoidEntitySystem {
 
-  Phaser.Game game;
-  Context orion;
+  BaseLevel level;
   Arcade.Arcade arcade;
 
-  ArcadePhysicsSystem(this.game, this.orion) {
+  ArcadePhysicsSystem(this.level) {
     print("ArcadePhysicsSystem: started");
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    arcade = game.physics.arcade;
+    level.game.physics.startSystem(Phaser.Physics.ARCADE);
+    arcade = level.game.physics.arcade;
 
   }
 
@@ -18,12 +17,12 @@ class ArcadePhysicsSystem extends VoidEntitySystem {
    */
   void processSystem() {
 
-    //  Collide the player and the stars with the platforms
-    arcade.collide(orion.player, orion.platforms);
-    arcade.collide(orion.stars, orion.platforms);
+    //  Collide the player and the gems with the platforms
+    arcade.collide(level.context.player, level.context.platforms);
+    arcade.collide(level.context.gems, level.context.platforms);
 
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    arcade.overlap(orion.player, orion.stars, collectStar, null);
+    //  Checks to see if the player overlaps with any of the gems, if he does call the collectStar function
+    arcade.overlap(level.context.player, level.context.gems, collectStar, null);
 
   }
 
@@ -34,7 +33,7 @@ class ArcadePhysicsSystem extends VoidEntitySystem {
     // Removes the star from the screen
     star.kill();
     //  Add and update the score
-    orion.score += 10;
+    level.context.score += 10;
 
   }
 

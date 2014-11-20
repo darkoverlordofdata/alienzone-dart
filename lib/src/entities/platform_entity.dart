@@ -7,12 +7,12 @@ class PlatformEntity extends AbstractEntity {
   PlatformEntity(entities, int x, int y, String key, [int scale = 1])
   : super(entities) {
 
-    Entity platform = world.createEntity();
+    Artemis.Entity platform = level.artemis.createEntity();
     platform
-      ..addComponent(new Sprite(x, y, key))
-      ..addComponent(new Scale(scale, scale))
-      ..addComponent(new Immovable(true))
-      ..addToWorld();
+    ..addComponent(new Sprite(x, y, key))
+    ..addComponent(new Scale(scale, scale))
+    ..addComponent(new Immovable(true))
+    ..addToWorld();
     groupManager.add(platform, GROUP_PLATFORMS);
   }
 

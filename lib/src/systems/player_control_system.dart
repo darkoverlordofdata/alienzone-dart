@@ -1,43 +1,42 @@
 part of alienzone;
 
-class PlayerControlSystem extends IntervalEntitySystem {
+class PlayerControlSystem extends Artemis.IntervalEntitySystem {
 
-  Phaser.Game game;
-  Context orion;
+  BaseLevel level;
   Phaser.Sprite playerSprite;
   var cursors;
 
-  PlayerControlSystem(this.game, this.orion)
-    : super(20, Aspect.getAspectForAllOf([Velocity, Bounce, Gravity, Animation, Sprite]));
+  PlayerControlSystem(this.level)
+    : super(20, Artemis.Aspect.getAspectForAllOf([Velocity, Bounce, Gravity, Animation, Sprite]));
 
   void initialize() {
     print("PlayerControlSystem::initialize");
     //  Our controls.
-    cursors = game.input.keyboard.createCursorKeys();
-    var velocityMapper = new ComponentMapper<Velocity>(Velocity, world);
-    var bounceMapper = new ComponentMapper<Bounce>(Bounce, world);
-    var gravityMapper = new ComponentMapper<Gravity>(Gravity, world);
-    var animationMapper = new ComponentMapper<Animation>(Animation, world);
-    var spriteMapper = new ComponentMapper<Sprite>(Sprite, world);
+    cursors = level.game.input.keyboard.createCursorKeys();
+    var velocityMapper = new Artemis.ComponentMapper<Velocity>(Velocity, level.artemis);
+    var bounceMapper = new Artemis.ComponentMapper<Bounce>(Bounce, level.artemis);
+    var gravityMapper = new Artemis.ComponentMapper<Gravity>(Gravity, level.artemis);
+    var animationMapper = new Artemis.ComponentMapper<Animation>(Animation, level.artemis);
+    var spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
 
-    TagManager tagManager = world.getManager(TagManager);
-    Entity player = tagManager.getEntity(TAG_PLAYER);
+    Artemis.TagManager tagManager = level.artemis.getManager(Artemis.TagManager);
+    Artemis.Entity player = tagManager.getEntity(TAG_PLAYER);
     Velocity velocity = velocityMapper.get(player);
     Bounce bounce = bounceMapper.get(player);
     Gravity gravity = gravityMapper.get(player);
     Animation animation = animationMapper.get(player);
     Sprite sprite = spriteMapper.get(player);
 
-    playerSprite = game.add.sprite(sprite.x, sprite.y, sprite.key);
-    orion.registerPlayer(playerSprite);
+    playerSprite = level.game.add.sprite(sprite.x, sprite.y, sprite.key);
+    level.context.registerPlayer(playerSprite);
 
     //  We need to enable physics on the player
-    game.physics.arcade.enable(playerSprite);
+    level.game.physics.arcade.enable(playerSprite);
 
     playerSprite
-      ..body.bounce.y = bounce.y
-      ..body.gravity.y = gravity.y
-      ..body.collideWorldBounds = true;
+    ..body.bounce.y = bounce.y
+    ..body.gravity.y = gravity.y
+    ..body.collideWorldBounds = true;
 
     animation.cells.forEach((name, v) {
       playerSprite.animations.add(name, v['frames'], v['frameRate'], v['loop'], v['useNumericIndex']);
@@ -47,7 +46,7 @@ class PlayerControlSystem extends IntervalEntitySystem {
   /**
    * This is where all of the player activities occur
    */
-  void processEntities(Iterable<Entity> entities) {
+  void processEntities(Iterable<Artemis.Entity> entities) {
 
     playerSprite.body.velocity.x = 0;
 

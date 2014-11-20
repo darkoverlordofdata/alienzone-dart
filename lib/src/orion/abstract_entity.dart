@@ -2,14 +2,12 @@ part of alienzone;
 
 abstract class AbstractEntity {
 
-  Phaser.Game game;
-  World world;
-  GroupManager groupManager;
-  TagManager tagManager;
+  AbstractLevel level;
+  Artemis.GroupManager groupManager;
+  Artemis.TagManager tagManager;
 
   AbstractEntity(EntityFactory entities) {
-    game = entities.game;
-    world = entities.world;
+    level = entities.level;
     groupManager = entities.groupManager;
     tagManager = entities.tagManager;
   }

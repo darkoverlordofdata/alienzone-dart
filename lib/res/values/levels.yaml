@@ -25,8 +25,8 @@ main:
     - button: [100, 170, creditsButton, credits]
     - button: [100, 210, optionsButton, preferences]
   systems:
-    - backgroundRender:
-    - buttonRender:
+    - backgroundRender: false
+    - buttonRender: false
 
 #
 # Preferences screen
@@ -36,8 +36,8 @@ preferences:
     - background: [0, 0, background]
     - button: [122, 405, backButton, main]
   systems:
-    - backgroundRender:
-    - buttonRender:
+    - backgroundRender: false
+    - buttonRender: false
 
 #
 # Credits screen
@@ -45,16 +45,16 @@ preferences:
 credits:
   entities:
     - background: [0, 0, background]
-    - image: [10, 10, icon]
+    - image: [10, 10, icon, 1.0]
     - image: [10, 320, label, 0.5]
-    - string: [20, 335, creditsText, {fill: "#000", font: "12px Arial"}]
+    - string: [20, 335, creditsText, "12px Arial", "#000"]
     - button: [122, 405, backButton, main]
-    - string: [50, 450, copyrightText, {fill: "#000", font: "12px Arial"}]
+    - string: [50, 450, copyrightText, "12px Arial", "#000"]
   systems:
-    - backgroundRender:
-    - imageRender:
-    - stringRender:
-    - buttonRender:
+    - backgroundRender: false
+    - imageRender: false
+    - stringRender: false
+    - buttonRender: false
 
 #
 # Game
@@ -93,10 +93,10 @@ game:
     - star: [11, 0, star]
     - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
   systems:
-    - arcadePhysics: false
-    - backgroundRender: true
-    - platformRender: true
-    - playerControl: false
-    - starsRender: true
+    - arcadePhysics: true
+    - backgroundRender: false
+    - platformRender: false
+    - playerControl: true
+    - starsRender: false
     - scoreRender: true
 

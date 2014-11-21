@@ -70,6 +70,7 @@ part 'src/components/bounce.dart';
 part 'src/components/count.dart';
 part 'src/components/gravity.dart';
 part 'src/components/immovable.dart';
+part 'src/components/opacity.dart';
 part 'src/components/position.dart';
 part 'src/components/scale.dart';
 part 'src/components/state.dart';
@@ -82,9 +83,11 @@ part 'src/components/velocity.dart';
 part 'src/entities/background_entity.dart';
 part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
+part 'src/entities/image_entity.dart';
 part 'src/entities/platform_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
+part 'src/entities/string_entity.dart';
 /**
  * Systems
  */
@@ -92,8 +95,10 @@ part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/background_render_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/gems_render_system.dart';
+part 'src/systems/image_render_system.dart';
 part 'src/systems/platform_render_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
+part 'src/systems/string_render_system.dart';
 
 

@@ -48,7 +48,7 @@ class EntityFactory  {
       case 'player':      return player(p[0], p[1], p[2], p[3]);
       case 'score':       return score(p[0], p[1], p[2], p[3], p[4]);
       default:
-        throw new InvalidFactoryMethodException(methodName);
+        throw new Exception("Invalid system factory method: $methodName");
     }
     return null;
   }

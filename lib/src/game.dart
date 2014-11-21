@@ -54,31 +54,21 @@ class Game  extends Dilithium {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 
+  /**
+   * Define each of the game states
+   */
   Phaser.State levels() {
 
     game.state.add('levels', new BaseLevel('levels', config));
     game.state.add('credits', new BaseLevel('credits', config));
+    game.state.add('gameover', new BaseLevel('gameover', config));
     game.state.add('preferences', new BaseLevel('preferences', config));
 
     querySelector('.logo').hidden = true;
     return new BaseLevel('main', config);
 
   }
-  /**
-   * Define each of the game states
-   */
-  Phaser.State levelsz() {
 
-    game.state.add('Levels',       new Levels(this, config));
-    game.state.add('Credits',      new Credits(this, config));
-    game.state.add('Scores',       new Scores(this, config));
-    game.state.add('Preferences',  new Preferences(this, config, template));
-    game.state.add('GameOver',     new GameOver(this, config));
-
-    querySelector('.logo').hidden = true;
-    return new Menu(config);
-
-  }
 
   /**
    * Set game preferences

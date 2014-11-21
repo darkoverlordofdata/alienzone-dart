@@ -61,7 +61,6 @@ part 'src/orion/abstract_entity.dart';
 part 'src/orion/base_level.dart';
 part 'src/orion/context.dart';
 part 'src/orion/entity_factory.dart';
-part 'src/orion/invalid_factory_method.dart';
 part 'src/orion/system_factory.dart';
 /**
  * Components
@@ -91,6 +90,7 @@ part 'src/entities/score_entity.dart';
  */
 part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/background_render_system.dart';
+part 'src/systems/button_render_system.dart';
 part 'src/systems/gems_render_system.dart';
 part 'src/systems/platform_render_system.dart';
 part 'src/systems/player_control_system.dart';

@@ -93,10 +93,10 @@ game:
     - star: [11, 0, star]
     - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
   systems:
-    - arcadePhysics:
-    - backgroundRender:
-    - platformRender:
-    - playerControl: [100]
-    - starsRender:
-    - scoreRender:
+    - arcadePhysics: false
+    - backgroundRender: true
+    - platformRender: true
+    - playerControl: false
+    - starsRender: true
+    - scoreRender: true
 

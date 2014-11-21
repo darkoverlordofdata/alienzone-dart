@@ -12,6 +12,11 @@ class BaseLevel extends Phaser.State {
 
   BaseLevel(this.level, this.config);
 
+  void init([p]) {
+
+    print("BaseLevel::init $level");
+
+  }
   /**
    * Create the world
    */
@@ -28,6 +33,7 @@ class BaseLevel extends Phaser.State {
     entityFactory = new EntityFactory(this);
     config.levels[level]['entities'].forEach((entity) {
       entity.forEach((name, data){
+        print("Create entity: $name");
         entityFactory.invoke(name, data);
       });
     });
@@ -37,8 +43,9 @@ class BaseLevel extends Phaser.State {
      */
     systemFactory = new SystemFactory(this);
     config.levels[level]['systems'].forEach((entity) {
-      entity.forEach((name, data){
-        systemFactory.invoke(name, data);
+      entity.forEach((name, passive){
+        print("Create system: $name");
+        artemis.addSystem(systemFactory.invoke(name), passive: passive);
       });
     });
 

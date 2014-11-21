@@ -1,7 +1,7 @@
 part of alienzone;
 
 class State extends Artemis.ComponentPoolable {
-  int name;
+  String name;
 
   State._();
   factory State(name) {

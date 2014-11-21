@@ -18,11 +18,9 @@ packages:
     source: hosted
     version: "0.6.0"
   dilithium:
-    description:
-      path: "../dilithium"
-      relative: true
-    source: path
-    version: "0.2.0"
+    description: dilithium
+    source: hosted
+    version: "0.2.1"
   match3:
     description: match3
     source: hosted

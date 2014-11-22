@@ -22,8 +22,8 @@ main:
   entities:
     - background: [0, 0, splash]
     - button: [100, 130, playButton, game]
-    - button: [100, 170, creditsButton, credits]
-    - button: [100, 210, optionsButton, preferences]
+    - button: [100, 170, optionsButton, preferences]
+    - button: [100, 210, creditsButton, credits]
   systems:
     - backgroundRender: false
     - buttonRender: false
@@ -34,7 +34,7 @@ main:
 preferences:
   entities:
     - background: [0, 0, background]
-    - button: [122, 405, backButton, main]
+    - button: [260,  20, backButton, main]
   systems:
     - backgroundRender: false
     - buttonRender: false
@@ -48,7 +48,7 @@ credits:
     - image: [10, 10, icon, 1.0]
     - image: [10, 320, label, 0.5]
     - string: [20, 335, creditsText, "12px Arial", "#000"]
-    - button: [122, 405, backButton, main]
+    - button: [260,  20, backButton, main]
     - string: [50, 450, copyrightText, "12px Arial", "#000"]
   systems:
     - backgroundRender: false
@@ -61,42 +61,28 @@ credits:
 #
 game:
   entities:
-    - background: [0, 0, sky]
-    - platform: [0, 416, ground, 2]
-    - platform: [400, 400, ground, 1]
-    - platform: [-150, 250, ground, 1]
-    - player:
-      - 32
-      - 330
-      - dude
-      - left:
-          frames: [0,1,2,3]
-          frameRate: 10
-          loop: true
-          useNumericIndex: true
-        right:
-          frames: [4,5,6,7]
-          frameRate: 10
-          loop: true
-          useNumericIndex: true
-    - star: [0, 0, star]
-    - star: [1, 0, star]
-    - star: [2, 0, star]
-    - star: [3, 0, star]
-    - star: [4, 0, star]
-    - star: [5, 0, star]
-    - star: [6, 0, star]
-    - star: [7, 0, star]
-    - star: [8, 0, star]
-    - star: [9, 0, star]
-    - star: [10, 0, star]
-    - star: [11, 0, star]
-    - score: [16, 16, 'Score: ', 'bold 20pt Arial', "#000"]
+    - background: [0, 0, background]
+    - image: [0, 0, board, 0.7]
+    - button: [260,  20, backButton, main]
+    - score: [16, 16, 'Score', 'bold 20pt Arial', "#fff"]
+    - input: [0, 420, arrow_left, leftButton]
+    - input: [50, 420, arrow_down, dropButton]
+    - input: [100, 420, arrow_right, rightButton]
+    - input: [210, 420, arrow_lrot, lrotButton]
+    - input: [260, 420, arrow_rrot, rrotButton]
+    - legend: [290, 100, legend, 0, 1]
+    - legend: [290, 132, legend, 1, 1]
+    - legend: [290, 164, legend, 2, 1]
+    - legend: [290, 196, legend, 3, 0.2]
+    - legend: [290, 228, legend, 4, 0.2]
+    - legend: [290, 260, legend, 5, 0.2]
+    - legend: [290, 292, legend, 6, 0.2]
+    - legend: [290, 324, legend, 7, 0.2]
   systems:
-    - arcadePhysics: true
     - backgroundRender: false
-    - platformRender: false
-    - playerControl: true
-    - starsRender: false
+    - imageRender: false
     - scoreRender: true
+    - buttonRender: false
+    - inputRender: true
+    - legendRender: false
 

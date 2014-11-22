@@ -28,6 +28,12 @@ class EntityFactory  {
   ImageEntity image(int x, int y, String key, double opacity)
     => new ImageEntity(this, x, y, key, opacity);
 
+  InputEntity input(int x, int y, String key, String action)
+    => new InputEntity(this, x, y, key, action);
+
+  LegendEntity legend(int x, int y, String key, int frame, double opacity)
+    => new LegendEntity(this, x, y, key, frame, opacity);
+
   PlatformEntity platform(int x, int y, String key, [int scale = 1])
     => new PlatformEntity(this, x, y, key, scale);
 
@@ -51,14 +57,14 @@ class EntityFactory  {
       case 'button':      return button(p[0], p[1], p[2], p[3]);
       case 'gem':         return gem(p[0], p[1], p[2]);
       case 'image':       return image(p[0], p[1], p[2], p[3]);
+      case 'input':       return input(p[0], p[1], p[2], p[3]);
+      case 'legend':      return legend(p[0], p[1], p[2], p[3], p[4]);
       case 'platform':    return platform(p[0], p[1], p[2], p[3]);
       case 'player':      return player(p[0], p[1], p[2], p[3]);
       case 'score':       return score(p[0], p[1], p[2], p[3], p[4]);
       case 'string':      return string(p[0], p[1], p[2], p[3], p[4]);
-      default:
-        throw new Exception("Invalid system factory method: $methodName");
+      default:            return null;
     }
-    return null;
   }
 
 }

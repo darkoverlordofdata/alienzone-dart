@@ -9,7 +9,7 @@ class GemsRenderSystem extends Artemis.VoidEntitySystem {
 
 
   void initialize() {
-    print("StarsRenderSystem::initialize");
+    if (DEBUG) print("StarsRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
 
     Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);

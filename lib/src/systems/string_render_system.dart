@@ -10,7 +10,7 @@ class StringRenderSystem extends Artemis.VoidEntitySystem {
 
 
   void initialize() {
-    print("StringRenderSystem::initialize");
+    if (DEBUG) print("StringRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
     Artemis.ComponentMapper<Position> positionMapper = new Artemis.ComponentMapper<Position>(Position, level.artemis);
     Artemis.ComponentMapper<Text> textMapper = new Artemis.ComponentMapper<Text>(Text, level.artemis);

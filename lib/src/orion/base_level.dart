@@ -14,7 +14,7 @@ class BaseLevel extends Phaser.State {
 
   void init([p]) {
 
-    print("BaseLevel::init $level");
+    if (DEBUG) print("BaseLevel::init $level");
 
   }
   /**
@@ -41,9 +41,13 @@ class BaseLevel extends Phaser.State {
      * Install systems for this level
      */
     systemFactory = new SystemFactory(this);
-    config.levels[level]['systems'].forEach((entity) {
-      entity.forEach((name, process){
-        artemis.addSystem(systemFactory.invoke(name), passive: !process);
+    config.levels[level]['systems'].forEach((system) {
+      system.forEach((name, active){
+        var system = systemFactory.invoke(name);
+        if (system == null)
+          print("System not found: $name");
+        else
+          artemis.addSystem(system, passive: !active);
       });
     });
 

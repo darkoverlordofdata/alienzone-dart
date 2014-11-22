@@ -10,7 +10,7 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
 
 
   void initialize() {
-    print("ButtonRenderSystem::initialize");
+    if (DEBUG) print("ButtonRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
     Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
     Artemis.ComponentMapper<State> stateMapper = new Artemis.ComponentMapper<State>(State, level.artemis);
@@ -24,5 +24,6 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
   }
 
   void processSystem() {
+    if (DEBUG) print("ButtonRenderSystem::processSystem");
   }
 }

@@ -29,6 +29,8 @@ along with AlienZone.  If not, see <http://www.gnu.org/licenses/>.
 
 library alienzone;
 
+
+
 import 'dart:html';
 import 'dart:async' as async;
 
@@ -66,6 +68,8 @@ part 'src/orion/system_factory.dart';
  * Components
  */
 part 'src/components/animation.dart';
+part 'src/components/action.dart';
+part 'src/components/bonus.dart';
 part 'src/components/bounce.dart';
 part 'src/components/count.dart';
 part 'src/components/gravity.dart';
@@ -84,6 +88,8 @@ part 'src/entities/background_entity.dart';
 part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
 part 'src/entities/image_entity.dart';
+part 'src/entities/input_entity.dart';
+part 'src/entities/legend_entity.dart';
 part 'src/entities/platform_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
@@ -96,9 +102,12 @@ part 'src/systems/background_render_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/gems_render_system.dart';
 part 'src/systems/image_render_system.dart';
+part 'src/systems/input_render_system.dart';
+part 'src/systems/legend_render_system.dart';
 part 'src/systems/platform_render_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
 part 'src/systems/string_render_system.dart';
 
 
+const bool DEBUG = false;

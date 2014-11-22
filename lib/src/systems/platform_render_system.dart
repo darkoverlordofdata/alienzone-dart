@@ -9,7 +9,7 @@ class PlatformRenderSystem extends Artemis.VoidEntitySystem {
 
 
   void initialize() {
-    print("PlatformRenderSystem::initialize");
+    if (DEBUG) print("PlatformRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
 
     Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);

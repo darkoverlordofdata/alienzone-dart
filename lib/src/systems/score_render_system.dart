@@ -11,7 +11,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
   ScoreRenderSystem(this.level);
 
   void initialize() {
-    print("ScoreRenderSystem::initialize");
+    if (DEBUG) print("ScoreRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
     Artemis.ComponentMapper<Position> positionMapper = new Artemis.ComponentMapper<Position>(Position, level.artemis);
     Artemis.ComponentMapper<Count> countMapper = new Artemis.ComponentMapper<Count>(Count, level.artemis);

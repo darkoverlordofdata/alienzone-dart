@@ -6,7 +6,7 @@ class ArcadePhysicsSystem extends Artemis.VoidEntitySystem {
   Arcade.Arcade arcade;
 
   ArcadePhysicsSystem(this.level) {
-    print("ArcadePhysicsSystem: started");
+    if (DEBUG) print("ArcadePhysicsSystem: started");
     level.game.physics.startSystem(Phaser.Physics.ARCADE);
     arcade = level.game.physics.arcade;
 

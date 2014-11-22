@@ -10,7 +10,7 @@ class PlayerControlSystem extends Artemis.IntervalEntitySystem {
     : super(20, Artemis.Aspect.getAspectForAllOf([Velocity, Bounce, Gravity, Animation, Sprite]));
 
   void initialize() {
-    print("PlayerControlSystem::initialize");
+    if (DEBUG) print("PlayerControlSystem::initialize");
     //  Our controls.
     cursors = level.game.input.keyboard.createCursorKeys();
     var velocityMapper = new Artemis.ComponentMapper<Velocity>(Velocity, level.artemis);

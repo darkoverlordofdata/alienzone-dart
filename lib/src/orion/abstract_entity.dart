@@ -2,7 +2,7 @@ part of alienzone;
 
 abstract class AbstractEntity {
 
-  AbstractLevel level;
+  BaseLevel level;
   Artemis.GroupManager groupManager;
   Artemis.TagManager tagManager;
 

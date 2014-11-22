@@ -59,7 +59,7 @@ class Game  extends Dilithium {
    */
   Phaser.State levels() {
 
-    game.state.add('levels', new BaseLevel('levels', config));
+    game.state.add('game', new BaseLevel('game', config));
     game.state.add('credits', new BaseLevel('credits', config));
     game.state.add('gameover', new BaseLevel('gameover', config));
     game.state.add('preferences', new BaseLevel('preferences', config));

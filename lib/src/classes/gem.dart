@@ -15,7 +15,7 @@
  */
 part of alienzone;
 
-class Gem extends MatchObject {
+class Gem extends Match3.MatchObject {
 
   /**
    * Gem Class
@@ -24,7 +24,7 @@ class Gem extends MatchObject {
   int x;
   int y;
   Phaser.Sprite sprite;
-  Levels level;
+  PlayerControlSystem player;
 
   /**
    * == New Gem ==
@@ -37,9 +37,9 @@ class Gem extends MatchObject {
    * param  [Number]  y coordinate
    * returns this
    */
-  Gem(Phaser.State this.level, String type, int this.x, int this.y) : super(type) {
+  Gem(this.player, String type, this.x, this.y) : super(type) {
 
-    sprite = level.add.sprite(0, 0, 'gems', Game.GEMTYPES.indexOf(type));
+    sprite = player.level.add.sprite(0, 0, 'gems', Game.GEMTYPES.indexOf(type));
     move(x, y);
   }
   /**
@@ -63,9 +63,9 @@ class Gem extends MatchObject {
    */
   void drop(next) {
     // Get the gem column
-    List column = level.grid.getColumn(x, 1);
+    List column = player.puzzle.getColumn(x, false);
     // Get the last empty piece to place the gem
-    Piece lastEmpty = Grid.getLastEmptyPiece(column);
+    Match3.Piece lastEmpty = Match3.Grid.getLastEmptyPiece(column);
     // If an empty piece has been found
     if (lastEmpty != null) {
       // Bind this gem to the piece
@@ -75,7 +75,7 @@ class Gem extends MatchObject {
     }
     else {
       // Game Over
-      level.noRoom();
+      player.gameover();
     }
   }
   /**
@@ -87,14 +87,14 @@ class Gem extends MatchObject {
    * returns none
    */
   void fall(int x, int y, next) {
-   // next = next or ()->
+
     // Create a tween animation
     var point = {
         'x': x * Game.GEMSIZE,
-        'y': Game.MARGINTOP * Game.GEMSIZE + y * Game.GEMSIZE
+        'y': y * Game.GEMSIZE + Game.MARGINTOP * Game.GEMSIZE
     };
 
-    level.add.tween(sprite)
+    player.level.add.tween(sprite)
     .to(point, 750, Phaser.Easing.Bounce.Out, true, 0, 0, false)
     .onComplete.add(next);
   }

@@ -1,79 +1,371 @@
 part of alienzone;
 
-class PlayerControlSystem extends Artemis.IntervalEntitySystem {
+class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;
-  Phaser.Sprite playerSprite;
-  var cursors;
 
-  PlayerControlSystem(this.level)
-    : super(20, Artemis.Aspect.getAspectForAllOf([Velocity, Bounce, Gravity, Animation, Sprite]));
+  int board = 0;
+  int rot = 0;          //  rotate frame (0-3)
+  int pos = 0;          //  horizontal cursor (0-4)
+  List<Gem> gems;       //  group of gems that move on the top board
+  Match3.Grid puzzle;   //  the 7 x 6 puzzle grid
+  int known = 3;        //  start off with 3 gems
+  int discovered = 0;   //  we discover the remaining gems
+  List discoveredGems;  //  all the discovered gems
+
+  /**
+   * Move a group of 1-4 gems on a 2 x 6 puzzle.
+   * A gem group occupies 2 or 4 adjacent cells.
+   * Position and drop the group onto the puzzle area.
+   * Puzzle area is a 7 x 6 grid
+   *
+   *    0   1   2   3   4   5
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 0
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 1
+   *  +---+---+---+---+---+---+
+   *  +===+===+===+===+===+===+
+   *  |   |   |   |   |   |   | 0
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 1
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 2
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 3
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 4
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 5
+   *  +---+---+---+---+---+---+
+   *  |   |   |   |   |   |   | 6
+   *  +---+---+---+---+---+---+
+   */
+
+  List maps = [  // Gem rotation maps:
+
+      /**
+       *      0          1          2          3
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 1 |   |  |   | 1 |  |   |   |  |   |   |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  |   |   |  |   |   |  |   | 1 |  | 1 |   |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       */
+      [
+          [[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[0,1]], [[0,0],[1,0]]
+      ],
+      /**
+       *      0          1          2          3
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 1 |   |  | 2 | 1 |  |   | 2 |  |   |   |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 2 |   |  |   |   |  |   | 1 |  | 1 | 2 |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       */
+      [
+          [[1,0],[2,0]], [[2,1],[0,0]], [[0,2],[0,1]], [[0,0],[1,2]]
+      ],
+
+      /**
+       *      0          1          2          3
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 1 |   |  | 2 | 1 |  | 3 | 2 |  |   | 3 |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 2 | 3 |  | 3 |   |  |   | 1 |  | 1 | 2 |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       */
+      [
+          [[1,0],[2,3]], [[2,1],[3,0]], [[3,2],[0,1]], [[0,3],[1,2]]
+      ],
+
+      /**
+       *      0          1          2          3
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 1 | 4 |  | 2 | 1 |  | 3 | 2 |  | 4 | 3 |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       *  | 2 | 3 |  | 3 | 4 |  | 4 | 1 |  | 1 | 2 |
+       *  +---+---+  +---+---+  +---+---+  +---+---+
+       */
+      [
+          [[1,4],[2,3]], [[2,1],[3,4]], [[3,2],[4,1]], [[4,3],[1,2]]
+      ]
+
+  ];
+
+
+  PlayerControlSystem(this.level);
+
 
   void initialize() {
     if (DEBUG) print("PlayerControlSystem::initialize");
-    //  Our controls.
-    cursors = level.game.input.keyboard.createCursorKeys();
-    var velocityMapper = new Artemis.ComponentMapper<Velocity>(Velocity, level.artemis);
-    var bounceMapper = new Artemis.ComponentMapper<Bounce>(Bounce, level.artemis);
-    var gravityMapper = new Artemis.ComponentMapper<Gravity>(Gravity, level.artemis);
-    var animationMapper = new Artemis.ComponentMapper<Animation>(Animation, level.artemis);
-    var spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
 
-    Artemis.TagManager tagManager = level.artemis.getManager(Artemis.TagManager);
-    Artemis.Entity player = tagManager.getEntity(TAG_PLAYER);
-    Velocity velocity = velocityMapper.get(player);
-    Bounce bounce = bounceMapper.get(player);
-    Gravity gravity = gravityMapper.get(player);
-    Animation animation = animationMapper.get(player);
-    Sprite sprite = spriteMapper.get(player);
+    Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
+    Artemis.ComponentMapper<Sprite> spriteMapper = new Artemis.ComponentMapper<Sprite>(Sprite, level.artemis);
+    Artemis.ComponentMapper<Action> actionMapper = new Artemis.ComponentMapper<Action>(Action, level.artemis);
 
-    playerSprite = level.game.add.sprite(sprite.x, sprite.y, sprite.key);
-    level.context.registerPlayer(playerSprite);
-
-    //  We need to enable physics on the player
-    level.game.physics.arcade.enable(playerSprite);
-
-    playerSprite
-    ..body.bounce.y = bounce.y
-    ..body.gravity.y = gravity.y
-    ..body.collideWorldBounds = true;
-
-    animation.cells.forEach((name, v) {
-      playerSprite.animations.add(name, v['frames'], v['frameRate'], v['loop'], v['useNumericIndex']);
+    groupManager.getEntities(GROUP_INPUTS).forEach((entity) {
+      Sprite sprite = spriteMapper.get(entity);
+      Action action = actionMapper.get(entity);
+      level.game.add.button(sprite.x, sprite.y, sprite.key,
+        (source, input, flag) {
+          switch(action.name) {
+            case 'left': return move(-1);
+            case 'right': return move(1);
+            case 'drop': return drop();
+            case 'lrot': return rotate(-1);
+            case 'rrot': return rotate(1);
+          }
+        });
     });
+
+    discoveredGems = [];
+    for (var i=0; i<Game.GEMTYPES.length; i++) {
+      if (i < (discovered+known)) {
+        discoveredGems.add(Game.GEMTYPES[i]);
+      }
+    }
+    puzzle = new Match3.Grid(width: 6, height: 7, gravity: 'down');
+    newGemGroup();
   }
 
   /**
-   * This is where all of the player activities occur
+   * New Gem Group
+   *
+   * return Gem Group
    */
-  void processEntities(Iterable<Artemis.Entity> entities) {
+  void newGemGroup([int count = 2]) {
 
-    playerSprite.body.velocity.x = 0;
+    List map = maps[count-1][0];
+    gems = [];
+    rot = 0;
+    pos = 0;
 
-    if (cursors.left.isDown){
-      //  Move to the left
-      playerSprite.body.velocity.x = -150;
+    for (int row = 0; row < 2; row++) {
+      for (int col = 0; col < 2; col++) {
+        if (map[row][col] != 0) {
 
-      playerSprite.animations.play('left');
-    } else if (cursors.right.isDown) {
-      //  Move to the right
-      playerSprite.body.velocity.x = 150;
+          int frame = level.random.nextInt(discoveredGems.length);
+          GemEntity entity = level.entityFactory.gem(col, row, 'gems', frame);
+          gems.add(new Gem(this, Game.GEMTYPES[frame], col, row));
 
-      playerSprite.animations.play('right');
+        }
+      }
+    }
+  }
+
+  /**
+   * Drop
+   *
+   * drop the gems onto the puzzle
+   */
+  void drop() {
+    // Drop counter
+    int dropped = 0;
+
+    List map = maps[gems.length-1][rot];
+
+    for (int row = 1; row>=0; row--) {
+      for (int col = 1; col>=0; col--) {
+        if (map[row][col] != 0) {
+          gems[map[row][col]-1].drop((Sprite s){
+            dropped += 1;
+            // If all gems have been dropped
+            if (dropped == gems.length) {
+              handleMatches();
+            }
+          });
+        }
+      }
+    }
+  }
+
+  /**
+   * Move
+   *
+   * move the gems left or right
+   */
+  void move(dir) {
+    if (pos+dir >= 0 && pos+dir <=4) {
+      pos += dir;
+      update();
+      return;
+    }
+
+    if (pos+dir < 0) {
+      if (gems.length == 2 && rot == 2) {
+        rot = 0;
+        update();
+        return;
+      }
+    }
+
+    if (pos+dir > 4) {
+      if (gems.length == 2 && rot == 0) {
+        rot = 2;
+        update();
+        return;
+      }
+    }
+  }
+
+  /**
+   * Rotate
+   *
+   * rotate the gems left or right
+   */
+  void rotate(dir) {
+    rot += dir;
+    if (rot < 0) rot = 3;
+    if (rot > 3) rot = 0;
+    update(); 
+  }
+
+  /**
+   * Update
+   *
+   * update the sprite position
+   */
+  void update() {
+
+    List map = maps[gems.length-1][rot];
+    for (int row = 0; row<2; row++) {
+      for (int col = 0; col<2; col++) {
+        if (map[row][col] != 0) {
+            gems[map[row][col]-1].move(pos+col, row);
+        }
+      }
+    }
+  }
+  /**
+   * Handle Matches
+   *
+   * return none
+   */
+  handleMatches() {
+
+    var piecesToUpgrade;
+    // Get all matches
+    // If matches have been found
+    var matches = puzzle.getMatches();
+    if (matches != null) {
+      // Initialize the array of pieces to upgrade
+      piecesToUpgrade = [];
+      // Reference to the current game
+      // For each match found
+      puzzle.forEachMatch((matchingPieces, type) {
+        // Add to score
+        updateScore(matchingPieces, type);
+        // For each match take the first piece to upgrade it
+        piecesToUpgrade.add({
+            'piece'   : matchingPieces[0],
+            'type'    : type
+        });
+        matchingPieces.forEach((matchingPiece) {
+          // Destroy each piece
+          level.add.tween(matchingPiece.object.sprite)
+          .repeat(6)
+          .to({'alpha':0}, 150, Phaser.Easing.Linear.None, true, 0, 0, true)
+          .onComplete.add((Phaser.Sprite s) => s.destroy());
+        });
+      });
+
+      // Remove matches and apply Gravity
+      puzzle.clearMatches();
+      // Upgrade pieces
+      handleUpgrade(piecesToUpgrade);
+    }
+    handleFalling();
+  }
+
+  /**
+      ^ Handle Falling
+      ^
+      ^ return none
+   */
+  handleFalling() {
+
+    // Apply gravity and get falling Pieces
+    var fallingPieces = puzzle.applyGravity();
+    var hasFall;
+
+    if (fallingPieces.length > 0) {
+      // Falling counter
+      hasFall = 0;
+      // For each falling pieces
+      fallingPieces.forEach((piece) {
+        piece.object.fall(piece.x, piece.y, (Sprite s) {
+          hasFall += 1;
+          if (hasFall == fallingPieces.length)
+            handleMatches();
+        });
+      });
     } else {
-      //  Stand still
-      playerSprite.animations.stop();
-
-      playerSprite.frame = 4;
+      // Create a new gem if no falling pieces
+      newGemGroup();
     }
+  }
+  /**
+   * Handle Upgrade
+   *
+   * return none
+   */
+  handleUpgrade(piecesToUpgrade) {
 
-    //  Allow the player to jump if they are touching the ground.
-    if (cursors.up.isDown && playerSprite.body.touching.down) {
-//    if (cursors.up.isDown) {
-      print(playerSprite.body.touching.down);
-      playerSprite.body.velocity.y = -350;
+    bool levelUp = false;
+
+    // For each piece to upgrade
+    piecesToUpgrade.forEach((pieceToUpgrade) {
+      // Get the upgraded type
+      var upgradeIndex = Game.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1;
+      if (upgradeIndex >= Game.GEMTYPES.length-1) {
+        /**
+         * Level Up...
+         */
+        level.state.start("game", true, false, [0, level.context.score]);
+
+      }
+      if (level.context.legend < upgradeIndex) {
+        levelUp = true;
+      }
+      level.context.legend = upgradeIndex;
+      var upgradedType = Game.GEMTYPES[upgradeIndex];
+      // If the type is defined
+      if (upgradedType != null) {
+        // And if the type is not already discovered
+        if (discoveredGems.indexOf(upgradedType) == -1)
+          // Push it to discovered gems array
+          discoveredGems.add(upgradedType);
+      }
+    });
+    if (levelUp) {
+      board += 1;
     }
+  }
+  /**
+   * Update Score
+   *
+   * return none
+   */
+  updateScore(List matches, String type) {
+    var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (board+1);
+    level.context.score += points;
+
 
   }
 
+  /**
+   * Random Gem Type
+   *
+   * return string - random gem type
+   */
+  randomGemType() {
+
+    var i = (level.random.nextDouble()*discoveredGems.length-1).floor();
+    return discoveredGems[i];
+  }
+
+
+  void processSystem() {
+  }
 }

@@ -12,7 +12,8 @@ dependencies:
   dilithium: any
     #path: ../dilithium
   dartemis: any
-  match3:  any
+  match3:  #any
+    path: ../match3
 
 transformers:
 - $dart2js:

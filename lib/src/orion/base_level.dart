@@ -8,6 +8,7 @@ class BaseLevel extends Phaser.State {
   EntityFactory entityFactory;  // create entities
   SystemFactory systemFactory;  // create systems
   String level = "";            // current level name
+  Math.Random random;
 
 
   BaseLevel(this.level, this.config);
@@ -16,12 +17,15 @@ class BaseLevel extends Phaser.State {
 
     if (DEBUG) print("BaseLevel::init $level");
 
+
   }
+
   /**
    * Create the world
    */
   void create() {
 
+    random = new Math.Random();
     context = new Context(this);
     artemis = new Artemis.World();
     artemis.addManager(new Artemis.GroupManager());

@@ -33,27 +33,17 @@ library alienzone;
 
 import 'dart:html';
 import 'dart:async' as async;
+import 'dart:math' as Math;
 
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;
 import "package:dilithium/dilithium.dart";
-import 'package:match3/match3.dart';
+import 'package:match3/match3.dart' as Match3;
 
 part 'src/alien_zone_application.dart';
 part 'src/game.dart';
 part 'src/classes/gem.dart';
-part 'src/classes/gem_group.dart';
-
-/**
- * Game States
- */
-part 'src/states/credits.dart';
-part 'src/states/game_over.dart';
-part 'src/states/levels.dart';
-part 'src/states/menu.dart';
-part 'src/states/preferences.dart';
-part 'src/states/scores.dart';
 
 
 /**
@@ -74,6 +64,7 @@ part 'src/components/bounce.dart';
 part 'src/components/count.dart';
 part 'src/components/gravity.dart';
 part 'src/components/immovable.dart';
+part 'src/components/number.dart';
 part 'src/components/opacity.dart';
 part 'src/components/position.dart';
 part 'src/components/scale.dart';
@@ -84,13 +75,11 @@ part 'src/components/velocity.dart';
 /**
  * Entities
  */
-part 'src/entities/background_entity.dart';
 part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
 part 'src/entities/image_entity.dart';
 part 'src/entities/input_entity.dart';
 part 'src/entities/legend_entity.dart';
-part 'src/entities/platform_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
 part 'src/entities/string_entity.dart';
@@ -98,16 +87,12 @@ part 'src/entities/string_entity.dart';
  * Systems
  */
 part 'src/systems/arcade_physics_system.dart';
-part 'src/systems/background_render_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/gems_render_system.dart';
-part 'src/systems/image_render_system.dart';
-part 'src/systems/input_render_system.dart';
-part 'src/systems/legend_render_system.dart';
-part 'src/systems/platform_render_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
+part 'src/systems/sprite_render_system.dart';
 part 'src/systems/string_render_system.dart';
 
 
-const bool DEBUG = false;
+const bool DEBUG = true;

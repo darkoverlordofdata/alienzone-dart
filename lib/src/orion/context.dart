@@ -6,12 +6,13 @@ part of alienzone;
 class Context {
 
   int _score = 0;
-  AbstractLevel level;
+  BaseLevel level;
   Phaser.Game game;
   Phaser.Sprite player = null;
   Phaser.Group platforms = null;
   Phaser.Group gems = null;
   ScoreRenderSystem scoreListener = null;
+  int legend = 0;
 
   Context(this.level);
 

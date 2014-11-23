@@ -7,14 +7,10 @@ class SystemFactory {
   SystemFactory(this.level);
 
   ArcadePhysicsSystem arcadePhysics()       => new ArcadePhysicsSystem(level);
-  BackgroundRenderSystem backgroundRender() => new BackgroundRenderSystem(level);
   ButtonRenderSystem buttonRender()         => new ButtonRenderSystem(level);
-  ImageRenderSystem imageRender()           => new ImageRenderSystem(level);
-  InputRenderSystem inputRender()           => new InputRenderSystem(level);
-  LegendRenderSystem legendRender()         => new LegendRenderSystem(level);
-  PlatformRenderSystem platformRender()     => new PlatformRenderSystem(level);
   PlayerControlSystem playerControl()       => new PlayerControlSystem(level);
   ScoreRenderSystem scoreRender()           => new ScoreRenderSystem(level);
+  SpriteRenderSystem spriteRender()         => new SpriteRenderSystem(level);
   StringRenderSystem stringRender()         => new StringRenderSystem(level);
 
   /**
@@ -24,14 +20,10 @@ class SystemFactory {
   Artemis.EntitySystem invoke(String methodName) {
     switch(methodName) {
       case 'arcadePhysics':     return arcadePhysics();
-      case 'backgroundRender':  return backgroundRender();
       case 'buttonRender':      return buttonRender();
-      case 'imageRender':       return imageRender();
-      case 'inputRender':       return inputRender();
-      case 'legendRender':      return legendRender();
-      case 'platformRender':    return platformRender();
       case 'playerControl':     return playerControl();
       case 'scoreRender':       return scoreRender();
+      case 'spriteRender':      return spriteRender();
       case 'stringRender':      return stringRender();
       default:                  return null;
     }

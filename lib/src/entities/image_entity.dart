@@ -13,7 +13,7 @@ class ImageEntity extends AbstractEntity {
     ..addComponent(new Opacity(opacity))
     ..addComponent(new Immovable(true))
     ..addToWorld();
-    groupManager.add(image, GROUP_IMAGES);
+    groupManager.add(image, GROUP_SPRITES);
   }
 
 }

@@ -22,9 +22,11 @@ packages:
     source: hosted
     version: "0.2.1"
   match3:
-    description: match3
-    source: hosted
-    version: "0.0.5"
+    description:
+      path: "../match3"
+      relative: true
+    source: path
+    version: "0.0.6"
   p2:
     description: p2
     source: hosted
@@ -44,7 +46,7 @@ packages:
   source_span:
     description: source_span
     source: hosted
-    version: "1.0.0"
+    version: "1.0.2"
   string_scanner:
     description: string_scanner
     source: hosted

@@ -13,6 +13,7 @@ class LegendEntity extends AbstractEntity {
     ..addComponent(new Opacity(opacity))
     ..addComponent(new Immovable(true))
     ..addToWorld();
+    groupManager.add(legend, GROUP_SPRITES);
     groupManager.add(legend, GROUP_LEGEND);
   }
 

@@ -16,16 +16,13 @@ class EntityFactory  {
 
   }
 
-  BackgroundEntity background(int x, int y, String key)
-    => new BackgroundEntity(this, x, y, key);
-
   ButtonEntity button(int x, int y, String key, String state)
     => new ButtonEntity(this, x, y, key, state);
 
-  GemEntity gem(int x, int y, String key)
-    => new GemEntity(this, x, y, key);
+  GemEntity gem(int x, int y, String key, int range)
+    => new GemEntity(this, x, y, key, range);
 
-  ImageEntity image(int x, int y, String key, double opacity)
+  ImageEntity image(int x, int y, String key, [double opacity=1])
     => new ImageEntity(this, x, y, key, opacity);
 
   InputEntity input(int x, int y, String key, String action)
@@ -33,9 +30,6 @@ class EntityFactory  {
 
   LegendEntity legend(int x, int y, String key, int frame, double opacity)
     => new LegendEntity(this, x, y, key, frame, opacity);
-
-  PlatformEntity platform(int x, int y, String key, [int scale = 1])
-    => new PlatformEntity(this, x, y, key, scale);
 
   PlayerEntity player(int x, int y, String key, Map cells)
     => new PlayerEntity(this, x, y, key, cells);
@@ -50,19 +44,16 @@ class EntityFactory  {
    * Mirrors aren't stable in compiled js,
    * so we do this the old-fashioned way.
    */
-  AbstractEntity invoke(String methodName, List p) {
+  AbstractEntity invoke(String methodName, List args) {
     switch(methodName) {
-
-      case 'background':  return background(p[0], p[1], p[2]);
-      case 'button':      return button(p[0], p[1], p[2], p[3]);
-      case 'gem':         return gem(p[0], p[1], p[2]);
-      case 'image':       return image(p[0], p[1], p[2], p[3]);
-      case 'input':       return input(p[0], p[1], p[2], p[3]);
-      case 'legend':      return legend(p[0], p[1], p[2], p[3], p[4]);
-      case 'platform':    return platform(p[0], p[1], p[2], p[3]);
-      case 'player':      return player(p[0], p[1], p[2], p[3]);
-      case 'score':       return score(p[0], p[1], p[2], p[3], p[4]);
-      case 'string':      return string(p[0], p[1], p[2], p[3], p[4]);
+      case 'button':      return Function.apply(button, args);
+      case 'gem':        return Function.apply(gem, args);
+      case 'image':       return Function.apply(image, args);
+      case 'input':       return Function.apply(input, args);
+      case 'legend':      return Function.apply(legend, args);
+      case 'player':      return Function.apply(player, args);
+      case 'score':       return Function.apply(score, args);
+      case 'string':      return Function.apply(string, args);
       default:            return null;
     }
   }

@@ -2,16 +2,6 @@ part of alienzone;
 
 class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
-  BaseLevel level;
-
-  int board = 0;
-  int rot = 0;          //  rotate frame (0-3)
-  int pos = 0;          //  horizontal cursor (0-4)
-  List<Gem> gems;       //  group of gems that move on the top board
-  Match3.Grid puzzle;   //  the 7 x 6 puzzle grid
-  int known = 3;        //  start off with 3 gems
-  int discovered = 0;   //  we discover the remaining gems
-  List discoveredGems;  //  all the discovered gems
 
   /**
    * Move a group of 1-4 gems on a 2 x 6 puzzle.
@@ -42,61 +32,30 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    *  +---+---+---+---+---+---+
    */
 
-  List maps = [  // Gem rotation maps:
 
-      /**
-       *      0          1          2          3
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 1 |   |  |   | 1 |  |   |   |  |   |   |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  |   |   |  |   |   |  |   | 1 |  | 1 |   |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       */
-      [
-          [[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[0,1]], [[0,0],[1,0]]
-      ],
-      /**
-       *      0          1          2          3
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 1 |   |  | 2 | 1 |  |   | 2 |  |   |   |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 2 |   |  |   |   |  |   | 1 |  | 1 | 2 |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       */
-      [
-          [[1,0],[2,0]], [[2,1],[0,0]], [[0,2],[0,1]], [[0,0],[1,2]]
-      ],
-
-      /**
-       *      0          1          2          3
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 1 |   |  | 2 | 1 |  | 3 | 2 |  |   | 3 |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 2 | 3 |  | 3 |   |  |   | 1 |  | 1 | 2 |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       */
-      [
-          [[1,0],[2,3]], [[2,1],[3,0]], [[3,2],[0,1]], [[0,3],[1,2]]
-      ],
-
-      /**
-       *      0          1          2          3
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 1 | 4 |  | 2 | 1 |  | 3 | 2 |  | 4 | 3 |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       *  | 2 | 3 |  | 3 | 4 |  | 4 | 1 |  | 1 | 2 |
-       *  +---+---+  +---+---+  +---+---+  +---+---+
-       */
-      [
-          [[1,4],[2,3]], [[2,1],[3,4]], [[3,2],[4,1]], [[4,3],[1,2]]
-      ]
-
+  int rot = 0;          //  rotate frame (0-3)
+  int pos = 0;          //  horizontal cursor (0-4)
+  int board = 0;        //  level up board number
+  int known = 3;        //  start off with 3 gems
+  int discovered = 0;   //  we discover the remaining gems
+  BaseLevel level;      //  parent game state
+  List discoveredGems;  //  all the discovered gems
+  List<Gem> gems;       //  group of gems that move on the top board
+  Match3.Grid puzzle;   //  the 7 x 6 puzzle grid
+  List maps = [         //  Gem rotation maps:
+      [[[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[0,1]], [[0,0],[1,0]]],
+      [[[1,0],[2,0]], [[2,1],[0,0]], [[0,2],[0,1]], [[0,0],[1,2]]],
+      [[[1,0],[2,3]], [[2,1],[3,0]], [[3,2],[0,1]], [[0,3],[1,2]]],
+      [[[1,4],[2,3]], [[2,1],[3,4]], [[3,2],[4,1]], [[4,3],[1,2]]]
   ];
 
 
   PlayerControlSystem(this.level);
 
 
+  /**
+   * Initialize player control
+   */
   void initialize() {
     if (DEBUG) print("PlayerControlSystem::initialize");
 
@@ -107,7 +66,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     groupManager.getEntities(GROUP_INPUTS).forEach((entity) {
       Sprite sprite = spriteMapper.get(entity);
       Action action = actionMapper.get(entity);
-      level.game.add.button(sprite.x, sprite.y, sprite.key,
+      level.add.button(sprite.x, sprite.y, sprite.key,
         (source, input, flag) {
           switch(action.name) {
             case 'left': return move(-1);
@@ -126,7 +85,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       }
     }
     puzzle = new Match3.Grid(width: 6, height: 7, gravity: 'down');
-    newGemGroup();
+    createGems();
   }
 
   /**
@@ -134,16 +93,16 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    *
    * return Gem Group
    */
-  void newGemGroup([int count = 2]) {
+  void createGems([int count = 2]) {
 
-    List map = maps[count-1][0];
+    List cursor = maps[count-1][0];
     gems = [];
     rot = 0;
     pos = 0;
 
     for (int row = 0; row < 2; row++) {
       for (int col = 0; col < 2; col++) {
-        if (map[row][col] != 0) {
+        if (cursor[row][col] != 0) {
 
           int frame = level.random.nextInt(discoveredGems.length);
           GemEntity entity = level.entityFactory.gem(col, row, 'gems', frame);
@@ -155,6 +114,17 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
   }
 
   /**
+   * Update Score
+   *
+   * return none
+   */
+  updateScore(List matches, String type) {
+    var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (board+1);
+    //level.context.score += points;
+    level.context.updateScore(points);
+  }
+
+  /**
    * Drop
    *
    * drop the gems onto the puzzle
@@ -163,12 +133,15 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     // Drop counter
     int dropped = 0;
 
-    List map = maps[gems.length-1][rot];
+    List cursor = maps[gems.length-1][rot];
 
+    /**
+     * take off in the reverse order
+     */
     for (int row = 1; row>=0; row--) {
       for (int col = 1; col>=0; col--) {
-        if (map[row][col] != 0) {
-          gems[map[row][col]-1].drop((Sprite s){
+        if (cursor[row][col] != 0) {
+          gems[cursor[row][col]-1].drop((Sprite s){
             dropped += 1;
             // If all gems have been dropped
             if (dropped == gems.length) {
@@ -224,15 +197,15 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
   /**
    * Update
    *
-   * update the sprite position
+   * update the gem sprite position
    */
   void update() {
 
-    List map = maps[gems.length-1][rot];
+    List cursor = maps[gems.length-1][rot];
     for (int row = 0; row<2; row++) {
       for (int col = 0; col<2; col++) {
-        if (map[row][col] != 0) {
-            gems[map[row][col]-1].move(pos+col, row);
+        if (cursor[row][col] != 0) {
+            gems[cursor[row][col]-1].move(pos+col, row);
         }
       }
     }
@@ -302,7 +275,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       });
     } else {
       // Create a new gem if no falling pieces
-      newGemGroup();
+      createGems();
     }
   }
   /**
@@ -342,29 +315,10 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       board += 1;
     }
   }
-  /**
-   * Update Score
-   *
-   * return none
-   */
-  updateScore(List matches, String type) {
-    var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (board+1);
-    level.context.score += points;
 
+  void gameover() {
 
   }
-
-  /**
-   * Random Gem Type
-   *
-   * return string - random gem type
-   */
-  randomGemType() {
-
-    var i = (level.random.nextDouble()*discoveredGems.length-1).floor();
-    return discoveredGems[i];
-  }
-
 
   void processSystem() {
   }

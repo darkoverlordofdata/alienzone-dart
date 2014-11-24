@@ -18,7 +18,9 @@ part of alienzone;
 class Gem extends Match3.MatchObject {
 
   /**
-   * Gem Class
+   * Gem Class -
+   *
+   * a bridge to the Match3 game logic module
    */
 
   int x;

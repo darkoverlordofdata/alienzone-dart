@@ -84,12 +84,11 @@ game:
     - input: [100, 420, arrow_right, right]
     - input: [210, 420, arrow_lrot, lrot]
     - input: [260, 420, arrow_rrot, rrot]
-    - gem: [0, 0, gems, 3]
-    - gem: [0, 1, gems, 3]
 
   systems:
     - spriteRender: false
     - scoreRender: false
+    - legendRender: false
     - buttonRender: false
     - playerControl: true
 

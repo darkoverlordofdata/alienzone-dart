@@ -43,7 +43,7 @@ import 'package:match3/match3.dart' as Match3;
 
 part 'src/alien_zone_application.dart';
 part 'src/game.dart';
-part 'src/classes/gem.dart';
+part 'src/gem.dart';
 
 
 /**
@@ -88,6 +88,7 @@ part 'src/entities/string_entity.dart';
  */
 part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/button_render_system.dart';
+part 'src/systems/legend_render_system.dart';
 part 'src/systems/gems_render_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';

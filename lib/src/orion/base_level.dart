@@ -11,13 +11,18 @@ class BaseLevel extends Phaser.State {
   Math.Random random;
 
 
-  BaseLevel(this.level, this.config);
+  BaseLevel(this.level, this.config){
+    random = new Math.Random();
+    // shuffle the deck
+    DateTime d = new DateTime.now();
+    int s = (d.millisecond / Math.PI).floor();
+    for (int i=0; i<s; i++) {
+      random.nextInt(s-i);
+    }
+  }
 
   void init([p]) {
-
     if (DEBUG) print("BaseLevel::init $level");
-
-
   }
 
   /**
@@ -25,7 +30,6 @@ class BaseLevel extends Phaser.State {
    */
   void create() {
 
-    random = new Math.Random();
     context = new Context(this);
     artemis = new Artemis.World();
     artemis.addManager(new Artemis.GroupManager());

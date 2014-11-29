@@ -6,10 +6,15 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
   static const SFX_COUNT = 19;
 
   BaseLevel level;
+  Position position;
   Text text;
   Count score;
   List<Phaser.Sound> bonus = [];
   Phaser.Text scoreText;
+
+  /**
+   * Color and position cycles for points popup
+   */
   int counter = 0;
   List colors = ["#ff0", "#f0f", "#0ff"];
   List cols = [30, 105, 180];
@@ -20,7 +25,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
 
   void initialize() {
     if (DEBUG) print("ScoreRenderSystem::initialize");
-    Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
+
     Artemis.ComponentMapper<Position> positionMapper = new Artemis.ComponentMapper<Position>(Position, level.artemis);
     Artemis.ComponentMapper<Count> countMapper = new Artemis.ComponentMapper<Count>(Count, level.artemis);
     Artemis.ComponentMapper<Text> textMapper = new Artemis.ComponentMapper<Text>(Text, level.artemis);
@@ -28,7 +33,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
     Artemis.TagManager tagManager = level.artemis.getManager(Artemis.TagManager);
     Artemis.Entity entity = tagManager.getEntity(TAG_SCORE);
 
-    Position position = positionMapper.get(entity);
+    position = positionMapper.get(entity);
     text = textMapper.get(entity);
     score = countMapper.get(entity);
     var style = new Phaser.TextStyle(font: text.font, fill: text.fill);
@@ -50,27 +55,23 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
    */
   updateScore(int points) {
 
-    scoreText.text = "Score: ${level.context.score}";
+    scoreText.text = "${text.value}: ${level.context.score}";
     scoreText.updateText();
 
     // make a popup with the points
-    String color = "#ff0";
-
-    const int speed = 1000;
-    var dur = const Duration(milliseconds: speed);
     var scoreStyle = new Phaser.TextStyle(font: "bold 120px Courier New, Courier",fill: colors[counter], align: "center");
-
     Phaser.Text popup = level.add.text(cols[counter], rows[counter], "$points", scoreStyle);
     counter += 1;
     if (counter > 2) counter = 0;
 
     bonus[points % SFX_COUNT].play();
-
+    const int speed = 1000;
     level.add.tween(popup)
     .to({'alpha': 1}, (speed*0.75).toInt(), Phaser.Easing.Linear.None, true)
     .to({'alpha': 0}, (speed*0.25).toInt(), Phaser.Easing.Linear.None, true);
 
-    new async.Timer(dur, ()=> level.world.remove(popup));
+    new async.Timer(const Duration(milliseconds: speed),
+        ()=> level.world.remove(popup));
 
   }
 

@@ -31,10 +31,10 @@ class AlienZoneApplication {
       config.preferences = translatePreferences(config);
       HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
       .then((template) {
-        new Game(config, new Li2Template(template));
+//        new Game(config, new Li2Template(template));
+        new Game(config, null);
       });
     });
-
   }
 
 

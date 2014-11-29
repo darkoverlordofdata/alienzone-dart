@@ -9,11 +9,11 @@ dependencies:
   yaml: any
   play_phaser: any
   play_pixi: any
-  dilithium: any
-    #path: ../dilithium
   dartemis: any
   match3:  #any
     path: ../match3
+  dilithium: #any
+    path: ../dilithium
 
 transformers:
 - $dart2js:

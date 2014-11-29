@@ -159,7 +159,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    * move the gems left or right
    */
   void move(dir) {
-    if (pos+dir >= 0 && pos+dir <=4) {
+    if (pos+dir >= 0 && pos+dir <=5) {
       pos += dir;
       update();
       return;
@@ -173,13 +173,6 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       }
     }
 
-    if (pos+dir > 4) {
-      if (gems.length == 2 && rot == 0) {
-        rot = 2;
-        update();
-        return;
-      }
-    }
   }
 
   /**
@@ -188,6 +181,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    * rotate the gems left or right
    */
   void rotate(dir) {
+    if (pos>=5) return;
     rot += dir;
     if (rot < 0) rot = 3;
     if (rot > 3) rot = 0;

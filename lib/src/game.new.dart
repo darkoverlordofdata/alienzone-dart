@@ -15,7 +15,7 @@
  */
 part of alienzone;
 
-class Game extends Dilithium {
+class Game { //extends Dilithium {
 
   static const VOLUME_ON  = 0.05;
   static const VOLUME_OFF = 0;
@@ -33,11 +33,18 @@ class Game extends Dilithium {
   ];
 
   AlienZoneApplication app;
+  Li2Config config;
   Li2Template template;
 
   num soundfx = VOLUME_ON;
   bool fullscreen = true;
   bool playmusic = true;
+
+  PIXI.Stage stage;
+  PIXI.Renderer renderer;
+  Map<String, PIXI.Texture> images;
+  int width = 320;
+  int height = 480;
 
 
   /**
@@ -48,25 +55,56 @@ class Game extends Dilithium {
    *
    * returns this
    */
-  Game(Li2Config config, this.template): super(config) {
+  Game(this.config, this.template) {
 
     print("Class Game initialized");
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-  }
 
-  /**
-   * Define each of the game states
-   */
-  Phaser.State levels() {
+    if (window.navigator.appVersion.contains("CocoonJS")) {
 
-    game.state.add('game', new BaseLevel('game', config));
-    game.state.add('credits', new BaseLevel('credits', config));
-    game.state.add('gameover', new BaseLevel('gameover', config));
-    game.state.add('preferences', new BaseLevel('preferences', config));
+      // Use Canvas+
+      var canvas = document.createElement("screencanvas");
+      canvas.style.cssText = "idtkscale:ScaleAspectFill;";
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.body.append(canvas);
+      renderer = new PIXI.CanvasRenderer(window.innerWidth, window.innerHeight, canvas);
+
+    } else {
+
+      // Let PIXI decide
+      renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, null);
+      document.body.append(renderer.view);
+    }
+
+    var game_stage = new PIXI.DisplayObjectContainer();
+    game_stage.scale.x = window.innerWidth / width;
+    game_stage.scale.y = window.innerHeight / height;
+
+    stage = new PIXI.Stage(0x000000, true);
+    stage.addChild(game_stage);
+
+    images = new Map();
+    var assets = [];
+    config.images.forEach((key, path) {
+      assets.add(config.path + path);
+      images[key] = PIXI.Texture.fromImage(config.path + path);
+    });
+
+    var loader = new PIXI.AssetLoader(assets);
+    loader.onComplete = () {
+      var splash = new PIXI.Sprite(images['splash']);
+      game_stage.addChild(splash);
+      PIXI.requestAnimFrame(update);
+    };
+    loader.load();
 
     window.document.getElementById("logo").hidden = true;
-    return new BaseLevel('main', config);
+  }
 
+  update(dt) {
+
+    PIXI.requestAnimFrame(update);
+    renderer.render(stage);
   }
 
 

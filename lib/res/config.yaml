@@ -29,11 +29,11 @@ forceOrientation: false
 splashKey: splash
 splashImg: images/splash.png
 
-showPreloadBar: false
-preloadBarKey:
-preloadBarImg:
-preloadBgdKey:
-preloadBgdImg:
+showPreloadBar: true
+preloadBarKey: loading
+preloadBarImg: images/loading.png
+preloadBgdKey: logo
+preloadBgdImg: images/d16a.png
 
 sections:
   strings: values/strings.yaml

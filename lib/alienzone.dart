@@ -32,9 +32,10 @@ library alienzone;
 
 
 import 'dart:html';
+import 'dart:js';
 import 'dart:async' as async;
 import 'dart:math' as Math;
-
+import 'package:play_pixi/pixi.dart' as PIXI;
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;

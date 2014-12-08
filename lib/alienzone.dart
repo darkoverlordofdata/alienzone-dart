@@ -35,7 +35,6 @@ import 'dart:html';
 import 'dart:js';
 import 'dart:async' as async;
 import 'dart:math' as Math;
-import 'package:play_pixi/pixi.dart' as PIXI;
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;
@@ -81,6 +80,7 @@ part 'src/entities/gem_entity.dart';
 part 'src/entities/image_entity.dart';
 part 'src/entities/input_entity.dart';
 part 'src/entities/legend_entity.dart';
+part 'src/entities/option_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
 part 'src/entities/string_entity.dart';
@@ -91,10 +91,11 @@ part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/legend_render_system.dart';
 part 'src/systems/gems_render_system.dart';
+part 'src/systems/option_control_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
 part 'src/systems/sprite_render_system.dart';
 part 'src/systems/string_render_system.dart';
 
 
-const bool DEBUG = true;
+const bool DEBUG = false;

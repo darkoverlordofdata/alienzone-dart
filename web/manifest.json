@@ -1,12 +1,12 @@
 {
     "name": "Alien Zone",
     "description": "Match3 Game",
-    "version": "0.1",
+    "version": "0.0.10",
     "manifest_version": 2,
     "app": {
         "background": {
-            "scripts": ["background.js"]
+            "scripts": ["assets/background.js"]
         }
     },
-    "icons": { "16": "favicon.png", "128": "icon128.png" }
+    "icons": { "16": "assets/favicon.png", "128": "assets/icon128.png" }
 }

@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * AlienZoneApplication.dart
+ * alien_zone_application.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -24,17 +24,20 @@ class AlienZoneApplication {
    *   * Using game configuration
    *   * Start a game instance
    */
+//  AlienZoneApplication() {
+//
+//    Dilithium.using("packages/alienzone/res")
+//    .then((config) {
+//      config.preferences = translatePreferences(config);
+//      HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
+//      .then((template) {
+//        new Game(config, new Li2Template(template));
+//      });
+//    });
+//  }
   AlienZoneApplication() {
 
-    Dilithium.using("packages/alienzone/res")
-    .then((config) {
-      config.preferences = translatePreferences(config);
-      HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
-      .then((template) {
-//        new Game(config, new Li2Template(template));
-        new Game(config, null);
-      });
-    });
+    Dilithium.using("packages/alienzone/res").then((config) => new Game(config));
   }
 
 

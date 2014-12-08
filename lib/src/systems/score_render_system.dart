@@ -1,3 +1,18 @@
+/**
+ *--------------------------------------------------------------------+
+ * score_render_system.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ */
 part of alienzone;
 
 
@@ -37,13 +52,15 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
     text = textMapper.get(entity);
     score = countMapper.get(entity);
     var style = new Phaser.TextStyle(font: text.font, fill: text.fill);
-    scoreText = level.game.add.text(position.x, position.y, "${text.value}: 0", style);
+    scoreText = level.add.text(position.x, position.y, "${text.value}: 0", style);
 
-    for (var i=1; i<=SFX_COUNT+1; i++) {
+    for (int i=1; i<=SFX_COUNT+1; i++) {
       bonus.add(level.add.audio("bonus$i"));
     }
-    level.game.sound.volume = 0.05; //parent.soundfx;
+
     level.context.scored.add(updateScore);
+    level.game.sound.volume = level.context.volume;
+
   }
 
   /**
@@ -71,7 +88,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
     .to({'alpha': 0}, (speed*0.25).toInt(), Phaser.Easing.Linear.None, true);
 
     new async.Timer(const Duration(milliseconds: speed),
-        ()=> level.world.remove(popup));
+        () => level.world.remove(popup));
 
   }
 

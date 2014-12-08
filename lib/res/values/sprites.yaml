@@ -1,8 +1,3 @@
-dude:
-  file: assets/dude.png
-  width: 32
-  height: 48
-
 gems:
   file      : images/gems.png
   width     : 48
@@ -13,3 +8,12 @@ legend:
   width     : 24
   height    : 24
 
+musicOption:
+  file      : images/music_option.png
+  width     : 47
+  height    : 57
+
+sfxOption:
+  file      : images/sfx_option.png
+  width     : 70
+  height    : 61

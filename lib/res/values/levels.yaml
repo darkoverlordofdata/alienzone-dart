@@ -21,14 +21,15 @@
 main:
   entities:
     - image: [0, 0, splash]
-
-    - button: [100, 130, playButton, game]
-    - button: [100, 170, optionsButton, preferences]
+    - button: [100, 150, playButton, game]
     - button: [100, 210, creditsButton, credits]
+    - option: [50, 370, musicOption, music]
+    - option: [200, 370, sfxOption, sfx]
 
   systems:
     - spriteRender: false
     - buttonRender: false
+    - optionControl: false
 
 #
 # Preferences screen
@@ -36,7 +37,6 @@ main:
 preferences:
   entities:
     - image: [0, 0, background]
-
     - button: [260,  20, backButton, main]
 
   systems:
@@ -51,7 +51,6 @@ credits:
     - image: [0, 0, background]
     - image: [10, 10, icon]
     - image: [10, 320, label, 0.5]
-
     - string: [20, 335, creditsText, "12px Arial", "#000"]
     - string: [50, 450, copyrightText, "12px Arial", "#000"]
     - button: [260,  20, backButton, main]
@@ -76,19 +75,18 @@ game:
     - legend: [290, 260, legend, 5, 0.2]
     - legend: [290, 292, legend, 6, 0.2]
     - legend: [290, 324, legend, 7, 0.2]
-
     - score: [100, 20, 'Score', 'bold 20pt Arial', "#fff"]
     - button: [260,  20, backButton, main]
-    - input: [0, 420, arrow_left, left]
-    - input: [50, 420, arrow_down, drop]
-    - input: [100, 420, arrow_right, right]
-    - input: [210, 420, arrow_lrot, lrot]
-    - input: [260, 420, arrow_rrot, rrot]
+    - input: [0, 420, arrowLeft, left]
+    - input: [50, 420, arrowDown, drop]
+    - input: [100, 420, arrowRight, right]
+    - input: [210, 420, arrowLrot, lrot]
+    - input: [260, 420, arrowRrot, rrot]
 
   systems:
     - spriteRender: false
     - scoreRender: false
     - legendRender: false
     - buttonRender: false
-    - playerControl: true
+    - playerControl: false
 

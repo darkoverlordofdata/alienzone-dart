@@ -1,3 +1,18 @@
+/**
+ *--------------------------------------------------------------------+
+ * player_control_system.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ */
 part of alienzone;
 
 class PlayerControlSystem extends Artemis.VoidEntitySystem {
@@ -35,6 +50,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
   int rot = 0;          //  rotate frame (0-3)
   int pos = 0;          //  horizontal cursor (0-4)
+  int offset = 0;       //  display offset
   int board = 0;        //  level up board number
   int known = 3;        //  start off with 3 gems
   int discovered = 0;   //  we discover the remaining gems
@@ -79,9 +95,9 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     });
 
     discoveredGems = [];
-    for (var i=0; i<Game.GEMTYPES.length; i++) {
+    for (var i=0; i<Gem.GEMTYPES.length; i++) {
       if (i < (discovered+known)) {
-        discoveredGems.add(Game.GEMTYPES[i]);
+        discoveredGems.add(Gem.GEMTYPES[i]);
       }
     }
     puzzle = new Match3.Grid(width: 6, height: 7, gravity: 'down');
@@ -99,6 +115,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     gems = [];
     rot = 0;
     pos = 0;
+    offset = 0;
 
     for (int row = 0; row < 2; row++) {
       for (int col = 0; col < 2; col++) {
@@ -106,7 +123,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
           int frame = level.random.nextInt(discoveredGems.length);
           GemEntity entity = level.entityFactory.gem(col, row, 'gems', frame);
-          gems.add(new Gem(this, Game.GEMTYPES[frame], col, row));
+          gems.add(new Gem(this, Gem.GEMTYPES[frame], col, row));
 
         }
       }
@@ -119,8 +136,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    * return none
    */
   updateScore(List matches, String type) {
-    var points = (Game.GEMTYPES.indexOf(type) + 1) * matches.length * (board+1);
-    //level.context.score += points;
+    int points = (Gem.GEMTYPES.indexOf(type) + 1) * matches.length * (board+1);
     level.context.updateScore(points);
   }
 
@@ -160,14 +176,15 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    */
   void move(dir) {
     if (pos+dir >= 0 && pos+dir <=5) {
-      pos += dir;
+      pos += dir+offset;
+      offset = 0;
       update();
       return;
     }
 
     if (pos+dir < 0) {
       if (gems.length == 2 && rot == 2) {
-        rot = 0;
+        offset = -1;
         update();
         return;
       }
@@ -181,11 +198,12 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    * rotate the gems left or right
    */
   void rotate(dir) {
+    if (offset == -1) return;
     if (pos>=5) return;
     rot += dir;
     if (rot < 0) rot = 3;
     if (rot > 3) rot = 0;
-    update(); 
+    update();
   }
 
   /**
@@ -199,7 +217,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     for (int row = 0; row<2; row++) {
       for (int col = 0; col<2; col++) {
         if (cursor[row][col] != 0) {
-            gems[cursor[row][col]-1].move(pos+col, row);
+            gems[cursor[row][col]-1].move(Math.max(0, Math.min(5, pos+col+offset)), row);
         }
       }
     }
@@ -284,19 +302,20 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     // For each piece to upgrade
     piecesToUpgrade.forEach((pieceToUpgrade) {
       // Get the upgraded type
-      var upgradeIndex = Game.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1;
-      if (upgradeIndex >= Game.GEMTYPES.length-1) {
+      int upgradeIndex = Gem.GEMTYPES.indexOf(pieceToUpgrade['type']) + 1;
+      if (upgradeIndex >= Gem.GEMTYPES.length-1) {
         /**
          * Level Up...
          */
-        level.state.start("game", true, false, [0, level.context.score]);
+        level.state.start(level.name, true, false, [level.name, level.context.score]);
+        return;
 
       }
       if (level.context.legend < upgradeIndex) {
         levelUp = true;
       }
       level.context.legend = upgradeIndex;
-      var upgradedType = Game.GEMTYPES[upgradeIndex];
+      String upgradedType = Gem.GEMTYPES[upgradeIndex];
       // If the type is defined
       if (upgradedType != null) {
         // And if the type is not already discovered

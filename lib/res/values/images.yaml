@@ -1,9 +1,9 @@
-sky: assets/sky.png
-ground: assets/platform.png
-star: assets/star.png
-
-
-
+#sky: assets/sky.png
+#ground: assets/platform.png
+#star: assets/star.png
+#
+#
+#
 splash:         images/splash.png
 background:     images/background.png
 board:          images/board.png
@@ -16,12 +16,11 @@ scoreButton:    images/buttons/score1.png
 creditsButton:  images/buttons/credits1.png
 optionsButton:  images/buttons/options.png
 backButton:     images/buttons/back1.png
-arrow_right:    images/arrows/right.png
-arrow_left:     images/arrows/left.png
-arrow_down:     images/arrows/down.png
-arrow_lrot:     images/arrows/lrot.png
-arrow_rrot:     images/arrows/rrot.png
-
+arrowRight:    images/arrows/right.png
+arrowLeft:     images/arrows/left.png
+arrowDown:     images/arrows/down.png
+arrowLrot:     images/arrows/lrot.png
+arrowRrot:     images/arrows/rrot.png
 
 
 

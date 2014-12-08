@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * Gem.dart
+ * gem.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -16,6 +16,19 @@
 part of alienzone;
 
 class Gem extends Match3.MatchObject {
+
+  static const GEMSIZE    = 48;     // Gem size constant in pixels
+  static const MARGINTOP  = 2;      // Margin top equal to 2 gems height
+  static final List GEMTYPES = [    // All gem types:
+      "blue",
+      "cyan",
+      "green",
+      "magenta",
+      "orange",
+      "pink",
+      "red",
+      "yellow"
+  ];
 
   /**
    * Gem Class -
@@ -41,7 +54,7 @@ class Gem extends Match3.MatchObject {
    */
   Gem(this.player, String type, this.x, this.y) : super(type) {
 
-    sprite = player.level.add.sprite(0, 0, 'gems', Game.GEMTYPES.indexOf(type));
+    sprite = player.level.add.sprite(0, 0, 'gems', GEMTYPES.indexOf(type));
     move(x, y);
   }
   /**
@@ -54,8 +67,8 @@ class Gem extends Match3.MatchObject {
   void move(int x, int y) {
     this.x = x;
     this.y = y;
-    sprite.x = x * Game.GEMSIZE;
-    sprite.y = y * Game.GEMSIZE;
+    sprite.x = x * GEMSIZE;
+    sprite.y = y * GEMSIZE;
   }
   /**
    * Drop method
@@ -92,8 +105,8 @@ class Gem extends Match3.MatchObject {
 
     // Create a tween animation
     var point = {
-        'x': x * Game.GEMSIZE,
-        'y': y * Game.GEMSIZE + Game.MARGINTOP * Game.GEMSIZE
+        'x': x * GEMSIZE,
+        'y': y * GEMSIZE + MARGINTOP * GEMSIZE
     };
 
     player.level.add.tween(sprite)

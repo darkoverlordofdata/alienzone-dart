@@ -1,3 +1,18 @@
+/**
+ *--------------------------------------------------------------------+
+ * button_render_system.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ */
 part of alienzone;
 
 //EntityProcessingSystem
@@ -19,7 +34,7 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
       Sprite sprite = spriteMapper.get(entity);
       State state = stateMapper.get(entity);
       level.game.add.button(sprite.x, sprite.y, sprite.key,
-        (source, input, flag) => level.state.start(state.name, true, false, [state.name]));
+        (source, input, flag) => level.state.start(state.name, true, false, [state.name, 0]));
     });
   }
 

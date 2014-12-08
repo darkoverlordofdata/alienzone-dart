@@ -1,3 +1,18 @@
+/**
+ *--------------------------------------------------------------------+
+ * gems_render_system.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ */
 part of alienzone;
 
 
@@ -17,7 +32,7 @@ class GemsRenderSystem extends Artemis.VoidEntitySystem {
     Artemis.ComponentMapper<Gravity> gravityMapper = new Artemis.ComponentMapper<Gravity>(Gravity, level.artemis);
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
-    Phaser.Group gems = level.context.registerGems(level.game.add.group());
+//    Phaser.Group gems = level.context.registerGems(level.game.add.group());
 
     //  We will enable physics for any object that is created in this group
     gems.enableBody = true;

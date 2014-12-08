@@ -1,3 +1,18 @@
+/**
+ *--------------------------------------------------------------------+
+ * base_level.dart
+ *--------------------------------------------------------------------+
+ * Copyright DarkOverlordOfData (c) 2014
+ *--------------------------------------------------------------------+
+ *
+ * This file is a part of Alien Zone
+ *
+ * Alien Zone is free software; you can copy, modify, and distribute
+ * it under the terms of the GPLv3 License
+ *
+ *--------------------------------------------------------------------+
+ *
+ */
 part of alienzone;
 
 class BaseLevel extends Phaser.State {
@@ -9,9 +24,15 @@ class BaseLevel extends Phaser.State {
   SystemFactory systemFactory;  // create systems
   String level = "";            // current level name
   Math.Random random;
+  String name = "";
+  int _score = 0;
 
 
+  /**
+   * Initialize the random generator
+   */
   BaseLevel(this.level, this.config){
+    if (DEBUG) print("Class BaseLevel initialized");
     random = new Math.Random();
     // shuffle the deck
     DateTime d = new DateTime.now();
@@ -21,8 +42,16 @@ class BaseLevel extends Phaser.State {
     }
   }
 
+  /**
+   * Initialize level parameters
+   */
   void init([p]) {
     if (DEBUG) print("BaseLevel::init $level");
+    if (p != null) {
+      name = p[0];
+      _score = p[1];
+    }
+
   }
 
   /**

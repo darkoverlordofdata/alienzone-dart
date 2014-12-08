@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * bonus.dart
+ * option_entity.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -15,15 +15,19 @@
  */
 part of alienzone;
 
-class Bonus extends Artemis.ComponentPoolable {
-  String src;
+const String GROUP_OPTIONS      = "OPTIONS";
 
-  Bonus._();
-  factory Bonus(String src) {
-    Bonus bonus = new Artemis.Poolable.of(Bonus, _constructor);
-    bonus.src = src;
-    return bonus;
+class OptionEntity extends AbstractEntity {
+
+  OptionEntity(entities, int x, int y, String key, String action)
+  : super(entities) {
+
+    Artemis.Entity input = level.artemis.createEntity();
+    input
+    ..addComponent(new Sprite(x, y, key))
+    ..addComponent(new Action(action))
+    ..addToWorld();
+    groupManager.add(input, GROUP_OPTIONS);
   }
-  static Bonus _constructor() => new Bonus._();
-}
 
+}

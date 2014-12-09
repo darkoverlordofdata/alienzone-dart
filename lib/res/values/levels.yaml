@@ -32,18 +32,6 @@ main:
     - optionControl: false
 
 #
-# Preferences screen
-#
-preferences:
-  entities:
-    - image: [0, 0, background]
-    - button: [260,  20, backButton, main]
-
-  systems:
-    - spriteRender: false
-    - buttonRender: false
-
-#
 # Credits screen
 #
 credits:

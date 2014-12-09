@@ -17,13 +17,13 @@ part of alienzone;
 
 class BaseLevel extends Phaser.State {
 
-  Artemis.World artemis;        // the ecs world
-  Li2Config config;             // dilithium config object
-  Context context;              // the game context
-  EntityFactory entityFactory;  // create entities
-  SystemFactory systemFactory;  // create systems
-  String level = "";            // current level name
-  Math.Random random;
+  Artemis.World artemis;          // the ecs world
+  Li2Config config;               // dilithium config object
+  Context context;                // the game context
+  EntityFactory entityFactory;    // create entities
+  SystemFactory systemFactory;    // create systems
+  String level = "";              // current level name
+  MersenneTwister random;         // PRNG
   String name = "";
   int _score = 0;
 
@@ -33,13 +33,12 @@ class BaseLevel extends Phaser.State {
    */
   BaseLevel(this.level, this.config){
     if (DEBUG) print("Class BaseLevel initialized");
-    random = new Math.Random();
-    // shuffle the deck
-    DateTime d = new DateTime.now();
-    int s = (d.millisecond / Math.PI).floor();
-    for (int i=0; i<s; i++) {
-      random.nextInt(s-i);
-    }
+    random = new MersenneTwister();
+    // shuffle the deck...
+//    int x = ((random.genrand_real2() * new DateTime.now().millisecond)/Math.PI).floor();
+//    for (int i=0; i<x; i++) {
+//      random.genrand_real2();
+//    }
   }
 
   /**

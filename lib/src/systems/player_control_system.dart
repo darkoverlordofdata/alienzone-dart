@@ -19,7 +19,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
 
   /**
-   * Move a group of 1-4 gems on a 2 x 6 puzzle.
+   * Move a group of 1-4 gems on a 2 x 6 grid.
    * A gem group occupies 2 or 4 adjacent cells.
    * Position and drop the group onto the puzzle area.
    * Puzzle area is a 7 x 6 grid
@@ -95,7 +95,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     });
 
     discoveredGems = [];
-    for (var i=0; i<Gem.GEMTYPES.length; i++) {
+    for (int i=0; i<Gem.GEMTYPES.length; i++) {
       if (i < (discovered+known)) {
         discoveredGems.add(Gem.GEMTYPES[i]);
       }
@@ -121,7 +121,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       for (int col = 0; col < 2; col++) {
         if (cursor[row][col] != 0) {
 
-          int frame = level.random.nextInt(discoveredGems.length);
+          int frame = (level.random.genrand_real2() * discoveredGems.length).floor();
           GemEntity entity = level.entityFactory.gem(col, row, 'gems', frame);
           gems.add(new Gem(this, Gem.GEMTYPES[frame], col, row));
 
@@ -189,7 +189,6 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
         return;
       }
     }
-
   }
 
   /**
@@ -243,7 +242,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
         updateScore(matchingPieces, type);
         // For each match take the first piece to upgrade it
         piecesToUpgrade.add({
-            'piece'   : matchingPieces[0],
+//            'piece'   : matchingPieces[0],
             'type'    : type
         });
         matchingPieces.forEach((matchingPiece) {

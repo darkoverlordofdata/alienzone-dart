@@ -21,7 +21,7 @@ class SystemFactory {
 
   SystemFactory(this.level);
 
-  ArcadePhysicsSystem arcadePhysics()       => new ArcadePhysicsSystem(level);
+//  ArcadePhysicsSystem arcadePhysics()       => new ArcadePhysicsSystem(level);
   ButtonRenderSystem buttonRender()         => new ButtonRenderSystem(level);
   LegendRenderSystem legendRender()         => new LegendRenderSystem(level);
   OptionControlSystem optionControl()       => new OptionControlSystem(level);
@@ -36,7 +36,7 @@ class SystemFactory {
    */
   Artemis.EntitySystem invoke(String methodName) {
     switch(methodName) {
-      case 'arcadePhysics':     return arcadePhysics();
+//      case 'arcadePhysics':     return arcadePhysics(); // *UNUSED*
       case 'buttonRender':      return buttonRender();
       case 'legendRender':      return legendRender();
       case 'optionControl':     return optionControl();

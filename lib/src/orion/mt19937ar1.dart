@@ -1,19 +1,3 @@
-/**
- *--------------------------------------------------------------------+
- * mt19937ar.dart
- *--------------------------------------------------------------------+
- * Copyright DarkOverlordOfData (c) 2014
- *--------------------------------------------------------------------+
- *
- * This file is a part of Alien Zone
- *
- * Alien Zone is free software; you can copy, modify, and distribute
- * it under the terms of the GPLv3 License
- *
- *--------------------------------------------------------------------+
- *
- */
-part of alienzone;
 /*
    A C-program for MT19937, with initialization improved 2002/1/26.
    Coded by Takuji Nishimura and Makoto Matsumoto.
@@ -56,8 +40,9 @@ part of alienzone;
    http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html
    email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
 */
+part of alienzone;
 
-class MersenneTwister implements Math.Random {
+class MersenneTwister {
 
   /* Period parameters */
   static const N = 624;
@@ -66,51 +51,18 @@ class MersenneTwister implements Math.Random {
   static const UPPER_MASK = 0x80000000; /* most significant w-r bits */
   static const LOWER_MASK = 0x7fffffff; /* least significant r bits */
 
-  List<int> mt = new List(N);           /* the array for the state vector */
-  int mti = N+1;                        /* mti==N+1 means mt[N] is not initialized */
+  List<int> mt;
+  int mti;
 
-  /**
-   * Use millisecondsSinceEpoch as seed value
-   */
-  MersenneTwister() {
-    init_genrand(new DateTime.now().millisecondsSinceEpoch % LOWER_MASK);
-  }
+  MersenneTwister([int seed = -1]) {
 
+    if (seed == -1) {
+      seed = new DateTime.now().millisecondsSinceEpoch % LOWER_MASK;
+    }
+    mt = new List(N); /* the array for the state vector */
+    mti = N + 1; /* mti==N+1 means mt[N] is not initialized */
 
-  /**
-   * Specify the seed value
-   */
-  MersenneTwister.withSeed(int seed) {
     init_genrand(seed);
-  }
-
-  /**
-   * Specify the seed array
-   */
-  MersenneTwister.withArray(List<int> seed) {
-    init_by_array(seed, seed.length);
-  }
-
-
-  /**
-   * Generates a random boolean value.
-   */
-  bool nextBool() {
-    return genrand_int32().isEven;
-  }
-
-  /**
-   * Generates a random real value from 0.0, inclusive, to 1.0, exclusive.
-   */
-  double nextDouble() {
-    return genrand_res53();
-  }
-
-  /**
-   * Generates a random int value from 0, inclusive, to max, exclusive.
-   */
-  int nextInt(int max) {
-    return (genrand_res53() * max).floor();
   }
 
   /* initializes mt[N] with a seed */

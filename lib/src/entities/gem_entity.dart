@@ -28,7 +28,7 @@ class GemEntity extends AbstractEntity {
     ..addComponent(new Sprite(x, y, key, frame))
     ..addComponent(new Number(frame))
     ..addComponent(new Gravity(0, 300))
-    ..addComponent(new Bounce(0, 0.7 + (level.random.genrand_real2()*(1.0 / INTMAX)) * 0.2))
+    ..addComponent(new Bounce(0, 0.7 + (level.random.nextDouble()*(1.0 / INTMAX)) * 0.2))
     ..addToWorld();
     groupManager.add(gem, GROUP_GEMS);
 

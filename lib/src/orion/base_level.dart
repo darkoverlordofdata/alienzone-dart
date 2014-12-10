@@ -23,9 +23,9 @@ class BaseLevel extends Phaser.State {
   EntityFactory entityFactory;    // create entities
   SystemFactory systemFactory;    // create systems
   String level = "";              // current level name
-  MersenneTwister random;         // PRNG
-  String name = "";
-  int _score = 0;
+  Math.Random random;             // random generator
+  String name = "";               // state name
+  int _score = 0;                 // score
 
 
   /**
@@ -34,11 +34,8 @@ class BaseLevel extends Phaser.State {
   BaseLevel(this.level, this.config){
     if (DEBUG) print("Class BaseLevel initialized");
     random = new MersenneTwister();
-    // shuffle the deck...
-//    int x = ((random.genrand_real2() * new DateTime.now().millisecond)/Math.PI).floor();
-//    for (int i=0; i<x; i++) {
-//      random.genrand_real2();
-//    }
+    //random = new Math.Random(new DateTime.now().millisecondsSinceEpoch % 0x7fffffff);
+    //random = new Math.Random();
   }
 
   /**
@@ -50,7 +47,6 @@ class BaseLevel extends Phaser.State {
       name = p[0];
       _score = p[1];
     }
-
   }
 
   /**

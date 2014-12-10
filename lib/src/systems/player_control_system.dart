@@ -48,17 +48,19 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    */
 
 
-  int rot = 0;          //  rotate frame (0-3)
-  int pos = 0;          //  horizontal cursor (0-4)
-  int offset = 0;       //  display offset
-  int board = 0;        //  level up board number
-  int known = 3;        //  start off with 3 gems
-  int discovered = 0;   //  we discover the remaining gems
-  BaseLevel level;      //  parent game state
-  List discoveredGems;  //  all the discovered gems
-  List<Gem> gems;       //  group of gems that move on the top board
-  Match3.Grid puzzle;   //  the 7 x 6 puzzle grid
-  List maps = [         //  Gem rotation maps:
+  int rot = 0;            //  rotate frame (0-3)
+  int pos = 0;            //  horizontal cursor (0-4)
+  int offset = 0;         //  display offset
+  int board = 0;          //  level up board number
+  int count = 2;          //  # of crystals
+  int known = 3;          //  start off with set of 3 crystals
+  int discovered = 0;     //  we discover the remaining crystals
+  bool dropping = false;  //  crystals being dropped?
+  BaseLevel level;        //  parent game state
+  List discoveredGems;    //  all the discovered crystals
+  List<Gem> gems;         //  group of crystals that move on the top board
+  Match3.Grid puzzle;     //  the 7 x 6 puzzle grid
+  List maps = [           //  crystal rotation maps:
       [[[1,0],[0,0]], [[0,1],[0,0]], [[0,0],[0,1]], [[0,0],[1,0]]],
       [[[1,0],[2,0]], [[2,1],[0,0]], [[0,2],[0,1]], [[0,0],[1,2]]],
       [[[1,0],[2,3]], [[2,1],[3,0]], [[3,2],[0,1]], [[0,3],[1,2]]],
@@ -109,9 +111,10 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    *
    * return Gem Group
    */
-  void createGems([int count = 2]) {
+  void createGems() {
 
-    List cursor = maps[count-1][0];
+    int i = Math.max(2, ((count+level.context.legend)/2).floor())-1;
+    List cursor = maps[i][0];
     gems = [];
     rot = 0;
     pos = 0;
@@ -121,7 +124,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       for (int col = 0; col < 2; col++) {
         if (cursor[row][col] != 0) {
 
-          int frame = (level.random.genrand_real2() * discoveredGems.length).floor();
+          int frame = (level.random.nextDouble() * discoveredGems.length).floor();
           GemEntity entity = level.entityFactory.gem(col, row, 'gems', frame);
           gems.add(new Gem(this, Gem.GEMTYPES[frame], col, row));
 
@@ -146,6 +149,8 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
    * drop the gems onto the puzzle
    */
   void drop() {
+    if (dropping) return;
+    dropping = true;
     // Drop counter
     int dropped = 0;
 
@@ -162,6 +167,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
             // If all gems have been dropped
             if (dropped == gems.length) {
               handleMatches();
+              dropping = false;
             }
           });
         }

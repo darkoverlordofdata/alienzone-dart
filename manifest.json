@@ -5,8 +5,8 @@
     "manifest_version": 2,
     "app": {
         "background": {
-            "scripts": ["assets/background.js"]
+            "scripts": ["js/background.js"]
         }
     },
-    "icons": { "16": "assets/favicon.png", "128": "assets/icon128.png" }
+    "icons": { "16": "images/favicon.png", "128": "images/icon128.png" }
 }

@@ -15,7 +15,7 @@
  */
 part of alienzone;
 
-class Game extends Dilithium {
+class Game extends Li2.Dilithium {
 
   /**
    * == New Game ==
@@ -25,7 +25,7 @@ class Game extends Dilithium {
    *
    * returns this
    */
-  Game(Li2Config config): super(config) {
+  Game(Li2.Config config): super(config) {
 
     print("Class Game initialized");
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;

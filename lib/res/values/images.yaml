@@ -7,6 +7,9 @@
 splash:         images/splash.png
 background:     images/background.png
 board:          images/board.png
+button:         images/button.png
+button2:        images/button2.png
+button4:        images/button4.png
 icon:           images/d16a.png
 label:          images/label.png
 scores:         images/scores.png

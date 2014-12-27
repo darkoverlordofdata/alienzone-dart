@@ -30,57 +30,47 @@ class Context {
   int _score = 0;
   int _legend = 0;
 
-  BaseLevel level;
-  Phaser.Signal scored = null;
-  Phaser.Signal pegged = null;
+  BaseLevel _level;
+  Phaser.Signal _scored = null;
+  Phaser.Signal _pegged = null;
+  Phaser.Signal _action = null;
 
   /**
    * Initialize persisted options
    */
-  Context(this.level) {
-    _score = level._score;
-    scored = new Phaser.Signal();
-    pegged = new Phaser.Signal();
+  Context(this._level) {
+    _score = _level._score;
+    _scored = new Phaser.Signal();
+    _pegged = new Phaser.Signal();
+    _action = new Phaser.Signal();
     _sfx = (window.localStorage["${PFX}_sfx"] == "true");
     _music = (window.localStorage["${PFX}_music"] == "true");
-    level.game.sound.volume = this.volume;
+    _level.game.sound.volume = this.volume;
+
+  }
+  BaseLevel get level => _level;
+  Phaser.Signal get scored => _scored;
+  Phaser.Signal get pegged => _pegged;
+  Phaser.Signal get action => _action;
+  int get score => _score;
+  bool get sfx => _sfx;
+  bool get music => _music;
+  double get volume => (_sfx) ? VOLUME_ON: VOLUME_OFF;
+  int get legend => _legend;
+
+  set legend(int value) {
+    _legend = value;
+    _pegged.dispatch(_legend);
 
   }
 
-  /**
-   * Game Score
-   */
-  int get score => _score;
-  /**
-   * SoundFX?
-   */
-  bool get sfx => _sfx;
-  /**
-   * Music?
-   */
-  bool get music => _music;
-  /**
-   * Volume level
-   */
-  double get volume => (_sfx) ? VOLUME_ON: VOLUME_OFF;
 
   /**
    * Update the score, fire signal
    */
   void updateScore(int points) {
     _score += points;
-    scored.dispatch(points);
-  }
-
-  /**
-   * Legend Level
-   */
-  int get legend => _legend;
-
-  set legend(int value) {
-    _legend = value;
-    pegged.dispatch(_legend);
-
+    _scored.dispatch(points);
   }
 
   /**

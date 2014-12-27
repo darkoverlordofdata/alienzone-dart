@@ -3,7 +3,7 @@
 #   Deploy gh-pages
 #
 cd ./build/
-git clone git@github.com:darkoverlordofdata/alienzone.git gh-pages
+git clone git@github.com:darkoverlordofdata/alienzone-dart.git gh-pages
 cd ./gh-pages/
 git checkout gh-pages
 git rm -rf .

@@ -76,7 +76,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
     scoreText.updateText();
 
     // make a popup with the points
-    var scoreStyle = new Phaser.TextStyle(font: "bold 120px Courier New, Courier",fill: colors[counter], align: "center");
+    var scoreStyle = new Phaser.TextStyle(font: "bold 120px opendyslexic",fill: colors[counter], align: "center");
     Phaser.Text popup = level.add.text(cols[counter], rows[counter], "$points", scoreStyle);
     counter += 1;
     if (counter > 2) counter = 0;

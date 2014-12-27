@@ -12,6 +12,7 @@ dependencies:
   dartemis: any
   match3:  any
   dilithium: any
+  mt19937: any
 
 transformers:
 - $dart2js:

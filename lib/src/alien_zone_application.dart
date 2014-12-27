@@ -37,7 +37,7 @@ class AlienZoneApplication {
 //  }
   AlienZoneApplication() {
 
-    Dilithium.using("packages/alienzone/res").then((config) => new Game(config));
+    Li2.Dilithium.using("packages/alienzone/res").then((config) => new Game(config));
   }
 
 

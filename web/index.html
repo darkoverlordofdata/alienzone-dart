@@ -4,16 +4,14 @@
     <title>Alien Zone</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="shortcut icon" href="assets/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png" />
 
     <style>
-        /* latin */
-        @font-face {
-            font-family: 'Walter Turncoat';
+        @font-face{
+            font-family:'opendyslexic';
             font-style: normal;
             font-weight: 400;
-            src: local('Walter Turncoat'), local('WalterTurncoat'), url(assets/walterturncoat.woff2) format('woff2');
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+            src: local('opendyslexic'), url(fonts/open_dyslexic/OpenDyslexic-Regular.otf) format('truetype');
         }
 
         body {
@@ -24,7 +22,7 @@
 
         #logo {
             text-align: center;
-            font-family: Walter Turncoat;
+            font-family: opendyslexic;
             height: 100%;
             background: -webkit-linear-gradient(315deg, #111, #333);
             background: linear-gradient(135deg, #111, #333);
@@ -135,9 +133,10 @@
         <br>
         <p class="copy">&copy; 2014 Dark Overlord Of Data</p>
         <br>
-        <p class="build">build: 10</p>
+        <p class="build">build: 11</p>
     </div>
 </div>
+
 <div id="preferences"></div>
 <script type="application/dart" src="main.dart"></script>
 <script type="text/javascript"  src="packages/browser/dart.js"></script>

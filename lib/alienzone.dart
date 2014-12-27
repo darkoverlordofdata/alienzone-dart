@@ -38,8 +38,9 @@ import 'dart:math' as Math;
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;
-import "package:dilithium/dilithium.dart";
+import "package:dilithium/dilithium.dart" as Li2;
 import 'package:match3/match3.dart' as Match3;
+import 'package:mt19937/mt19937.dart';
 
 part 'src/alien_zone_application.dart';
 part 'src/game.dart';
@@ -49,12 +50,11 @@ part 'src/gem.dart';
 /**
  * Artemis:
  */
-part 'src/orion/abstract_entity.dart';
-part 'src/orion/base_level.dart';
-part 'src/orion/context.dart';
-part 'src/orion/entity_factory.dart';
-part 'src/orion/system_factory.dart';
-part 'src/orion/mt19937ar.dart';
+part 'src/engine/abstract_entity.dart';
+part 'src/engine/base_level.dart';
+part 'src/engine/context.dart';
+part 'src/engine/entity_factory.dart';
+part 'src/engine/system_factory.dart';
 /**
  * Components
  */

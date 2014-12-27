@@ -31,8 +31,8 @@ class EntityFactory  {
 
   }
 
-  ButtonEntity button(int x, int y, String key, String state)
-    => new ButtonEntity(this, x, y, key, state);
+  ButtonEntity button(int x, int y, String key, String action, [String text = "", String font = "", String fill = ""])
+    => new ButtonEntity(this, x, y, key, action, text, font, fill);
 
   GemEntity gem(int x, int y, String key, int range)
     => new GemEntity(this, x, y, key, range);

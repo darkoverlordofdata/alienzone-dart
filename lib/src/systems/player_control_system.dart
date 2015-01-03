@@ -131,6 +131,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
         }
       }
     }
+    update();
   }
 
   /**

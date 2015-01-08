@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#   Deploy gh-pages
+#   Publish gh-pages
 #
 cd ./build/
 git clone git@github.com:darkoverlordofdata/alienzone-dart.git gh-pages

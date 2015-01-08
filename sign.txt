@@ -10,3 +10,5 @@ Alien_Zone_release_unsigned
 /opt/java/jdk1.8.0_11/bin/jarsigner -verbose -keystore /home/bruce/apk/alienzone.jks -storepass d16a-alienzed -keypass d16a-alienzed Alien_Zone_release_unsigned.apk alienzed
 
 /home/bruce/Applications/android-studio/sdk/build-tools/19.1.0/zipalign -v 4 Alien_Zone_release_unsigned.apk Alien_Zone_release.apk
+
+keytool -exportcert -alias alienzed -keystore ~/apk/alienzone.jks -list -v

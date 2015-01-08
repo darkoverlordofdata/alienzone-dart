@@ -1,6 +1,7 @@
 part of alienzone;
 
 
+
 class ButtonRenderSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;
@@ -43,8 +44,21 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
       case 'play':
         level.state.start("game", true, false, ["game", 0]);
         break;
-      case 'credits':
+      case 'achievements':
         level.state.start("credits", true, false, ["credits", 0]);
+        break;
+
+      case 'credits':
+        js.context['Cocoon']['App']['WebView'].callMethod('on', ['load', new JsObject.jsify({
+            'success': () {
+              js.context['Cocoon']['App'].callMethod('showTheWebView', [0, 0, window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio]);
+            },
+            'error': () {
+              window.alert("Unable to load the webview");
+            }
+        })]);
+        js.context['Cocoon']['App'].callMethod('loadInTheWebView', ['webview/index.html']);
+
         break;
       case 'back':
         level.state.start(level.config.menu, true, false, [level.config.menu, 0]);

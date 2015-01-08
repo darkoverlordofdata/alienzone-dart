@@ -30,5 +30,6 @@ along with AlienZone.  If not, see <http://www.gnu.org/licenses/>.
 import "package:alienzone/alienzone.dart" show AlienZoneApplication;
 
 void main() {
+  print("Start Game");
   new AlienZoneApplication();
 }

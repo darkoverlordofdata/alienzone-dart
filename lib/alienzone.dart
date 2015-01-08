@@ -33,8 +33,11 @@ library alienzone;
 
 import 'dart:html';
 import 'dart:js';
+import 'dart:js' as js;
 import 'dart:async' as async;
 import 'dart:math' as Math;
+import 'dart:convert';
+
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
 import 'package:play_phaser/arcade.dart' as Arcade;
@@ -44,7 +47,10 @@ import 'package:mt19937/mt19937.dart';
 
 part 'src/alien_zone_application.dart';
 part 'src/game.dart';
+part 'src/game_model.dart';
+part 'src/game_services.dart';
 part 'src/gem.dart';
+part 'src/social_services.dart';
 
 
 /**
@@ -100,3 +106,10 @@ part 'src/systems/string_render_system.dart';
 
 
 const bool DEBUG = false;
+const DEFAULT_LEADERBOARD     = 'CgkI3YOVjfAZEAIQBg';
+const ACHIEVMENT_LEVEL1       = 'CgkI3YOVjfAZEAIQAQ';
+const ACHIEVMENT_LEVEL2       = 'CgkI3YOVjfAZEAIQAg';
+const ACHIEVMENT_LEVEL3       = 'CgkI3YOVjfAZEAIQAw';
+const ACHIEVMENT_LEVEL4       = 'CgkI3YOVjfAZEAIQBA';
+const ACHIEVMENT_LEVEL5       = 'CgkI3YOVjfAZEAIQBQ';
+const CLIENT_ID               = '889085837789-drspvmoknah1sf8kdojb09gf034c2b07.apps.googleusercontent.com';

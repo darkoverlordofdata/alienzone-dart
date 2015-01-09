@@ -24,17 +24,6 @@ class AlienZoneApplication {
    *   * Using game configuration
    *   * Start a game instance
    */
-//  AlienZoneApplication() {
-//
-//    Dilithium.using("packages/alienzone/res")
-//    .then((config) {
-//      config.preferences = translatePreferences(config);
-//      HttpRequest.getString("packages/alienzone/res/${config.preferences['template']}")
-//      .then((template) {
-//        new Game(config, new Li2Template(template));
-//      });
-//    });
-//  }
   AlienZoneApplication() {
 
     print("Class AlienZoneApplication Initialized");
@@ -45,6 +34,25 @@ class AlienZoneApplication {
 
   /**
    *  translate the preferences strings
+   *
+   * @param config  Li2.Config instance
+   * @returns translated preference map
+   *
+   *  @usage:
+   *
+   *
+   *    constructor() {
+   *
+   *      Dilithium.using("packages/name/res")
+   *      .then((config) {
+   *        config.preferences = translatePreferences(config);
+   *        HttpRequest.getString(config.path + config.preferences['template'])
+   *        .then((template) {
+   *          new Game(config, new Li2Template(template));
+   *        });
+   *      });
+   *    }
+   *
    */
   translatePreferences(config) {
 

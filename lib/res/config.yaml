@@ -43,4 +43,5 @@ sections:
   audio: values/audio.yaml
   sprites: values/sprites.yaml
   images: values/images.yaml
+  extra: values/extra.yaml
 

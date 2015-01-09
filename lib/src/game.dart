@@ -31,9 +31,7 @@ class Game extends Li2.Dilithium  {
   Game(Li2.Config config): super(config) {
 
     print("Class Game initialized");
-//    model = new GameModel();
-//    services = new GameServices(DEFAULT_LEADERBOARD, model);
-    new SocialServices(DEFAULT_LEADERBOARD, this);
+    cocoon = new CocoonServices(config.extra['DEFAULT_LEADERBOARD'], this);
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 

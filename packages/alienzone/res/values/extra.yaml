@@ -1,0 +1,22 @@
+WEBVIEW : leaderboard/index.html
+# google play params
+
+APP_ID: 889085837789
+CLIENT_ID: 889085837789-drspvmoknah1sf8kdojb09gf034c2b07.apps.googleusercontent.com
+
+
+# leaderboards
+
+DEFAULT_LEADERBOARD:
+  id:   CgkI3YOVjfAZEAIQBg
+  title: Alien Zone
+  imageURL:  https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+
+
+# achievements
+
+ACHIEVMENT_LEVEL1: CgkI3YOVjfAZEAIQAQ
+ACHIEVMENT_LEVEL2: CgkI3YOVjfAZEAIQAg
+ACHIEVMENT_LEVEL3: CgkI3YOVjfAZEAIQAw
+ACHIEVMENT_LEVEL4: CgkI3YOVjfAZEAIQBA
+ACHIEVMENT_LEVEL5: CgkI3YOVjfAZEAIQBQ

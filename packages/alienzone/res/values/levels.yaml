@@ -39,6 +39,8 @@ credits:
     - image: [0, 0, background]
     - image: [10, 10, icon]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - button: [100, 220, button, 'achievements', 'Achievements', 'bold 10pt opendyslexic', '#000']
+    - button: [100, 120, button, 'leaderboard', 'Leaderboard', 'bold 10pt opendyslexic', '#000']
     - image: [10, 320, label, 0.5]
     - string: [20, 335, creditsText, '12px opendyslexic', '#000']
     - string: [50, 450, copyrightText, '12px opendyslexic', '#000']

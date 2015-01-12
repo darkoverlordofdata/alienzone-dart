@@ -20,8 +20,9 @@ part of alienzone;
 class StringRenderSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;
+  CocoonServices cocoon;
 
-  StringRenderSystem(this.level);
+  StringRenderSystem(this.level, this.cocoon);
 
 
   void initialize() {

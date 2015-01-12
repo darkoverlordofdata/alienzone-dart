@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alien Zone</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="import" href="leaderboard.html">
+    <style>
+        @font-face{
+            font-family:'opendyslexic';
+            font-style: normal;
+            font-weight: 400;
+            src: local('opendyslexic'), url(fonts/OpenDyslexic-Regular.otf) format('truetype');
+        }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        #logo {
+            text-align: center;
+            font-family: opendyslexic;
+            height: 100%;
+            background: -webkit-linear-gradient(315deg, #111, #333);
+            background: linear-gradient(135deg, #111, #333);
+            overflow: hidden;
+            color: #ccc;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+        }
+
+        #logo div {
+            position: absolute;
+            top:100px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+
+        }
+
+        .letter {
+            font-size: 80px;
+            position: relative;
+            top: -webkit-calc(50% - 60px);
+            top: calc(50% - 60px);
+            text-shadow: 0px 0px 3px white;
+        }
+        .letter:nth-child(1) {
+            -webkit-animation: fade 4s infinite 200ms;
+            animation: fade 4s infinite 200ms;
+        }
+        .letter:nth-child(2) {
+            -webkit-animation: fade 4s infinite 400ms;
+            animation: fade 4s infinite 400ms;
+        }
+        .letter:nth-child(3) {
+            -webkit-animation: fade 4s infinite 600ms;
+            animation: fade 4s infinite 600ms;
+        }
+        .letter:nth-child(4) {
+            -webkit-animation: fade 4s infinite 800ms;
+            animation: fade 4s infinite 800ms;
+        }
+        .letter:nth-child(5) {
+            -webkit-animation: fade 4s infinite 1000ms;
+            animation: fade 4s infinite 1000ms;
+        }
+        .letter:nth-child(6) {
+            -webkit-animation: fade 4s infinite 1200ms;
+            animation: fade 4s infinite 1200ms;
+        }
+        .letter:nth-child(7) {
+            -webkit-animation: fade 4s infinite 1400ms;
+            animation: fade 4s infinite 1400ms;
+        }
+        .letter:nth-child(8) {
+            -webkit-animation: fade 4s infinite 1600ms;
+            animation: fade 4s infinite 1600ms;
+        }
+        .letter:nth-child(9) {
+            -webkit-animation: fade 4s infinite 1800ms;
+            animation: fade 4s infinite 1800ms;
+        }
+        .letter:nth-child(10) {
+            -webkit-animation: fade 4s infinite 2000ms;
+            animation: fade 4s infinite 2000ms;
+        }
+
+        @-webkit-keyframes fade {
+            50% {
+                opacity: 0.02;
+            }
+        }
+
+        @keyframes fade {
+            50% {
+                opacity: 0.02;
+            }
+        }
+
+        .copy {
+            font-size: 20px;
+        }
+
+        .build {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="logo">
+    <div>
+        <span class='letter'>A</span>
+        <span class='letter'>L</span>
+        <span class='letter'>I</span>
+        <span class='letter'>E</span>
+        <span class='letter'>N</span>
+        <br>
+        <span class='letter'>Z</span>
+        <span class='letter'>O</span>
+        <span class='letter'>N</span>
+        <span class='letter'>E</span>
+        <br>
+        <p class="copy">&copy; 2014 Dark Overlord Of Data</p>
+        <br>
+        <p class="build">build: 15</p>
+    </div>
+</div>
+
+<div id="preferences"></div>
+<div class="modal fade" id="leaderboard">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Panel title</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4>Oh snap! You got an error!</h4>
+                    <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+                    <p>
+                        <button type="button" class="btn btn-danger">Take this action</button>
+                        <button type="button" class="btn btn-default">Or do this</button>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ontouchend="$('#leaderboard').modal('hide');" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="components/cocoonjs-plugins/build/cocoon.min.js"></script>
+<script type="application/dart" src="main.dart"></script>
+<script type="text/javascript"  src="packages/browser/dart.js"></script>
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

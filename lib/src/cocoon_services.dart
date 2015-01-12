@@ -41,15 +41,22 @@ class CocoonServices {
   static const STATE_PLAYING              = 3;
   static const STATE_SCORES               = 4;
 
+  static const LOCAL_USER                 = "d16a";
+
   bool isMultiplayerGame = false;
   bool nativeAvailable = false;
   bool usingGameCenter = false;
   bool usingGooglePlayGames = false;
   bool waitingLogin = false;
+  bool loggedIn = false;
+  bool dataAvailable = false;
 
+  String userID = '';
   String userName = '';
   String userImage = '';
   String leaderboardId = '';
+  var leaderboards;
+  var achievements;
   String lastUrl = '';
   var listener;
 
@@ -63,6 +70,7 @@ class CocoonServices {
   JsObject Multiplayer;
   JsObject Social;
 
+  Li2.Config config;
   /**
    *
    * CocoonJS Game Services Adapter
@@ -71,9 +79,16 @@ class CocoonServices {
    * @param listener
    *
    */
-  CocoonServices(this.leaderboardId, this.listener) {
+  CocoonServices(this.config, this.listener) {
 
     if (DEBUG) print("Class SocialServices Initialized");
+
+    window.localStorage.forEach((key, value) {
+      if (key.startsWith(Context.PFX)) {
+        key = key.replaceAll("${Context.PFX}_", "");
+        print("storage: $key = $value");
+      }
+    });
 
     App = context['Cocoon']['App'];
     Dialog = context['Cocoon']['Dialog'];
@@ -95,7 +110,7 @@ class CocoonServices {
       nativeAvailable = true;
 
     } else if (gp['nativeAvailable']) {
-      gp.callMethod('init', [new JsObject.jsify({'defaultLeaderboard': leaderboardId})]);
+      gp.callMethod('init', [new JsObject.jsify({'defaultLeaderboard': config.extra['DEFAULT_LEADERBOARD']['id']})]);
       multiplayerService = gp.callMethod('getMultiplayerInterface');
       socialService = gp.callMethod('getSocialInterface');
       usingGameCenter = false;
@@ -300,13 +315,19 @@ class CocoonServices {
     }
   }
 
+  loginLocal(bool autoLogin) {
+
+  }
   /**
    * Login to Social Service
    *
    * @param autoLogin
    */
   loginSocialService(bool autoLogin) {
-    if (socialService == null) return;
+
+    int count = 0;
+
+    if (socialService == null) return loginLocal(autoLogin);
 
     if (!waitingLogin) {
       waitingLogin = true;
@@ -321,22 +342,50 @@ class CocoonServices {
                   'cancelText':   "Cancel" }),
 
                 (accepted) {
-                  if(accepted) App.callMethod('openURL', "gamecenter:");
+                  if(accepted) App.callMethod('openURL', ["gamecenter:"]);
                 }
             ]);
           }
+        } else {
         }
+
         // get user info
-        socialService.callMethod('requestUser', [
-        (user, error) {
-          waitingLogin = false;
+        socialService.callMethod('requestUser', [(user, error) {
           if (error == null) {
+            loggedIn = true;
+            waitingLogin = false;
+            userID = user['userID'];
             userName = user['userName'];
             userImage = user['userImage'];
+            count++;
+            if (count > 1) dataAvailable = true;
+
           } else {
             window.alert(error['message']);
           }
         }]);
+
+        // get achievement info
+        socialService.callMethod('requestAllAchievements', [(a, error){
+          if (error == null) {
+            achievements = [];
+            a.forEach((achievement) {
+              achievements.add({
+                  'achievementID':  achievement['achievementID'],
+                  'customID':       achievement['customID'],
+                  'title':          achievement['title'],
+                  'description':    achievement['description'],
+                  'imageURL':       achievement['imageURL']
+              });
+            });
+            count++;
+            if (count > 1) dataAvailable = true;
+
+          } else {
+            window.alert(error['message']);
+          }
+        }]);
+
       }]);
     }
   }
@@ -387,6 +436,21 @@ class CocoonServices {
 
 
   /**
+   * Show Achievements
+   *
+   * @returns {boolean}
+   */
+  showAchievements() {
+    if (DEBUG) print("Social: ${isSocial()}");
+    if (isSocial()) {
+      socialService.callMethod('showAchievements');
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Show Leaderboard
    *
    * @returns {boolean}
@@ -400,7 +464,6 @@ class CocoonServices {
       return false;
     }
   }
-
 
   /**
    * Disconnect
@@ -422,20 +485,94 @@ class CocoonServices {
   /**
    * Submit Score
    *
+   * Submit score to game service
+   *
    * @param value
+   * @param leaderboardId
    */
-  submitScore(num value) {
+  submitScore(num value, [String leaderboardId = '']) {
     if (isSocial()) {
-      socialService.callMethod('submitScore', [
-        (error) {
+      if (leaderboardId == '') {
+
+        socialService.callMethod('submitScore', [(error) {
           if (error != null) {
-            listener.error("Error submitting score: ${error['message']}");
+            if (DEBUG) print("Error: ${error['message']}");
+            cacheScore(userID, value, this.leaderboardId);
           } else {
             if (DEBUG) print("Score submitted!");
           }
-        }
-      ]);
+        }]);
+
+      } else {
+
+        socialService.callMethod('submitScore', [(error) {
+          if (error != null) {
+            if (DEBUG) print("Error: ${error['message']}");
+            cacheScore(userID, value, leaderboardId);
+          } else {
+            if (DEBUG) print("Score submitted!");
+          }
+        }, new JsObject.jsify({
+            'leaderboardID': leaderboardId
+        })]);
+      }
+    } else {
+      cacheScore(LOCAL_USER, value, leaderboardId);
     }
+  }
+
+  /**
+   * Cache Score
+   *
+   * cache score in local storage if we're not logged in
+   *
+   * @param value
+   * @param leaderboardId
+   */
+  cacheScore(String userID, num value, String leaderboardId) {
+    var cache = JSON.decode(window.localStorage["${Context.PFX}_leaderboards"]);
+    if (cache == null) cache = {};
+    if (cache[userID] == null) cache[userID] = {};
+    cache[userID][leaderboardId] = value;
+    window.localStorage["${Context.PFX}_leaderboards"] = JSON.encode(cache);
+
+  }
+
+  /**
+   * Submit Achievements
+   *
+   * Submit achievements to game service
+   *
+   * @param value
+   */
+  submitAchievements(String achievementID) {
+    if (isSocial()) {
+      socialService.callMethod('submitAchievements', [(error) {
+        if (error != null) {
+          if (DEBUG) print("Error: ${error['message']}");
+          cacheAchievements(userID, achievementID);
+        } else {
+          if (DEBUG) print("Achievement submitted!");
+        }
+      }]);
+    } else {
+      cacheAchievements(LOCAL_USER, achievementID);
+    }
+  }
+
+  /**
+   * Cache Achievements
+   *
+   * cache achievement in local storage if we're not logged in
+   *
+   * @param value
+   */
+  cacheAchievements(String userID, String achievementID) {
+    var cache = JSON.decode(window.localStorage["${Context.PFX}_achievements"]);
+    if (cache == null) cache = {};
+    if (cache[userID] == null) cache[userID] = {};
+    cache[userID][achievementID] = true;
+    window.localStorage["${Context.PFX}_achievements"] = JSON.encode(cache);
   }
 
   /**
@@ -459,16 +596,28 @@ class CocoonServices {
    */
   showWebView(String url, [int top=0, int left=0, num width=0, num height=0]) {
 
+    if (!dataAvailable) {
+      window.alert("Data not ready. Try again.");
+      return;
+    }
+
     width = (width == 0) ? window.innerWidth * window.devicePixelRatio : width;
     height = (height == 0) ? window.innerHeight * window.devicePixelRatio : height;
-    String js = [
-      "t.app.title = '$userName'",
-      "t.app.url = '$userImage'"
-    ].join(';');
+
+    var payload = {
+        'user': {
+            'userName': userName,
+            'userImage': userImage,
+        },
+        'leaderboards': [config.extra['DEFAULT_LEADERBOARD']],
+        'achievements': achievements
+    };
+
+    String injection = "injectData('${JSON.encode(payload)}');";
 
     if (lastUrl == url) {
       App.callMethod('showTheWebView', [top, left, width, height]);
-      App.callMethod('forwardAsync', [js]);
+      App.callMethod('forwardAsync', [injection]);
 
     } else {
 
@@ -476,7 +625,7 @@ class CocoonServices {
           'success': () {
             lastUrl = url;
             App.callMethod('showTheWebView', [top, left, width, height]);
-            App.callMethod('forwardAsync', [js]);
+            App.callMethod('forwardAsync', [injection]);
           },
           'error': () {
             window.alert("Unable to load the webview");

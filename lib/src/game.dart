@@ -18,6 +18,7 @@ part of alienzone;
 class Game extends Li2.Dilithium  {
 
   GameModel model;
+  CocoonServices cocoon;
 
   GameServices services;
   /**
@@ -30,8 +31,9 @@ class Game extends Li2.Dilithium  {
    */
   Game(Li2.Config config): super(config) {
 
+    // screen.orientation.lock('portrait');
     print("Class Game initialized");
-    cocoon = new CocoonServices(config.extra['DEFAULT_LEADERBOARD'], this);
+    cocoon = new CocoonServices(config, this);
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 
@@ -40,12 +42,12 @@ class Game extends Li2.Dilithium  {
    */
   Phaser.State levels() {
 
-    game.state.add('game', new BaseLevel('game', config));
-    game.state.add('credits', new BaseLevel('credits', config));
-    game.state.add('gameover', new BaseLevel('gameover', config));
+    game.state.add('game', new BaseLevel('game', config, cocoon));
+    game.state.add('credits', new BaseLevel('credits', config, cocoon));
+    game.state.add('gameover', new BaseLevel('gameover', config, cocoon));
 
     window.document.getElementById("logo").hidden = true;
-    return new BaseLevel('main', config);
+    return new BaseLevel('main', config, cocoon);
 
   }
 

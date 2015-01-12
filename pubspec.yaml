@@ -1,11 +1,13 @@
 name: alienzone
-version: 0.0.11
+version: 0.0.15
 description:
   Space Crystal Matching Puzzle
 author: brucedavidson <darkoverlordofdata@gmail.com>
 homepage: http://darkoverlordofdata.com
 dependencies:
   browser: any
+#  polymer: '>=0.15.0 <0.16.0'
+#  paper_elements: '>=0.5.0 <0.6.0'
   yaml: any
   play_phaser: any
   play_pixi: any
@@ -14,7 +16,11 @@ dependencies:
   dilithium: any
   mt19937: any
 
+
 transformers:
+#- polymer:
+#    entry_points:
+#    - web/index.html
 - $dart2js:
     checked: false
     minify: true
@@ -22,4 +28,4 @@ transformers:
     suppressHints: false
     terse: false
     verbose: true
-    csp: true
+#    csp: true

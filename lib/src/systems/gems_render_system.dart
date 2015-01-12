@@ -18,9 +18,10 @@ part of alienzone;
 
 class GemsRenderSystem extends Artemis.VoidEntitySystem {
 
+  CocoonServices cocoon;
   BaseLevel level;
 
-  GemsRenderSystem(this.level);
+  GemsRenderSystem(this.level, this.cocoon);
 
 
   void initialize() {

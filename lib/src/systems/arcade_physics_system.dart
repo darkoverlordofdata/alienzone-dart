@@ -17,10 +17,12 @@ part of alienzone;
 
 class ArcadePhysicsSystem extends Artemis.VoidEntitySystem {
 
+
+  CocoonServices cocoon;
   BaseLevel level;
   Arcade.Arcade arcade;
 
-  ArcadePhysicsSystem(this.level) {
+  ArcadePhysicsSystem(this.level, this.cocoon) {
     if (DEBUG) print("ArcadePhysicsSystem: started");
     level.game.physics.startSystem(Phaser.Physics.ARCADE);
     arcade = level.game.physics.arcade;

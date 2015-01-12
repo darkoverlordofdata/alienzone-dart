@@ -15,6 +15,7 @@
 #
 #
 name: Alien Zone
+#id: com.darkoverlordofdata.alienzone
 locale: false
 menu: main
 

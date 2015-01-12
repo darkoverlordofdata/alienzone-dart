@@ -21,6 +21,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
   static const SFX_COUNT = 19;
 
   BaseLevel level;
+  CocoonServices cocoon;
   Position position;
   Text text;
   Count score;
@@ -36,7 +37,7 @@ class ScoreRenderSystem extends Artemis.VoidEntitySystem {
   List rows = [250, 150, 250];
 
 
-  ScoreRenderSystem(this.level);
+  ScoreRenderSystem(this.level, this.cocoon);
 
   void initialize() {
     if (DEBUG) print("ScoreRenderSystem::initialize");

@@ -20,8 +20,9 @@ const String GROUP_SPRITES = "SPRITES";
 class SpriteRenderSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;
+  CocoonServices cocoon;
 
-  SpriteRenderSystem(this.level);
+  SpriteRenderSystem(this.level, this.cocoon);
 
 
   void initialize() {

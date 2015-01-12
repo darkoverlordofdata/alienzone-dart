@@ -18,9 +18,10 @@ part of alienzone;
 class OptionControlSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;      //  parent game state
+  CocoonServices cocoon;
   Map<String, Phaser.Button> options;
 
-  OptionControlSystem(this.level);
+  OptionControlSystem(this.level, this.cocoon);
 
   /**
    * Initialize option control

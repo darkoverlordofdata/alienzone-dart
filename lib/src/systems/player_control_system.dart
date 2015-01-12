@@ -56,6 +56,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
   int known = 3;          //  start off with set of 3 crystals
   int discovered = 0;     //  we discover the remaining crystals
   bool dropping = false;  //  crystals being dropped?
+  CocoonServices cocoon;
   BaseLevel level;        //  parent game state
   List discoveredGems;    //  all the discovered crystals
   List<Gem> gems;         //  group of crystals that move on the top board
@@ -68,7 +69,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
   ];
 
 
-  PlayerControlSystem(this.level);
+  PlayerControlSystem(this.level, this.cocoon);
 
 
   /**

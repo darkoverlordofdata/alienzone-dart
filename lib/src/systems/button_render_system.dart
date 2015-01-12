@@ -4,9 +4,10 @@ part of alienzone;
 
 class ButtonRenderSystem extends Artemis.VoidEntitySystem {
 
+  CocoonServices cocoon;
   BaseLevel level;
   Context context;
-  ButtonRenderSystem(this.level);
+  ButtonRenderSystem(this.level, this.cocoon);
 
 
   void initialize() {
@@ -45,10 +46,18 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
         level.state.start("game", true, false, ["game", 0]);
         break;
       case 'achievements':
-        level.state.start("credits", true, false, ["credits", 0]);
+        cocoon.showAchievements();
+        break;
+      case 'leaderboard':
+        cocoon.showLeaderboard();
         break;
       case 'credits':
-        cocoon.showWebView(level.config.path + level.config.extra['WEBVIEW']);
+//        try {
+//          js.context.callMethod(r'$', ['#leaderboard']).callMethod('modal', ['show']);
+//        } catch(e) {
+//          window.console.log(e);
+//        }
+        level.state.start("credits", true, false, ["credits", 0]);
         break;
       case 'back':
         level.state.start(level.config.menu, true, false, [level.config.menu, 0]);

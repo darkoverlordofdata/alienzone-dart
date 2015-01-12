@@ -17,6 +17,7 @@ part of alienzone;
 
 class BaseLevel extends Phaser.State {
 
+  CocoonServices cocoon;
   Artemis.World artemis;          // the ecs world
   Li2.Config config;              // dilithium config object
   Context context;                // the game context
@@ -31,7 +32,7 @@ class BaseLevel extends Phaser.State {
   /**
    * Initialize the random generator
    */
-  BaseLevel(this.level, this.config){
+  BaseLevel(this.level, this.config, this.cocoon){
     if (DEBUG) print("Class BaseLevel initialized");
     random = new MersenneTwister();
     //random = new Math.Random(new DateTime.now().millisecondsSinceEpoch % 0x7fffffff);
@@ -72,7 +73,7 @@ class BaseLevel extends Phaser.State {
     /**
      * Install systems for this level
      */
-    systemFactory = new SystemFactory(this);
+    systemFactory = new SystemFactory(this, cocoon);
     config.levels[level]['systems'].forEach((system) {
       system.forEach((name, active){
         var system = systemFactory.invoke(name);

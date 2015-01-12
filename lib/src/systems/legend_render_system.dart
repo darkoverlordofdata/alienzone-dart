@@ -17,9 +17,10 @@ part of alienzone;
 
 class LegendRenderSystem extends Artemis.VoidEntitySystem {
 
+  CocoonServices cocoon;
   BaseLevel level;
 
-  LegendRenderSystem(this.level);
+  LegendRenderSystem(this.level, this.cocoon);
   List<Phaser.Sprite> sprites;
 
 

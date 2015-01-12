@@ -104,35 +104,5 @@ part 'src/systems/score_render_system.dart';
 part 'src/systems/sprite_render_system.dart';
 part 'src/systems/string_render_system.dart';
 
-CocoonServices cocoon;
 
 const DEBUG = false;
-//const CLIENT_ID               = '889085837789-drspvmoknah1sf8kdojb09gf034c2b07.apps.googleusercontent.com';
-//
-//const DEFAULT_LEADERBOARD     = 'CgkI3YOVjfAZEAIQBg';
-//const ACHIEVMENT_LEVEL1       = 'CgkI3YOVjfAZEAIQAQ';
-//const ACHIEVMENT_LEVEL2       = 'CgkI3YOVjfAZEAIQAg';
-//const ACHIEVMENT_LEVEL3       = 'CgkI3YOVjfAZEAIQAw';
-//const ACHIEVMENT_LEVEL4       = 'CgkI3YOVjfAZEAIQBA';
-//const ACHIEVMENT_LEVEL5       = 'CgkI3YOVjfAZEAIQBQ';
-//
-//Map<String,String> ACHIEVMENT_IDS = {
-//    'ACHIEVMENT_LEVEL1': ACHIEVMENT_LEVEL1, // Combo
-//    'ACHIEVMENT_LEVEL2': ACHIEVMENT_LEVEL2, // Cascading
-//    'ACHIEVMENT_LEVEL3': ACHIEVMENT_LEVEL3, // Triple
-//    'ACHIEVMENT_LEVEL4': ACHIEVMENT_LEVEL4, // Quad
-//    'ACHIEVMENT_LEVEL5': ACHIEVMENT_LEVEL5  // Cascading Combo
-//};
-//
-//Map<String,String> LEADERBOARD_IDS = {
-//    'DEFAULT_LEADERBOARD': DEFAULT_LEADERBOARD
-//};
-//
-//var LEADERBARDS = {
-//  DEFAULT_LEADERBOARD: {
-//      'id':   DEFAULT_LEADERBOARD,
-//      'name': 'Alien Zone',
-//      'url':  'https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw'
-//  }
-//}
-//

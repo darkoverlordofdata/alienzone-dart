@@ -12,3 +12,7 @@ Alien_Zone_release_unsigned
 /home/bruce/Applications/android-studio/sdk/build-tools/19.1.0/zipalign -v 4 Alien_Zone_release_unsigned.apk Alien_Zone_release.apk
 
 keytool -exportcert -alias alienzed -keystore ~/apk/alienzone.jks -list -v
+
+
+vulcanize --strip --csp --inline --output web/index.html web/alienzone.html
+

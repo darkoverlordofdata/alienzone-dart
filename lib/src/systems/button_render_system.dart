@@ -53,7 +53,8 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
         break;
       case 'credits':
 //        try {
-//          js.context.callMethod(r'$', ['#leaderboard']).callMethod('modal', ['show']);
+//          JsObject leaderboard = js.context.callMethod(r'$', ['#leaderboard']);
+//          leaderboard.callMethod('modal', ['show']);
 //        } catch(e) {
 //          window.console.log(e);
 //        }

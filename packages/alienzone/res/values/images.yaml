@@ -13,12 +13,6 @@ button4:        images/button4.png
 icon:           images/d16a.png
 label:          images/label.png
 scores:         images/scores.png
-#  ui buttons
-playButton:     images/buttons/play1.png
-scoreButton:    images/buttons/score1.png
-creditsButton:  images/buttons/credits1.png
-optionsButton:  images/buttons/options.png
-backButton:     images/buttons/back1.png
 arrowRight:     images/arrows/right.png
 arrowLeft:      images/arrows/left.png
 arrowDown:      images/arrows/down.png

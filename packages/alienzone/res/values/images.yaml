@@ -19,11 +19,9 @@ scoreButton:    images/buttons/score1.png
 creditsButton:  images/buttons/credits1.png
 optionsButton:  images/buttons/options.png
 backButton:     images/buttons/back1.png
-arrowRight:    images/arrows/right.png
-arrowLeft:     images/arrows/left.png
-arrowDown:     images/arrows/down.png
-arrowLrot:     images/arrows/lrot.png
-arrowRrot:     images/arrows/rrot.png
-
-
+arrowRight:     images/arrows/right.png
+arrowLeft:      images/arrows/left.png
+arrowDown:      images/arrows/down.png
+arrowLrot:      images/arrows/lrot.png
+arrowRrot:      images/arrows/rrot.png
 

@@ -6,17 +6,45 @@ CLIENT_ID: 889085837789-drspvmoknah1sf8kdojb09gf034c2b07.apps.googleusercontent.
 
 
 # leaderboards
+leaderboardx:
+  CgkI3YOVjfAZEAIQBg: 0
+  CgkI3YOVjfAZEAIQBw: 1
 
-DEFAULT_LEADERBOARD:
-  id:   CgkI3YOVjfAZEAIQBg
-  title: Alien Zone
-  imageURL:  https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
-
+leaderboards:
+  - id:       CgkI3YOVjfAZEAIQBg
+    title:    All the Time
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+  - id:       CgkI3YOVjfAZEAIQBw
+    title:    Rush Hour
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
 
 # achievements
+achievementx:
+  CgkI3YOVjfAZEAIQAQ: 0
+  CgkI3YOVjfAZEAIQAg: 1
+  CgkI3YOVjfAZEAIQAw: 2
+  CgkI3YOVjfAZEAIQBA: 3
+  CgkI3YOVjfAZEAIQBQ: 4
 
-ACHIEVMENT_LEVEL1: CgkI3YOVjfAZEAIQAQ
-ACHIEVMENT_LEVEL2: CgkI3YOVjfAZEAIQAg
-ACHIEVMENT_LEVEL3: CgkI3YOVjfAZEAIQAw
-ACHIEVMENT_LEVEL4: CgkI3YOVjfAZEAIQBA
-ACHIEVMENT_LEVEL5: CgkI3YOVjfAZEAIQBQ
+achievements:
+  - id:       CgkI3YOVjfAZEAIQAQ
+    title:    Combo
+    desc:     Make 2 scores with 1 drop
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+  - id:       CgkI3YOVjfAZEAIQAg
+    title:    Cascading
+    desc:     After your first score, the crystals settle and you make another score
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+  - id:       CgkI3YOVjfAZEAIQAw
+    title:    Triple
+    desc:     Score with 3 of a kind
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+  - id:       CgkI3YOVjfAZEAIQBA
+    title:    Quad
+    desc:     Score with 4 of a kind
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+  - id:       CgkI3YOVjfAZEAIQBQ
+    title:    Cascading Combo
+    desc:     Your combo results in a cascade
+    imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
+

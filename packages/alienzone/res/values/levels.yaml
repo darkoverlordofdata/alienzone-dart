@@ -23,13 +23,15 @@ main:
     - image: [0, 0, splash]
     - button: [100, 150, button4, 'play', 'Play', 'bold 24pt opendyslexic', '#000']
     - button: [100, 220, button4, 'credits', 'Credits', 'bold 17pt opendyslexic', '#000']
-    - option: [50, 370, musicOption, music]
-    - option: [200, 370, sfxOption, sfx]
+    - option: [10, 360, musicOption, music]
+    - user: [60, 420, 64, 8]
+    - option: [250, 360, sfxOption, sfx]
 
   systems:
     - spriteRender: false
     - buttonRender: false
     - optionControl: false
+    - playGames: true
 
 #
 # Credits screen
@@ -39,8 +41,6 @@ credits:
     - image: [0, 0, background]
     - image: [10, 10, icon]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
-    - button: [100, 220, button, 'achievements', 'Achievements', 'bold 10pt opendyslexic', '#000']
-    - button: [100, 120, button, 'leaderboard', 'Leaderboard', 'bold 10pt opendyslexic', '#000']
     - image: [10, 320, label, 0.5]
     - string: [20, 335, creditsText, '12px opendyslexic', '#000']
     - string: [50, 450, copyrightText, '12px opendyslexic', '#000']

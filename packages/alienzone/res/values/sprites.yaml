@@ -20,15 +20,15 @@ sfxOption:
 
 gamesAchievements:
   file      : images/games_achievements.png
-  width     : 48
-  height    : 48
+  width     : 64
+  height    : 64
 
 gamesController:
   file      : images/games_controller.png
-  width     : 48
-  height    : 48
+  width     : 64
+  height    : 64
 
 gamesLeaderboards:
   file      : images/games_leaderboards.png
-  width     : 48
-  height    : 48
+  width     : 64
+  height    : 64

@@ -1,15 +1,15 @@
-#sky: assets/sky.png
-#ground: assets/platform.png
-#star: assets/star.png
 #
 #
 #
-splash:         images/splash.png
+splash:         images/leader.png
 background:     images/background.png
+background1:    images/splash.png
+background3:    images/background3.png
 board:          images/board.png
 button:         images/button.png
 button2:        images/button2.png
 button4:        images/button4.png
+button5:        images/button5.png
 icon:           images/d16a.png
 label:          images/label.png
 scores:         images/scores.png

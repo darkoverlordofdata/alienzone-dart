@@ -14,5 +14,5 @@ Alien_Zone_release_unsigned
 keytool -exportcert -alias alienzed -keystore ~/apk/alienzone.jks -list -v
 
 
-vulcanize --strip --csp --inline --output web/index.html web/alienzone.html
+vulcanize --strip --csp --inline --output
 

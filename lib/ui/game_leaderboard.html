@@ -1,0 +1,28 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="../../../packages/polymer/polymer.html">
+<link rel="import" href="../../../packages/paper_elements/roboto.html">
+<link rel="import" href="../../../packages/paper_elements/paper_dialog.html">
+<link rel="import" href="../../../packages/paper_elements/paper_button.html">
+<link rel="import" href="../../../packages/paper_elements/paper_action_dialog.html">
+
+<polymer-element name="game-leaderboard">
+  <template>
+    <style>
+      :host {
+        display: inline;
+      }
+
+      paper-action-dialog {
+        font-family: Roboto;
+      }
+    </style>
+
+    <paper-action-dialog id="leaderboard" backdrop autoCloseDisabled layered="false">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+      <paper-button raised affirmative autofocus on-tap="{{resume}}">Tap me to close</paper-button>
+    </paper-action-dialog>
+
+  </template>
+  <script type="application/dart" src="game_leaderboard.dart"></script>
+</polymer-element>

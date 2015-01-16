@@ -17,3 +17,18 @@ sfxOption:
   file      : images/sfx_option.png
   width     : 70
   height    : 61
+
+gamesAchievements:
+  file      : images/games_achievements.png
+  width     : 64
+  height    : 64
+
+gamesController:
+  file      : images/games_controller.png
+  width     : 64
+  height    : 64
+
+gamesLeaderboards:
+  file      : images/games_leaderboards.png
+  width     : 64
+  height    : 64

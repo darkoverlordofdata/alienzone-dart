@@ -43,8 +43,10 @@ class OptionControlSystem extends Artemis.VoidEntitySystem {
 
       if (level.context.getPreference(action.name)) {
         options[action.name].frame = 1;
+        options[action.name].alpha = 1;
       } else {
         options[action.name].frame = 0;
+        options[action.name].alpha = 0.5;
       }
     });
 
@@ -65,6 +67,7 @@ class OptionControlSystem extends Artemis.VoidEntitySystem {
        * Set ON
        */
         options[name].frame = 1;
+        options[name].alpha = 1;
         level.context.setPreference(name, true);
         break;
 
@@ -73,6 +76,7 @@ class OptionControlSystem extends Artemis.VoidEntitySystem {
        * Set OFF
        */
         options[name].frame = 0;
+        options[name].alpha = 0.5;
         level.context.setPreference(name, false);
         break;
     }

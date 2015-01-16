@@ -42,8 +42,11 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
 
   onClick(String name) {
     switch (name) {
-      case 'play':
-        level.state.start("game", true, false, ["game", 0]);
+      case 'infinity':
+        level.state.start("infinity", true, false, ["infinity", 0]);
+        break;
+      case 'ftl':
+        level.state.start("ftl", true, false, ["ftl", 0]);
         break;
       case 'achievements':
         cocoon.showAchievements();
@@ -52,12 +55,6 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
         cocoon.showLeaderboard();
         break;
       case 'credits':
-//        try {
-//          JsObject leaderboard = js.context.callMethod(r'$', ['#leaderboard']);
-//          leaderboard.callMethod('modal', ['show']);
-//        } catch(e) {
-//          window.console.log(e);
-//        }
         level.state.start("credits", true, false, ["credits", 0]);
         break;
       case 'back':

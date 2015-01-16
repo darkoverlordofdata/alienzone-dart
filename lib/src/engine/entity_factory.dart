@@ -58,6 +58,12 @@ class EntityFactory  {
   StringEntity string(int x, int y, String name, String font, String fill)
     => new StringEntity(this, x, y, name, font, fill);
 
+  TimerEntity timer(int x, int y, String action, String font, String fill)
+    => new TimerEntity(this, x, y, action, font, fill);
+
+  UserEntity user(int x, int y, int w, int h)
+    => new UserEntity(this, x, y, w, h);
+
   /**
    * Mirrors aren't stable in compiled js,
    * so we do this the old-fashioned way.
@@ -73,6 +79,8 @@ class EntityFactory  {
       case 'player':      return Function.apply(player, args);
       case 'score':       return Function.apply(score, args);
       case 'string':      return Function.apply(string, args);
+      case 'timer':       return Function.apply(timer, args);
+      case 'user':        return Function.apply(user, args);
       default:            return null;
     }
   }

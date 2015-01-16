@@ -110,7 +110,7 @@ class CocoonServices {
       nativeAvailable = true;
 
     } else if (gp['nativeAvailable']) {
-      gp.callMethod('init', [new JsObject.jsify({'defaultLeaderboard': config.extra['DEFAULT_LEADERBOARD']['id']})]);
+      gp.callMethod('init', [new JsObject.jsify({'defaultLeaderboard': config.extra['leaderboards'][0]['id']})]);
       multiplayerService = gp.callMethod('getMultiplayerInterface');
       socialService = gp.callMethod('getSocialInterface');
       usingGameCenter = false;
@@ -171,7 +171,7 @@ class CocoonServices {
         }
       }]);
     }
-    loginSocialService(true);
+    //login(true);
   }
 
   /**
@@ -315,19 +315,24 @@ class CocoonServices {
     }
   }
 
-  loginLocal(bool autoLogin) {
+  logout() {
+    socialService.callMethod('logout', [(error) {
 
+    }]);
   }
   /**
    * Login to Social Service
    *
    * @param autoLogin
    */
-  loginSocialService(bool autoLogin) {
+  login([bool autoLogin = false]) {
 
     int count = 0;
 
-    if (socialService == null) return loginLocal(autoLogin);
+    if (socialService == null) {
+      window.alert("no socialService");
+      return;
+    }
 
     if (!waitingLogin) {
       waitingLogin = true;
@@ -336,59 +341,63 @@ class CocoonServices {
           if (!autoLogin && error['code'] == 2 && usingGameCenter) {
             Dialog.callMethod('confirm', [
                 new JsObject.jsify({
-                  'title':        "Game Center Disabled",
-                  'message':      "Sign in with the Game Center application to enable it",
-                  'confirmText':  "Ok",
-                  'cancelText':   "Cancel" }),
+                    'title': "Game Center Disabled",
+                    'message': "Sign in with the Game Center application to enable it",
+                    'confirmText': "Ok",
+                    'cancelText': "Cancel"
+                }),
 
-                (accepted) {
-                  if(accepted) App.callMethod('openURL', ["gamecenter:"]);
+                    (accepted) {
+                  if (accepted) App.callMethod('openURL', ["gamecenter:"]);
                 }
             ]);
+          } else {
+            window.alert(error['message']);
+            return;
           }
-        } else {
         }
 
-        // get user info
-        socialService.callMethod('requestUser', [(user, error) {
-          if (error == null) {
-            loggedIn = true;
-            waitingLogin = false;
-            userID = user['userID'];
-            userName = user['userName'];
-            userImage = user['userImage'];
-            count++;
-            if (count > 1) dataAvailable = true;
-
-          } else {
-            window.alert(error['message']);
-          }
-        }]);
-
-        // get achievement info
-        socialService.callMethod('requestAllAchievements', [(a, error){
-          if (error == null) {
-            achievements = [];
-            a.forEach((achievement) {
-              achievements.add({
-                  'achievementID':  achievement['achievementID'],
-                  'customID':       achievement['customID'],
-                  'title':          achievement['title'],
-                  'description':    achievement['description'],
-                  'imageURL':       achievement['imageURL']
-              });
-            });
-            count++;
-            if (count > 1) dataAvailable = true;
-
-          } else {
-            window.alert(error['message']);
-          }
-        }]);
+        window.alert('logged in');
+        this.loggedIn = true;
 
       }]);
     }
   }
+//        // get user info
+//        socialService.callMethod('requestUser', [(user, error) {
+//          if (error == null) {
+//            waitingLogin = false;
+//            userID = user['userID'];
+//            userName = user['userName'];
+//            userImage = user['userImage'];
+//            count++;
+//            if (count > 1) dataAvailable = true;
+//
+//          } else {
+//            window.alert(error['message']);
+//          }
+//        }]);
+//
+//        // get achievement info
+//        socialService.callMethod('requestAllAchievements', [(a, error){
+//          if (error == null) {
+//            achievements = [];
+//            a.forEach((achievement) {
+//              achievements.add({
+//                  'achievementID':  achievement['achievementID'],
+//                  'customID':       achievement['customID'],
+//                  'title':          achievement['title'],
+//                  'description':    achievement['description'],
+//                  'imageURL':       achievement['imageURL']
+//              });
+//            });
+//            count++;
+//            if (count > 1) dataAvailable = true;
+//
+//          } else {
+//            window.alert(error['message']);
+//          }
+//        }]);
 
   /**
    * Create a Match
@@ -409,7 +418,7 @@ class CocoonServices {
       }
 
       if (!socialService.callMethod('isLoggedIn')) {
-        loginSocialService(false);
+        login(false);
       } else {
         multiplayerService.callMethod('findMatch', [request, handleMatch]);
       }
@@ -609,7 +618,7 @@ class CocoonServices {
             'userName': userName,
             'userImage': userImage,
         },
-        'leaderboards': [config.extra['DEFAULT_LEADERBOARD']],
+        'leaderboards': config.extra['leaderboards'],
         'achievements': achievements
     };
 

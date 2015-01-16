@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * position.dart
+ * scale.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -15,16 +15,16 @@
  */
 part of alienzone;
 
-class Position extends Artemis.ComponentPoolable {
+class Scale extends Artemis.ComponentPoolable {
   num x, y;
 
-  Position._();
-  factory Position([num x = 0, num y = 0]) {
-    Position position = new Artemis.Poolable.of(Position, _constructor);
-    position.x = x;
-    position.y = y;
-    return position;
+  Scale._();
+  factory Scale([num x = 0, num y = 0]) {
+    Scale scale = new Artemis.Poolable.of(Scale, _constructor);
+    scale.x = x;
+    scale.y = y;
+    return scale;
   }
-  static Position _constructor() => new Position._();
+  static Scale _constructor() => new Scale._();
 }
 

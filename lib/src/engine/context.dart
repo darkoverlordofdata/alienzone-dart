@@ -64,7 +64,6 @@ class Context {
 
   }
 
-
   /**
    * Update the score, fire signal
    */

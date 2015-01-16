@@ -17,6 +17,7 @@ part of alienzone;
 
 class AlienZoneApplication {
 
+  Game game;
   /**
    * == start game ==
    *
@@ -24,13 +25,20 @@ class AlienZoneApplication {
    *   * Using game configuration
    *   * Start a game instance
    */
-  AlienZoneApplication() {
+  AlienZoneApplication(var ui) {
 
     print("Class AlienZoneApplication Initialized");
-    Li2.Dilithium.using("packages/alienzone/res").then((config) => new Game(config));
+    Li2.Dilithium.using("packages/alienzone/res").then((config) => (game = new Game(ui, config)));
 
   }
 
+  pause() {
+    game.game.paused = true;
+  }
+
+  resume() {
+    game.game.paused = false;
+  }
 
   /**
    *  translate the preferences strings

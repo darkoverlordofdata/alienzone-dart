@@ -33,17 +33,20 @@ library alienzone;
 
 import 'dart:html';
 import 'dart:js';
-import 'dart:js' as js;
+import 'dart:js' as js show context;
+import 'dart:js' hide context;
 import 'dart:async' as async;
 import 'dart:math' as Math;
 import 'dart:convert';
 
 import 'package:dartemis/dartemis.dart' as Artemis;
 import 'package:play_phaser/phaser.dart' as Phaser;
-import 'package:play_phaser/arcade.dart' as Arcade;
 import "package:dilithium/dilithium.dart" as Li2;
 import 'package:match3/match3.dart' as Match3;
 import 'package:mt19937/mt19937.dart';
+
+import 'package:alienzone/ui/game_ui.dart';
+export 'package:polymer/init.dart';
 
 part 'src/alien_zone_application.dart';
 part 'src/cocoon_services.dart';
@@ -77,7 +80,9 @@ part 'src/components/position.dart';
 part 'src/components/scale.dart';
 part 'src/components/state.dart';
 part 'src/components/text.dart';
+part 'src/components/time.dart';
 part 'src/components/sprite.dart';
+part 'src/components/user.dart';
 part 'src/components/velocity.dart';
 /**
  * Entities
@@ -91,18 +96,21 @@ part 'src/entities/option_entity.dart';
 part 'src/entities/player_entity.dart';
 part 'src/entities/score_entity.dart';
 part 'src/entities/string_entity.dart';
+part 'src/entities/timer_entity.dart';
+part 'src/entities/user_entity.dart';
 /**
  * Systems
  */
-//part 'src/systems/arcade_physics_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/legend_render_system.dart';
-//part 'src/systems/gems_render_system.dart';
 part 'src/systems/option_control_system.dart';
+part 'src/systems/play_games_system.dart';
 part 'src/systems/player_control_system.dart';
 part 'src/systems/score_render_system.dart';
 part 'src/systems/sprite_render_system.dart';
 part 'src/systems/string_render_system.dart';
+part 'src/systems/timer_control_system.dart';
 
 
 const DEBUG = false;
+

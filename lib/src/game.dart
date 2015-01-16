@@ -13,12 +13,14 @@
  *--------------------------------------------------------------------+
  *
  */
+
 part of alienzone;
 
 class Game extends Li2.Dilithium  {
 
   GameModel model;
   CocoonServices cocoon;
+  GameUi ui;
 
   GameServices services;
   /**
@@ -29,7 +31,7 @@ class Game extends Li2.Dilithium  {
    *
    * returns this
    */
-  Game(Li2.Config config): super(config) {
+  Game(this.ui, Li2.Config config): super(config) {
 
     // screen.orientation.lock('portrait');
     print("Class Game initialized");
@@ -42,12 +44,13 @@ class Game extends Li2.Dilithium  {
    */
   Phaser.State levels() {
 
-    game.state.add('game', new BaseLevel('game', config, cocoon));
-    game.state.add('credits', new BaseLevel('credits', config, cocoon));
-    game.state.add('gameover', new BaseLevel('gameover', config, cocoon));
+    game.state.add('infinity', new BaseLevel('infinity', config, cocoon, ui));
+    game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
+    game.state.add('credits', new BaseLevel('credits', config, cocoon, ui));
+    game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));
 
-    window.document.getElementById("logo").hidden = true;
-    return new BaseLevel('main', config, cocoon);
+    ui.hideBanner();
+    return new BaseLevel('main', config, cocoon, ui);
 
   }
 

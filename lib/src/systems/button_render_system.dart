@@ -48,17 +48,15 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
       case 'ftl':
         level.state.start("ftl", true, false, ["ftl", 0]);
         break;
-      case 'achievements':
-        cocoon.showAchievements();
-        break;
-      case 'leaderboard':
-        cocoon.showLeaderboard();
-        break;
       case 'credits':
         level.state.start("credits", true, false, ["credits", 0]);
         break;
       case 'back':
         level.state.start(level.config.menu, true, false, [level.config.menu, 0]);
+        break;
+      case 'savescore':
+        cocoon.submitScore(level._score, level.leaderboardId);
+        level.state.start("gameover", true, false, [name, level._score]);
         break;
     }
   }

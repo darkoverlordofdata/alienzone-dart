@@ -337,7 +337,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
   }
 
   void gameover() {
-
+    level.gameover();
   }
 
   void processSystem() {

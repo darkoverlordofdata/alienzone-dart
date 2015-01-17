@@ -74,6 +74,7 @@ part 'src/components/bounce.dart';
 part 'src/components/count.dart';
 part 'src/components/gravity.dart';
 part 'src/components/immovable.dart';
+part 'src/components/lock.dart';
 part 'src/components/number.dart';
 part 'src/components/opacity.dart';
 part 'src/components/position.dart';
@@ -87,10 +88,12 @@ part 'src/components/velocity.dart';
 /**
  * Entities
  */
+part 'src/entities/achievement_entity.dart';
 part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
 part 'src/entities/image_entity.dart';
 part 'src/entities/input_entity.dart';
+part 'src/entities/leader_entity.dart';
 part 'src/entities/legend_entity.dart';
 part 'src/entities/option_entity.dart';
 part 'src/entities/player_entity.dart';
@@ -101,7 +104,9 @@ part 'src/entities/user_entity.dart';
 /**
  * Systems
  */
+part 'src/systems/achievement_render_system.dart';
 part 'src/systems/button_render_system.dart';
+part 'src/systems/leader_render_system.dart';
 part 'src/systems/legend_render_system.dart';
 part 'src/systems/option_control_system.dart';
 part 'src/systems/play_games_system.dart';

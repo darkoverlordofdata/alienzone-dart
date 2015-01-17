@@ -31,6 +31,9 @@ class EntityFactory  {
 
   }
 
+  AchievementEntity achievement(int x, int y, int index, String font, String fill)
+    => new AchievementEntity(this, x, y, index, font, fill);
+
   ButtonEntity button(int x, int y, String key, String action, [String text = "", String font = "", String fill = ""])
     => new ButtonEntity(this, x, y, key, action, text, font, fill);
 
@@ -42,6 +45,9 @@ class EntityFactory  {
 
   InputEntity input(int x, int y, String key, String action)
     => new InputEntity(this, x, y, key, action);
+
+  LeaderEntity leader(int x, int y, int index, String font, String fill)
+    => new LeaderEntity(this, x, y, index, font, fill);
 
   LegendEntity legend(int x, int y, String key, int frame, double opacity)
     => new LegendEntity(this, x, y, key, frame, opacity);
@@ -70,10 +76,12 @@ class EntityFactory  {
    */
   AbstractEntity invoke(String methodName, List args) {
     switch(methodName) {
+      case 'achievement': return Function.apply(achievement, args);
       case 'button':      return Function.apply(button, args);
       case 'gem':         return Function.apply(gem, args);
       case 'image':       return Function.apply(image, args);
       case 'input':       return Function.apply(input, args);
+      case 'leader':      return Function.apply(leader, args);
       case 'legend':      return Function.apply(legend, args);
       case 'option':      return Function.apply(option, args);
       case 'player':      return Function.apply(player, args);

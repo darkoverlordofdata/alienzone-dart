@@ -27,6 +27,7 @@ class BaseLevel extends Phaser.State {
   String level = "";              // current level name
   Math.Random random;             // random generator
   String name = "";               // state name
+  String leaderboardId = "";
   int _score = 0;                 // score
 
 
@@ -45,10 +46,17 @@ class BaseLevel extends Phaser.State {
    */
   void init([p]) {
     if (DEBUG) print("BaseLevel::init $level");
+    leaderboardId = '';
     if (p != null) {
       name = p[0];
       _score = p[1];
+      config.extra['leaderboards'].forEach((leaderboard) {
+        if (leaderboard['title'].toLowerCase() == name) {
+          leaderboardId = leaderboard['id'];
+        }
+      });
     }
+
   }
 
   /**
@@ -95,5 +103,10 @@ class BaseLevel extends Phaser.State {
   void update() {
     artemis.delta = game.time.elapsed;
     artemis.process();
+  }
+
+  void gameover() {
+    state.start("gameover", true, false, [name, context.score]);
+
   }
 }

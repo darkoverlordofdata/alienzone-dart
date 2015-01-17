@@ -37,25 +37,26 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
     Artemis.ComponentMapper<Scale> scaleMapper = new Artemis.ComponentMapper<Scale>(Scale, level.artemis);
     Artemis.ComponentMapper<Position> positionMapper = new Artemis.ComponentMapper<Position>(Position, level.artemis);
 
-    groupManager.getEntities(GROUP_USERS).forEach((entity) {
-      User user = userMapper.get(entity);
-      Scale scale = scaleMapper.get(entity);
-      Position position = positionMapper.get(entity);
+    Artemis.TagManager tagManager = level.artemis.getManager(Artemis.TagManager);
+    Artemis.Entity entity = tagManager.getEntity(TAG_USER);
 
-      controller = level.add.sprite(position.x, position.y, user.controller, 0);
-      controller.inputEnabled = true;
-      controller.events.onInputDown.add((sprite, pointer) => play(0));
+    User user = userMapper.get(entity);
+    Scale scale = scaleMapper.get(entity);
+    Position position = positionMapper.get(entity);
 
-      achievements = level.add.sprite(position.x+scale.x, position.y, user.achievements, 0);
-      achievements.inputEnabled = true;
-      achievements.events.onInputDown.add((sprite, pointer) => play(1));
+    controller = level.add.sprite(position.x, position.y, user.controller, 0);
+    controller.inputEnabled = true;
+    controller.events.onInputDown.add((sprite, pointer) => play(0));
 
-      leaderboards = level.add.sprite(position.x+(scale.x*2), position.y, user.leaderboards, 0);
-      leaderboards.inputEnabled = true;
-      leaderboards.events.onInputDown.add((sprite, pointer) => play(2));
+    achievements = level.add.sprite(position.x+scale.x, position.y, user.achievements, 0);
+    achievements.inputEnabled = true;
+    achievements.events.onInputDown.add((sprite, pointer) => play(1));
 
-      processSystem();
-    });
+    leaderboards = level.add.sprite(position.x+(scale.x*2), position.y, user.leaderboards, 0);
+    leaderboards.inputEnabled = true;
+    leaderboards.events.onInputDown.add((sprite, pointer) => play(2));
+
+    processSystem();
 
   }
 
@@ -81,7 +82,19 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
         } else {
           logging = 1.0;
           processSystem();
-          cocoon.login();
+          cocoon.connect();
+//          cocoon.login(true, (loggedIn, error) {
+//
+//            if (!loggedIn && error == null) {
+//              window.alert("Native Social Service not available");
+//              logging = 0.5;
+//
+//            } else if (!loggedIn) {
+//              window.alert(error['message']);
+//            } else {
+//              window.alert("Hello!");
+//            }
+//          });
         }
         break;
 
@@ -93,7 +106,7 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
           cocoon.showAchievements();
 
         } else {
-          level.ui.showAchievements();
+          level.state.start("achievements", true, false, ["achievements", 0]);
         }
         break;
 
@@ -105,7 +118,7 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
           cocoon.showLeaderboard();
 
         } else {
-          level.ui.showLeaderboard();
+          level.state.start("leaderboards", true, false, ["leaderboards", 0]);
         }
         break;
 

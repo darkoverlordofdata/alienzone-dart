@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * user_entity.dart
+ * leader_entity.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -15,20 +15,28 @@
  */
 part of alienzone;
 
-const String TAG_USER        = "USER";
+const String GROUP_LEADERS      = "LEADERS";
 
-class UserEntity extends AbstractEntity {
+class LeaderEntity extends AbstractEntity {
 
-  UserEntity(entities, int x, int y, int w, int h)
+  LeaderEntity(entities, int x, int y, int index, String font, String fill)
   : super(entities) {
 
-    Artemis.Entity user = level.artemis.createEntity();
-    user
+    int score;
+
+    try {
+      score = int.parse(window.localStorage[level.config.extra['leaderboards'][index]['id']]);
+    } catch(e) {
+      score = 0;
+    }
+
+    Artemis.Entity leader = level.artemis.createEntity();
+    leader
     ..addComponent(new Position(x, y))
-    ..addComponent(new Scale(w, h))
-    ..addComponent(new User('gamesController', 'gamesAchievements', 'gamesLeaderboards'))
+    ..addComponent(new Text(level.config.extra['leaderboards'][index]['title'], font, fill))
+    ..addComponent(new Count(score))
     ..addToWorld();
-    tagManager.register(user, TAG_USER);
+    groupManager.add(leader, GROUP_LEADERS);
   }
 
 }

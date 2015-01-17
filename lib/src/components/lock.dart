@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * user_entity.dart
+ * lock.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -15,20 +15,15 @@
  */
 part of alienzone;
 
-const String TAG_USER        = "USER";
+class Lock extends Artemis.ComponentPoolable {
+  bool value;
 
-class UserEntity extends AbstractEntity {
-
-  UserEntity(entities, int x, int y, int w, int h)
-  : super(entities) {
-
-    Artemis.Entity user = level.artemis.createEntity();
-    user
-    ..addComponent(new Position(x, y))
-    ..addComponent(new Scale(w, h))
-    ..addComponent(new User('gamesController', 'gamesAchievements', 'gamesLeaderboards'))
-    ..addToWorld();
-    tagManager.register(user, TAG_USER);
+  Lock._();
+  factory Lock([value = true]) {
+    Lock lock = new Artemis.Poolable.of(Lock, _constructor);
+    lock.value = value;
+    return lock;
   }
-
+  static Lock _constructor() => new Lock._();
 }
+

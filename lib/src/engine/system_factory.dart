@@ -22,15 +22,16 @@ class SystemFactory {
 
   SystemFactory(this.level, this.cocoon);
 
-//  ArcadePhysicsSystem arcadePhysics()       => new ArcadePhysicsSystem(level);
-  ButtonRenderSystem buttonRender()         => new ButtonRenderSystem(level, cocoon);
-  LegendRenderSystem legendRender()         => new LegendRenderSystem(level, cocoon);
-  OptionControlSystem optionControl()       => new OptionControlSystem(level, cocoon);
-  PlayGamesSystem playGames()               => new PlayGamesSystem(level, cocoon);
-  PlayerControlSystem playerControl()       => new PlayerControlSystem(level, cocoon);
-  ScoreRenderSystem scoreRender()           => new ScoreRenderSystem(level, cocoon);
-  SpriteRenderSystem spriteRender()         => new SpriteRenderSystem(level, cocoon);
-  StringRenderSystem stringRender()         => new StringRenderSystem(level, cocoon);
+  AchievementRenderSystem achievementRender() => new AchievementRenderSystem(level, cocoon);
+  ButtonRenderSystem buttonRender()           => new ButtonRenderSystem(level, cocoon);
+  LeaderRenderSystem leaderRender()           => new LeaderRenderSystem(level, cocoon);
+  LegendRenderSystem legendRender()           => new LegendRenderSystem(level, cocoon);
+  OptionControlSystem optionControl()         => new OptionControlSystem(level, cocoon);
+  PlayGamesSystem playGames()                 => new PlayGamesSystem(level, cocoon);
+  PlayerControlSystem playerControl()         => new PlayerControlSystem(level, cocoon);
+  ScoreRenderSystem scoreRender()             => new ScoreRenderSystem(level, cocoon);
+  SpriteRenderSystem spriteRender()           => new SpriteRenderSystem(level, cocoon);
+  StringRenderSystem stringRender()           => new StringRenderSystem(level, cocoon);
   TimerControlSystem timerControl()           => new TimerControlSystem(level, cocoon);
 
   /**
@@ -39,8 +40,9 @@ class SystemFactory {
    */
   Artemis.EntitySystem invoke(String methodName) {
     switch(methodName) {
-//      case 'arcadePhysics':     return arcadePhysics(); // *UNUSED*
+      case 'achievementRender': return achievementRender();
       case 'buttonRender':      return buttonRender();
+      case 'leaderRender':      return leaderRender();
       case 'legendRender':      return legendRender();
       case 'optionControl':     return optionControl();
       case 'playGames':         return playGames();

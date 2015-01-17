@@ -16,7 +16,7 @@
 
 part of alienzone;
 
-class Game extends Li2.Dilithium  {
+class Game extends Li2.Dilithium implements CocoonListener {
 
   GameModel model;
   CocoonServices cocoon;
@@ -39,6 +39,13 @@ class Game extends Li2.Dilithium  {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 
+  loginStatusChanged(object, value, error){
+
+  }
+  requestScore(object, value, error){
+
+  }
+
   /**
    * Define each of the game states
    */
@@ -48,6 +55,8 @@ class Game extends Li2.Dilithium  {
     game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
     game.state.add('credits', new BaseLevel('credits', config, cocoon, ui));
     game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));
+    game.state.add('achievements', new BaseLevel('achievements', config, cocoon, ui));
+    game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon, ui));
 
     ui.hideBanner();
     return new BaseLevel('main', config, cocoon, ui);

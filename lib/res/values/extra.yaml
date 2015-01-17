@@ -4,7 +4,6 @@ WEBVIEW : leaderboard/index.html
 APP_ID: 889085837789
 CLIENT_ID: 889085837789-drspvmoknah1sf8kdojb09gf034c2b07.apps.googleusercontent.com
 
-
 # leaderboards
 leaderboardx:
   CgkI3YOVjfAZEAIQBg: 0
@@ -12,10 +11,10 @@ leaderboardx:
 
 leaderboards:
   - id:       CgkI3YOVjfAZEAIQBg
-    title:    All the Time
+    title:    Infinity
     imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
   - id:       CgkI3YOVjfAZEAIQBw
-    title:    Rush Hour
+    title:    FTL
     imageURL: https://lh4.ggpht.com/lx1MbVNJhwuFzw2HlavoORtSLflngcKQmUyahywjoApp-q3HHhUUvP86hV1P7HyYoXo=h150-rw
 
 # achievements

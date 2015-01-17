@@ -51,7 +51,6 @@ class Game extends Li2.Dilithium implements CocoonListener {
 
     game.state.add('infinity', new BaseLevel('infinity', config, cocoon, ui));
     game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
-    game.state.add('credits', new BaseLevel('credits', config, cocoon, ui));
     game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));
     game.state.add('achievements', new BaseLevel('achievements', config, cocoon, ui));
     game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon, ui));

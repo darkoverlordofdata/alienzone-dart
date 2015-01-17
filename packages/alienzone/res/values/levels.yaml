@@ -133,6 +133,7 @@ leaderboards:
     - leader: [75, 180, 0, 'bold 14pt opendyslexic', '#000']
     - leader: [75, 220, 1, 'bold 14pt opendyslexic', '#000']
     - image: [10, 10, icon]
+    - button: [90, 380, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
 
   systems:
@@ -148,17 +149,18 @@ achievements:
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [45, 130, achievements, 'bold 24pt opendyslexic', '#000']
-    - achievement: [45, 180, 0, 'bold 14pt opendyslexic', '#000']
-    - achievement: [45, 220, 1, 'bold 14pt opendyslexic', '#000']
-    - achievement: [45, 260, 2, 'bold 14pt opendyslexic', '#000']
-    - achievement: [45, 300, 3, 'bold 14pt opendyslexic', '#000']
-    - achievement: [45, 340, 4, 'bold 14pt opendyslexic', '#000']
+    - award: [45, 180, 0, 'bold 14pt opendyslexic', '#000']
+    - award: [45, 220, 1, 'bold 14pt opendyslexic', '#000']
+    - award: [45, 260, 2, 'bold 14pt opendyslexic', '#000']
+    - award: [45, 300, 3, 'bold 14pt opendyslexic', '#000']
+    - award: [45, 340, 4, 'bold 14pt opendyslexic', '#000']
     - image: [10, 10, icon]
+    - button: [90, 380, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
 
   systems:
     - spriteRender: false
     - stringRender: false
     - buttonRender: false
-    - achievementRender: false
+    - awardRender: false
 

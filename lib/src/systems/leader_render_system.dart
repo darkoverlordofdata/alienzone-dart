@@ -24,6 +24,9 @@ class LeaderRenderSystem extends Artemis.VoidEntitySystem {
 
   LeaderRenderSystem(this.level, this.cocoon);
 
+  /**
+   * Render Leaderboard
+   */
   void initialize() {
     if (DEBUG) print("LeaderRenderSystem::initialize");
 

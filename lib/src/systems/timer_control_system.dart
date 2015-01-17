@@ -10,6 +10,9 @@ class TimerControlSystem extends Artemis.VoidEntitySystem {
   TimerControlSystem(this.level, this.cocoon);
 
 
+  /**
+   * Render Countdown Timer mm:ss
+   */
   void initialize() {
     if (DEBUG) print("TimerControlSystem::initialize");
     context = level.context;

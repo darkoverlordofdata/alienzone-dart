@@ -24,7 +24,9 @@ class StringRenderSystem extends Artemis.VoidEntitySystem {
 
   StringRenderSystem(this.level, this.cocoon);
 
-
+  /**
+   * Render Strings using font and text fill color
+   */
   void initialize() {
     if (DEBUG) print("StringRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);

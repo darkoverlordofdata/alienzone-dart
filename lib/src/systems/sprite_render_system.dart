@@ -25,6 +25,10 @@ class SpriteRenderSystem extends Artemis.VoidEntitySystem {
   SpriteRenderSystem(this.level, this.cocoon);
 
 
+  /**
+   * Render sprites
+   * With optional alpha value
+   */
   void initialize() {
     if (DEBUG) print("SpriteRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);

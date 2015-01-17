@@ -51,8 +51,6 @@ export 'package:polymer/init.dart';
 part 'src/alien_zone_application.dart';
 part 'src/cocoon_services.dart';
 part 'src/game.dart';
-part 'src/game_model.dart';
-part 'src/game_services.dart';
 part 'src/gem.dart';
 
 

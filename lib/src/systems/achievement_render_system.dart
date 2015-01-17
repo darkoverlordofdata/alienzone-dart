@@ -24,6 +24,9 @@ class AchievementRenderSystem extends Artemis.VoidEntitySystem {
 
   AchievementRenderSystem(this.level, this.cocoon);
 
+  /**
+   * Render Achievements
+   */
   void initialize() {
     if (DEBUG) print("AchievementRenderSystem::initialize");
 

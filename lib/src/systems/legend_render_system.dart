@@ -24,6 +24,10 @@ class LegendRenderSystem extends Artemis.VoidEntitySystem {
   List<Phaser.Sprite> sprites;
 
 
+  /**
+   * Show the Gem Legend panel
+   * Shows what gens are in play
+   */
   void initialize() {
     if (DEBUG) print("LegendRenderSystem::initialize");
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);

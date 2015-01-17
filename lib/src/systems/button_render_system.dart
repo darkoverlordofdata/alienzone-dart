@@ -10,6 +10,10 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
   ButtonRenderSystem(this.level, this.cocoon);
 
 
+  /**
+   * Render Buttons
+   * Composite with optional text
+   */
   void initialize() {
     if (DEBUG) print("ButtonRenderSystem::initialize");
     context = level.context;
@@ -40,6 +44,9 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
     });
   }
 
+  /**
+   * Respond to Button Click Events
+   */
   onClick(String name) {
     switch (name) {
       case 'infinity':

@@ -27,7 +27,7 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
   PlayGamesSystem(this.level, this.cocoon);
 
   /**
-   * Initialize option control
+   * Initialize Google Play Games
    */
   void initialize() {
     if (DEBUG) print("PlayGamesSystem::initialize");
@@ -83,18 +83,6 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
           logging = 1.0;
           processSystem();
           cocoon.connect();
-//          cocoon.login(true, (loggedIn, error) {
-//
-//            if (!loggedIn && error == null) {
-//              window.alert("Native Social Service not available");
-//              logging = 0.5;
-//
-//            } else if (!loggedIn) {
-//              window.alert(error['message']);
-//            } else {
-//              window.alert("Hello!");
-//            }
-//          });
         }
         break;
 
@@ -127,6 +115,9 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
   }
 
 
+  /**
+   * Update Play Games buttons
+   */
   void processSystem() {
     if (cocoon.loggedIn) {
       controller.frame = 2;

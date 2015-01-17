@@ -18,11 +18,9 @@ part of alienzone;
 
 class Game extends Li2.Dilithium implements CocoonListener {
 
-  GameModel model;
   CocoonServices cocoon;
   GameUi ui;
 
-  GameServices services;
   /**
    * == New Game ==
    *   * Set the screen dimensions

@@ -20,8 +20,8 @@ menu: main
 
 minWidth: 320
 minHeight: 480
-maxWidth: 640
-maxHeight: 960
+maxWidth: 768
+maxHeight: 1280
 pageAlignHorizontally: true
 pageAlignVertically: true
 forceOrientation: false

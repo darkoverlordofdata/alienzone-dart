@@ -18,6 +18,12 @@ sfxOption:
   width     : 70
   height    : 61
 
+achievement:
+  file      : images/achievement.png
+  width     : 32
+  height    : 32
+
+
 gamesAchievements:
   file      : images/games_achievements.png
   width     : 64

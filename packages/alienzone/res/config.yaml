@@ -15,7 +15,6 @@
 #
 #
 name: Alien Zone
-#id: com.darkoverlordofdata.alienzone
 locale: false
 menu: main
 
@@ -35,6 +34,8 @@ preloadBarKey: loading
 preloadBarImg: images/loading.png
 preloadBgdKey: logo
 preloadBgdImg: images/d16a.png
+
+atlas: false
 
 sections:
   strings: values/strings.yaml

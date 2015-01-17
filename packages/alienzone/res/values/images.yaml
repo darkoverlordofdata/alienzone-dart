@@ -5,7 +5,9 @@ splash:         images/leader.png
 background:     images/background.png
 background1:    images/splash.png
 background3:    images/background3.png
+gameover:       images/gameover.png
 board:          images/board.png
+legend_board:   images/legend_board.png
 button:         images/button.png
 button2:        images/button2.png
 button4:        images/button4.png

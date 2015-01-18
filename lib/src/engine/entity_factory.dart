@@ -61,8 +61,8 @@ class EntityFactory  {
   ScoreEntity score(int x, int y, String text, String font, String fill)
     => new ScoreEntity(this, x, y, text, font, fill);
 
-  StringEntity string(int x, int y, String name, String font, String fill)
-    => new StringEntity(this, x, y, name, font, fill);
+  StringEntity string(int x, int y, String name, String font, String fill, [String align='left'])
+    => new StringEntity(this, x, y, name, font, fill, align);
 
   TimerEntity timer(int x, int y, String action, String font, String fill)
     => new TimerEntity(this, x, y, action, font, fill);

@@ -68,6 +68,9 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
       case 'googleplay':
         window.open(level.config.strings['playstore'], '_blank');
         break;
+      case 'howtoplay':
+        level.state.start("howtoplay", true, false, ['howtoplay', 0]);
+        break;
     }
   }
 

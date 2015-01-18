@@ -36,7 +36,7 @@ class StringRenderSystem extends Artemis.VoidEntitySystem {
     groupManager.getEntities(GROUP_STRINGS).forEach((entity) {
       Position position = positionMapper.get(entity);
       Text text = textMapper.get(entity);
-      var style = new Phaser.TextStyle(font: text.font, fill: text.fill);
+      var style = new Phaser.TextStyle(font: text.font, fill: text.fill, align: text.align);
       level.game.add.text(position.x, position.y, text.value, style);
 
     });

@@ -48,6 +48,7 @@ class Game extends Li2.Dilithium implements CocoonListener {
   Phaser.State levels() {
 
     game.state.add('helplogin', new BaseLevel('helplogin', config, cocoon, ui));
+    game.state.add('howtoplay', new BaseLevel('howtoplay', config, cocoon, ui));
     game.state.add('infinity', new BaseLevel('infinity', config, cocoon, ui));
     game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
     game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));

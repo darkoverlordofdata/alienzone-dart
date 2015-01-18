@@ -18,12 +18,9 @@ name: Alien Zone
 locale: false
 menu: main
 
-#384  1.541 576
-#592
-
 minWidth: 320
 minHeight: 480
-maxWidth: 768
+maxWidth: 720
 maxHeight: 1280
 #        EXACT_FIT = 0;
 #        NO_SCALE = 1;

@@ -1,10 +1,10 @@
 #
 #
 #
-splash:         images/leader.png
-background:     images/background.png
-background1:    images/splash.png
-background3:    images/background3.png
+front:          images/front.png
+ftl:            images/ftl.png
+menu:           images/menu.png
+infinity:       images/infinity.png
 gameover:       images/gameover.png
 board:          images/board.png
 legend_board:   images/legend_board.png

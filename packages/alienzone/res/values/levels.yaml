@@ -26,6 +26,7 @@ main:
     - button: [75, 180, button5, 'ftl', 'FTL', 'bold 24pt opendyslexic', '#000']
     - user: [60, 300, 64, 8]
     - option: [10, 400, musicOption, music]
+    - button: [105, 410, button, 'howtoplay', 'how to play', 'bold 10pt opendyslexic', '#000']
     - option: [250, 400, sfxOption, sfx]
 
   systems:
@@ -133,7 +134,7 @@ leaderboards:
     - leader: [75, 180, 0, 'bold 14pt opendyslexic', '#000']
     - leader: [75, 220, 1, 'bold 14pt opendyslexic', '#000']
     - image: [10, 10, icon]
-    - button: [90, 380, googleplay, 'googleplay']
+    - button: [90, 400, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
 
   systems:
@@ -155,7 +156,7 @@ achievements:
     - award: [45, 300, 3, 'bold 14pt opendyslexic', '#000']
     - award: [45, 340, 4, 'bold 14pt opendyslexic', '#000']
     - image: [10, 10, icon]
-    - button: [90, 380, googleplay, 'googleplay']
+    - button: [90, 400, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
 
   systems:
@@ -170,9 +171,9 @@ helplogin:
     - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, label, 0.5]
-    - string: [45, 130, helplogin, '8pt opendyslexic', '#000']
+    - string: [55, 110, helplogin, '10pt opendyslexic', '#0ff', 'center']
     - image: [10, 10, icon]
-    - button: [90, 380, googleplay, 'googleplay']
+    - button: [90, 400, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
 
   systems:
@@ -180,3 +181,17 @@ helplogin:
     - stringRender: false
     - buttonRender: false
 
+howtoplay:
+  entities:
+    - image: [0, 0, gameover]
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, scores, 0.5]
+    - string: [35, 130, howtoplay, '10pt opendyslexic', '#0ff']
+    - image: [10, 10, icon]
+    - button: [90, 400, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false

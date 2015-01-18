@@ -13,5 +13,22 @@ creditsText: |
 playstore: https://play.google.com/store/apps/details?id=com.darkoverlordofdata.alienzone
 
 helplogin: |
-  To login for leaderboard and achievements,
-  please install Alien Zone from Google play.
+  To Login, for
+  leaderboard and achievements,
+  please install Alien Zone
+  from Google play
+
+
+howtoplay: |
+  Match 3 or more gems to score.
+  Use arrow keys to rotate and
+  move your gems, down key to drop.
+  Gems do not have to be in a
+  a straight line to match.
+
+  Timed (FTL) game will auto drop
+  your gems when time runs out.
+
+  Login to save scores and awards
+  with Google Play Games.
+

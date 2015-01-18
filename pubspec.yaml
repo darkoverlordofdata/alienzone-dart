@@ -27,4 +27,4 @@ transformers:
     suppressHints: false
     terse: false
     verbose: true
-    csp: false
+    csp: true

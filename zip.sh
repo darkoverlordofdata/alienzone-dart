@@ -7,13 +7,13 @@ cd build/web
 #
 # squeeze some more space out
 #
-#vulcanize --strip --inline --csp --output alienzone.html index.html
-#rm -f index.html
-#mv -f alienzone.html index.html
-#rm -f index.html_bootstrap.dart.js
-#rm -fr js
-#rm -fr packages/core_elements
-#rm -fr packages/paper_elements
+vulcanize --strip --inline --csp --output alienzone.html index.html
+rm -f index.html
+mv -f alienzone.html index.html
+rm -f index.html_bootstrap.dart.js
+rm -fr js
+rm -fr packages/core_elements
+rm -fr packages/paper_elements
 #
 # zip it up
 #

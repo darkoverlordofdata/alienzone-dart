@@ -7,11 +7,11 @@
             \/             \/     \/          \/          \/     \/ 
 
 
-# Alien Zone - Space Crysal Match Game
+# Alien Zone - Space Crystal Match Game
 [![Get it on Google Play](assets/en_generic_rgb_wo_45.png)] (https://play.google.com/store/apps/details?id=com.darkoverlordofdata.alienzone)
 
 
-### Technologies used:
+### Free and Open Source Game using:
 * cocoonjs
 * dartemis (dart port of Artemis ECS)
 * dilithium config / resource manager

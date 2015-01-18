@@ -6,7 +6,7 @@ ftl:            images/ftl.png
 menu:           images/menu.png
 infinity:       images/infinity.png
 gameover:       images/gameover.png
-board:          images/board.png
+board:          images/slots.png
 legend_board:   images/legend_board.png
 button:         images/button.png
 button2:        images/button2.png

@@ -20,7 +20,7 @@
 #
 main:
   entities:
-    - image: [0, 0, front]
+#    - image: [0, 0, front]
     - string: [20, 0, title, 'bold 36pt opendyslexic', 'yellow']
     - button: [75, 100, button5, 'infinity', 'Infinity', 'bold 24pt opendyslexic', '#000']
     - button: [75, 180, button5, 'ftl', 'FTL', 'bold 24pt opendyslexic', '#000']
@@ -43,7 +43,7 @@ main:
 #
 infinity:
   entities:
-    - image: [0, 0, infinity]
+#    - image: [0, 0, infinity]
     - image: [0, 0, board, 0.7]
     - image: [286, 96, legend_board]
     - string: [100, 0, infinity, 'bold 24pt opendyslexic', 'yellow']
@@ -78,7 +78,7 @@ infinity:
 #
 ftl:
   entities:
-    - image: [0, 0, ftl]
+#    - image: [0, 0, ftl]
     - image: [0, 0, board, 0.7]
     - image: [286, 96, legend_board]
     - timer: [100, 0, outoftime, 'bold 18pt opendyslexic', '#000']
@@ -111,7 +111,7 @@ ftl:
 
 gameover:
   entities:
-    - image: [0, 0, gameover]
+#    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [45, 130, gameover, 'bold 24pt opendyslexic', '#000']
@@ -131,7 +131,7 @@ gameover:
 
 leaderboards:
   entities:
-    - image: [0, 0, gameover]
+#    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [45, 130, leaderboards, 'bold 24pt opendyslexic', 'yellow']
@@ -150,7 +150,7 @@ leaderboards:
 
 achievements:
   entities:
-    - image: [0, 0, gameover]
+#    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [45, 130, achievements, 'bold 24pt opendyslexic', 'yellow']
@@ -172,7 +172,7 @@ achievements:
 
 helplogin:
   entities:
-    - image: [0, 0, gameover]
+#    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, label, 0.5]
     - string: [55, 110, helplogin, '10pt opendyslexic', '#0ff', 'center']
@@ -187,7 +187,7 @@ helplogin:
 
 howtoplay:
   entities:
-    - image: [0, 0, gameover]
+#    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [35, 130, howtoplay, '10pt opendyslexic', '#0ff']

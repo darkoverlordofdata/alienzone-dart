@@ -25684,7 +25684,7 @@ y=new U.Rg(y,625)
 y.Dr(C.CD.Y(Date.now(),2147483647))
 z.Y4=y
 return z},"$0","gK5",0,0,1732],
-V6:function(a){P.JS("Class Game initialized")
+V6:function(a){P.JS("Class Game initialized  ")
 this.fA=S.Nz(a,this)}},
 "+Game":0,
 hm:{
@@ -34041,7 +34041,7 @@ this.J9.sM5(1)
 this.DA.sya(!0)
 if(this.Vt.gIF().gDa()===!0){P.JS("game.device.desktop")
 z=this.Zl
-z.sPt(2)
+z.sPt(this.ic.gPt())
 y=J.RE(z)
 y.stX(z,J.Uu(this.ic))
 y.sx6j(z,J.Xe(this.ic))
@@ -34051,7 +34051,7 @@ z.sNJ(this.ic.gNJ())
 z.snK(this.ic.gnK())
 z.QF(!0)}else{P.JS("game.device.mobile")
 z=this.Zl
-z.sPt(2)
+z.sPt(this.ic.gPt())
 y=J.RE(z)
 y.stX(z,J.Uu(this.ic))
 y.sx6j(z,J.Xe(this.ic))
@@ -34070,7 +34070,7 @@ J.XM(document.querySelector("#orientation").style,"block")},"$0","gtD",0,0,54],
 QsY:[function(){this.lS=!0
 J.XM(document.querySelector("#orientation").style,"none")},"$0","gfo",0,0,54]},
 pJ:{
-"^":"a;aE>,oc*,iS<,jm<,o5<,pI@,XY,jO*,ov@,R*,fg*,tX*,x6j*,fs*,ki*,NJ@,nK@,zX<,nD*,aX<,XM<,GU<,AQ<,PV<,BW<,Y7<,JT,Kf,lB>,qh@,Em@,HM<,K5<,AU<,qK4,neP,Vp<,FF*",
+"^":"a;aE>,oc*,iS<,jm<,o5<,pI@,XY,jO*,ov@,R*,fg*,tX*,x6j*,fs*,ki*,Pt@,NJ@,nK@,zX<,nD*,aX<,XM<,GU<,AQ<,PV<,BW<,Y7<,JT,Kf,lB>,qh@,Em@,HM<,K5<,AU<,qK4,neP,Vp<,FF*",
 GF:function(){return this.iS.$0()},
 XnM:function(){return this.pI.$0()},
 IJ:function(a,b){return this.zX.$2(a,b)},
@@ -34107,6 +34107,7 @@ this.tX=z.t(y,"minWidth")
 this.x6j=z.t(y,"minHeight")
 this.fs=z.t(y,"maxWidth")
 this.ki=z.t(y,"maxHeight")
+this.Pt=z.t(y,"scaleMode")
 this.NJ=z.t(y,"pageAlignHorizontally")
 this.nK=z.t(y,"pageAlignVertically")
 this.zX=z.t(y,"forceOrientation")
@@ -34128,7 +34129,7 @@ this.AU=z.t(y,"strings")
 this.AU=z.t(y,"arrays")
 this.AU=z.t(y,"preferences")
 this.Vp=z.t(y,"extra")},
-static:{"^":"QTm,oAH",Vz:function(a,b){var z=new D.pJ(b,"name","__boot","__assets","__menu",!1,!1,"",1,320,480,320,480,640,960,!0,!0,!1,"","splashScreen","",!1,"preloadBar","","preloadBgd","",P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),a)
+static:{"^":"QTm,oAH",Vz:function(a,b){var z=new D.pJ(b,"name","__boot","__assets","__menu",!1,!1,"",1,320,480,320,480,640,960,2,!0,!0,!1,"","splashScreen","",!1,"preloadBar","","preloadBgd","",P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),P.Fl(null,null),a)
 z.jG(a,b)
 return z}}},
 Pj:{
@@ -62878,7 +62879,7 @@ if($desc instanceof Array)$desc=$desc[1]
 UK.prototype=$desc
 UK.prototype.gic=function(){return this.ic}
 UK.prototype.sic=function(v){return this.ic=v}
-function pJ(aE,oc,iS,jm,o5,pI,XY,jO,ov,R,fg,tX,x6j,fs,ki,NJ,nK,zX,nD,aX,XM,GU,AQ,PV,BW,Y7,JT,Kf,lB,qh,Em,HM,K5,AU,qK4,neP,Vp,FF){this.aE=aE
+function pJ(aE,oc,iS,jm,o5,pI,XY,jO,ov,R,fg,tX,x6j,fs,ki,Pt,NJ,nK,zX,nD,aX,XM,GU,AQ,PV,BW,Y7,JT,Kf,lB,qh,Em,HM,K5,AU,qK4,neP,Vp,FF){this.aE=aE
 this.oc=oc
 this.iS=iS
 this.jm=jm
@@ -62893,6 +62894,7 @@ this.tX=tX
 this.x6j=x6j
 this.fs=fs
 this.ki=ki
+this.Pt=Pt
 this.NJ=NJ
 this.nK=nK
 this.zX=zX
@@ -62944,6 +62946,8 @@ pJ.prototype.gfs=function(receiver){return this.fs}
 pJ.prototype.sfs=function(receiver,v){return this.fs=v}
 pJ.prototype.gki=function(receiver){return this.ki}
 pJ.prototype.ski=function(receiver,v){return this.ki=v}
+pJ.prototype.gPt=function(){return this.Pt}
+pJ.prototype.sPt=function(v){return this.Pt=v}
 pJ.prototype.gNJ=function(){return this.NJ}
 pJ.prototype.sNJ=function(v){return this.NJ=v}
 pJ.prototype.gnK=function(){return this.nK}
@@ -64619,4 +64623,3 @@ $desc=$collectedClasses.w0r
 if($desc instanceof Array)$desc=$desc[1]
 w0r.prototype=$desc
 return[qE,Ur,rKa,PR,LL8,fY,Mr,lJJ,ctu,Fo,eU,Az,TP,IF,n6D,Ny,Kh,TKv,NC,Zv,QQS,I4,OY,v7,oJ,DG4,HA,vHT,dY,t0,N3,pc,Sb,H4,K4,QF,hsw,va,Nh,IB,jg,h4,Fs,Ty,ea,D0,Eg,as,jq,AaI,cr,UM,Yu,xkO,u9,kB,FO,xf,xn,Vbi,zA,ST5,X2b,O7,ny,WW,Pd,Sg,pA,JK,BW,Ln,AD,ttH,wP,eP,AL,Og,cS,jJ,N2,TF,mC,Y7,aBv,yV,mx,tA,Pf,qm,ZYf,DHv,cx,Jx,E9,PG,yl,nJ,Oc,GV,Ve,Aj,oU,qT,KV,BH,mh,G7,l9,EZ,GX,Dx,Us,SN,l1,Ra,nU1,ni,p3,qjD,qW,KR,jh,wM,fs,zb,h8,UL,ip,Gk,M3,KB,j24,zm,zk,Hy,I0,DL,Cpy,zD9,r5,wF,As,iiu,fqq,PU,kr,Dj,Ia,Iv,BTK,yY,kJd,pI,xVu,e1,ZG,a3w,cF,o4m,RH,Is,Lq,w6O,kv,r4,aG,J6,K5,SI,nt,lw,hq,w4,r03,yp,AK,Df,nK,Nck,rj,yK,WDY,nA,hF,yKy,Yc,ZJQ,pb,eZA,Hs,Q4,JY7,or8,kx,pz,TU,mb,ui,TI,DQL,b7,dx,PC,L3,eG,ie,vA,nQ,B3,HC,kK,TC,nb,ug,lK,Xuj,yg,tk2,meI,oBW,AhC,EI,MI8,Ub,bMB,Ud,Ya,Fu,OE5,N9,dc,Yz,zp,SL,PIw,PQ,uz,hB,U0,uY,iT,Gd,kC,GH,To,PY,MU,qIR,xj,YQ,EUL,d5,hy,f1,aS5,CG,qF,mD,xN,Pt,FHP,pyk,ZDn,nn,cb,BDQ,yi,JB,Wa,hW,LQ,j9,wi,op,l4U,Il,Z8,PiZ,HV,YD,cO,P0,r2,j4t,WKu,p25,Tv,kG,rO,kh,Kf,Bt,Dc,DP,h48,SlW,PQX,Rq,kJQ,Jo,h6,W4,SIV,QmI,aT,pF,DN,uE,K8,zz,dE5,Zc5,dT,Pqh,Cu,cD,VT,RK,Qq,oc,La,HH,LjR,Js,CX,Ze,QE,nv,k5o,xq,uc,Fy,MA,yW,EX,WZ,Vb,h5,Ab,fE,IT,Jd7,BY,NK,mE,pM,TQ,V5,Cp,Uo,bq,Su,cP,X4,cc,Hq,h2,um,Ff,lf,qq,w0,RP,zx,QI,DC,yw,E4t,Eh,Ixa,BJ,Ok,JP,xK,MY,zU,Ces,Ay,Nn5,hP,rB,pU,iv,fp,G3,KN,tx,V7,Zx,ayF,Xm,LR,MQT,Ic,Nd,AJ,DI,AC,ix,Ep,fm,Bu,B4,UFz,qg,cm,Gs,XJ,dk,hX,SV,Fa,qN,lC,Oy,d6,ZMw,Eb,oK,Kn,uh,NL,h1,qs,KI,eZ,LO,IE,iO,Wz,QA,pn,ER,AP,ax,pS,nT,GK,ce,wB,Qr,jD,An,z3,AQ,nx,wz,On,XI,Un,Ap,J7,Q0,el,T9,r0,ih,bW,PZ,vY,pD,C4,Lr,O8,Iw,bH,PvI,mN,X9,rD,Fg,It,LL,li,QZ,ju,oq,wR,NE,aD,yO,G0,eI,au,oM,Yi,DT,qRJ,j6,kTp,lp,Qd,ZK,DX,l8,Y8,BA,Lz,Dv,rW,QM,x4,od,Qom,TS,fx,Jn,m1,kl,uG,jN,Rk,YM,AI,ra,qy,Gp,Q5,NqH,AE,FU,u4,Zb,fQ,eE,Gx,WP,hL,UC,KJ,OD,Io,Ea,OS,Kb,UP,bp,UA,Af,Hj,ew,iX,fS,TG,Cn,e3,kX,Ei,M8w,iq,kQa,pd,Jq,QL,JX,bc,a3,xV,hg,Jk,o3,aM,SO,YS,dsi,Sw,RD,nz,Fd,Tj,yvN,XN,fh4,rt,pR,SUp,cuC,jb,jP,jQ,Qs,C1,Qg,ja,qR,Em,ERQ,IS,Me,nm,vI,Hn,Qa,aP,MV,Jm,Lg,Li,zR,U9,Kj,V0,YV,CQ,im,kW,QD,CH,ci,zD,fW,tr,jU,nh,Wr,Ww,kN,b5,PP,Rr,Sk,k2,Sf,dZ,ut,YE,h9,G5,mG,Fj,Qm,HT,Vc,vLi,aA,XU,vP4,Es,IQ,Ca,zr,rK,SM,t6,JZ,DHp,Er,MW,pk,eL,J3,dW,cZl,zw,xG,Za,US,FK2,Gv,yEe,CDU,Ue1,iCW,kdQ,Q,nMY,tNj,Jtp,P,imn,GW,vTj,Whe,NXd,O,Qe,PK,JO,pq,Yt,NY,cCx,RA,IY,BC,jl,Vg,Iy4,JM,cR,bM,Xp,Bjm,NO,II,Mq,X1,HU5,ooy,Ld,jP1,fPc,yH,FA,Av,DH,ku,L1,xQs,F0S,Rln,oH,LPe,p8,XR,Fxl,LI,A2,GE,F3,FD,Nv,Cj,u8,Zr,W0,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,Bp,v,Z3G,ciG,vj1,Pe,tc,lbp,tD,hJ,Zz,cu,GQF,dC,wN,VX,VR,EK,KW,Pb,tQ,mQ,uR,ue,Qv,PE,Tr,JW,ro,SR,i0,Tt,f3,Aa,Wi,ir,Uv,Rj,CI,P4,bg,IX,c7,ly,HE,o9,A5,kJ,Mb,pe,Da,anY,UE,RB,CE,Na,Xg,pf,jX,Zh,bb,Tq,Ll,Kc,tF,e5,nR,ca,RM,w6,Kl,D8,b1,ZF,fq,hm,KK,Ae,U4,bk,mw,kq,xE,ex,cK,hf,NW,t2,ph,Yq,ma,eW,iZ,Dk,u1,Qy,f7,nP,L6,lG,z2,Si,P2,iR,zy,pl,rk,nS,t8,fn,cZ,aL,bX,a7,i1,xy,MH,A8,oi,kF,tC,rR,FuS,TN,SU7,ReL,w2Y,iK,IN,Sn,ES,nI,F9,Lj,amu,am,EE,LD,NZR,We,vk,U2M,iu,vo,bl,tB,Oo,Tc,yh,tk,Wf,HZT,Qz,qe,Sz,br,F6,ng,TN3,Ar,j2,HQ,WC,B8,Xh,th,ha,C6,Ft,O6,Ik,f6,WVu,dz,tK,XA,d2,b8,Pf0,Zf,Fe,Gc,da,pV,U7,rH,eX,ZL,rq,RW,YP,jZ,FZ,OM,qh,HI,E8,p0,HIH,x4W,QC,Oa,Rv,Sd,jv,bi,YJ,M4,Rl,Jb,fi,Jp,AF,vi,Ee,B5,PI,j4,i9,VV,Dy,UH,Z5,ii,ib,MO,O9,yU4,NOT,KA,Vo,qB,aN,fIm,LV,DS,JF,B3P,CR,Qk,vz,dR,Ua,QX,YR,fB,fk,t3,Q6,OH,m0t,pK,R81,hj,MK,pQ,FG,aW,NB,DJ,PL,Fq,jG,fG,Px,YB,a1,S9,db,i5,N6,b6,ef,zQ,Yp,u3T,Et,mW,ark,Ir2,lD,Yk,NV,Uq,KPM,Pnf,Gj,LG,zJ,Xu,dD,yI,nd,KG,lfu,Vj5,uw,dH,E5,Ukr,wIe,Ziv,byg,MxG,z0,E3,Rw,GY,Dd,b2,yn,Y25,CL,K80,wC,a2,fRn,iP,CP,a6,P7,DW,Ge,LK,AT,bJ,eY,mp,ub,ds,lj,UV,k5C,VS,t7,HG,aE,eV,kM,EH,If,vQW,QV,Anv,zM,L8,L9,FK,a,vXa,Od,BpP,qU,yt,Xa,Rn,GD,ms,iD,hP2,uH,In,Kd,yZ,G1,Mx,Nw,kZ,JT,rI,BV,Xn,vY6,px,WM,REn,Bj,u0,HU,bQ,W1,RAp,ec,EO,LxM,e7,nNL,ecX,wc,kI,AA,cX,rs,yoo,w1p,zLC,kEI,a7B,Zc,i7,Sy,Vf,KS,eN,aY,RJ,FkO,RO,eu,Uc,Ov,qO,Ry,kG3,Gm,Of,CB,W9,Lp,Sq,C3,XY,E4,Gn,r7,Tz,WkF,DV,Hp,Jd,QS,np,mgb,tZ,HDe,tn,zf,D4,L9u,Ms,nIM,JY,Ys,WS4,GXl,W9c,ObC,yML,uT,mAS,B8q,Cs,oI,vF,Dg,ob,GVy,Pg,ObS,Ipv,Yl,jR,dqb,P66,Xo,nO,oe,vG,St,qn,xX,io,ME,d7,dv,yU,ye,wDb,tP,Jb3,LU,Dh,uA,X2,qJ,Ja,p4,uv,u5,Q7,SG,nF,qd,ya,wH,Rx,Vk,ot,X3i,m9,UK,pJ,Pj,IV,GF,CA,Ph,tG,kc,yz,id,zW,aI,rG,Os,wOT,Tk7,rv,a9,YL,m5,xL,nl,D7,hT,GS,by,AY,rV,Wk,Po,RF,CW,wh,Pn,zn,QP,uI,Ro,mM,yN,eC,ws,xb,Gt,N6b,tzK,jR4,jp3,oBi,Rg,he,Dj2,uX,Yn,B9,d1,lX,VE,xc,ho,z5q,ps,MT,BR,qRa,V9,V7b,jWo,Mp,OoG,WPc,cE,Zy,m6,Zf2,iM,ZFC,QH,b4,XW,Zi,tm,Zn,Bc,FH,Mi,q7,Rc,No,fv,v5,Ci,Tl,MMU,OF,rM,Ip,Pl,eDz,Kx,UX,VW,Gg,SLJ,JC,CDo,mvK,OO,Br,vJ,Lk,dq,BP,KD,fu,By,I9,xA,Ns,ym,Y5,YX,xR,Kz,AAR,bD,Fz,FX,hH,bS,dm,oa,ev,Ag,Q08,pfP,l5d,Yb,m3,cB,wX,S4,AU,qH,fMA,xp,Md,q3,fh,jC,Sh,VQ,wjr,WF,oz,c4,DQN,z7,l16,YZp,SFc,HVp,Fx,wMd,alP,mUq,wtP,ulo,csm,IWy,JU8,t5t,CyC,LQ0,HCK,JXB,YGT,q2m,Yya,OrO,Lbc,ksj,wwC,fsC,tFb,V4,MV7,w0r]}
-//# sourceMappingURL=main.dart.js.map

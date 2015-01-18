@@ -8,7 +8,7 @@ packages:
   args:
     description: args
     source: hosted
-    version: "0.12.2+1"
+    version: "0.12.2+2"
   barback:
     description: barback
     source: hosted
@@ -28,7 +28,7 @@ packages:
   core_elements:
     description: core_elements
     source: hosted
-    version: "0.6.0+2"
+    version: "0.6.0+4"
   csslib:
     description: csslib
     source: hosted
@@ -44,7 +44,7 @@ packages:
   dilithium:
     description: dilithium
     source: hosted
-    version: "0.3.2"
+    version: "0.3.3"
   html5lib:
     description: html5lib
     source: hosted
@@ -100,7 +100,7 @@ packages:
   quiver:
     description: quiver
     source: hosted
-    version: "0.18.2"
+    version: "0.20.0"
   smoke:
     description: smoke
     source: hosted

@@ -1,0 +1,14 @@
+{
+  "name": "cocoonjs-plugins",
+  "homepage": "https://github.com/ludei/cocoonjs-plugins",
+  "version": "3.0.5",
+  "_release": "3.0.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.0.5",
+    "commit": "ec1e7f7dd72d426914a5f83624c659200b9bf0fc"
+  },
+  "_source": "https://github.com/ludei/cocoonjs-plugins.git",
+  "_target": "~3.0.5",
+  "_originalSource": "https://github.com/ludei/cocoonjs-plugins.git"
+}

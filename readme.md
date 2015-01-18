@@ -7,7 +7,16 @@
             \/             \/     \/          \/          \/     \/ 
 
 
+# Alien Zone - Space Crysal Match Game
 [![Get it on Google Play](assets/en_generic_rgb_wo_45.png)] (https://play.google.com/store/apps/details?id=com.darkoverlordofdata.alienzone)
+
+
+### Technologies used:
+* cocoonjs
+* dartemis (dart port of Artemis ECS)
+* dilithium config / resource manager
+* play_phaser (dart port of phaser.io)
+* polymer
 
 # GPLv3 License
 

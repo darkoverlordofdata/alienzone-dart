@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * achievement_render_system.dart
+ * award_render_system.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -16,19 +16,19 @@
 part of alienzone;
 
 
-class AchievementRenderSystem extends Artemis.VoidEntitySystem {
+class AwardRenderSystem extends Artemis.VoidEntitySystem {
 
   BaseLevel level;
   CocoonServices cocoon;
 
 
-  AchievementRenderSystem(this.level, this.cocoon);
+  AwardRenderSystem(this.level, this.cocoon);
 
   /**
    * Render Achievements
    */
   void initialize() {
-    if (DEBUG) print("AchievementRenderSystem::initialize");
+    if (DEBUG) print("AwardRenderSystem::initialize");
 
     Artemis.GroupManager groupManager = level.artemis.getManager(new Artemis.GroupManager().runtimeType);
     Artemis.ComponentMapper<Position> positionMapper = new Artemis.ComponentMapper<Position>(Position, level.artemis);

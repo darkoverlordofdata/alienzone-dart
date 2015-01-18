@@ -65,6 +65,9 @@ class ButtonRenderSystem extends Artemis.VoidEntitySystem {
         cocoon.submitScore(level._score, level.leaderboardId);
         level.state.start("gameover", true, false, [name, level._score]);
         break;
+      case 'googleplay':
+        window.open(level.config.strings['playstore'], '_blank');
+        break;
     }
   }
 

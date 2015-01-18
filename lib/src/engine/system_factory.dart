@@ -22,17 +22,17 @@ class SystemFactory {
 
   SystemFactory(this.level, this.cocoon);
 
-  AchievementRenderSystem achievementRender() => new AchievementRenderSystem(level, cocoon);
-  ButtonRenderSystem buttonRender()           => new ButtonRenderSystem(level, cocoon);
-  LeaderRenderSystem leaderRender()           => new LeaderRenderSystem(level, cocoon);
-  LegendRenderSystem legendRender()           => new LegendRenderSystem(level, cocoon);
-  OptionControlSystem optionControl()         => new OptionControlSystem(level, cocoon);
-  PlayGamesSystem playGames()                 => new PlayGamesSystem(level, cocoon);
-  PlayerControlSystem playerControl()         => new PlayerControlSystem(level, cocoon);
-  ScoreRenderSystem scoreRender()             => new ScoreRenderSystem(level, cocoon);
-  SpriteRenderSystem spriteRender()           => new SpriteRenderSystem(level, cocoon);
-  StringRenderSystem stringRender()           => new StringRenderSystem(level, cocoon);
-  TimerControlSystem timerControl()           => new TimerControlSystem(level, cocoon);
+  AwardRenderSystem awardRender()     => new AwardRenderSystem(level, cocoon);
+  ButtonRenderSystem buttonRender()   => new ButtonRenderSystem(level, cocoon);
+  LeaderRenderSystem leaderRender()   => new LeaderRenderSystem(level, cocoon);
+  LegendRenderSystem legendRender()   => new LegendRenderSystem(level, cocoon);
+  OptionControlSystem optionControl() => new OptionControlSystem(level, cocoon);
+  PlayGamesSystem playGames()         => new PlayGamesSystem(level, cocoon);
+  PlayerControlSystem playerControl() => new PlayerControlSystem(level, cocoon);
+  ScoreRenderSystem scoreRender()     => new ScoreRenderSystem(level, cocoon);
+  SpriteRenderSystem spriteRender()   => new SpriteRenderSystem(level, cocoon);
+  StringRenderSystem stringRender()   => new StringRenderSystem(level, cocoon);
+  TimerControlSystem timerControl()   => new TimerControlSystem(level, cocoon);
 
   /**
    * Mirrors aren't stable in compiled js,
@@ -40,18 +40,18 @@ class SystemFactory {
    */
   Artemis.EntitySystem invoke(String methodName) {
     switch(methodName) {
-      case 'achievementRender': return achievementRender();
-      case 'buttonRender':      return buttonRender();
-      case 'leaderRender':      return leaderRender();
-      case 'legendRender':      return legendRender();
-      case 'optionControl':     return optionControl();
-      case 'playGames':         return playGames();
-      case 'playerControl':     return playerControl();
-      case 'scoreRender':       return scoreRender();
-      case 'spriteRender':      return spriteRender();
-      case 'stringRender':      return stringRender();
-      case 'timerControl':      return timerControl();
-      default:                  return null;
+      case 'awardRender':     return awardRender();
+      case 'buttonRender':    return buttonRender();
+      case 'leaderRender':    return leaderRender();
+      case 'legendRender':    return legendRender();
+      case 'optionControl':   return optionControl();
+      case 'playGames':       return playGames();
+      case 'playerControl':   return playerControl();
+      case 'scoreRender':     return scoreRender();
+      case 'spriteRender':    return spriteRender();
+      case 'stringRender':    return stringRender();
+      case 'timerControl':    return timerControl();
+      default:                return null;
     }
   }
 }

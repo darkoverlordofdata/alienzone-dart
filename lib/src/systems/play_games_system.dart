@@ -75,6 +75,10 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
       /**
        * LogIn?
        */
+        if (!cocoon.nativeAvailable) {
+          level.state.start("helplogin", true, false, ['help', 0]);
+        }
+
         if (cocoon.loggedIn) {
           logging = 0.5;
           processSystem();

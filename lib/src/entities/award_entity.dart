@@ -1,6 +1,6 @@
 /**
  *--------------------------------------------------------------------+
- * achievement_entity.dart
+ * award_entity.dart
  *--------------------------------------------------------------------+
  * Copyright DarkOverlordOfData (c) 2014
  *--------------------------------------------------------------------+
@@ -17,9 +17,9 @@ part of alienzone;
 
 const String GROUP_ACHIEVEMENTS      = "ACHIEVEMENTS";
 
-class AchievementEntity extends AbstractEntity {
+class AwardEntity extends AbstractEntity {
 
-  AchievementEntity(entities, int x, int y, int index, String font, String fill)
+  AwardEntity(entities, int x, int y, int index, String font, String fill)
   : super(entities) {
 
     bool lock;
@@ -30,13 +30,13 @@ class AchievementEntity extends AbstractEntity {
       lock = false;
     }
 
-    Artemis.Entity achievement = level.artemis.createEntity();
-    achievement
+    Artemis.Entity award = level.artemis.createEntity();
+    award
     ..addComponent(new Position(x, y))
     ..addComponent(new Text(level.config.extra['achievements'][index]['title'], font, fill))
     ..addComponent(new Lock(lock))
     ..addToWorld();
-    groupManager.add(achievement, GROUP_ACHIEVEMENTS);
+    groupManager.add(award, GROUP_ACHIEVEMENTS);
   }
 
 }

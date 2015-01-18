@@ -31,10 +31,8 @@ class Game extends Li2.Dilithium implements CocoonListener {
    */
   Game(this.ui, Li2.Config config): super(config) {
 
-    // screen.orientation.lock('portrait');
     print("Class Game initialized");
     cocoon = new CocoonServices(config, this);
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
 
   loginStatusChanged(object, value, error){
@@ -49,6 +47,7 @@ class Game extends Li2.Dilithium implements CocoonListener {
    */
   Phaser.State levels() {
 
+    game.state.add('helplogin', new BaseLevel('helplogin', config, cocoon, ui));
     game.state.add('infinity', new BaseLevel('infinity', config, cocoon, ui));
     game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
     game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));

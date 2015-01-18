@@ -86,7 +86,7 @@ part 'src/components/velocity.dart';
 /**
  * Entities
  */
-part 'src/entities/achievement_entity.dart';
+part 'src/entities/award_entity.dart';
 part 'src/entities/button_entity.dart';
 part 'src/entities/gem_entity.dart';
 part 'src/entities/image_entity.dart';
@@ -102,7 +102,7 @@ part 'src/entities/user_entity.dart';
 /**
  * Systems
  */
-part 'src/systems/achievement_render_system.dart';
+part 'src/systems/award_render_system.dart';
 part 'src/systems/button_render_system.dart';
 part 'src/systems/leader_render_system.dart';
 part 'src/systems/legend_render_system.dart';

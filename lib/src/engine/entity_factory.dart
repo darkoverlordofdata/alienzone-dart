@@ -31,8 +31,8 @@ class EntityFactory  {
 
   }
 
-  AchievementEntity achievement(int x, int y, int index, String font, String fill)
-    => new AchievementEntity(this, x, y, index, font, fill);
+  AwardEntity award(int x, int y, int index, String font, String fill)
+    => new AwardEntity(this, x, y, index, font, fill);
 
   ButtonEntity button(int x, int y, String key, String action, [String text = "", String font = "", String fill = ""])
     => new ButtonEntity(this, x, y, key, action, text, font, fill);
@@ -76,20 +76,20 @@ class EntityFactory  {
    */
   AbstractEntity invoke(String methodName, List args) {
     switch(methodName) {
-      case 'achievement': return Function.apply(achievement, args);
-      case 'button':      return Function.apply(button, args);
-      case 'gem':         return Function.apply(gem, args);
-      case 'image':       return Function.apply(image, args);
-      case 'input':       return Function.apply(input, args);
-      case 'leader':      return Function.apply(leader, args);
-      case 'legend':      return Function.apply(legend, args);
-      case 'option':      return Function.apply(option, args);
-      case 'player':      return Function.apply(player, args);
-      case 'score':       return Function.apply(score, args);
-      case 'string':      return Function.apply(string, args);
-      case 'timer':       return Function.apply(timer, args);
-      case 'user':        return Function.apply(user, args);
-      default:            return null;
+      case 'award':     return Function.apply(award, args);
+      case 'button':    return Function.apply(button, args);
+      case 'gem':       return Function.apply(gem, args);
+      case 'image':     return Function.apply(image, args);
+      case 'input':     return Function.apply(input, args);
+      case 'leader':    return Function.apply(leader, args);
+      case 'legend':    return Function.apply(legend, args);
+      case 'option':    return Function.apply(option, args);
+      case 'player':    return Function.apply(player, args);
+      case 'score':     return Function.apply(score, args);
+      case 'string':    return Function.apply(string, args);
+      case 'timer':     return Function.apply(timer, args);
+      case 'user':      return Function.apply(user, args);
+      default:          return null;
     }
   }
 

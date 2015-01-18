@@ -164,3 +164,19 @@ achievements:
     - buttonRender: false
     - awardRender: false
 
+
+helplogin:
+  entities:
+    - image: [0, 0, gameover]
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, label, 0.5]
+    - string: [45, 130, helplogin, '8pt opendyslexic', '#000']
+    - image: [10, 10, icon]
+    - button: [90, 380, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+

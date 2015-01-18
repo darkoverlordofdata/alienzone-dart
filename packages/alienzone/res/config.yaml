@@ -25,6 +25,7 @@ maxHeight: 1280
 pageAlignHorizontally: true
 pageAlignVertically: true
 forceOrientation: false
+orientation: portrait
 
 splashKey: splash
 splashImg: images/splash.png

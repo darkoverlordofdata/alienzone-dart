@@ -1,0 +1,50 @@
+gems:
+  file      : images/gems.png
+  width     : 48
+  height    : 48
+
+legend:
+  file      : images/legend.png
+  width     : 24
+  height    : 24
+
+musicOption:
+  file      : images/music_option.png
+  width     : 47
+  height    : 57
+
+sfxOption:
+  file      : images/sfx_option.png
+  width     : 70
+  height    : 61
+
+achievement:
+  file      : images/achievement.png
+  width     : 32
+  height    : 32
+
+
+gamesAchievements:
+  file      : images/games_achievements.png
+  width     : 64
+  height    : 64
+
+gamesController:
+  file      : images/games_controller.png
+  width     : 64
+  height    : 64
+
+gamesLeaderboards:
+  file      : images/games_leaderboards.png
+  width     : 64
+  height    : 64
+
+red9:
+  file      : images/09-red.png
+  width     : 51
+  height    : 74
+
+white9:
+  file      : images/09-white.png
+  width     : 51
+  height    : 74

@@ -1,0 +1,23 @@
+#
+#
+#
+#front:          images/front.png
+#ftl:            images/ftl.png
+#menu:           images/menu.png
+#infinity:       images/infinity.png
+#gameover:       images/gameover.png
+board:          images/slots.png
+#legend_board:   images/legend_board.png
+button:         images/button.png
+button2:        images/button2.png
+button4:        images/button4.png
+button5:        images/button5.png
+icon:           images/d16a.png
+label:          images/label.png
+scores:         images/scores.png
+arrowRight:     images/arrows/right.png
+arrowLeft:      images/arrows/left.png
+arrowDown:      images/arrows/down.png
+arrowLrot:      images/arrows/lrot.png
+arrowRrot:      images/arrows/rrot.png
+googleplay:     images/en_generic_rgb_wo_45.png

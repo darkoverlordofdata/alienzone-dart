@@ -1,0 +1,191 @@
+#+--------------------------------------------------------------------+
+#| values/levels.yaml
+#+--------------------------------------------------------------------+
+#| Copyright DarkOverlordOfData (c) 2014
+#+--------------------------------------------------------------------+
+#|
+#| This file is a part of alienzone
+#|
+#| alienzone is free software; you can copy, modify, and distribute
+#| it under the terms of the GPL3 License
+#|
+#+--------------------------------------------------------------------+
+#
+# Alien Zone Dilithium(Li2) Level Configuration
+#
+#
+
+#
+# Main menu
+#
+main:
+  entities:
+    - string: [20, 0, title, 'bold 36pt opendyslexic', 'yellow']
+    - button: [75, 100, button5, 'infinity', 'Infinity', 'bold 24pt opendyslexic', '#000']
+    - button: [75, 180, button5, 'ftl', 'FTL', 'bold 24pt opendyslexic', '#000']
+    - user: [60, 300, 64, 8]
+    - option: [10, 400, musicOption, music]
+    - button: [105, 410, button, 'howtoplay', 'how to play', 'bold 10pt opendyslexic', '#000']
+    - option: [250, 400, sfxOption, sfx]
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+    - optionControl: false
+    - playGames: true
+
+#
+# Game1:
+#
+# Infinity - all the time you need
+#
+infinity:
+  entities:
+    - image: [0, 0, board, 0.7]
+    - string: [100, 0, infinity, 'bold 24pt opendyslexic', 'yellow']
+    - score: [100, 40, 'Score', 'bold 20pt opendyslexic', 'yellow']
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - legend: [290, 100, legend, 0, 1]
+    - legend: [290, 132, legend, 1, 1]
+    - legend: [290, 164, legend, 2, 1]
+    - legend: [290, 196, legend, 3, 0.50]
+    - legend: [290, 228, legend, 4, 0.50]
+    - legend: [290, 260, legend, 5, 0.50]
+    - legend: [290, 292, legend, 6, 0.50]
+    - legend: [290, 324, legend, 7, 0.50]
+    - input: [0, 430, arrowLeft, left]
+    - input: [50, 430, arrowDown, drop]
+    - input: [100, 430, arrowRight, right]
+    - input: [220, 430, arrowLrot, lrot]
+    - input: [270, 430, arrowRrot, rrot]
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - scoreRender: false
+    - legendRender: false
+    - buttonRender: false
+    - playerControl: false
+
+#
+# Game2
+#
+# FTL - Timed challenge
+#
+ftl:
+  entities:
+    - image: [0, 0, board, 0.7]
+    - string: [100, 0, ftl, 'bold 24pt opendyslexic', 'yellow']
+    - timer: [160, 0, 'gem-drop', 'bold 18pt opendyslexic', 'orange']
+    - score: [100, 40, 'Score', 'bold 20pt opendyslexic', 'yellow']
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - legend: [290, 100, legend, 0, 1]
+    - legend: [290, 132, legend, 1, 1]
+    - legend: [290, 164, legend, 2, 1]
+    - legend: [290, 196, legend, 3, 0.50]
+    - legend: [290, 228, legend, 4, 0.50]
+    - legend: [290, 260, legend, 5, 0.50]
+    - legend: [290, 292, legend, 6, 0.50]
+    - legend: [290, 324, legend, 7, 0.50]
+    - input: [0, 430, arrowLeft, left]
+    - input: [50, 430, arrowDown, drop]
+    - input: [100, 430, arrowRight, right]
+    - input: [220, 430, arrowLrot, lrot]
+    - input: [270, 430, arrowRrot, rrot]
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - scoreRender: false
+    - legendRender: false
+    - buttonRender: false
+    - timerControl: true
+    - playerControl: false
+
+
+gameover:
+  entities:
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, scores, 0.5]
+    - string: [45, 130, gameover, 'bold 24pt opendyslexic', '#000']
+    - leader: [75, 180, 0, 'bold 14pt opendyslexic', '#000']
+    - leader: [75, 220, 1, 'bold 14pt opendyslexic', '#000']
+    - score: [45, 280, 'Your Score', 'bold 20pt opendyslexic', '#000']
+    - button: [100, 340, button, 'savescore', 'Save', 'bold 12pt opendyslexic', '#000']
+    - image: [10, 10, icon]
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+    - leaderRender: false
+    - scoreRender: false
+
+leaderboards:
+  entities:
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, scores, 0.5]
+    - string: [45, 130, leaderboards, 'bold 24pt opendyslexic', 'yellow']
+    - leader: [75, 180, 0, 'bold 14pt opendyslexic', 'yellow']
+    - leader: [75, 220, 1, 'bold 14pt opendyslexic', 'yellow']
+    - image: [10, 10, icon]
+    - button: [90, 400, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+    - leaderRender: false
+
+
+achievements:
+  entities:
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, scores, 0.5]
+    - string: [45, 130, achievements, 'bold 24pt opendyslexic', 'yellow']
+    - award: [45, 180, 0, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 220, 1, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 260, 2, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 300, 3, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 340, 4, 'bold 14pt opendyslexic', 'yellow']
+    - image: [10, 10, icon]
+    - button: [90, 400, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+    - awardRender: false
+
+
+helplogin:
+  entities:
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, label, 0.5]
+    - string: [55, 110, helplogin, '10pt opendyslexic', '#0ff', 'center']
+    - image: [10, 10, icon]
+    - button: [90, 400, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false
+
+howtoplay:
+  entities:
+    - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
+    - image: [15, 100, scores, 0.5]
+    - string: [35, 130, howtoplay, '10pt opendyslexic', '#0ff']
+    - image: [10, 10, icon]
+    - button: [90, 400, googleplay, 'googleplay']
+    - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
+
+  systems:
+    - spriteRender: false
+    - stringRender: false
+    - buttonRender: false

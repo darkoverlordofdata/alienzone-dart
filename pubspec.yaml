@@ -1,5 +1,5 @@
 name: alienzone
-version: 0.0.19
+version: 0.0.25
 description:
   Space Crystal Matching Puzzle
 author: brucedavidson <darkoverlordofdata@gmail.com>
@@ -7,19 +7,18 @@ homepage: http://darkoverlordofdata.com
 dependencies:
   browser: any
   yaml: any
-  play_phaser: any
+  play_phaser:
+    git: git://github.com/darkoverlordofdata/play_phaser.git
+
   play_pixi: any
   dartemis: any
-  dilithium: any
+  dilithium:
+    git: git://github.com/darkoverlordofdata/dilithium.git
   mt19937: any
   match3:  any
-  polymer: any
-  paper_elements: any
 
 
 transformers:
-- polymer:
-    entry_points: web/index.html
 - $dart2js:
     checked: false
     minify: true

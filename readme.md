@@ -16,7 +16,6 @@
 * dartemis (dart port of Artemis ECS)
 * dilithium config / resource manager
 * play_phaser (dart port of phaser.io)
-* polymer
 
 # GPLv3 License
 

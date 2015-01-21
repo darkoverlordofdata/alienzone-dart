@@ -4,16 +4,14 @@
 #
 rm -f alienzone.zip
 cd build/web
-#
-# squeeze some more space out
-#
-vulcanize --strip --inline --csp --output alienzone.html index.html
+
+vulcanize -s  --inline --csp --output bootstrap.html index.html
 rm -f index.html
-mv -f alienzone.html index.html
-rm -f index.html_bootstrap.dart.js
+mv -f bootstrap.html index.html
 rm -fr js
-rm -fr packages/core_elements
-rm -fr packages/paper_elements
+
+rm -fr app/packages
+mv -f packages app/packages
 #
 # zip it up
 #

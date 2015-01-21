@@ -45,9 +45,6 @@ import "package:dilithium/dilithium.dart" as Li2;
 import 'package:match3/match3.dart' as Match3;
 import 'package:mt19937/mt19937.dart';
 
-import 'package:alienzone/ui/game_ui.dart';
-export 'package:polymer/init.dart';
-
 part 'src/alien_zone_application.dart';
 part 'src/cocoon_services.dart';
 part 'src/game.dart';

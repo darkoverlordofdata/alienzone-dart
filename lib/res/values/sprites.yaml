@@ -38,3 +38,13 @@ gamesLeaderboards:
   file      : images/games_leaderboards.png
   width     : 64
   height    : 64
+
+red9:
+  file      : images/09-red.png
+  width     : 51
+  height    : 74
+
+white9:
+  file      : images/09-white.png
+  width     : 51
+  height    : 74

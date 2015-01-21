@@ -105,9 +105,18 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     }
     puzzle = new Match3.Grid(width: 6, height: 7, gravity: 'down');
     createGems();
+
+    level.context.action.add(onTimer);
   }
 
-  /**
+  onTimer(String name) {
+
+    if (name == 'gem-drop') {
+      drop();
+    }
+  }
+
+    /**
    * New Gem Group
    *
    * return Gem Group
@@ -133,6 +142,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
       }
     }
     update();
+    level.context.reset.dispatch();
   }
 
   /**
@@ -175,6 +185,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
         }
       }
     }
+
   }
 
   /**

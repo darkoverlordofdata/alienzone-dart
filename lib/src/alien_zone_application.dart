@@ -25,19 +25,11 @@ class AlienZoneApplication {
    *   * Using game configuration
    *   * Start a game instance
    */
-  AlienZoneApplication(var ui) {
+  AlienZoneApplication() {
 
     print("Class AlienZoneApplication Initialized");
-    Li2.Dilithium.using("packages/alienzone/res").then((config) => (game = new Game(ui, config)));
+    Li2.Dilithium.using("packages/alienzone/res").then((config) => game = new Game(config));
 
-  }
-
-  pause() {
-    game.game.paused = true;
-  }
-
-  resume() {
-    game.game.paused = false;
   }
 
   /**

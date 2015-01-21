@@ -34,6 +34,7 @@ class Context {
   Phaser.Signal _scored = null;
   Phaser.Signal _pegged = null;
   Phaser.Signal _action = null;
+  Phaser.Signal _reset = null;
 
   /**
    * Initialize persisted options
@@ -43,6 +44,7 @@ class Context {
     _scored = new Phaser.Signal();
     _pegged = new Phaser.Signal();
     _action = new Phaser.Signal();
+    _reset = new Phaser.Signal();
     _sfx = (window.localStorage["${PFX}_sfx"] == "true");
     _music = (window.localStorage["${PFX}_music"] == "true");
     _level.game.sound.volume = this.volume;
@@ -52,6 +54,7 @@ class Context {
   Phaser.Signal get scored => _scored;
   Phaser.Signal get pegged => _pegged;
   Phaser.Signal get action => _action;
+  Phaser.Signal get reset => _reset;
   int get score => _score;
   bool get sfx => _sfx;
   bool get music => _music;
@@ -63,6 +66,8 @@ class Context {
     _pegged.dispatch(_legend);
 
   }
+
+
 
   /**
    * Update the score, fire signal

@@ -56,7 +56,7 @@ class PlayGamesSystem extends Artemis.VoidEntitySystem {
     leaderboards.inputEnabled = true;
     leaderboards.events.onInputDown.add((sprite, pointer) => play(2));
 
-    processSystem();
+    //processSystem();
 
   }
 

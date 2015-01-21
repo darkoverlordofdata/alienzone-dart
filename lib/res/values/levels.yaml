@@ -20,7 +20,6 @@
 #
 main:
   entities:
-    - image: [0, 0, splash]
     - string: [20, 0, title, 'bold 36pt opendyslexic', 'yellow']
     - button: [75, 100, button5, 'infinity', 'Infinity', 'bold 24pt opendyslexic', '#000']
     - button: [75, 180, button5, 'ftl', 'FTL', 'bold 24pt opendyslexic', '#000']
@@ -43,19 +42,18 @@ main:
 #
 infinity:
   entities:
-    - image: [0, 0, background3]
     - image: [0, 0, board, 0.7]
-    - image: [286, 96, legend_board]
-    - score: [100, 20, 'Score', 'bold 20pt opendyslexic', '#fff']
+    - string: [100, 0, infinity, 'bold 24pt opendyslexic', 'yellow']
+    - score: [100, 40, 'Score', 'bold 20pt opendyslexic', 'yellow']
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - legend: [290, 100, legend, 0, 1]
     - legend: [290, 132, legend, 1, 1]
     - legend: [290, 164, legend, 2, 1]
-    - legend: [290, 196, legend, 3, 0.2]
-    - legend: [290, 228, legend, 4, 0.2]
-    - legend: [290, 260, legend, 5, 0.2]
-    - legend: [290, 292, legend, 6, 0.2]
-    - legend: [290, 324, legend, 7, 0.2]
+    - legend: [290, 196, legend, 3, 0.50]
+    - legend: [290, 228, legend, 4, 0.50]
+    - legend: [290, 260, legend, 5, 0.50]
+    - legend: [290, 292, legend, 6, 0.50]
+    - legend: [290, 324, legend, 7, 0.50]
     - input: [0, 430, arrowLeft, left]
     - input: [50, 430, arrowDown, drop]
     - input: [100, 430, arrowRight, right]
@@ -64,6 +62,7 @@ infinity:
 
   systems:
     - spriteRender: false
+    - stringRender: false
     - scoreRender: false
     - legendRender: false
     - buttonRender: false
@@ -76,20 +75,19 @@ infinity:
 #
 ftl:
   entities:
-    - image: [0, 0, background1]
     - image: [0, 0, board, 0.7]
-    - image: [286, 96, legend_board]
-    - timer: [100, 0, outoftime, 'bold 18pt opendyslexic', '#000']
-    - score: [100, 20, 'Score', 'bold 20pt opendyslexic', '#fff']
+    - string: [100, 0, ftl, 'bold 24pt opendyslexic', 'yellow']
+    - timer: [160, 0, 'gem-drop', 'bold 18pt opendyslexic', 'orange']
+    - score: [100, 40, 'Score', 'bold 20pt opendyslexic', 'yellow']
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - legend: [290, 100, legend, 0, 1]
     - legend: [290, 132, legend, 1, 1]
     - legend: [290, 164, legend, 2, 1]
-    - legend: [290, 196, legend, 3, 0.2]
-    - legend: [290, 228, legend, 4, 0.2]
-    - legend: [290, 260, legend, 5, 0.2]
-    - legend: [290, 292, legend, 6, 0.2]
-    - legend: [290, 324, legend, 7, 0.2]
+    - legend: [290, 196, legend, 3, 0.50]
+    - legend: [290, 228, legend, 4, 0.50]
+    - legend: [290, 260, legend, 5, 0.50]
+    - legend: [290, 292, legend, 6, 0.50]
+    - legend: [290, 324, legend, 7, 0.50]
     - input: [0, 430, arrowLeft, left]
     - input: [50, 430, arrowDown, drop]
     - input: [100, 430, arrowRight, right]
@@ -98,16 +96,16 @@ ftl:
 
   systems:
     - spriteRender: false
+    - stringRender: false
     - scoreRender: false
     - legendRender: false
     - buttonRender: false
-    - playerControl: false
     - timerControl: true
+    - playerControl: false
 
 
 gameover:
   entities:
-    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [45, 130, gameover, 'bold 24pt opendyslexic', '#000']
@@ -127,12 +125,11 @@ gameover:
 
 leaderboards:
   entities:
-    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
-    - string: [45, 130, leaderboards, 'bold 24pt opendyslexic', '#000']
-    - leader: [75, 180, 0, 'bold 14pt opendyslexic', '#000']
-    - leader: [75, 220, 1, 'bold 14pt opendyslexic', '#000']
+    - string: [45, 130, leaderboards, 'bold 24pt opendyslexic', 'yellow']
+    - leader: [75, 180, 0, 'bold 14pt opendyslexic', 'yellow']
+    - leader: [75, 220, 1, 'bold 14pt opendyslexic', 'yellow']
     - image: [10, 10, icon]
     - button: [90, 400, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
@@ -146,15 +143,14 @@ leaderboards:
 
 achievements:
   entities:
-    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
-    - string: [45, 130, achievements, 'bold 24pt opendyslexic', '#000']
-    - award: [45, 180, 0, 'bold 14pt opendyslexic', '#000']
-    - award: [45, 220, 1, 'bold 14pt opendyslexic', '#000']
-    - award: [45, 260, 2, 'bold 14pt opendyslexic', '#000']
-    - award: [45, 300, 3, 'bold 14pt opendyslexic', '#000']
-    - award: [45, 340, 4, 'bold 14pt opendyslexic', '#000']
+    - string: [45, 130, achievements, 'bold 24pt opendyslexic', 'yellow']
+    - award: [45, 180, 0, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 220, 1, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 260, 2, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 300, 3, 'bold 14pt opendyslexic', 'yellow']
+    - award: [45, 340, 4, 'bold 14pt opendyslexic', 'yellow']
     - image: [10, 10, icon]
     - button: [90, 400, googleplay, 'googleplay']
     - string: [35, 450, copyrightText, '12px opendyslexic', '#000']
@@ -168,7 +164,6 @@ achievements:
 
 helplogin:
   entities:
-    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, label, 0.5]
     - string: [55, 110, helplogin, '10pt opendyslexic', '#0ff', 'center']
@@ -183,7 +178,6 @@ helplogin:
 
 howtoplay:
   entities:
-    - image: [0, 0, gameover]
     - button: [260, 20, button2, 'back', 'Back', 'bold 12pt opendyslexic', '#000']
     - image: [15, 100, scores, 0.5]
     - string: [35, 130, howtoplay, '10pt opendyslexic', '#0ff']

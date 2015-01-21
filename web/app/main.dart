@@ -27,4 +27,9 @@ You should have received a copy of the GNU General Public License
 along with AlienZone.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-export 'package:polymer/init.dart';
+
+import "package:alienzone/alienzone.dart" show AlienZoneApplication;
+
+main() {
+  new AlienZoneApplication();
+}

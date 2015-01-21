@@ -19,7 +19,6 @@ part of alienzone;
 class Game extends Li2.Dilithium implements CocoonListener {
 
   CocoonServices cocoon;
-  GameUi ui;
 
   /**
    * == New Game ==
@@ -29,9 +28,9 @@ class Game extends Li2.Dilithium implements CocoonListener {
    *
    * returns this
    */
-  Game(this.ui, Li2.Config config): super(config) {
+  Game(Li2.Config config): super(config) {
 
-    print("Class Game initialized");
+    print("Class Game initialized  ");
     cocoon = new CocoonServices(config, this);
   }
 
@@ -47,16 +46,19 @@ class Game extends Li2.Dilithium implements CocoonListener {
    */
   Phaser.State levels() {
 
-    game.state.add('helplogin', new BaseLevel('helplogin', config, cocoon, ui));
-    game.state.add('howtoplay', new BaseLevel('howtoplay', config, cocoon, ui));
-    game.state.add('infinity', new BaseLevel('infinity', config, cocoon, ui));
-    game.state.add('ftl', new BaseLevel('ftl', config, cocoon, ui));
-    game.state.add('gameover', new BaseLevel('gameover', config, cocoon, ui));
-    game.state.add('achievements', new BaseLevel('achievements', config, cocoon, ui));
-    game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon, ui));
 
-    ui.hideBanner();
-    return new BaseLevel('main', config, cocoon, ui);
+    game.state.add('helplogin', new BaseLevel('helplogin', config, cocoon));
+    game.state.add('howtoplay', new BaseLevel('howtoplay', config, cocoon));
+    game.state.add('infinity', new BaseLevel('infinity', config, cocoon));
+    game.state.add('ftl', new BaseLevel('ftl', config, cocoon));
+    game.state.add('gameover', new BaseLevel('gameover', config, cocoon));
+    game.state.add('achievements', new BaseLevel('achievements', config, cocoon));
+    game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon));
+
+    try {
+      document.querySelector('#logo').style.display = "none";
+    } catch(e) {}
+    return new BaseLevel('main', config, cocoon);
 
   }
 

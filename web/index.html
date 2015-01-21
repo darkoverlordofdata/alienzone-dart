@@ -1,34 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Alien Zone</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="images/favicon.png" />
-    <link rel="import" href="packages/alienzone/ui/game_ui.html">
-    <style>
-        @font-face{
-            font-family:'opendyslexic';
-            font-style: normal;
-            font-weight: 400;
-            src: local('opendyslexic'), url(fonts/OpenDyslexic-Regular.otf) format('truetype');
-        }
+<html>
+	<head>
+		<title>Alien Zone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		<meta name="theme-color" content="#000000" />
+		<link rel="shortcut icon" href="app/favicon.png" />
+		<style type="text/css">
+			body {
+			padding: 0;
+			margin: 0;
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			/*-ms-touch-action: none;*/
+		}
+		</style>
+		<script src="js/cocoonjs-plugins/build/cocoon.min.js"></script>
+		<script src="js/phaser.min.js"></script>
+		<script src="js/loader.js"></script>
+    </head>
+    <body>
+    </body>
+</html><!--
 
-        body {
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
+       _____  .__  .__                __________
+      /  _  \ |  | |__| ____   ____   \____    /____   ____   ____
+     /  /_\  \|  | |  |/ __ \ /    \    /     //  _ \ /    \_/ __ \
+    /    |    \  |_|  \  ___/|   |  \  /     /(  <_> )   |  \  ___/
+    \____|__  /____/__|\___  >___|  / /_______ \____/|___|  /\___  >
+            \/             \/     \/          \/          \/     \/
 
-    </style>
-</head>
-<body unresolved>
-<game-ui title="alien zone" build="20" copyright="2014 Dark Overlord Of Data"></game-ui>
 
-<script src="js/cocoonjs-plugins/build/cocoon.min.js"></script>
-<script type="application/dart" src="main.dart"></script>
-<script type="text/javascript"  src="packages/browser/dart.js"></script>
-</body>
-</html>
+Copyright (c) 2014 Bruce Davidson <darkoverlordofdata@gmail.com>
+
+This file is part of AlienZone.
+
+AlienZone is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+AlienZone is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with AlienZone.  If not, see <http://www.gnu.org/licenses/>.
+-->

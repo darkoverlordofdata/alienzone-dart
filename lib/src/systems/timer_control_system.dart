@@ -15,6 +15,7 @@ class TimerControlSystem extends Artemis.VoidEntitySystem {
 
   bool done;
   num countdown;
+  int dec = 0;
 
   TimerControlSystem(this.level, this.cocoon);
 
@@ -69,7 +70,8 @@ class TimerControlSystem extends Artemis.VoidEntitySystem {
    * Reset the countdown
    */
   void onReset() {
-    countdown = time.minutes * 60000 + time.seconds * 1000;
+    dec += 1000; // 1 second less each time, but at least 2 sec to play
+    countdown = Math.max(2000, (time.minutes * 60000 + time.seconds * 1000) - dec);
     displayTimer();
   }
 

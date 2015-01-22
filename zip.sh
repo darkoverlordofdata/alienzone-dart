@@ -16,7 +16,7 @@ sed -i 's/<script type="application\/dart" src="main.dart"><\/script>/<script sr
 #
 #   compress it some more
 #
-vulcanize -s --inline --csp --output alienzone.html index.html
+vulcanize --strip --inline --csp --output alienzone.html index.html
 rm -f index.html
 mv -f alienzone.html index.html
 rm -f main.dart.js
@@ -29,7 +29,7 @@ cd ..
 #
 #   compress it some more
 #
-vulcanize -s  -inline --csp --output bootstrap.html index.html
+vulcanize --strip --inline --csp --output bootstrap.html index.html
 rm -f index.html
 mv -f bootstrap.html index.html
 rm -fr js

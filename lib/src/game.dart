@@ -55,9 +55,8 @@ class Game extends Li2.Dilithium implements CocoonListener {
     game.state.add('achievements', new BaseLevel('achievements', config, cocoon));
     game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon));
 
-    try {
-      document.querySelector('#logo').style.display = "none";
-    } catch(e) {}
+    context['Cocoon']['App'].callMethod('forwardAsync', ['game_onload();']);
+
     return new BaseLevel('main', config, cocoon);
 
   }

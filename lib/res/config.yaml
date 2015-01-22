@@ -38,7 +38,7 @@ showSplash: false
 splashKey:
 splashImg:
 
-showPreloadBar: true
+showPreloadBar: false
 preloadBarKey: loading
 preloadBarImg: images/loading.png
 preloadBgdKey: logo

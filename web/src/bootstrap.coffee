@@ -15,172 +15,136 @@
 #
 
 ###
-  callback from the web view with state
+ * callback from the web view with state
 ###
-game_start = (state) ->
-  game.state.start(state)
+game_start = () ->
+  game.eraseSplash()
+
+class Game
+
+  VERSION   : '0.0.34'
+  width     : 320
+  height    : 512
+  base      : 'app/packages/alienzone/res/'
+  objects   : []
+
+  constructor: ()->
+
+    @objects = []
+    game = new Phaser.Game(@width, @height, Phaser.CANVAS, "")
+    game.state.add("Boot", new Boot(this, game))
+    game.state.add("Splash", new Splash(this, game))
+    game.state.start("Boot")
+
+    Cocoon.App.WebView.on 'load',
+      success: () ->
+        Cocoon.App.showTheWebView(0, 0, window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio)
+
+      error: () ->
+        console.log(JSON.stringify(arguments))
+
+
+    Cocoon.App.loadInTheWebView("app/index.html")
+
+  eraseSplash: ->
+      obj.destroy() for obj in @objects
+
 
 ###
-  Bootstrap
+ * Boot
+ *   Load the logo image,
+ *   configure the game
 ###
-game = do() ->
+class Boot
 
-  VERSION   = '0.0.34'
-  base      = 'app/packages/alienzone/res/'
-  sprite1   = 'star17'
-  sprite2   = 'bucky'
-  logo      = 'logo'
-  width     = 320
-  height    = 512
-  bmd       = undefined
-  area      = undefined
-  dropTime  = 0
-  texts     = []
-  done      = false
+  constructor:(@app, @game) ->
+    console.log('Initialized Class Boot')
 
+  preload: ->
+    @game.load.image('logo', "#{@app.base}images/d16a.png")
 
-  ###
-  Log
-  ###
-  log = ->
-    console.log("Running #{game.state.getCurrentState().state.current} state  ")
+  create: ->
+    @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+    @game.scale.pageAlignHorizontally = true
+    @game.scale.pageAlignVertically = true
+    @game.scale.setScreenSize(true)
+    @game.physics.startSystem(Phaser.Physics.ARCADE)
+    @game.state.start("Splash")
 
+###
+ * Splash
+ *   Display the logo splash
+###
+class Splash
 
-  ###
-  Boot
-    Load the logo image,
-    configure the game
-  ###
-  boot =
-    init: ->
-      log()
+  constructor:(@app, @game) ->
+    console.log('Initialized Class Splash')
 
-    preload: ->
-      game.load.image(logo, "#{base}images/#{logo}.png")
+  preload: ->
+    title = 'Alien Zone'
+    copyright = 'Copyright 2014 Dark Overlord of Data'
+    build = "Build #{@app.VERSION}"
+    style10 =
+      fill: 'yellow'
+      font: '10pt opendyslexic'
 
-    create: ->
-      game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
-      game.scale.pageAlignHorizontally = true
-      game.scale.pageAlignVertically = true
-      game.scale.setScreenSize(true)
-      game.physics.startSystem(Phaser.Physics.ARCADE)
-      game.state.start("Load")
+    style20 =
+      fill: 'orange'
+      font: '40pt opendyslexic'
 
-  ###
-  Load
-    Display the logo, load the rest
-  ###
-  load =
-    init: ->
-      log()
+    obj = @game.add.sprite(@app.width/2, @app.height/2, 'logo')
+    obj.anchor.setTo(0.5, 0.5)
+    @app.objects.push(obj)
 
-    preload: ->
-      game.load.spritesheet(sprite1, "#{base}images/#{sprite1}.png", 17, 17)
-      game.load.spritesheet(sprite2, "#{base}images/#{sprite2}.png", 64, 64)
+    obj = @game.add.text(@app.width/2, 80, title, style20)
+    obj.anchor.setTo(0.5)
+    @app.objects.push(obj)
 
-    create: ->
+    obj = @game.add.text(@app.width/2, 400, build, style10)
+    obj.anchor.setTo(0.5)
+    @app.objects.push(obj)
 
-      title = 'AlienZone'
-      copyright = 'Copyright 2014 Dark Overlord of Data'
-      build = "Build #{VERSION}"
-      style10 =
-        fill: '#fff'
-        font: '10pt opendyslexic'
+    obj = @game.add.text(@app.width/2, 480, copyright, style10)
+    obj.anchor.setTo(0.5)
+    @app.objects.push(obj)
 
-      style20 =
-        fill: '#fff'
-        font: '30pt opendyslexic'
+    @game.load.spritesheet('sprite1', "#{@app.base}images/star17.png", 17, 17)
+    @game.load.spritesheet('sprite2', "#{@app.base}images/bucky.png", 64, 64)
 
-      texts.push(game.add.text(50, 80, title, style20))
-      texts.push(game.add.text(120, 400, build, style10))
-      texts.push(game.add.text(20, 480, copyright, style10))
+  create: ->
+    ###
+    star particles
+    ###
+    backStars = @game.add.emitter(160, -32, 100)
+    backStars.makeParticles('sprite1', [0, 1])
+    backStars.maxParticleScale = 0.6
+    backStars.minParticleScale = 0.2
+    backStars.setYSpeed(20, 50)
+    backStars.setXSpeed(-15, 15)
+    backStars.gravity = 0
+    backStars.width = @app.width
+    backStars.minRotation = 0
+    backStars.maxRotation = 0
+    backStars.start(false, 14000, 500)
 
-      bmd = game.make.bitmapData()
-      bmd.load(logo).cls()
-      bmd.addToWorld(game.world.centerX, game.world.centerY, 0.5, 0.5, 2, 2)
-      game.stage.smoothed = false
-      area = new Phaser.Rectangle(0, bmd.height, bmd.width, 1)
-      dropTime = game.time.now + 250
+    ###
+    buckyball particles
+    ###
+    backBalls = @game.add.emitter(160, -32, 50)
+    backBalls.makeParticles('sprite2', [0])
+    backBalls.maxParticleScale = 0.75
+    backBalls.minParticleScale = 0.5
+    backBalls.setYSpeed(20, 70)
+    backBalls.setXSpeed(-20, 20)
+    backBalls.gravity = 0
+    backBalls.width = @app.width
+    backBalls.minRotation = 0
+    backBalls.maxRotation = 0
+    backBalls.start(false, 14000, 1000)
 
-    update: ->
-      if (area.y > 0 && game.time.now > dropTime)
-        for y in [0...area.y]
-          bmd.copyRect(logo, area, 0, y)
+    ###
+    signal the game to start
+    ###
+    Cocoon.App.forwardAsync("D16A_WAIT=false;window.dispatchEvent(new CustomEvent('D16A_START'))")
 
-
-        area.y--
-        dropTime = game.time.now + 25
-      else if (game.time.now > dropTime)
-        if (done == false)
-          # We're ready, so ease on out and start the game
-          for i in [0...texts.length]
-            game.add.tween(texts[i]).to(alpha:0, 1500, Phaser.Easing.Linear.None, true)
-
-          bmd.shiftHSL(0.1)
-          setInterval(() ->
-            bmd.shiftHSL(0.1)
-          , 500)
-
-          Cocoon.App.forwardAsync("D16A_WAIT=false;window.dispatchEvent(new CustomEvent('D16A_START'))")
-
-        done = true
-
-  ###
-  Start
-    start the game animation
-  ###
-  start =
-    init: ->
-      log()
-
-    preload: ->
-    create: ->
-      game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT
-      backStars = game.add.emitter(160, -32, 600)
-      backBalls = game.add.emitter(160, -32, 50)
-
-      ###
-      star particles
-      ###
-      backStars.makeParticles(sprite1, [0])
-      backStars.maxParticleScale = 0.6
-      backStars.minParticleScale = 0.2
-      backStars.setYSpeed(20, 100)
-      backStars.setXSpeed(-15, 15)
-      backStars.gravity = 0
-      backStars.width = width
-      backStars.minRotation = 0
-      backStars.maxRotation = 40
-      backStars.start(false, 14000, 200)
-
-      ###
-      buckyball particles
-      ###
-      backBalls.makeParticles(sprite2, [0])
-      backBalls.maxParticleScale = 0.75
-      backBalls.minParticleScale = 0.5
-      backBalls.setYSpeed(50, 150)
-      backBalls.setXSpeed(-20, 20)
-      backBalls.gravity = 0
-      backBalls.width = width
-      backBalls.minRotation = 0
-      backBalls.maxRotation = 40
-      backBalls.start(false, 14000, 1000)
-
-  game = new Phaser.Game(width, height, Phaser.CANVAS, "")
-  game.state.add("Boot", boot)
-  game.state.add("Load", load)
-  game.state.add("Start", start)
-  game.state.start("Boot")
-  Cocoon.App.WebView.on 'load',
-    success: () ->
-      Cocoon.App.showTheWebView()
-
-    error: () ->
-      console.log(JSON.stringify(arguments))
-
-
-  Cocoon.App.loadInTheWebView("app/index.html")
-
-  return game
-
+game = do() -> new Game()

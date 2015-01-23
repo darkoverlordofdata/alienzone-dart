@@ -36,8 +36,6 @@ class BaseLevel extends Phaser.State {
   BaseLevel(this.level, this.config, this.cocoon){
     if (DEBUG) print("Class BaseLevel initialized");
     random = new MersenneTwister();
-    //random = new Math.Random(new DateTime.now().millisecondsSinceEpoch % 0x7fffffff);
-    //random = new Math.Random();
   }
 
   /**

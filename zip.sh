@@ -33,6 +33,7 @@ vulcanize --strip --inline --csp --output bootstrap.html index.html
 rm -f index.html
 mv -f bootstrap.html index.html
 rm -fr js
+rm -fr src
 
 #
 #   clean up the dart dependencies

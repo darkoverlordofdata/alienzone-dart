@@ -32,6 +32,21 @@ class Game extends Li2.Dilithium implements CocoonListener {
 
     print("Class Game initialized  ");
     cocoon = new CocoonServices(config, this);
+
+    /**
+     * We may or may not have gotten here before the
+     * animation has completed. If it hasn't finished
+     * yet, then we will wait for it.
+     *
+     * 1) if this game starts after the animation is complete,
+     *    then D16A_PAUSE is false and the game starts immediately.
+     *
+     * 2) if this game starts before the animation is complete,
+     *    then D16A_PAUSE is true, and we wait for the D16A_START event
+     *
+     */
+    game.paused = (context['D16A_WAIT'] == null) ? true : context['D16A_WAIT'];
+    window.on['D16A_START'].listen((e) => game.paused = false);
   }
 
   loginStatusChanged(object, value, error){
@@ -55,7 +70,10 @@ class Game extends Li2.Dilithium implements CocoonListener {
     game.state.add('achievements', new BaseLevel('achievements', config, cocoon));
     game.state.add('leaderboards', new BaseLevel('leaderboards', config, cocoon));
 
-    context['Cocoon']['App'].callMethod('forwardAsync', ['game_onload();']);
+    /**
+     * Tell the animation to shift gear.
+     */
+    context['Cocoon']['App'].callMethod('forwardAsync', ['game_start("Start");']);
 
     return new BaseLevel('main', config, cocoon);
 

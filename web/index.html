@@ -15,14 +15,20 @@
 			overflow: hidden;
 			/*-ms-touch-action: none;*/
 		}
-		@font-face{
+		@font-face {
 			font-family:'opendyslexic';
 			src: url('app/fonts/OpenDyslexic-Regular.ttf');
+		}
+		@font-face {
+			font-family:'opendyslexic';
+			font-style: normal;
+			font-weight: 400;
+			src: local('opendyslexic'), url(app/fonts/OpenDyslexic-Regular.ttf) format('truetype');
 		}
 
 		</style>
 		<script src="js/cocoonjs-plugins/build/cocoon.min.js"></script>
-		<script src="js/phaser.min.js"></script>
+		<script src="js/phaser/build/phaser.min.js"></script>
 		<script src="js/bootstrap.js"></script>
     </head>
     <body>

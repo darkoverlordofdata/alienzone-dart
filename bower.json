@@ -18,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "cocoonjs-plugins": "https://github.com/ludei/cocoonjs-plugins.git#~3.0.5"
+    "cocoonjs-plugins": "https://github.com/ludei/cocoonjs-plugins.git#~3.0.5",
+    "phaser": "~2.2.2"
   }
 }

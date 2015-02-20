@@ -111,9 +111,9 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
 
   onTimer(String name) {
 
-    if (name == 'gem-drop') {
-      drop();
-    }
+//    if (name == 'gem-drop') {
+//      drop();
+//    }
   }
 
     /**
@@ -252,6 +252,7 @@ class PlayerControlSystem extends Artemis.VoidEntitySystem {
     // If matches have been found
     var matches = puzzle.getMatches();
     if (matches != null) {
+
       // Initialize the array of pieces to upgrade
       piecesToUpgrade = [];
       // Reference to the current game

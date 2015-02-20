@@ -10,7 +10,7 @@ game_start = function() {
 };
 
 Game = (function() {
-  Game.prototype.VERSION = '0.0.34';
+  Game.prototype.VERSION = '0.0.36';
 
   Game.prototype.width = 320;
 
@@ -20,13 +20,14 @@ Game = (function() {
 
   Game.prototype.objects = [];
 
+  Game.prototype.game = Phaser.Game;
+
   function Game() {
-    var game;
     this.objects = [];
-    game = new Phaser.Game(this.width, this.height, Phaser.CANVAS, "");
-    game.state.add("Boot", new Boot(this, game));
-    game.state.add("Splash", new Splash(this, game));
-    game.state.start("Boot");
+    this.game = new Phaser.Game(this.width, this.height, Phaser.CANVAS, "");
+    this.game.state.add("Boot", new Boot(this, this.game));
+    this.game.state.add("Splash", new Splash(this, this.game));
+    this.game.state.start("Boot");
     Cocoon.App.WebView.on('load', {
       success: function() {
         return Cocoon.App.showTheWebView(0, 0, window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
@@ -44,7 +45,12 @@ Game = (function() {
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       obj = _ref[_i];
-      _results.push(obj.destroy());
+      this.game.add.tween(obj).to({
+        alpha: 0
+      }, 2000).start();
+      _results.push(window.setTimeout(function() {
+        return obj.destroy();
+      }, 3000));
     }
     return _results;
   };
@@ -67,9 +73,19 @@ Boot = (function() {
     console.log('Initialized Class Boot');
   }
 
+
+  /*
+   * load the logo
+   */
+
   Boot.prototype.preload = function() {
     return this.game.load.image('logo', "" + this.app.base + "images/d16a.png");
   };
+
+
+  /*
+   * configure the game
+   */
 
   Boot.prototype.create = function() {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -97,8 +113,13 @@ Splash = (function() {
     console.log('Initialized Class Splash');
   }
 
+
+  /*
+   * Load reemaining sprites and text elements
+   */
+
   Splash.prototype.preload = function() {
-    var build, copyright, obj, style10, style20, title;
+    var build, copyright, obj, style10, style40, title;
     title = 'Alien Zone';
     copyright = 'Copyright 2014 Dark Overlord of Data';
     build = "Build " + this.app.VERSION;
@@ -106,14 +127,14 @@ Splash = (function() {
       fill: 'yellow',
       font: '10pt opendyslexic'
     };
-    style20 = {
+    style40 = {
       fill: 'orange',
       font: '40pt opendyslexic'
     };
     obj = this.game.add.sprite(this.app.width / 2, this.app.height / 2, 'logo');
     obj.anchor.setTo(0.5, 0.5);
     this.app.objects.push(obj);
-    obj = this.game.add.text(this.app.width / 2, 80, title, style20);
+    obj = this.game.add.text(this.app.width / 2, 80, title, style40);
     obj.anchor.setTo(0.5);
     this.app.objects.push(obj);
     obj = this.game.add.text(this.app.width / 2, 400, build, style10);
@@ -121,46 +142,27 @@ Splash = (function() {
     this.app.objects.push(obj);
     obj = this.game.add.text(this.app.width / 2, 480, copyright, style10);
     obj.anchor.setTo(0.5);
-    this.app.objects.push(obj);
-    this.game.load.spritesheet('sprite1', "" + this.app.base + "images/star17.png", 17, 17);
-    return this.game.load.spritesheet('sprite2', "" + this.app.base + "images/bucky.png", 64, 64);
+    return this.app.objects.push(obj);
   };
+
+
+  /*
+   * Fire the particle emitters, Number One
+   * (Say it like you're Patrick Stewart)
+   */
 
   Splash.prototype.create = function() {
 
     /*
-    star particles
+     * star particles
      */
-    var backBalls, backStars;
-    backStars = this.game.add.emitter(160, -32, 100);
-    backStars.makeParticles('sprite1', [0, 1]);
-    backStars.maxParticleScale = 0.6;
-    backStars.minParticleScale = 0.2;
-    backStars.setYSpeed(20, 50);
-    backStars.setXSpeed(-15, 15);
-    backStars.gravity = 0;
-    backStars.width = this.app.width;
-    backStars.minRotation = 0;
-    backStars.maxRotation = 0;
-    backStars.start(false, 14000, 500);
 
     /*
-    buckyball particles
+     * buckyball particles
      */
-    backBalls = this.game.add.emitter(160, -32, 50);
-    backBalls.makeParticles('sprite2', [0]);
-    backBalls.maxParticleScale = 0.75;
-    backBalls.minParticleScale = 0.5;
-    backBalls.setYSpeed(20, 70);
-    backBalls.setXSpeed(-20, 20);
-    backBalls.gravity = 0;
-    backBalls.width = this.app.width;
-    backBalls.minRotation = 0;
-    backBalls.maxRotation = 0;
-    backBalls.start(false, 14000, 1000);
 
     /*
-    signal the game to start
+     * signal the game to start
      */
     return Cocoon.App.forwardAsync("D16A_WAIT=false;window.dispatchEvent(new CustomEvent('D16A_START'))");
   };
@@ -169,8 +171,6 @@ Splash = (function() {
 
 })();
 
-game = (function() {
-  return new Game();
-})();
+game = new Game();
 
 //# sourceMappingURL=bootstrap.js.map

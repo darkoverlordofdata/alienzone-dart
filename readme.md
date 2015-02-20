@@ -17,6 +17,14 @@
 * dilithium config / resource manager
 * play_phaser (dart port of phaser.io)
 
+
+### Build
+
+    pub build --mode=release
+    zip.sh
+    publish.sh
+
+
 # GPLv3 License
 
 Copyright (c) 2014 Bruce Davidson <darkoverlordofdata@gmail.com>

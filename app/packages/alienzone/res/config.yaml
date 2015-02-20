@@ -32,7 +32,7 @@ scaleMode: 0
 pageAlignHorizontally: true
 pageAlignVertically: true
 forceOrientation: false
-orientation: portrait
+orientation: # portrait
 
 showSplash: false
 splashKey:
